@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le : dim. 13 fév. 2022 à 18:04
--- Version du serveur : 10.4.20-MariaDB
--- Version de PHP : 7.3.29
+-- Hôte : localhost:8889
+-- Généré le : lun. 14 fév. 2022 à 01:06
+-- Version du serveur : 5.7.34
+-- Version de PHP : 7.4.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -91,6 +91,15 @@ CREATE TABLE `interaction` (
   `id_user2` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Déchargement des données de la table `interaction`
+--
+
+INSERT INTO `interaction` (`id_interaction`, `type_interaction`, `date_interaction`, `id_user1`, `id_user2`) VALUES
+(1, 'o', '2022-02-14', 1, 2),
+(2, 'o', '2022-02-14', 1, 2),
+(3, 'o', '2022-02-15', 2, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -125,8 +134,15 @@ CREATE TABLE `matching` (
   `id_match` int(20) NOT NULL,
   `id_user1` int(20) NOT NULL,
   `id_user2` int(20) NOT NULL,
-  `date_matching` date NOT NULL
+  `date_match` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `matching`
+--
+
+INSERT INTO `matching` (`id_match`, `id_user1`, `id_user2`, `date_match`) VALUES
+(15, 1, 2, '2022-02-14');
 
 -- --------------------------------------------------------
 
@@ -200,7 +216,7 @@ CREATE TABLE `user` (
   `password_user` varchar(20) NOT NULL,
   `nom_user` varchar(20) NOT NULL,
   `prenom_user` varchar(20) NOT NULL,
-  `datetNaissance_user` date NOT NULL,
+  `dateNaissance_user` date NOT NULL,
   `sexe_user` varchar(20) NOT NULL,
   `telephone_user` int(20) NOT NULL,
   `photo_user` varchar(100) NOT NULL,
@@ -218,8 +234,9 @@ CREATE TABLE `user` (
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`id_user`, `email_user`, `login_user`, `password_user`, `nom_user`, `prenom_user`, `datetNaissance_user`, `sexe_user`, `telephone_user`, `photo_user`, `description_user`, `maxDistance_user`, `preferredMinAge_user`, `preferredMaxAge_user`, `adresse_user`, `latitude`, `longitude`, `Interet_user`) VALUES
-(1, 'foulenbenfolen@esprit.tn', 'foulen', 'foulen', 'foulen', 'ben foulen', '2022-02-09', 'Homme', 94366666, 'photo.jpg', 'J\'aime Lablebi', 10, 18, 25, 'Ariana Essoughra', 2008, 1790, '10100100001010001010');
+INSERT INTO `user` (`id_user`, `email_user`, `login_user`, `password_user`, `nom_user`, `prenom_user`, `dateNaissance_user`, `sexe_user`, `telephone_user`, `photo_user`, `description_user`, `maxDistance_user`, `preferredMinAge_user`, `preferredMaxAge_user`, `adresse_user`, `latitude`, `longitude`, `Interet_user`) VALUES
+(1, 'foulenbenfolen@esprit.tn', 'foulen', 'foulen', 'foulen', 'ben foulen', '2022-02-09', 'Homme', 94366666, 'photo.jpg', 'J\'aime Lablebi', 10, 18, 25, 'Ariana Essoughra', 2008, 1790, '10100100001010001010'),
+(2, 'foulena@esprit.tn', 'foulena', 'foulena', 'foulena', 'ben fou', '1998-02-18', 'Femme', 94377777, '', 'J\'aime les crepes salé', 5, 20, 28, 'Soukra', 2009, 1791, '10100010001010001010');
 
 --
 -- Index pour les tables déchargées
@@ -335,7 +352,7 @@ ALTER TABLE `gerant`
 -- AUTO_INCREMENT pour la table `interaction`
 --
 ALTER TABLE `interaction`
-  MODIFY `id_interaction` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_interaction` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `invitation`
@@ -353,7 +370,7 @@ ALTER TABLE `jeu`
 -- AUTO_INCREMENT pour la table `matching`
 --
 ALTER TABLE `matching`
-  MODIFY `id_match` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_match` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT pour la table `message`
@@ -383,7 +400,7 @@ ALTER TABLE `restaurant`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
