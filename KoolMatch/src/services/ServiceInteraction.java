@@ -7,11 +7,13 @@ package services;
 
 import entities.interaction;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import utils.MyDB;
 
 /**
@@ -32,11 +34,9 @@ public class ServiceInteraction implements IService<interaction> {
             String querry = "INSERT INTO `interaction` (`type_interaction`,`date_interaction`,`id_user1`,`id_user2`) VALUES('" + p.getType_interaction() + "','" + p.getDate_interaction() + "','" + p.getId_user1() + "','" + p.getId_user2() + "')";
             Statement stm = cnx.createStatement();
             stm.executeUpdate(querry);
-
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-
     }
 
     @Override
@@ -58,13 +58,68 @@ public class ServiceInteraction implements IService<interaction> {
 
     @Override
     public boolean modifer(interaction p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Nouveau Date : ");
+        String date = sc.nextLine();
+        Date newDate = Date.valueOf(date);
+        try {
+            String req = " UPDATE `interaction` SET `date_interaction` = '" + newDate + "' WHERE `id_interaction` = '" + p.getId_interaction() + "'";
+            Statement stm = cnx.createStatement();
+            stm.executeUpdate(req);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+        return true;
 
+    }
 
     @Override
     public boolean supprimer(interaction p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            String querry = "DELETE FROM `interaction` WHERE `id_interaction` = '" + p.getId_interaction() + "'";
+            Statement stm = cnx.createStatement();
+            stm.executeUpdate(querry);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+        return true;
+    }
+
+    public interaction userLIKE(interaction p) {
+        List<interaction> likes = new ArrayList<>();
+        try {
+            String req = "SELECT `id_interaction`,`id_user1`,`id_user2` FROM `interaction` WHERE (`type_interaction` = 'o') AND (`id_user1`='" + p.getId_user1() + "' or `id_user2` ='" + p.getId_user1() + "')";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+                likes.add(new interaction(rs.getInt(1), rs.getInt(2), rs.getInt(3)));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        interaction X = new interaction(0, 0);
+        for (int i = 0; i < likes.size(); i++) {
+            X.setId_interaction(likes.get(i).getId_interaction());
+            X.setId_user1(likes.get(i).getId_user2());
+            X.setId_user2(likes.get(i).getId_user1());
+            if (likes.get(i).equals(X)) {
+                try {
+                    String querry = "DELETE FROM `interaction` WHERE `id_interaction` = '" + X.getId_interaction() + "'";
+                    Statement stm = cnx.createStatement();
+                    stm.executeUpdate(querry);
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+        }
+        return X;
+    }
+
+    public boolean userMATCH(List<interaction> listLike) {
+
+        return true;
     }
 
 }

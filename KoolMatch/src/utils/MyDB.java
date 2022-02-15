@@ -15,9 +15,9 @@ import java.sql.SQLException;
 
 public class MyDB {
 
-    public final String url = "jdbc:mysql://127.0.0.1:8889/koolmatch";
+    public final String url = "jdbc:mysql://127.0.0.1:3306/koolmatch";
     public final String login = "root";
-    public final String pwd = "root";
+    public final String pwd = ""; //root if mamp
     
     Connection connexion;
     public static MyDB instance;

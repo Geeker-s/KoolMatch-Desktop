@@ -22,6 +22,12 @@ public class interaction {
     public interaction() {
     }
 
+    public interaction(int id_interaction, int id_user1, int id_user2) {
+        this.id_interaction = id_interaction;
+        this.id_user1 = id_user1;
+        this.id_user2 = id_user2;
+    }
+
     public interaction(int id_user1, int id_user2) {
         this.id_user1 = id_user1;
         this.id_user2 = id_user2;
@@ -89,6 +95,35 @@ public class interaction {
 
     @Override
     public String toString() {
-        return "\ninteraction{" + "\n\tid_interaction=" + id_interaction + "\n\ttype_interaction=" + type_interaction + "\n\tdate_interaction=" + date_interaction + "\n\tid_user1=" + id_user1 + "\n\td_user2=" + id_user2 + '}'+"\n";
+        return "\nReact:" + "\n\tid_interaction=" + id_interaction + "\n\ttype_interaction=" + type_interaction + "\n\tdate_interaction=" + date_interaction + "\n\tid_user1=" + id_user1 + "\n\td_user2=" + id_user2 + "\n"+'}';
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final interaction other = (interaction) obj;
+        if (this.id_user1 != other.id_user2) {
+            return false;
+        }
+        if (this.id_user2 != other.id_user1) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }
