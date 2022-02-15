@@ -5,6 +5,8 @@
  */
 package koolmatch;
 
+import entities.conversations;
+import services.ServiceConversation;
 import services.ServiceUser;
 
 /**
@@ -18,9 +20,12 @@ public class KoolMatch {
      */
     public static void main(String[] args) {
 
-        ServiceUser user = new ServiceUser();
-        System.out.println(user.afficher());
+     //   ServiceUser user = new ServiceUser();
+      //  System.out.println(user.afficher());
 
+        ServiceConversation s = new ServiceConversation ();
+        s.ajouter(new conversations ("test",3,5));
+        System.out.println(s.afficher());
 
     }
     
