@@ -6,8 +6,10 @@
 package koolmatch;
 
 import entities.event;
+import entities.invitation;
 import java.sql.Date;
 import services.ServiceEvent;
+import services.ServiceInvitation;
 
 /**
  *
@@ -24,12 +26,48 @@ public class KoolMatch {
        
           ServiceEvent e ;
         e = new ServiceEvent();
-       // e.ajouter(new event( "turki",Date.valueOf("2022-12-01"),Date.valueOf("2022-12-01")," valo","dghdghd", 99485632));
-        System.out.println( e.afficher().toString());
        
-        
-
-
-    }
+        ServiceInvitation i ;
+        i = new ServiceInvitation();
+       
+       //AJOUT ET AFFICHAGE EVENT
+       //e.ajouter(new event( "turki",Date.valueOf("2022-12-01"),Date.valueOf("2022-12-01")," valo","dghdghd", 99485632));
+       System.out.println( e.afficher().toString() )  ;
+        //e.supprimer(new  event (3) );
+      
+       
+       // AJOUT ET AFFICHAGE INVITATION
+      // i.ajouter(new invitation(159,23));
+       System.out.println( i.afficher().toString());
+       
+       //SUPPRIMER EVENT 
+ //if (e.supprimer(new event(3))) {
+          //  System.out.println("Supprimé avec succes.");
+       // } else {
+         //   System.out.println("Erreur de suppression.");
+      //  }
+//System.out.println( e.afficher().toString());
     
-}
+    //MODIFIER EVENT
+      //  if (e.modifer(new event(4))) {
+       //    System.out.println("Numéro modifié avec succes.");
+       //} else {
+          //  System.out.println("Erreur de modification.");    
+        //}
+       
+        //MODIFIER INVITATION
+       //   if (i.modifer(new invitation(1))) {
+         // System.out.println("id modifié avec succes.");
+       //} else {
+         //   System.out.println("Erreur de modification.");    
+        //}
+          //    System.out.println( i.afficher().toString());
+
+        //SUPPRIMER INVITATION
+          //if (i.supprimer(new invitation(2))) {
+            //System.out.println("Supprimé avec succes.");
+       // } else {
+           // System.out.println("Erreur de suppression.");
+       // }
+         //System.out.println( i.afficher().toString());
+    } }

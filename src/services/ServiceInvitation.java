@@ -6,13 +6,12 @@
 package services;
 
 import entities.event;
-
+import entities.invitation;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
 import java.util.List;
 import java.util.Scanner;
 import utils.MyDB;
@@ -21,18 +20,21 @@ import utils.MyDB;
  *
  * @author Asus
  */
-public class ServiceEvent implements IService<event> {
+public class ServiceInvitation implements IService<invitation> {
     
-    private Connection cnx;
 
-    public ServiceEvent() {
+     private Connection cnx;
+
+    public ServiceInvitation() {
         cnx = MyDB.getInstance().getCnx();
-    }
+
+    
+}
 
     @Override
-    public void ajouter( event p) {
- try {
-             String querry="INSERT INTO `evenement`( `nom_event`, `dd_event`, `df_event`, `theme_event`, `adresse_event`, `telephone`) VALUES ('"+p.getNom_event()+"','"+p.getDd_event()+"','"+p.getDf_event()+"','"+p.getTheme_event()+"','"+p.getAdresse_event()+"','"+p.getTelephone()+"')";
+    public void ajouter(invitation p) {
+        try {
+             String querry="INSERT INTO `invitation`( `id_invitation`, `id_event`, `id_user`) VALUES ('"+p.getId_invitation()+"','"+p.getId_event()+"','"+p.getId_user()+"')";
             Statement stm =cnx.createStatement();
         
         stm.executeUpdate(querry);
@@ -42,33 +44,31 @@ public class ServiceEvent implements IService<event> {
         }
     }
 
-    
     @Override
-    public List<event> afficher() {
-        List<event> events = new ArrayList<>();
+    public List<invitation> afficher() {
+         List<invitation> invitations = new ArrayList<>();
         try {
-            String req = "SELECT * FROM evenement";
+            String req = "SELECT * FROM invitation";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             
             while(rs.next()){
-            events.add(new event(rs.getInt(1),rs.getString(2),rs.getDate(3),rs.getDate(4),rs.getString(5),rs.getString(6),rs.getInt(7)));
+            invitations.add(new invitation(rs.getInt(1),rs.getInt(2),rs.getInt(3)));
             }
             
         } catch (SQLException ex) {
             ex.getStackTrace();
         }
-        return events;
+        return invitations;
     }
 
     @Override
-    public boolean modifer(event p) {
-        
+    public boolean modifer(invitation p) {
            Scanner sc = new Scanner(System.in);
-        System.out.println("nom event : ");
-        String nom_event = sc.nextLine();
+        System.out.println("id event : ");
+        String id_event = sc.nextLine();
           try {
-           String req = " UPDATE `evenement` SET `nom_event` = '" + nom_event+ "' WHERE `id_event` = '" + p.getId_event() + "'";
+           String req = " UPDATE `invitation` SET `id_event` = '" + id_event+ "' WHERE `id_invitation` = '" + p.getId_invitation() + "'";
             Statement stm = cnx.createStatement();
             stm.executeUpdate(req);
         } catch (SQLException ex) { 
@@ -77,13 +77,11 @@ public class ServiceEvent implements IService<event> {
         }
         return true;
     }
-             
-    
 
     @Override
-    public boolean supprimer(event p) {
+    public boolean supprimer(invitation p) {
          try {
-            String querry = "DELETE FROM evenement WHERE id_event = '" + p.getId_event() + "'";
+            String querry = "DELETE FROM invitation WHERE id_invitation = '" + p.getId_invitation() + "'";
             Statement stm = cnx.createStatement();
             stm.executeUpdate(querry);
         } catch (SQLException ex) {
@@ -92,5 +90,5 @@ public class ServiceEvent implements IService<event> {
         }
         return true;
     }
-    
+
 }

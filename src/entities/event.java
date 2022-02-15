@@ -43,6 +43,12 @@ public class event {
         this.telephone = telephone;
     }
 
+    public event(int id_event) {
+        this.id_event = id_event;
+    }
+
+   
+
     public int getId_event() {
         return id_event;
     }
