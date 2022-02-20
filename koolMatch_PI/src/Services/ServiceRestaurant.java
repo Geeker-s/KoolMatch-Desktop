@@ -43,7 +43,7 @@ public class ServiceRestaurant implements IService<Restaurant>{
     public List<Restaurant> afficher() {
         List<Restaurant> Restaurant = new ArrayList<>();
         try {
-            String req = "SELECT * FROM restaurant";
+            String req = "SELECT * FROM restaurant WHERE `statut_supprime` = 1";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
@@ -79,7 +79,7 @@ public class ServiceRestaurant implements IService<Restaurant>{
 
     @Override
     public boolean supprimer(Restaurant p) {
-        try {
+     /*   try {
             String querry = "DELETE FROM `restaurant` WHERE `id_restaurant` = '" + p.getId_restaurant()+ "'";
             Statement stm = cnx.createStatement();
             stm.executeUpdate(querry);
@@ -88,6 +88,18 @@ public class ServiceRestaurant implements IService<Restaurant>{
             return false;
         }
         return true;
+        }*/
+       try {
+            String req = " UPDATE `restaurant` SET `statut_supprime` = 0  WHERE `id_restaurant` = '" + p.getId_restaurant()+ "'";
+            Statement stm = cnx.createStatement();
+            stm.executeUpdate(req);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+        return true;
+        
+        
     }
     
 }
