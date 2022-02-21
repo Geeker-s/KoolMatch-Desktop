@@ -6,11 +6,14 @@
 package services;
 
 import entities.matching;
+import entities.user;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -90,4 +93,47 @@ public class ServiceMatching implements IService<matching> {
         }
         return true;
     }
+
+    public int hex(String s) {
+        int i = 0;
+        String res = "";
+        while (i <= s.length() - 3) {
+            res += String.valueOf(Integer.parseInt(s.substring(i, i + 3), 2));
+            i += 3;
+        }
+        return Integer.parseInt(res);
+    }
+
+    public List<user> algorithme(user u) {
+        List<user> users = new ArrayList<>();
+        try {
+            String req = "SELECT * FROM user WHERE id_user NOT LIKE '" + u.getId_user() + "' ORDER BY (ABS( Interet_user - '" + u.getInteret_user() + "'))";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+
+            while (rs.next()) {
+                users.add(new user(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getDate(7), rs.getString(8), rs.getInt(9), rs.getString(10), rs.getString(11), rs.getInt(12), rs.getInt(13), rs.getInt(14), rs.getString(15), rs.getFloat(16), rs.getFloat(17), rs.getString(18)));
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return users;
+    }
+
+    public static int calculateAge(user u) {
+
+        int year;
+        year = u.getDateNaissance_user().getYear();
+
+        return Date.valueOf(LocalDate.now()).getYear() - year;
+    }
+
+    public void filter(user u) {
+
+        List<user> users = algorithme(u);
+        //users.stream().filter(x -> x.getDateNaissance_user() < u.getPreferredMaxAge_user());
+    }
+
 }

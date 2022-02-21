@@ -39,6 +39,11 @@ public class user {
         this.id_user = id_user;
     }
 
+    public user(int id_user, Date dateNaissance_user) {
+        this.id_user = id_user;
+        this.dateNaissance_user = dateNaissance_user;
+    }
+
     
     public user(int id_user, String email_user, String login_user, String password_user, String nom_user, String prenom_user, Date dateNaissance_user, String sexe_user, int telephone_user, String photo_user, String description_user, int maxDistance_user, int preferredMinAge_user, int preferredMaxAge_user, String adresse_user, float latitude_user, float longitude_user, String interet_user) {
         this.id_user = id_user;

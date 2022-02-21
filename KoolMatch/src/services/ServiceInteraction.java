@@ -99,13 +99,14 @@ public class ServiceInteraction implements IService<interaction> {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        interaction X = new interaction(0, 0);
+        interaction X = new interaction(0, 0, 0);
         for (int i = 0; i < likes.size(); i++) {
             X.setId_interaction(likes.get(i).getId_interaction());
             X.setId_user1(likes.get(i).getId_user2());
             X.setId_user2(likes.get(i).getId_user1());
-            if (likes.get(i).equals(X)) {
+            if (likes.get(i).equals(X)) {  //nthabet mel equals
                 try {
+                    //usr1 = id1 et usr2 =id2 ou l3aks
                     String querry = "DELETE FROM `interaction` WHERE `id_interaction` = '" + X.getId_interaction() + "'";
                     Statement stm = cnx.createStatement();
                     stm.executeUpdate(querry);
@@ -114,12 +115,11 @@ public class ServiceInteraction implements IService<interaction> {
                 }
             }
         }
-        return X;
+        return X; //new interaction(foulen.getId_user(), foulena.getId_user())
     }
 
     public boolean userMATCH(List<interaction> listLike) {
 
         return true;
     }
-
 }
