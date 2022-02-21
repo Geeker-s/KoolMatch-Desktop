@@ -60,9 +60,9 @@ public class ServiceReservation implements IService<Reservation>{
     @Override
     public boolean modifer(Reservation p1) {
            Scanner sc = new Scanner(System.in);
-             System.out.println("Nouveau Date : ");
+             System.out.println("Nouveau place : ");
               String newPlace = sc.nextLine();
-                  Scanner sc1 = new Scanner(System.in);
+           /*       Scanner sc1 = new Scanner(System.in);
              System.out.println("Nouveau place : ");
            String newDate =sc1.nextLine();
             Scanner sc2 = new Scanner(System.in);
@@ -70,13 +70,13 @@ public class ServiceReservation implements IService<Reservation>{
            String newRestaurant =sc2.nextLine();
               Scanner sc3 = new Scanner(System.in);
              System.out.println("Nouveau place : ");
-           String newSta =sc3.nextLine();
+           String newSta =sc3.nextLine();*/
       
         
     //    UPDATE `reservation` SET `id_reservation` = '2', `date_reservation` = '2022-02-13', `id_restaurant` = '5', `id_user` = '2', `status_supprimer1` = '2' WHERE `reservation`.`id_reservation` = 1 AND `reservation`.`date_reservation` = '2022-02-14' AND `reservation`.`id_user` = 1; 
         
         try {
-            String req = " UPDATE `reservation` SET `id_reservation` = '" + newPlace + "', `date_reservation` = '" + newDate +"',`id_restaurant` = '" + newRestaurant +"',`status_supprimer1` = '" + newSta +"' WHERE `id_restaurant` = '" + p1.getId_reservation()+ "'AND `date_reservation` = '" + p1.getDate_reservation()+ "' AND `id_user` = '" + p1.getId_user()+ "'";
+            String req = " UPDATE `reservation` SET `nbPlace_reservation` = '" + newPlace + "' WHERE `id_reservation` = '" + p1.getId_reservation()+ "'";
             Statement stm = cnx.createStatement();
             stm.executeUpdate(req);
         } catch (SQLException ex) {
@@ -109,8 +109,17 @@ public class ServiceReservation implements IService<Reservation>{
         return true;
     }
 
+   
+
+    @Override
+    public boolean updateNbrPlace(Reservation P, int nbPlace_reservation) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    }
+
  
-}
+
 
 
         

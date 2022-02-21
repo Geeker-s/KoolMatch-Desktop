@@ -17,22 +17,29 @@ public class Restaurant {
     private String siteweb_restaurant ;
     private String specialite_restaurant;
     private int id_gerant ;
+    private String image;
+    private int statut_supprime  ;
+    private int nb_placeResto;
 
 public Restaurant(){} 
 public Restaurant(int id_restaurant){
 this.id_restaurant = id_restaurant ;
 } 
 
-
-public Restaurant( String nom_restaurant, String adresse_restaurant, int telephone_restaurant, String siteweb_restaurant, String specialite_restaurant, int id_gerant) {
-        
+    public Restaurant(int id_restaurant, String nom_restaurant, String adresse_restaurant, int telephone_restaurant, String siteweb_restaurant, String specialite_restaurant,int id_gerant,String image,int statut_supprime, int nb_placeResto  ) {
+        this.id_restaurant = id_restaurant;
         this.nom_restaurant = nom_restaurant;
         this.adresse_restaurant = adresse_restaurant;
         this.telephone_restaurant = telephone_restaurant;
         this.siteweb_restaurant = siteweb_restaurant;
         this.specialite_restaurant = specialite_restaurant;
         this.id_gerant = id_gerant;
+         this.image = image;
+         this.statut_supprime = statut_supprime;
+         this.nb_placeResto=nb_placeResto;
     }
+
+
 
 
 
@@ -47,6 +54,12 @@ public Restaurant(int id_restaurant, String nom_restaurant, String adresse_resta
         this.specialite_restaurant = specialite_restaurant;
         this.id_gerant = id_gerant;
     }
+
+    public Restaurant(int id_restaurant, int nb_placeResto) {
+        this.id_restaurant = id_restaurant;
+        this.nb_placeResto = nb_placeResto;
+    }
+
 
  public int getId_restaurant() {
         return id_restaurant;
@@ -104,9 +117,33 @@ public Restaurant(int id_restaurant, String nom_restaurant, String adresse_resta
         this.id_gerant = id_gerant;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public int getNb_placeResto() {
+        return nb_placeResto;
+    }
+
+    public void setNb_placeResto(int nb_placeResto) {
+        this.nb_placeResto = nb_placeResto;
+    }
+
     @Override
     public String toString() {
-        return "Restaurant{" + "id_restaurant=" + id_restaurant + ",nom_restaurant=" + nom_restaurant + ", adresse_restaurant=" + adresse_restaurant + ", telephone_restaurant=" + telephone_restaurant + ", siteweb_restaurant=" + siteweb_restaurant + ", specialite_restaurant=" + specialite_restaurant + ", id_gerant=" + id_gerant + '}';
+        return "Restaurant{" + "id_restaurant=" + id_restaurant + ",nom_restaurant=" + nom_restaurant + ", adresse_restaurant=" + adresse_restaurant + ", telephone_restaurant=" + telephone_restaurant + ", siteweb_restaurant=" + siteweb_restaurant + ", specialite_restaurant=" + specialite_restaurant + ", image=" + image +  ", id_gerant=" + id_gerant + ",nb_placeResto" +nb_placeResto + '}';
+    }
+
+    public int getStatut_supprime() {
+        return statut_supprime;
+    }
+
+    public void setStatut_supprime(int statut_supprime) {
+        this.statut_supprime = statut_supprime;
     }
     
 

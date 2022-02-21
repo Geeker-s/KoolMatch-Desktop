@@ -21,6 +21,7 @@ public interface IService<T> {
     public boolean modifer(T p);
 
     public boolean supprimer(T p);
+    public boolean updateNbrPlace(T P ,int nbPlace_reservation);
 }
    
 
