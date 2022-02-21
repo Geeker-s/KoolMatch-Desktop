@@ -130,10 +130,52 @@ public class ServiceMatching implements IService<matching> {
         return Date.valueOf(LocalDate.now()).getYear() - year;
     }
 
-    public void filter(user u) {
+    public user updateUser(user u) {
 
-        List<user> users = algorithme(u);
-        //users.stream().filter(x -> x.getDateNaissance_user() < u.getPreferredMaxAge_user());
+        user x = new user();
+        try {
+            String req = "SELECT `id_user`, `dateNaissance_user` FROM user WHERE id_user = '" + u.getId_user() + "'";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+
+            while (rs.next()) {
+                x.setId_user(rs.getInt(1));
+                x.setDateNaissance_user(rs.getDate(2));
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return x;
     }
 
+    public void filter(user u) {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Age minimum Preferre : ");
+        String preferredMinAge = sc.nextLine();
+        System.out.println("Age maximum Preferre : ");
+        String preferredMaxAge = sc.nextLine();
+        System.out.println("Distance maximum Preferre : ");
+        String maxDistance = sc.nextLine();
+        int ageMin = Integer.parseInt(preferredMinAge);
+        int ageMax = Integer.parseInt(preferredMaxAge);
+        int distance = Integer.parseInt(maxDistance);
+
+        try {
+            String req = " UPDATE `user` SET `preferredMinAge_user` = '" + ageMin + "', `preferredMaxAge_user` = '" + ageMax + "', `maxDistance_user` = '" + distance + "' WHERE `id_user` = '" + u.getId_user() + "'";
+            Statement stm = cnx.createStatement();
+            stm.executeUpdate(req);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        algorithme(u)
+                .stream()
+                .filter(x -> ageMin <= calculateAge(x))
+                .filter(x -> calculateAge(x) <= ageMax)
+                
+                //Manque la partie distance
+                .forEach(x -> System.out.println(x));
+    }
 }

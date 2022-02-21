@@ -35,18 +35,16 @@ public class KoolMatch {
         user foulena = new user(2);
 
         //Creation des reaction lors d'une interaction
-        interaction react1 = new interaction("o", Date.valueOf("2022-02-14"), foulen.getId_user(), foulena.getId_user());
-        interaction react2 = new interaction("o", Date.valueOf("2022-02-15"), foulena.getId_user(), foulen.getId_user());
+//        interaction react1 = new interaction("o", Date.valueOf("2022-02-14"), foulen.getId_user(), foulena.getId_user());
+//        interaction react2 = new interaction("o", Date.valueOf("2022-02-15"), foulena.getId_user(), foulen.getId_user());
 
 //        react.ajouter(react1);
 //        react.ajouter(react2);
-
+        match.filter(match.updateUser(foulen));
 //        System.out.println(match.algorithme(foulen));
 //        System.out.println("\n\n------------------------\n\n");
         //match.hex("010"); //hexcode du profile
-        System.out.println(match.calculateAge(new user(1,Date.valueOf("1998-01-09"))));
-        
-        
+//        System.out.println(match.calculateAge(new user(1,Date.valueOf("1995-02-18"))));
 
 //      match.ajouter(new matching(react.userLIKE(react1).getId_user2(),react.userLIKE(react1).getId_user1(),  Date.valueOf(LocalDate.now())));
 //        if (react.supprimer(new interaction(3))) {
