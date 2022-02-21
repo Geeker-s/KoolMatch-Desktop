@@ -20,4 +20,7 @@ public interface IService<T> {
     public boolean modifer(T p);
 
     public boolean supprimer(T p);
+    
+    
 }
+ 

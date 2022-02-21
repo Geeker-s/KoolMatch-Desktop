@@ -32,7 +32,7 @@ public class ServiceUser implements IService<user> {
     @Override
     public void ajouter(user p) {
         try {
-             String querry="INSERT INTO `user`( `email_user`, `login_user`, `password_user`, `nom_user`, `prenom_user`,`dateNaissance_user`,`sexe_user`,`telephone_user`,`photo_user`,`description_user`,`maxDistance_user`,`preferredMinAge_user`,`preferredMaxAge_user`,`adresse_user`,`latitude`,`longitude`,`Interet_user`) VALUES ('"+p.getEmail_user()+"' ,'"+p.getLogin_user()+"','"+p.getPassword_user()+"','"+p.getNom_user()+"','"+p.getPrenom_user()+"','"+p.getDateNaissance_user()+"','"+p.getSexe_user()+"','"+p.getTelephone_user()+"','"+p.getPhoto_user()+"','"+p.getDescription_user()+"','"+p.getMaxDistance_user()+"','"+p.getPreferredMinAge_user()+"','"+p.getPreferredMaxAge_user()+"','"+p.getAdresse_user()+"','"+p.getLatitude_user()+"','"+p.getLongitude_user()+"','"+p.getInteret_user()+"')";
+             String querry="INSERT INTO `user`( `email_user`, `login_user`, `password_user`, `nom_user`, `prenom_user`,`dateNaissance_user`,`sexe_user`,`telephone_user`,`photo_user`,`description_user`,`maxDistance_user`,`preferredMinAge_user`,`preferredMaxAge_user`,`adresse_user`,`latitude`,`longitude`,`Interet_user`,`archive`) VALUES ('"+p.getEmail_user()+"' ,'"+p.getLogin_user()+"','"+p.getPassword_user()+"','"+p.getNom_user()+"','"+p.getPrenom_user()+"','"+p.getDateNaissance_user()+"','"+p.getSexe_user()+"','"+p.getTelephone_user()+"','"+p.getPhoto_user()+"','"+p.getDescription_user()+"','"+p.getMaxDistance_user()+"','"+p.getPreferredMinAge_user()+"','"+p.getPreferredMaxAge_user()+"','"+p.getAdresse_user()+"','"+p.getLatitude_user()+"','"+p.getLongitude_user()+"','"+p.getInteret_user()+"','"+p.getArchive()+"')";
             Statement stm =cnx.createStatement();
         
         stm.executeUpdate(querry);
@@ -46,7 +46,7 @@ public class ServiceUser implements IService<user> {
     public List<user> afficher() {
         List<user> users = new ArrayList<>();
         try {
-            String req = "SELECT * FROM user";
+            String req = "SELECT * FROM user where archive = 0";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             
@@ -78,15 +78,39 @@ public class ServiceUser implements IService<user> {
 
     @Override
     public boolean supprimer(user p) {
-          try {
-            String querry = "DELETE FROM `user` WHERE `id_user` = '" + p.getId_user() + "'";
+       String req = "update user set archive = 1 where id_user='" + p.getId_user() + "'";
+        try {
             Statement stm = cnx.createStatement();
-            stm.executeUpdate(querry);
+            stm.executeUpdate(req);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             return false;
         }
+        System.out.println("user supprimée");
+
         return true;
     }
+    public boolean login(String login_user, String password_user) {
+        boolean success = false;
+        try {
+            Statement stm = cnx.createStatement();
 
+            String req = "SELECT password_user FROM user WHERE login_user='" + login_user + "'";
+            ResultSet rs = stm.executeQuery(req);
+            rs = stm.executeQuery(req);
+
+            while (rs.next()) {
+                if (password_user.equals(rs.getString(1)))
+                    System.out.println("Bienvenue");
+                else
+                    System.out.println("Vérifier mot de passe");
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return success;
+    }
+  
 }

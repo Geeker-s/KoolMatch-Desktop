@@ -16,6 +16,7 @@ public class gerant {
     private int telephone_gerant;
     private Date dd_abonnement;
     private Date df_abonnement;
+    private int archive;
 
     public gerant() {
     }
@@ -27,6 +28,7 @@ public class gerant {
         this.telephone_gerant = telephone_gerant;
         this.dd_abonnement = dd_abonnement;
         this.df_abonnement = df_abonnement;
+        this.archive = archive;
     }
 
     public gerant(String nom_gerant, String prenom_gerant, int telephone_gerant, Date dd_abonnement, Date df_abonnement) {
@@ -35,6 +37,7 @@ public class gerant {
         this.telephone_gerant = telephone_gerant;
         this.dd_abonnement = dd_abonnement;
         this.df_abonnement = df_abonnement;
+        this.archive = archive;
     }
 
     public gerant(int id_gerant) {
@@ -65,6 +68,11 @@ public class gerant {
         return df_abonnement;
     }
 
+    public int getArchive() {
+        return archive;
+    }
+    
+
     public void setId_gerant(int id_gerant) {
         this.id_gerant = id_gerant;
     }
@@ -89,9 +97,15 @@ public class gerant {
         this.df_abonnement = df_abonnement;
     }
 
+    public void setArchive(int archive) {
+        this.archive = archive;
+    }
+    
+    
+
     @Override
     public String toString() {
-        return "gerant{\n\t" + "id_gerant=" + id_gerant + "\n\t nom_gerant=" + nom_gerant + "\n\t prenom_gerant=" + prenom_gerant + "\n\t telephone_gerant=" + telephone_gerant + "\n\t dd_abonnement=" + dd_abonnement + "\n\t df_abonnement=" + df_abonnement + '}';
+        return "gerant{\n\t" + "id_gerant=" + id_gerant + "\n\t nom_gerant=" + nom_gerant + "\n\t prenom_gerant=" + prenom_gerant + "\n\t telephone_gerant=" + telephone_gerant + "\n\t dd_abonnement=" + dd_abonnement + "\n\t df_abonnement=" + df_abonnement + "\n\t archive=" + archive + '}';
     }
 
     

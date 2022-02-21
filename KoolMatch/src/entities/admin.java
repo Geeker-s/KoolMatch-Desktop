@@ -13,6 +13,7 @@ public class admin {
     private int id_admin ;
     private String login_admin;
     private String password_admin;
+    private int archive;
 
     public admin() {
     }
@@ -21,11 +22,13 @@ public class admin {
         this.id_admin = id_admin;
         this.login_admin = login_admin;
         this.password_admin = password_admin;
+        this.archive = archive;
     }
 
     public admin(String login_admin, String password_admin) {
         this.login_admin = login_admin;
         this.password_admin = password_admin;
+        this.archive = archive;
     }
 
     public admin(int id_admin) {
@@ -44,6 +47,11 @@ public class admin {
         return password_admin;
     }
 
+    public int getArchive() {
+        return archive;
+    }
+    
+
     public void setId_admin(int id_admin) {
         this.id_admin = id_admin;
     }
@@ -56,9 +64,15 @@ public class admin {
         this.password_admin = password_admin;
     }
 
+    public void setArchive(int archive) {
+        this.archive = archive;
+    }
+
     @Override
     public String toString() {
-        return "admin{\n\t" + "id_admin=" + id_admin + "\n\t login_admin=" + login_admin + "\n\t password_admin=" + password_admin + '}';
+        return "admin{\n\t" + "id_admin=" + id_admin + ",\n\t login_admin=" + login_admin + ",\n\t password_admin=" + password_admin + ",\n\t archive=" + archive + '}';
     }
+
+    
     
 }

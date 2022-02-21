@@ -28,7 +28,7 @@ public class ServiceGerant implements IService<gerant> {
     @Override
     public void ajouter(gerant p) {
         try {
-             String querry="INSERT INTO `gerant`( `nom_gerant`, `prenom_gerant`, `telephone_gerant`, `dd_abonnement`, `df_abonnement`) VALUES ('"+p.getNom_gerant()+"' ,'"+p.getPrenom_gerant()+"','"+p.getTelephone_gerant()+"','"+p.getDd_abonnement()+"','"+p.getDf_abonnement()+"')";
+             String querry="INSERT INTO `gerant`( `nom_gerant`, `prenom_gerant`, `telephone_gerant`, `dd_abonnement`, `df_abonnement`,`archive`) VALUES ('"+p.getNom_gerant()+"' ,'"+p.getPrenom_gerant()+"','"+p.getTelephone_gerant()+"','"+p.getDd_abonnement()+"','"+p.getDf_abonnement()+"','"+p.getArchive()+"')";
             Statement stm =cnx.createStatement();
         
         stm.executeUpdate(querry);
@@ -42,7 +42,7 @@ public class ServiceGerant implements IService<gerant> {
     public List<gerant> afficher() {
         List<gerant> gerants = new ArrayList<>();
         try {
-            String req = "SELECT * FROM gerant";
+            String req = "SELECT * FROM gerant where archive = 0";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             
@@ -74,15 +74,20 @@ public class ServiceGerant implements IService<gerant> {
 
     @Override
     public boolean supprimer(gerant p) {
-         try {
-            String querry = "DELETE FROM `gerant` WHERE `id_gerant` = '" + p.getId_gerant() + "'";
+ String req = " update gerant set archive = 1 where id_gerant='" + p.getId_gerant() + "'";
+        try {
             Statement stm = cnx.createStatement();
-            stm.executeUpdate(querry);
+            stm.executeUpdate(req);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             return false;
         }
+        System.out.println("Gérant supprimée");
+
         return true;
     }
-    
+
+
+
+
 }

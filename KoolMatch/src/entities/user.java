@@ -31,6 +31,7 @@ public class user {
     private float latitude_user;
     private float longitude_user;
     private String interet_user;
+    private int archive;
 
     public user() {
     }
@@ -54,6 +55,7 @@ public class user {
         this.latitude_user = latitude_user;
         this.longitude_user = longitude_user;
         this.interet_user = interet_user;
+        this.archive = archive ;
     }
 
     public user(String email_user, String login_user, String password_user, String nom_user, String prenom_user, Date dateNaissance_user, String sexe_user, int telephone_user, String photo_user, String description_user, int maxDistance_user, int preferredMinAge_user, int preferredMaxAge_user, String adresse_user, float latitude_user, float longitude_user, String interet_user) {
@@ -74,6 +76,7 @@ public class user {
         this.latitude_user = latitude_user;
         this.longitude_user = longitude_user;
         this.interet_user = interet_user;
+        this.archive = archive ;
     }
 
     public user(int id_user) {
@@ -154,6 +157,11 @@ public class user {
         return interet_user;
     }
 
+    public int getArchive() {
+        return archive;
+    }
+    
+
     public void setId_user(int id_user) {
         this.id_user = id_user;
     }
@@ -226,9 +234,13 @@ public class user {
         this.interet_user = interet_user;
     }
 
+    public void setArchive(int archive) {
+        this.archive = archive;
+    }
+
     @Override
     public String toString() {
-        return "user{\n\t" + "id_user=" + id_user + "\n\temail_user=" + email_user + "\n\tlogin_user=" + login_user + "\n\tpassword_user=" + password_user + "\n\tnom_user=" + nom_user + "\n\tprenom_user=" + prenom_user + "\n\tdateNaissance_user=" + dateNaissance_user + "\n\tsexe_user=" + sexe_user + "\n\ttelephone_user=" + telephone_user + "\n\tphoto_user=" + photo_user + "\n\tdescription_user=" + description_user + "\n\tmaxDistance_user=" + maxDistance_user + "\n\tpreferredMinAge_user=" + preferredMinAge_user + "\n\tpreferredMaxAge_user=" + preferredMaxAge_user + "\n\tadresse_user=" + adresse_user + "\n\tlatitude_user=" + latitude_user + "\n\tlongitude_user=" + longitude_user + "\n\tinteret_user=" + interet_user + '}' + "\n";
+        return "user{\n\t" + "id_user=" + id_user + "\n\temail_user=" + email_user + "\n\tlogin_user=" + login_user + "\n\tpassword_user=" + password_user + "\n\tnom_user=" + nom_user + "\n\tprenom_user=" + prenom_user + "\n\tdateNaissance_user=" + dateNaissance_user + "\n\tsexe_user=" + sexe_user + "\n\ttelephone_user=" + telephone_user + "\n\tphoto_user=" + photo_user + "\n\tdescription_user=" + description_user + "\n\tmaxDistance_user=" + maxDistance_user + "\n\tpreferredMinAge_user=" + preferredMinAge_user + "\n\tpreferredMaxAge_user=" + preferredMaxAge_user + "\n\tadresse_user=" + adresse_user + "\n\tlatitude_user=" + latitude_user + "\n\tlongitude_user=" + longitude_user + "\n\tinteret_user=" + interet_user +"\n\t archive=" + archive + '}' + "\n";
     }
 
 }
