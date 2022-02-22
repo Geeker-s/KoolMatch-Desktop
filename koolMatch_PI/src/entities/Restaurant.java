@@ -20,12 +20,15 @@ public class Restaurant {
     private String image;
     private int statut_supprime  ;
     private int nb_placeResto;
+    public int getAdresse_restaurant;
 
 public Restaurant(){} 
 public Restaurant(int id_restaurant){
 this.id_restaurant = id_restaurant ;
 } 
-
+public Restaurant(String adresse_restaurant){
+this.adresse_restaurant = adresse_restaurant ;
+} 
     public Restaurant(int id_restaurant, String nom_restaurant, String adresse_restaurant, int telephone_restaurant, String siteweb_restaurant, String specialite_restaurant,int id_gerant,String image,int statut_supprime, int nb_placeResto  ) {
         this.id_restaurant = id_restaurant;
         this.nom_restaurant = nom_restaurant;
@@ -133,12 +136,8 @@ public Restaurant(int id_restaurant, String nom_restaurant, String adresse_resta
         this.nb_placeResto = nb_placeResto;
     }
 
-    @Override
-    public String toString() {
-        return "Restaurant{" + "id_restaurant=" + id_restaurant + ",nom_restaurant=" + nom_restaurant + ", adresse_restaurant=" + adresse_restaurant + ", telephone_restaurant=" + telephone_restaurant + ", siteweb_restaurant=" + siteweb_restaurant + ", specialite_restaurant=" + specialite_restaurant + ", image=" + image +  ", id_gerant=" + id_gerant + ",nb_placeResto" +nb_placeResto + '}';
-    }
-
-    public int getStatut_supprime() {
+    
+      public int getStatut_supprime() {
         return statut_supprime;
     }
 
@@ -146,5 +145,11 @@ public Restaurant(int id_restaurant, String nom_restaurant, String adresse_resta
         this.statut_supprime = statut_supprime;
     }
     
+    @Override
+    public String toString() {
+        return "Restaurant{" + "id_restaurant=" + id_restaurant + ",nom_restaurant=" + nom_restaurant + ", adresse_restaurant=" + adresse_restaurant + ", telephone_restaurant=" + telephone_restaurant + ", siteweb_restaurant=" + siteweb_restaurant + ", specialite_restaurant=" + specialite_restaurant + ", image=" + image +  ", id_gerant=" + id_gerant + ",nb_placeResto" +nb_placeResto +'\n'+ '}';
+    }
 
+  
+  
 }

@@ -8,12 +8,18 @@ package Services;
 import com.mysql.cj.Messages;
 import entities.Restaurant;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import utils.MyDB;
 
 /**
@@ -110,28 +116,67 @@ public class ServiceRestaurant implements IService<Restaurant>{
 @Override
     public boolean updateNbrPlace(Restaurant P, int nbPlace_reservation) {
     
+    /* if(P.getNb_placeResto()< nbPlace_reservation)
+     {*/
+     
+     
      
        
         
      try { 
-         System.out.println("nombre de place = " +P.getNb_placeResto());
-          System.out.println("nombre de place = " +P.getId_restaurant());
+        /* System.out.println("nombre de place = " +P.getNb_placeResto());
+          System.out.println("nombre de place = " +P.getId_restaurant());*/
             String req = " UPDATE `restaurant` SET `nb_placeResto`  = '" + P.getNb_placeResto()+ "' - '"+nbPlace_reservation+"'  WHERE `id_restaurant` = '" + P.getId_restaurant()+ "' ";
             Statement stm = cnx.createStatement();
             stm.executeUpdate(req);
        
-        
+         
      } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             return false;
-        }
+     
+             }
         return true; 
+       
+    }
+    
+    @Override
+    public void search(Restaurant p){
+     
+            Scanner sc =new Scanner(System.in);
+            System.out.println("tapez new adresse : ");
+            String Adresse = sc.nextLine();
+                       
+            List <Restaurant> search = afficher()
+                  
+                    .stream()
+                    .filter(e -> e.getAdresse_restaurant().equals(Adresse)).collect(Collectors.toList());
+
+            if(search.isEmpty()){
+                System.out.println("Pas de adresse enregistrer");
+               
+            }else{
+                System.out.println(search);
+                
+            }
+        }
+
+    
+  
     }
 
+
+   
+  
+    
+
+    
+    
+
   
 
     
   
     
     
-}
+

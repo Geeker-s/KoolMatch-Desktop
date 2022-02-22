@@ -6,6 +6,7 @@
 package Services;
 
 import entities.Reservation;
+import entities.Restaurant;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -15,6 +16,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import utils.MyDB;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
+import entities.user;
+
 
 /**
  *
@@ -22,7 +28,10 @@ import utils.MyDB;
  */
 public class ServiceReservation implements IService<Reservation>{
     private final Connection cnx;
-
+    public static final String ACCOUNT_SID = System.getenv("ACdd4694f7755efbb29c9f88a958d82a65");
+    public static final String AUTH_TOKEN = System.getenv("8d3245f599c43b76162cedbcd8636ca2");
+    
+    
     public ServiceReservation() {
         cnx = MyDB.getInstance().getCnx();
     }
@@ -109,14 +118,37 @@ public class ServiceReservation implements IService<Reservation>{
         return true;
     }
 
-   
-
     @Override
     public boolean updateNbrPlace(Reservation P, int nbPlace_reservation) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+
+    @Override
+    public void search(Reservation p) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public static void sendSMS(user p) {
+       Twilio.init("ACdd4694f7755efbb29c9f88a958d82a65", "8d3245f599c43b76162cedbcd8636ca2");
+        Message message = Message.creator(new PhoneNumber("+21658658857"),
+        new PhoneNumber("+18608544709"), 
+        "Nom: "+p.getNom_user()+" Numero: "+p.getTelephone_user()+" Email: "+p.getEmail_user()).create();
+       
+
+        System.out.println(message.getSid());
+    }
+    }
+
+  
+
+   
+
+
+   
+
+
+  
 
  
 

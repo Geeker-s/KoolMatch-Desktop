@@ -5,6 +5,7 @@
  */
 package Services;
 
+import entities.Restaurant;
 import java.util.List;
 
 /**
@@ -21,7 +22,12 @@ public interface IService<T> {
     public boolean modifer(T p);
 
     public boolean supprimer(T p);
+    
     public boolean updateNbrPlace(T P ,int nbPlace_reservation);
+    
+    public void search(T p);
+    
+   
 }
    
 
