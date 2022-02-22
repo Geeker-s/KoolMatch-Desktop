@@ -16,7 +16,7 @@ public class Recette {
     String description_recette;
     String categorie_recette ;
     int duree_recette;
-
+    int etat ;
     public Recette() {
     }
 
@@ -26,6 +26,7 @@ public class Recette {
         this.description_recette = description_recette;
         this.categorie_recette = categorie_recette;
         this.duree_recette = duree_recette;
+        this.etat = 1;
     }
 
     public Recette(int id_recette, String nom_recette, String photo_recette, String description_recette, String categorie_recette, int duree_recette) {
@@ -34,9 +35,13 @@ public class Recette {
         this.photo_recette = photo_recette;
         this.description_recette = description_recette;
         this.categorie_recette = categorie_recette;
-        this.duree_recette = duree_recette;
+        this.etat = 1;
     }
 
+    public Recette(int id_recette) {
+        this.id_recette = id_recette;
+    }
+    
     public int getId_recette() {
         return id_recette;
     }
@@ -85,6 +90,14 @@ public class Recette {
         this.duree_recette = duree_recette;
     }
 
+    public int getEtat() {
+        return etat;
+    }
+
+    public void setEtat(int etat) {
+        this.etat = etat;
+    }
+    
     @Override
     public String toString() {
         return "Recette{" + "id_recette=" + id_recette + ", nom_recette=" + nom_recette + ", photo_recette=" + photo_recette + ", description_recette=" + description_recette + ", categorie_recette=" + categorie_recette + ", duree_recette=" + duree_recette + '}';
