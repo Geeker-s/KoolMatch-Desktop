@@ -28,8 +28,8 @@ public class user {
     private int preferredMinAge_user;
     private int preferredMaxAge_user;
     private String adresse_user;
-    private float latitude_user;
-    private float longitude_user;
+    private double latitude_user;
+    private double longitude_user;
     private String interet_user;
 
     public user() {
@@ -42,6 +42,12 @@ public class user {
     public user(int id_user, Date dateNaissance_user) {
         this.id_user = id_user;
         this.dateNaissance_user = dateNaissance_user;
+    }
+
+    public user(int id_user, double latitude_user, double longitude_user) {
+        this.id_user = id_user;
+        this.latitude_user = latitude_user;
+        this.longitude_user = longitude_user;
     }
 
     
@@ -126,11 +132,11 @@ public class user {
         return adresse_user;
     }
 
-    public float getLatitude_user() {
+    public double getLatitude_user() {
         return latitude_user;
     }
 
-    public float getLongitude_user() {
+    public double getLongitude_user() {
         return longitude_user;
     }
 
@@ -198,11 +204,11 @@ public class user {
         this.adresse_user = adresse_user;
     }
 
-    public void setLatitude_user(float latitude_user) {
+    public void setLatitude_user(double latitude_user) {
         this.latitude_user = latitude_user;
     }
 
-    public void setLongitude_user(float longitude_user) {
+    public void setLongitude_user(double longitude_user) {
         this.longitude_user = longitude_user;
     }
 

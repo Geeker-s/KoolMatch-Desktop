@@ -5,6 +5,7 @@
  */
 package services;
 
+import GPS.Mapa;
 import entities.matching;
 import entities.user;
 import java.sql.Connection;
@@ -13,10 +14,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import utils.JavaMailUtil;
 import utils.MyDB;
 
 /**
@@ -33,6 +36,9 @@ public class ServiceMatching implements IService<matching> {
 
     @Override
     public void ajouter(matching p) {
+        user u1 = getEmailUser(new user(p.getId_user1()));
+        user u2 = getEmailUser(new user(p.getId_user2()));
+ 
 
         try {
             String querry = "INSERT INTO `matching` (`id_user1`,`id_user2`,`date_match`) VALUES('" + p.getId_user1() + "','" + p.getId_user2() + "','" + p.getDate_match() + "')";
@@ -43,6 +49,13 @@ public class ServiceMatching implements IService<matching> {
             System.out.println(ex.getMessage());
         }
 
+        try {
+            JavaMailUtil.sendMail(u1.getEmail_user());
+            JavaMailUtil.sendMail(u2.getEmail_user());
+
+        } catch (Exception ex) {
+            Logger.getLogger(ServiceMatching.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -149,6 +162,44 @@ public class ServiceMatching implements IService<matching> {
         return x;
     }
 
+    public user getUser(user u) {
+
+        user x = new user();
+        try {
+            String req = "SELECT `latitude`, `longitude` FROM user WHERE id_user = '" + u.getId_user() + "'";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+
+            while (rs.next()) {
+                x.setId_user(u.getId_user());
+                x.setLatitude_user(rs.getDouble(1));
+                x.setLongitude_user(rs.getDouble(2));
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return x;
+    }
+
+        public user getEmailUser(user u) {
+
+        user x = new user();
+        try {
+            String req = "SELECT `email_user` FROM user WHERE id_user = '" + u.getId_user() + "'";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+
+            while (rs.next()) {
+                x.setId_user(u.getId_user());
+                x.setEmail_user(rs.getString(1));
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return x;
+    }
     public void filter(user u) {
 
         Scanner sc = new Scanner(System.in);
@@ -174,8 +225,32 @@ public class ServiceMatching implements IService<matching> {
                 .stream()
                 .filter(x -> ageMin <= calculateAge(x))
                 .filter(x -> calculateAge(x) <= ageMax)
-                
                 //Manque la partie distance
                 .forEach(x -> System.out.println(x));
+    }
+
+    public void mapGPS(user u) {
+
+        final Mapa example = new Mapa("test", u.getLatitude_user(), u.getLongitude_user());
+        example.generateMarker(Mapa.map.getCenter());
+    }
+
+    public double distance(double lat1, double lon1, double lat2, double lon2) {
+        double theta = lon1 - lon2;
+        double dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
+        dist = Math.acos(dist);
+        dist = rad2deg(dist);
+        dist = dist * 60 * 1.1515;
+        dist = dist * 1.609344;
+        return (dist);
+    }
+
+    //  This function converts decimal degrees to radians
+    private double deg2rad(double deg) {
+        return (deg * Math.PI / 180.0);
+    }
+
+    private double rad2deg(double rad) {
+        return (rad * 180.0 / Math.PI);
     }
 }

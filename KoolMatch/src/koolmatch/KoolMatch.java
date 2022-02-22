@@ -9,6 +9,7 @@ import entities.interaction;
 import entities.matching;
 import entities.user;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import services.ServiceInteraction;
 import services.ServiceMatching;
@@ -34,13 +35,23 @@ public class KoolMatch {
         user foulen = new user(1);
         user foulena = new user(2);
 
+        
+        match.ajouter(new matching(1, 2, Date.valueOf(LocalDate.now())));
+//        foulen = match.getUser(foulen);
+//        foulena = match.getUser(foulena);
+//        
+//        System.out.println(foulen.getLatitude_user());
+//        
+//        double kilo = match.distance(foulen.getLatitude_user(), foulen.getLongitude_user(), foulena.getLatitude_user(), foulena.getLongitude_user());
+//        System.out.println("\n\t"+kilo);
+        //match.mapGPS(foulen);
         //Creation des reaction lors d'une interaction
 //        interaction react1 = new interaction("o", Date.valueOf("2022-02-14"), foulen.getId_user(), foulena.getId_user());
 //        interaction react2 = new interaction("o", Date.valueOf("2022-02-15"), foulena.getId_user(), foulen.getId_user());
 
 //        react.ajouter(react1);
 //        react.ajouter(react2);
-        match.filter(match.updateUser(foulen));
+//        match.filter(match.updateUser(foulen));
 //        System.out.println(match.algorithme(foulen));
 //        System.out.println("\n\n------------------------\n\n");
         //match.hex("010"); //hexcode du profile
