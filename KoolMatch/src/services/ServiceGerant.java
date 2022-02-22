@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 import utils.MyDB;
 
 /**
@@ -86,6 +87,14 @@ public class ServiceGerant implements IService<gerant> {
 
         return true;
     }
+
+    @Override
+    public List<gerant> rechercher(gerant p) {
+        List<gerant> g = afficher();
+        return  g.stream().filter(b -> b.getId_gerant() == p.getId_gerant()).collect(Collectors.toList());  
+    }
+
+    
 
 
 

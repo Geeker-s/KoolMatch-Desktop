@@ -21,6 +21,9 @@ public interface IService<T> {
 
     public boolean supprimer(T p);
     
+    public List<T> rechercher(T p);
+    
+     
     
 }
  

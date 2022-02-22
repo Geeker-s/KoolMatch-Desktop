@@ -13,6 +13,7 @@ import java.sql.Date;
  */
 public class user {
 
+
     private int id_user;
     private String email_user;
     private String login_user;

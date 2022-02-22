@@ -6,6 +6,7 @@
 package services;
 
 import entities.admin;
+import entities.user;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +14,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 import utils.MyDB;
 
 /**
@@ -113,5 +115,13 @@ public class ServiceAdmin implements IService<admin> {
 
         return success;
     }
+
+    @Override
+    public List<admin> rechercher(admin p) {
+        List<admin> a = afficher();
+        return  a.stream().filter(b -> b.getId_admin() == p.getId_admin()).collect(Collectors.toList());  
+    }
+
+    
 
 }
