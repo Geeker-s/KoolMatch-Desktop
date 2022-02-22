@@ -10,6 +10,7 @@ import java.util.List;
 /**
  *
  * @author dedpy
+ * @param <T>
  */
 public interface IService<T> {
 
@@ -20,4 +21,6 @@ public interface IService<T> {
     public boolean modifer(T p);
 
     public boolean supprimer(T p);
+    
+    public List<T> Recherche(T p);
 }

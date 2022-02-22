@@ -51,6 +51,10 @@ public class invitation {
     public String toString() {
         return "invitation{" + "id_invitation=" + id_invitation + ", id_event=" + id_event + ", id_user=" + id_user + '}';
     }
+
+    public Object getNom_event() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
     

@@ -6,15 +6,18 @@
 package services;
 
 import entities.event;
+import entities.invitation;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 import utils.MyDB;
 
 /**
@@ -47,18 +50,19 @@ public class ServiceEvent implements IService<event> {
     public List<event> afficher() {
         List<event> events = new ArrayList<>();
         try {
-            String req = "SELECT * FROM evenement";
+            String req = "SELECT * FROM evenement" ;
+            
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             
             while(rs.next()){
-            events.add(new event(rs.getInt(1),rs.getString(2),rs.getDate(3),rs.getDate(4),rs.getString(5),rs.getString(6),rs.getInt(7)));
+            events.add(new event(rs.getInt(1),rs.getString(2),rs.getDate(3),rs.getDate(4),rs.getString(5),rs.getString(6),rs.getInt(7)))  ; 
             }
             
         } catch (SQLException ex) {
             ex.getStackTrace();
         }
-        return events;
+        return events ;
     }
 
     @Override
@@ -83,7 +87,8 @@ public class ServiceEvent implements IService<event> {
     @Override
     public boolean supprimer(event p) {
          try {
-            String querry = "DELETE FROM evenement WHERE id_event = '" + p.getId_event() + "'";
+              
+            String querry = "update evenement set archive = 1  WHERE id_event = '" + p.getId_event() + "'";
             Statement stm = cnx.createStatement();
             stm.executeUpdate(querry);
         } catch (SQLException ex) {
@@ -92,5 +97,21 @@ public class ServiceEvent implements IService<event> {
         }
         return true;
     }
+
+    @Override
+   public List<event> Recherche(event p) {
+        List<event> events = afficher();
+         return events.stream().filter(b -> b.getNom_event().equals( p.getNom_event())).collect(Collectors.toList());
+    }
     
+    
+     public List<event> Tri() {
+        Comparator<event> comparator = Comparator.comparing(event::getDd_event);
+        List<event> events = afficher();
+        return events.stream().sorted(comparator).collect(Collectors.toList());
+    }
+
+   
+
+   
 }

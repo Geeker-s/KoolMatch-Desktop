@@ -31,14 +31,24 @@ public class KoolMatch {
         i = new ServiceInvitation();
        
        //AJOUT ET AFFICHAGE EVENT
-       //e.ajouter(new event( "turki",Date.valueOf("2022-12-01"),Date.valueOf("2022-12-01")," valo","dghdghd", 99485632));
-       System.out.println( e.afficher().toString() )  ;
+       //e.ajouter(new event( "scary night ",Date.valueOf("2022-10-31"),Date.valueOf("2022-10-31")," halloween","esprit", 99485632));
+       //System.out.println( e.afficher().toString() )  ;
         //e.supprimer(new  event (3) );
       
+        
+        
+        //System.out.println( e.Recherche(new event ("test")));
+       
+       // System.out.println(i.Tri());
+        
+        
+                
+                
+                
        
        // AJOUT ET AFFICHAGE INVITATION
       // i.ajouter(new invitation(159,23));
-       System.out.println( i.afficher().toString());
+       //System.out.println( i.afficher().toString());
        
        //SUPPRIMER EVENT 
  //if (e.supprimer(new event(3))) {

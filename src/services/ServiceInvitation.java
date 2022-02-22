@@ -12,8 +12,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 import utils.MyDB;
 
 /**
@@ -81,7 +83,7 @@ public class ServiceInvitation implements IService<invitation> {
     @Override
     public boolean supprimer(invitation p) {
          try {
-            String querry = "DELETE FROM invitation WHERE id_invitation = '" + p.getId_invitation() + "'";
+            String querry = " UPDATE `invitation` SET archive = 1  WHERE id_invitation = '" + p.getId_invitation() + "'";
             Statement stm = cnx.createStatement();
             stm.executeUpdate(querry);
         } catch (SQLException ex) {
@@ -91,4 +93,23 @@ public class ServiceInvitation implements IService<invitation> {
         return true;
     }
 
+    
+     @Override
+    public List<invitation> Recherche(invitation r) {
+        List<invitation> inv = afficher();
+         return inv.stream().filter(b -> b.getId_invitation() == r.getId_invitation()).collect(Collectors.toList());
+    }
+    
+    
+    
+
+
+    public List<invitation> Tri() {
+       
+        Comparator<invitation> comparator = Comparator.comparing((event)->event.getId_event());
+        List<invitation> inv = afficher();
+        return inv.stream().sorted(comparator).collect(Collectors.toList());
+    }
+    
+    
 }

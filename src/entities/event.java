@@ -47,6 +47,14 @@ public class event {
         this.id_event = id_event;
     }
 
+    public event(Date dd_event) {
+        this.dd_event = dd_event;
+    }
+
+    public event(String nom_event) {
+        this.nom_event = nom_event;
+    }
+
    
 
     public int getId_event() {
