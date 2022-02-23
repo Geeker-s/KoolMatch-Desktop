@@ -7,6 +7,7 @@ package Services;
 
 import com.mysql.cj.Messages;
 import entities.Restaurant;
+import entities.user;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -161,7 +162,14 @@ public class ServiceRestaurant implements IService<Restaurant>{
             }
         }
 
-    
+     public List<Restaurant> rechercher(Restaurant p) {
+        List<Restaurant> a = afficher();
+        return  a.stream().filter(b -> ( b.getAdresse_restaurant().equals(p.getAdresse_restaurant()))).collect(Collectors.toList());  
+    }
+       public List<Restaurant> rechercherSpecialite(Restaurant p) {
+        List<Restaurant> a = afficher();
+        return  a.stream().filter(b -> ( b.getSpecialite_restaurant().equals(p.getSpecialite_restaurant()))).collect(Collectors.toList());  
+    }
   
     }
 
