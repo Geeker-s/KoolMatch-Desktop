@@ -9,6 +9,7 @@ import entities.admin;
 import entities.gerant;
 import entities.user;
 import java.sql.Date;
+import services.EnvoyerEmail;
 import services.ServiceAdmin;
 import services.ServiceGerant;
 import services.ServiceUser;
@@ -96,7 +97,8 @@ public class KoolMatch {
 //       System.out.println(g.afficher());
 
 
-
+EnvoyerEmail test = new EnvoyerEmail();
+test.envoyer();
 
 
 }
