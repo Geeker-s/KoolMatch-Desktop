@@ -16,21 +16,18 @@ import entities.user;
  */
 
 public class sendSMS {
-   public static final String ACCOUNT_SID = System.getenv("ACdd4694f7755efbb29c9f88a958d82a65");
-    public static final String AUTH_TOKEN = System.getenv("8d3245f599c43b76162cedbcd8636ca2");
+   public static final String ACCOUNT_SID = System.getenv("AC0f040f74c65e0af93886008a55e9987e");
+    public static final String AUTH_TOKEN = System.getenv("8b806914368462163f4d778f7b00f458");
 
-    public void sendSMS(user o) {
-        Twilio.init("ACdd4694f7755efbb29c9f88a958d82a65", "8d3245f599c43b76162cedbcd8636ca2");
+    public static void sendSMS(user o) {
+        Twilio.init("AC0f040f74c65e0af93886008a55e9987e", "8b806914368462163f4d778f7b00f458");
         Message message = Message.creator(new PhoneNumber("+21658658857"),
-        new PhoneNumber("+18608544709"), 
+        new PhoneNumber("+19034946252"), 
         "Nom: "+o.getNom_user()+" Numero: "+o.getTelephone_user()+" Email: "+o.getEmail_user()).create();
        
 
         System.out.println(message.getSid());
     }
-    
-    
-    
     
 }
     

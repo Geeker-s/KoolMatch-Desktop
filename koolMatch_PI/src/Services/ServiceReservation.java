@@ -20,6 +20,8 @@ import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 import entities.user;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 
 
 /**
@@ -137,6 +139,12 @@ public class ServiceReservation implements IService<Reservation>{
        
 
         System.out.println(message.getSid());
+    }
+    
+       public List<Reservation> Tri() {
+        Comparator<Reservation> comparator = Comparator.comparing(Reservation::getDate_reservation);
+        List<Reservation> reserv = afficher();
+        return reserv.stream().sorted(comparator).collect(Collectors.toList());
     }
     }
 

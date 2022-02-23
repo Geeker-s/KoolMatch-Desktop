@@ -94,7 +94,7 @@ public class Reservation {
 
     @Override
     public String toString() {
-        return "Reservation{" + "id_reservation=" + id_reservation + ", date_reservation=" + date_reservation + ", nbPlace_reservation=" + nbPlace_reservation + ", id_restaurant=" + id_restaurant + ", id_user=" + id_user + ", status_supprimer1" + status_supprimer1 +'}';
+        return "Reservation{" + "id_reservation=" + id_reservation + ", date_reservation=" + date_reservation + ", nbPlace_reservation=" + nbPlace_reservation + ", id_restaurant=" + id_restaurant + ", id_user=" + id_user + ", status_supprimer1" + status_supprimer1 +'\n'+ '}';
     }
     
 }
