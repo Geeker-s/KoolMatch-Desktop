@@ -3,11 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/dedpy/Desktop/Git/KoolMatch/KoolMatch/src/services/ServiceUser.java</file>
-            <file>file:/C:/Users/dedpy/Desktop/Git/KoolMatch/KoolMatch/src/services/IService.java</file>
-            <file>file:/C:/Users/dedpy/Desktop/Git/KoolMatch/KoolMatch/src/entities/user.java</file>
-            <file>file:/C:/Users/dedpy/Desktop/Git/KoolMatch/KoolMatch/src/koolmatch/KoolMatch.java</file>
-            <file>file:/C:/Users/dedpy/Desktop/Git/KoolMatch/KoolMatch/src/utils/MyDB.java</file>
+            <file>file:/C:/Users/khaled/Desktop/KoolMatch1%20-%20Copie/KoolMatch/src/GUI/RecetteController.java</file>
+            <file>file:/C:/Users/khaled/Desktop/KoolMatch1%20-%20Copie/KoolMatch/src/services/ServiceRecette.java</file>
+            <file>file:/C:/Users/khaled/Desktop/KoolMatch1%20-%20Copie/KoolMatch/src/GUI/Koolmatch_main.java</file>
+            <file>file:/C:/Users/khaled/Desktop/KoolMatch1%20-%20Copie/KoolMatch/src/koolmatch/KoolMatch.java</file>
+            <file>file:/C:/Users/khaled/Desktop/KoolMatch1%20-%20Copie/KoolMatch/src/GUI/JeuController.java</file>
+            <file>file:/C:/Users/khaled/Desktop/KoolMatch1%20-%20Copie/KoolMatch/src/GUI/Recette.fxml</file>
+            <file>file:/C:/Users/khaled/Desktop/KoolMatch1%20-%20Copie/KoolMatch/src/services/ServiceQuiz.java</file>
+            <file>file:/C:/Users/khaled/Desktop/KoolMatch1%20-%20Copie/KoolMatch/src/GUI/BackJeuController.java</file>
+            <file>file:/C:/Users/khaled/Desktop/KoolMatch1%20-%20Copie/KoolMatch/src/entities/Quiz.java</file>
+            <file>file:/C:/Users/khaled/Desktop/KoolMatch1%20-%20Copie/KoolMatch/src/entities/Recette.java</file>
+            <file>file:/C:/Users/khaled/Desktop/KoolMatch1%20-%20Copie/KoolMatch/src/services/ServiceJeu.java</file>
+            <file>file:/C:/Users/khaled/Desktop/KoolMatch1%20-%20Copie/KoolMatch/src/entities/Jeu.java</file>
+            <file>file:/C:/Users/khaled/Desktop/KoolMatch1%20-%20Copie/KoolMatch/src/services/IService.java</file>
         </group>
     </open-files>
 </project-private>

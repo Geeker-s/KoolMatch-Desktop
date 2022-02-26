@@ -31,7 +31,7 @@ public class ServiceJeu implements IService<Jeu> {
     @Override
     public void ajouter(Jeu p) {
         try {
-             String querry="INSERT INTO `jeu`(`score_jeu`, `id_recette`,`id_user`) VALUES ('"+p.getScore_jeu()+"','"+p.getId_recette()+"','"+p.getId_user()+"')";
+             String querry="INSERT INTO `jeu`(`score_jeu`, `id_quiz`,`id_user`) VALUES ('"+p.getScore_jeu()+"','"+p.getId_quiz()+"','"+p.getId_user()+"')";
             Statement stm =cnx.createStatement();
         
         stm.executeUpdate(querry);
@@ -62,12 +62,12 @@ public class ServiceJeu implements IService<Jeu> {
     @Override
     public boolean modifer(Jeu p) {
          Scanner sc = new Scanner(System.in);
-        System.out.println("id_recette ");
-        String id_recette = sc.nextLine();
-        Integer.parseInt(id_recette) ;
+        System.out.println("id_quiz ");
+        String id_quiz = sc.nextLine();
+        Integer.parseInt(id_quiz) ;
         
           try {
-           String req = " UPDATE jeu SET id_recette = '" + id_recette+ "' WHERE id_jeu = '" + p.getId_jeu()+ "'";
+           String req = " UPDATE jeu SET id_quiz = '" + id_quiz+ "' WHERE id_jeu = '" + p.getId_jeu()+ "'";
             Statement stm = cnx.createStatement();
             stm.executeUpdate(req);
         } catch (SQLException ex) {
@@ -107,7 +107,7 @@ FROM <nom_table> ; */
      public List<Jeu> rank() {
        List<Jeu> jeux = new ArrayList<>();
         try {
-            String req = "SELECT score_jeu, id_recette,id_user, DENSE_RANK() over (order by score_jeu DESC) FROM jeu WHERE etat = '" + 1+ "'";
+            String req = "SELECT score_jeu, id_quiz,id_user, DENSE_RANK() over (order by score_jeu DESC) FROM jeu WHERE etat = '" + 1+ "'";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             

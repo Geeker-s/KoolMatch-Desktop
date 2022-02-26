@@ -32,6 +32,15 @@ public class Quiz {
     public Quiz() {
     }
 
+    public Quiz(int id_jeu) {
+        this.id_jeu = id_jeu;
+    }
+
+    public Quiz(int id_quiz, int id_jeu) {
+        this.id_quiz = id_quiz;
+        this.id_jeu = id_jeu;
+    }
+    
     public Quiz(int id_quiz, int id_jeu, String q1, String rc1, String rf11, String rf12, String rf13, String q2, String rc2, String rf21, String rf22, String rf23, String q3, String rc3, String rf31, String rf32, String rf33) {
         this.id_quiz = id_quiz;
         this.id_jeu = id_jeu;

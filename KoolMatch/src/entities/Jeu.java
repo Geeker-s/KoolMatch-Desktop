@@ -12,7 +12,7 @@ package entities;
 public class Jeu {
      int id_jeu;
     int score_jeu;
-    int id_recette;
+    int id_quiz;
     int id_user;
     int etat ;
 
@@ -22,7 +22,7 @@ public class Jeu {
     public Jeu(int id_jeu, int score_jeu, int id_recette, int id_user) {
         this.id_jeu = id_jeu;
         this.score_jeu = score_jeu;
-        this.id_recette = id_recette;
+        this.id_quiz = id_recette;
         this.id_user = id_user;
         this.etat =1;
     }
@@ -34,14 +34,14 @@ public class Jeu {
     public Jeu(int id_jeu, int score_jeu, int id_recette, int id_user, int etat) {
         this.id_jeu = id_jeu;
         this.score_jeu = score_jeu;
-        this.id_recette = id_recette;
+        this.id_quiz = id_recette;
         this.id_user = id_user;
         this.etat = etat;
     }
 
     public Jeu(int score_jeu, int id_recette, int id_user) {
         this.score_jeu = score_jeu;
-        this.id_recette = id_recette;
+        this.id_quiz = id_recette;
         this.id_user = id_user;
          this.etat =1;
     }
@@ -62,8 +62,8 @@ public class Jeu {
         return score_jeu;
     }
 
-    public int getId_recette() {
-        return id_recette;
+    public int getId_quiz() {
+        return id_quiz;
     }
 
     public int getId_user() {
@@ -78,8 +78,8 @@ public class Jeu {
         this.score_jeu = score_jeu;
     }
 
-    public void setId_recette(int id_recette) {
-        this.id_recette = id_recette;
+    public void setId_quiz(int id_quiz) {
+        this.id_quiz = id_quiz;
     }
 
     public void setId_user(int id_user) {
@@ -104,7 +104,7 @@ public class Jeu {
         if (this.score_jeu != other.score_jeu) {
             return false;
         }
-        if (this.id_recette != other.id_recette) {
+        if (this.id_quiz != other.id_quiz) {
             return false;
         }
         if (this.id_user != other.id_user) {
@@ -115,7 +115,7 @@ public class Jeu {
 
     @Override
     public String toString() {
-        return "Jeu{" + "id_jeu=" + id_jeu + ", score_jeu=" + score_jeu + ", id_recette=" + id_recette + ", id_user=" + id_user + '}';
+        return "Jeu{" + "id_jeu=" + id_jeu + ", score_jeu=" + score_jeu + ", id_quiz=" + id_quiz + ", id_user=" + id_user + '}';
     }
   
 }

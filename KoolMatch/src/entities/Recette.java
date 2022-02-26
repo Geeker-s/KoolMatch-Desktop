@@ -20,6 +20,11 @@ public class Recette {
     public Recette() {
     }
 
+    public Recette(int id_recette, String description_recette) {
+        this.id_recette = id_recette;
+        this.description_recette = description_recette;
+    }
+   
     public Recette(String nom_recette, String photo_recette, String description_recette, String categorie_recette, int duree_recette) {
         this.nom_recette = nom_recette;
         this.photo_recette = photo_recette;

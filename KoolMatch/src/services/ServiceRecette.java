@@ -82,11 +82,8 @@ public class ServiceRecette implements IService<Recette> {
    
     @Override
     public boolean modifer(Recette r) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("description recette : ");
-        String description_recette = sc.nextLine();
           try {
-           String req = " UPDATE recette SET description_recette = '" + description_recette+ "' WHERE id_recette = '" + r.getId_recette()+ "'";
+           String req = " UPDATE recette SET description_recette = '" + r.getDescription_recette()+ "' WHERE id_recette = '" + r.getId_recette()+ "'";
             Statement stm = cnx.createStatement();
             stm.executeUpdate(req);
         } catch (SQLException ex) {
