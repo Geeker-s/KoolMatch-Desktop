@@ -9,7 +9,7 @@ import java.sql.Date;
  *
  * @author MED ZOUARI
  */
-public class gerant {
+public class Gerant {
     private int id_gerant;
     private String nom_gerant;
     private String prenom_gerant;
@@ -18,10 +18,10 @@ public class gerant {
     private Date df_abonnement;
     private int archive;
 
-    public gerant() {
+    public Gerant() {
     }
 
-    public gerant(int id_gerant, String nom_gerant, String prenom_gerant, int telephone_gerant, Date dd_abonnement, Date df_abonnement) {
+    public Gerant(int id_gerant, String nom_gerant, String prenom_gerant, int telephone_gerant, Date dd_abonnement, Date df_abonnement) {
         this.id_gerant = id_gerant;
         this.nom_gerant = nom_gerant;
         this.prenom_gerant = prenom_gerant;
@@ -31,7 +31,7 @@ public class gerant {
         this.archive = archive;
     }
 
-    public gerant(String nom_gerant, String prenom_gerant, int telephone_gerant, Date dd_abonnement, Date df_abonnement) {
+    public Gerant(String nom_gerant, String prenom_gerant, int telephone_gerant, Date dd_abonnement, Date df_abonnement) {
         this.nom_gerant = nom_gerant;
         this.prenom_gerant = prenom_gerant;
         this.telephone_gerant = telephone_gerant;
@@ -40,7 +40,7 @@ public class gerant {
         this.archive = archive;
     }
 
-    public gerant(int id_gerant) {
+    public Gerant(int id_gerant) {
         this.id_gerant = id_gerant;
     }
 

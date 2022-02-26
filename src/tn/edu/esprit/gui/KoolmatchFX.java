@@ -27,7 +27,7 @@ public class KoolmatchFX extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("front.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Recette.fxml"));
         primaryStage.setScene(new Scene(root));
         //set stage borderless
         primaryStage.initStyle(StageStyle.UNDECORATED);

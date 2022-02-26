@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" onMouseClicked="#handleButtonAction" prefHeight="653.0" prefWidth="905.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.edu.esprit.GUI.RecetteController">
+    <children>
+        <Button id="AjouterR" fx:id="AjouterR" layoutX="184.0" layoutY="341.0" onAction="#bAjouer" prefHeight="26.0" prefWidth="70.0" text="Ajouter" />
+        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
+      <VBox layoutX="14.0" layoutY="29.0" prefHeight="279.0" prefWidth="178.0" spacing="10.0">
+         <children>
+            <Label prefHeight="18.0" prefWidth="178.0" text="id recette :(Pour modification )" />
+            <Label text="nom_plat:" />
+            <Label text="photo_recette :" />
+            <Label prefHeight="23.0" prefWidth="114.0" text="description_recette :">
+               <padding>
+                  <Insets top="30.0" />
+               </padding>
+            </Label>
+            <Label text="catégorie :">
+               <padding>
+                  <Insets top="70.0" />
+               </padding>
+            </Label>
+            <Label prefHeight="18.0" prefWidth="136.0" text="durée :" />
+         </children>
+      </VBox>
+      <VBox layoutX="212.0" layoutY="29.0" prefHeight="262.0" prefWidth="262.0" spacing="1.0">
+         <children>
+            <TextField fx:id="idr" />
+            <TextField id="plat" fx:id="nplat" />
+            <TextField id="pre" fx:id="prec" />
+            <TextArea id="des" fx:id="desc" prefHeight="200.0" prefWidth="200.0" />
+            <TextField id="cat" fx:id="catg">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin></TextField>
+            <TextField id="dur" fx:id="duree" />
+         </children>
+      </VBox>
+      <Button id="ModifierR" fx:id="ModifierR" layoutX="288.0" layoutY="341.0" mnemonicParsing="false" onAction="#Bmodifier" prefHeight="26.0" prefWidth="70.0" text="Modifier" />
+      <Button id="SupprimerR" fx:id="SupprimerR" layoutX="402.0" layoutY="341.0" mnemonicParsing="false" onAction="#Bsupprimer" text="Supprimer" />
+      <Label fx:id="listR" layoutX="522.0" layoutY="29.0" onDragDetected="#Laffichage" prefHeight="262.0" prefWidth="359.0" />
+      <ImageView fx:id="source" fitHeight="200.0" fitWidth="243.0" layoutX="312.0" layoutY="390.0" onDragDetected="#drag" pickOnBounds="true" preserveRatio="true" />
+    </children>
+</AnchorPane>

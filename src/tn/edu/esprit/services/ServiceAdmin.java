@@ -5,8 +5,8 @@
  */
 package tn.edu.esprit.services;
 
-import tn.edu.esprit.model.admin;
-import tn.edu.esprit.model.user;
+import tn.edu.esprit.model.Admin;
+import tn.edu.esprit.model.User;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,7 +21,7 @@ import tn.edu.esprit.utils.MyDB;
  *
  * @author MED ZOUARI
  */
-public class ServiceAdmin implements IService<admin> {
+public class ServiceAdmin implements IService<Admin> {
 
     private Connection cnx;
 
@@ -30,7 +30,7 @@ public class ServiceAdmin implements IService<admin> {
     }
 
     @Override
-    public void ajouter(admin p) {
+    public void ajouter(Admin p) {
         try {
             String querry = "INSERT INTO `admin`( `login_admin`, `password_admin`, `archive`) VALUES ('" + p.getLogin_admin() + "' ,'" + p.getPassword_admin() + "','"+p.getArchive()+"')";
             Statement stm = cnx.createStatement();
@@ -43,15 +43,15 @@ public class ServiceAdmin implements IService<admin> {
     }
 
     @Override
-    public List<admin> afficher() {
-        List<admin> admins = new ArrayList<>();
+    public List<Admin> afficher() {
+        List<Admin> admins = new ArrayList<>();
         try {
             String req = "SELECT * FROM admin where archive = 0";
             Statement stm = cnx.createStatement();
             ResultSet rs = stm.executeQuery(req);
 
             while (rs.next()) {
-                admins.add(new admin(rs.getInt(1), rs.getString(2), rs.getString(3)));
+                admins.add(new Admin(rs.getInt(1), rs.getString(2), rs.getString(3)));
             }
 
         } catch (SQLException ex) {
@@ -61,7 +61,7 @@ public class ServiceAdmin implements IService<admin> {
     }
 
     @Override
-    public boolean modifer(admin p) {
+    public boolean modifer(Admin p) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Mot de passe : ");
         String password_admin = sc.nextLine();
@@ -77,7 +77,7 @@ public class ServiceAdmin implements IService<admin> {
     }
 
     @Override
-    public boolean supprimer(admin p) {
+    public boolean supprimer(Admin p) {
         String req = "update admin set archive = 1 where id_admin='" + p.getId_admin() + "'";
         try {
             Statement stm = cnx.createStatement();
@@ -117,8 +117,8 @@ public class ServiceAdmin implements IService<admin> {
     }
 
     @Override
-    public List<admin> rechercher(admin p) {
-        List<admin> a = afficher();
+    public List<Admin> rechercher(Admin p) {
+        List<Admin> a = afficher();
         return  a.stream().filter(b -> b.getId_admin() == p.getId_admin()).collect(Collectors.toList());  
     }
 

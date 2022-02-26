@@ -11,7 +11,7 @@ import java.sql.Date;
  *
  * @author dedpy
  */
-public class user {
+public class User {
 
 
     private int id_user;
@@ -34,10 +34,10 @@ public class user {
     private int interet_user;
     private int archive;
 
-    public user() {
+    public User() {
     }
 
-    public user(int id_user, String email_user, String login_user, String password_user, String nom_user, String prenom_user, Date dateNaissance_user, String sexe_user, int telephone_user, String photo_user, String description_user, int maxDistance_user, int preferredMinAge_user, int preferredMaxAge_user, String adresse_user, double latitude_user, double longitude_user, int interet_user) {
+    public User(int id_user, String email_user, String login_user, String password_user, String nom_user, String prenom_user, Date dateNaissance_user, String sexe_user, int telephone_user, String photo_user, String description_user, int maxDistance_user, int preferredMinAge_user, int preferredMaxAge_user, String adresse_user, double latitude_user, double longitude_user, int interet_user) {
         this.id_user = id_user;
         this.email_user = email_user;
         this.login_user = login_user;
@@ -59,7 +59,7 @@ public class user {
         this.archive = archive ;
     }
 
-    public user(String email_user, String login_user, String password_user, String nom_user, String prenom_user, Date dateNaissance_user, String sexe_user, int telephone_user, String photo_user, String description_user, int maxDistance_user, int preferredMinAge_user, int preferredMaxAge_user, String adresse_user, double latitude_user, double longitude_user, int interet_user) {
+    public User(String email_user, String login_user, String password_user, String nom_user, String prenom_user, Date dateNaissance_user, String sexe_user, int telephone_user, String photo_user, String description_user, int maxDistance_user, int preferredMinAge_user, int preferredMaxAge_user, String adresse_user, double latitude_user, double longitude_user, int interet_user) {
         this.email_user = email_user;
         this.login_user = login_user;
         this.password_user = password_user;
@@ -80,7 +80,7 @@ public class user {
         this.archive = archive ;
     }
 
-    public user(int id_user) {
+    public User(int id_user) {
         this.id_user = id_user;
     }
 

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 25 fév. 2022 à 21:44
--- Version du serveur : 10.4.22-MariaDB
--- Version de PHP : 7.4.27
+-- Généré le : sam. 26 fév. 2022 à 16:12
+-- Version du serveur : 10.4.20-MariaDB
+-- Version de PHP : 7.3.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,7 +31,7 @@ CREATE TABLE `admin` (
   `id_admin` int(50) NOT NULL,
   `login_admin` varchar(20) NOT NULL,
   `password_admin` varchar(20) NOT NULL,
-  `archive` int(32) NOT NULL
+  `archive` int(8) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -56,7 +56,7 @@ CREATE TABLE `conversation` (
   `titre_conversation` varchar(20) NOT NULL,
   `id_user1` int(20) NOT NULL,
   `id_user2` int(20) NOT NULL,
-  `archive` int(11) NOT NULL
+  `archive` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -83,7 +83,7 @@ CREATE TABLE `evenement` (
   `theme_event` varchar(50) NOT NULL,
   `adresse_event` varchar(20) NOT NULL,
   `telephone` int(20) NOT NULL,
-  `archive` int(11) NOT NULL
+  `archive` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -99,7 +99,7 @@ CREATE TABLE `gerant` (
   `telephone_gerant` int(20) NOT NULL,
   `dd_abonnement` date NOT NULL,
   `df_abonnement` date NOT NULL,
-  `archive` int(11) NOT NULL
+  `archive` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -133,7 +133,7 @@ CREATE TABLE `interaction` (
   `date_interaction` date NOT NULL,
   `id_user1` int(11) NOT NULL,
   `id_user2` int(11) NOT NULL,
-  `archive` int(11) NOT NULL
+  `archive` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -146,7 +146,7 @@ CREATE TABLE `invitation` (
   `id_invitation` int(20) NOT NULL,
   `id_event` int(20) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `archive` int(11) NOT NULL
+  `archive` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -160,8 +160,16 @@ CREATE TABLE `jeu` (
   `score_jeu` int(20) NOT NULL,
   `id_quiz` int(20) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `etat` int(11) NOT NULL
+  `archive` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `jeu`
+--
+
+INSERT INTO `jeu` (`id_jeu`, `score_jeu`, `id_quiz`, `id_user`, `archive`) VALUES
+(1, 8, 6, 1, 0),
+(2, 8, 6, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -174,8 +182,15 @@ CREATE TABLE `matching` (
   `id_user1` int(20) NOT NULL,
   `id_user2` int(20) NOT NULL,
   `date_matching` date NOT NULL,
-  `archive` int(11) NOT NULL
+  `archive` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `matching`
+--
+
+INSERT INTO `matching` (`id_match`, `id_user1`, `id_user2`, `date_matching`, `archive`) VALUES
+(1, 1, 2, '2019-09-20', 0);
 
 -- --------------------------------------------------------
 
@@ -188,7 +203,7 @@ CREATE TABLE `message` (
   `msg_message` varchar(100) NOT NULL,
   `date_message` date NOT NULL,
   `id_conversation` int(20) NOT NULL,
-  `archive` int(11) NOT NULL
+  `archive` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -215,8 +230,15 @@ CREATE TABLE `quiz` (
   `rf31` text NOT NULL,
   `rf32` text NOT NULL,
   `rf33` text NOT NULL,
-  `etat` int(11) NOT NULL DEFAULT 1
+  `archive` int(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `quiz`
+--
+
+INSERT INTO `quiz` (`id_quiz`, `id_jeu`, `Q1`, `rc1`, `rf11`, `rf12`, `rf13`, `Q2`, `rc2`, `rf21`, `rf22`, `rf23`, `Q3`, `rc3`, `rf31`, `rf32`, `rf33`, `archive`) VALUES
+(1, 6, 'q1', 'rc1', 'rf11', 'rf12', 'rf13', 'q2', 'rc2', 'rf21', 'rf22', 'rf23', 'q3', 'rc3', 'rf31', 'rf32', 'rf33', 0);
 
 -- --------------------------------------------------------
 
@@ -231,8 +253,16 @@ CREATE TABLE `recette` (
   `description_recette` varchar(50) NOT NULL,
   `categorie_recette` varchar(20) NOT NULL,
   `duree_recette` int(20) NOT NULL,
-  `etat` int(11) NOT NULL
+  `archive` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `recette`
+--
+
+INSERT INTO `recette` (`id_recette`, `nom_recette`, `photo_recette`, `description_recette`, `categorie_recette`, `duree_recette`, `archive`) VALUES
+(1, 'omlette', 'photo.jpg', 'bnina', 'Petit dej', 0, 0),
+(2, 'aa', 'bz', 'description_recette', 'categorie_recette', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -246,7 +276,7 @@ CREATE TABLE `reservation` (
   `nbPlace_reservation` int(20) NOT NULL,
   `id_restaurant` int(20) NOT NULL,
   `id_user` int(20) NOT NULL,
-  `archive` int(11) NOT NULL
+  `archive` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -267,7 +297,7 @@ CREATE TABLE `restaurant` (
   `nb_placeResto` int(11) NOT NULL,
   `image_structure_resturant` int(11) NOT NULL,
   `description` varchar(100) NOT NULL,
-  `archive` int(11) NOT NULL
+  `archive` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -295,7 +325,7 @@ CREATE TABLE `user` (
   `latitude` double NOT NULL,
   `longitude` double NOT NULL,
   `Interet_user` int(20) NOT NULL,
-  `archive` int(11) NOT NULL
+  `archive` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -303,9 +333,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `email_user`, `login_user`, `password_user`, `nom_user`, `prenom_user`, `dateNaissance_user`, `sexe_user`, `telephone_user`, `photo_user`, `description_user`, `maxDistance_user`, `preferredMinAge_user`, `preferredMaxAge_user`, `adresse_user`, `latitude`, `longitude`, `Interet_user`, `archive`) VALUES
-(2, 'marwenyakoubi@esprit.tn', 'mar', '1234', 'marwen', 'yakoubi', '1998-05-14', 'homme', 29163283, 'photo.jpeg', 'I love lablebi', 10, 20, 25, 'Ariana Essoughra', 36.90138, 10.19012, 21412, 0),
-(3, 'marwen@esprit.tn', 'marwen2', 'maroo', 'marwen', 'yakoubi', '1998-05-14', 'homme', 55423984, 'photo.png', 'aime sushi', 5, 20, 28, 'Soukra', 36.87427, 10.27263, 22211, 0),
-(8, 'marwenyakoubi@esprit.tn', 'mar', '1234ll', 'marwen', 'yakoubi', '1998-05-14', 'homme', 29163283, 'photo.jpeg', 'I love lablebi', 10, 20, 28, 'Ariana', 36.85858, 10.18436, 21422, 0);
+(1, 'yakoubi.marwen@esprit.tn', 'marwen', '1234', 'marwen', 'yakoubi', '1998-05-14', 'homme', 29163283, 'photo.jpeg', 'I love lablebi', 50, 20, 25, 'Ariana Essoughra', 36.90138, 10.19012, 21412, 0),
+(2, 'wassim.benromdhane.1@esprit.tn', 'wassim', '1234', 'wassim', 'benromdhane', '1998-05-14', 'femme', 94366666, 'photo.png', 'I love sushi', 20, 20, 28, 'Soukra', 36.87427, 10.27263, 22211, 0),
+(3, 'matchkool@gmail.com', 'kool', '1234', 'marwen', 'yakoubi', '1998-05-14', 'homme', 29163283, 'photo.jpeg', 'I love hargma', 10, 20, 28, 'Ariana', 36.85858, 10.18436, 21422, 0);
 
 --
 -- Index pour les tables déchargées
@@ -364,6 +394,12 @@ ALTER TABLE `matching`
 --
 ALTER TABLE `message`
   ADD PRIMARY KEY (`id_message`);
+
+--
+-- Index pour la table `quiz`
+--
+ALTER TABLE `quiz`
+  ADD PRIMARY KEY (`id_quiz`);
 
 --
 -- Index pour la table `recette`
@@ -433,13 +469,13 @@ ALTER TABLE `invitation`
 -- AUTO_INCREMENT pour la table `jeu`
 --
 ALTER TABLE `jeu`
-  MODIFY `id_jeu` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_jeu` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `matching`
 --
 ALTER TABLE `matching`
-  MODIFY `id_match` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_match` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `message`
@@ -448,10 +484,16 @@ ALTER TABLE `message`
   MODIFY `id_message` int(20) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT pour la table `quiz`
+--
+ALTER TABLE `quiz`
+  MODIFY `id_quiz` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT pour la table `recette`
 --
 ALTER TABLE `recette`
-  MODIFY `id_recette` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_recette` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `reservation`
@@ -469,7 +511,7 @@ ALTER TABLE `restaurant`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_user` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
