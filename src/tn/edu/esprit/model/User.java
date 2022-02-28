@@ -16,7 +16,6 @@ public class User {
 
     private int id_user;
     private String email_user;
-    private String login_user;
     private String password_user;
     private String nom_user;
     private String prenom_user;
@@ -37,10 +36,10 @@ public class User {
     public User() {
     }
 
-    public User(int id_user, String email_user, String login_user, String password_user, String nom_user, String prenom_user, Date dateNaissance_user, String sexe_user, int telephone_user, String photo_user, String description_user, int maxDistance_user, int preferredMinAge_user, int preferredMaxAge_user, String adresse_user, double latitude_user, double longitude_user, int interet_user) {
+    public User(int id_user, String email_user, String password_user, String nom_user, String prenom_user, Date dateNaissance_user, String sexe_user, int telephone_user, String photo_user, String description_user, int maxDistance_user, int preferredMinAge_user, int preferredMaxAge_user, String adresse_user, double latitude_user, double longitude_user, int interet_user) {
         this.id_user = id_user;
         this.email_user = email_user;
-        this.login_user = login_user;
+
         this.password_user = password_user;
         this.nom_user = nom_user;
         this.prenom_user = prenom_user;
@@ -59,9 +58,9 @@ public class User {
         this.archive = archive ;
     }
 
-    public User(String email_user, String login_user, String password_user, String nom_user, String prenom_user, Date dateNaissance_user, String sexe_user, int telephone_user, String photo_user, String description_user, int maxDistance_user, int preferredMinAge_user, int preferredMaxAge_user, String adresse_user, double latitude_user, double longitude_user, int interet_user) {
+    public User(String email_user, String password_user, String nom_user, String prenom_user, Date dateNaissance_user, String sexe_user, int telephone_user, String photo_user, String description_user, int maxDistance_user, int preferredMinAge_user, int preferredMaxAge_user, String adresse_user, double latitude_user, double longitude_user, int interet_user) {
         this.email_user = email_user;
-        this.login_user = login_user;
+
         this.password_user = password_user;
         this.nom_user = nom_user;
         this.prenom_user = prenom_user;
@@ -94,9 +93,7 @@ public class User {
         return email_user;
     }
 
-    public String getLogin_user() {
-        return login_user;
-    }
+
 
     public String getPassword_user() {
         return password_user;
@@ -171,9 +168,7 @@ public class User {
         this.email_user = email_user;
     }
 
-    public void setLogin_user(String login_user) {
-        this.login_user = login_user;
-    }
+
 
     public void setPassword_user(String password_user) {
         this.password_user = password_user;
@@ -241,7 +236,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "user{\n\t" + "id_user=" + id_user + "\n\temail_user=" + email_user + "\n\tlogin_user=" + login_user + "\n\tpassword_user=" + password_user + "\n\tnom_user=" + nom_user + "\n\tprenom_user=" + prenom_user + "\n\tdateNaissance_user=" + dateNaissance_user + "\n\tsexe_user=" + sexe_user + "\n\ttelephone_user=" + telephone_user + "\n\tphoto_user=" + photo_user + "\n\tdescription_user=" + description_user + "\n\tmaxDistance_user=" + maxDistance_user + "\n\tpreferredMinAge_user=" + preferredMinAge_user + "\n\tpreferredMaxAge_user=" + preferredMaxAge_user + "\n\tadresse_user=" + adresse_user + "\n\tlatitude_user=" + latitude_user + "\n\tlongitude_user=" + longitude_user + "\n\tinteret_user=" + interet_user +"\n\t archive=" + archive + '}' + "\n";
+        return "user{\n\t" + "id_user=" + id_user + "\n\temail_user=" + email_user + "\n\tpassword_user=" + password_user + "\n\tnom_user=" + nom_user + "\n\tprenom_user=" + prenom_user + "\n\tdateNaissance_user=" + dateNaissance_user + "\n\tsexe_user=" + sexe_user + "\n\ttelephone_user=" + telephone_user + "\n\tphoto_user=" + photo_user + "\n\tdescription_user=" + description_user + "\n\tmaxDistance_user=" + maxDistance_user + "\n\tpreferredMinAge_user=" + preferredMinAge_user + "\n\tpreferredMaxAge_user=" + preferredMaxAge_user + "\n\tadresse_user=" + adresse_user + "\n\tlatitude_user=" + latitude_user + "\n\tlongitude_user=" + longitude_user + "\n\tinteret_user=" + interet_user +"\n\t archive=" + archive + '}' + "\n";
     }
 
 }

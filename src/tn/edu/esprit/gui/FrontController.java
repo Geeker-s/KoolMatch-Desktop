@@ -23,8 +23,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.SwipeEvent;
@@ -32,7 +37,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import static tn.edu.esprit.gui.LoginController.CurrentUser;
 import tn.edu.esprit.model.Interaction;
 import tn.edu.esprit.model.Matching;
 import tn.edu.esprit.model.User;
@@ -91,6 +102,10 @@ public class FrontController implements Initializable {
     int i;
     @FXML
     private HBox filter;
+    @FXML
+    private Label nom_user;
+    @FXML
+    private Circle photo_user;
 
     public void setI(int i) {
         this.i = i;
@@ -117,23 +132,17 @@ public class FrontController implements Initializable {
         return card;
     }
 
-    ServiceUser user = new ServiceUser();
-    User u = user.afficher()
-            .stream()
-            .filter(x -> x.getId_user() == 1)
-            .findAny()
-            .orElse(null);
-//    User y = user.afficher()
-//            .stream()
-//            .filter(x -> x.getId_user() == 2)
-//            .findAny()
-//            .orElse(null);
-
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        File file = new File("src/tn/edu/esprit/images/" + CurrentUser.getPhoto_user());
+        Image image = new Image(file.toURI().toString());
+        photo_user.setFill(new ImagePattern(image));
+        photo_user.setEffect(new DropShadow(+25d, 0d, +2d, Color.TRANSPARENT));
+        nom_user.setText(CurrentUser.getNom_user() + " " + CurrentUser.getPrenom_user());
         pnlHome.setStyle("-fx-background-color : #e7e5e5");
         pnlHome.toFront();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("card.fxml"));
@@ -147,15 +156,15 @@ public class FrontController implements Initializable {
         CardController controller = (CardController) loader.getController();
         //setters
         setC(controller);
-        setMatches(u, matches);
+        setMatches(CurrentUser, matches);
         setI(0);
-
         c.setAffichage(matches.get(getI()));
     }
 
     @FXML
     public void handleClicks(ActionEvent actionEvent) {
         ServiceInteraction react = new ServiceInteraction();
+
         if (actionEvent.getSource() == btnProfile) {
             pnlProfile.setStyle("-fx-background-color : #e7e5e5");
             pnlProfile.toFront();
@@ -173,9 +182,27 @@ public class FrontController implements Initializable {
             pnlConversation.toFront();
         }
         if (actionEvent.getSource() == btnLogout) {
-            pnlLogout.setStyle("-fx-background-color : #e7e5e5");
-            pnlLogout.toFront();
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Logout");
+            alert.setHeaderText("You're about to logout!");
+            alert.initStyle(StageStyle.UNDECORATED);
+            if (alert.showAndWait().get() == ButtonType.OK) {
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login.fxml"));
+                    Parent root1;
+                    root1 = (Parent) fxmlLoader.load();
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root1));
+                    stage.initStyle(StageStyle.UNDECORATED);
+                    stage.show();
+                    Stage CurrentStage = (Stage) btnLogout.getScene().getWindow();
+                    CurrentStage.close();
+                } catch (IOException ex) {
+                    ex.getMessage();
+                }
+            }
         }
+
         if (actionEvent.getSource() == btnSettings) {
             pnlSettings.setStyle("-fx-background-color : #e7e5e5");
             pnlSettings.toFront();
@@ -189,25 +216,26 @@ public class FrontController implements Initializable {
             pnlRecettes.toFront();
         }
         if (actionEvent.getSource() == btnLike) {
+            react.ajouter(new Interaction("o", Date.valueOf(LocalDate.now()), CurrentUser.getId_user(), matches.get(getI()).getId_user()));
             addI();
             if (getI() >= matches.size()) {
                 System.out.println("list vide");
             } else {
+
                 User y = matches.get(getI());
                 c.setAffichage(y);
             }
-            react.ajouter(new Interaction("o", Date.valueOf(LocalDate.now()), u.getId_user(), matches.get(getI() - 1).getId_user()));
         }
         if (actionEvent.getSource() == btnSkip) {
+            react.ajouter(new Interaction("x", Date.valueOf(LocalDate.now()), CurrentUser.getId_user(), matches.get(getI()).getId_user()));
             addI();
+
             if (getI() >= matches.size()) {
                 System.out.println("list vide");
             } else {
                 User y = matches.get(getI());
                 c.setAffichage(y);
             }
-            react.ajouter(new Interaction("x", Date.valueOf(LocalDate.now()), u.getId_user(), matches.get(getI() - 1).getId_user()));
         }
     }
-
 }

@@ -154,7 +154,7 @@ public class ServiceMatching implements IService<Matching> {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                users.add(new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getDate(7), rs.getString(8), rs.getInt(9), rs.getString(10), rs.getString(11), rs.getInt(12), rs.getInt(13), rs.getInt(14), rs.getString(15), rs.getDouble(16), rs.getDouble(17), rs.getInt(18)));
+                users.add(new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), rs.getString(7), rs.getInt(8), rs.getString(9), rs.getString(10), rs.getInt(11), rs.getInt(12), rs.getInt(13), rs.getString(14), rs.getDouble(15), rs.getDouble(16), rs.getInt(17)));
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
