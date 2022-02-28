@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="778.0" prefWidth="826.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.edu.esprit.gui.FormulaireRestaurantController">
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <children>
+      <VBox layoutX="20.0" layoutY="-3.0" prefHeight="278.0" prefWidth="133.0" spacing="40.0">
+         <children>
+            <Label>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+            <Label text="Nom restaurant :" underline="true" />
+            <Label text="Identification gérant :" underline="true" />
+            <Label text="Telephone restaurant :" underline="true" />
+            <Label />
+         </children>
+      </VBox>
+      <VBox layoutX="271.0" layoutY="50.0" prefHeight="98.0" prefWidth="186.0" spacing="30.0" />
+      <Button fx:id="Binsert" layoutX="334.0" layoutY="694.0" mnemonicParsing="false" onAction="#Insert" prefHeight="32.0" prefWidth="115.0" text="Insert" />
+      <ImageView fx:id="imageView_resto" fitHeight="163.0" fitWidth="160.0" layoutX="163.0" layoutY="398.0" onDragDropped="#imageDropped" onDragOver="#imageDragOver" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../images/1.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imageView_structure" fitHeight="163.0" fitWidth="160.0" layoutX="582.0" layoutY="398.0" onDragDropped="#image1Dropped" onDragOver="#image1DragOver" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../images/1.png" />
+         </image>
+      </ImageView>
+      <VBox layoutX="449.0" layoutY="54.0" prefHeight="182.0" prefWidth="133.0" spacing="45.0">
+         <children>
+            <Label text="Nombre de places :" underline="true" />
+            <Label text="spécialité  :" underline="true" />
+            <Label prefHeight="18.0" prefWidth="68.0" text="Site  web :" underline="true" />
+            <Label text="Adresse" />
+         </children>
+      </VBox>
+      <VBox layoutX="582.0" layoutY="45.0" prefHeight="160.0" prefWidth="219.0" spacing="40.0">
+         <children>
+            <TextField fx:id="Fnombre" prefHeight="12.0" prefWidth="219.0" />
+            <TextField fx:id="Fspecialite" />
+            <TextField fx:id="Fsite" />
+            <TextField fx:id="Fadresse" />
+         </children>
+      </VBox>
+      <VBox layoutX="163.0" layoutY="45.0" prefHeight="182.0" prefWidth="243.0" spacing="35.0">
+         <children>
+            <TextField fx:id="Fnom" />
+            <TextField fx:id="Fidgerant" />
+            <TextField fx:id="Ftelephone" />
+         </children>
+      </VBox>
+  
+      <HBox layoutX="20.0" layoutY="236.0" prefHeight="18.0" prefWidth="74.0">
+         <children>
+            <Label text="Description :" underline="true" />
+         </children>
+      </HBox>
+      <HBox layoutX="163.0" layoutY="242.0" prefHeight="98.0" prefWidth="243.0">
+         <children>
+            <TextField fx:id="Fdescription" prefHeight="109.0" prefWidth="243.0" />
+         </children>
+      </HBox>
+      <HBox layoutX="12.0" layoutY="434.0" prefHeight="100.0" prefWidth="133.0">
+         <children>
+            <Label prefHeight="18.0" prefWidth="153.0" text="Image restaurant :" underline="true" />
+         </children>
+      </HBox>
+      <HBox layoutX="449.0" layoutY="427.0" prefHeight="26.0" prefWidth="153.0">
+         <children>
+            <Label text="Structure restaurant :" underline="true" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
