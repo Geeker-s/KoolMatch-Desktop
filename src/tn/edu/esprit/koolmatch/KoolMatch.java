@@ -35,7 +35,7 @@ public class KoolMatch {
      */
     public static void main(String[] args) {
 
-//--
+//        --Services
         ServiceUser user = new ServiceUser();
         ServiceAdmin admin = new ServiceAdmin();
         ServiceGerant gerant = new ServiceGerant();
@@ -44,8 +44,8 @@ public class KoolMatch {
         ServiceRecette recette = new ServiceRecette();
         ServiceJeu jeu = new ServiceJeu();
         ServiceQuiz quiz = new ServiceQuiz();
-
-// Testing      
+//        ---------
+//        --Testing
         //Creation des utilisateurs
         User foulen = user.afficher()
                 .stream()
@@ -67,6 +67,15 @@ public class KoolMatch {
 //        match.supprimer(new Matching(1));
 //        match.modifer(new Matching(1));
 //        System.out.println("\n--\n"+match.filter(foulen));
+//        react.ajouter(new Interaction("o", Date.valueOf("2022-02-14"), foulen.getId_user(), foulena.getId_user()));
+//        react.ajouter(new Interaction("o", Date.valueOf("2022-02-15"), foulena.getId_user(), foulen.getId_user()));
+//        react.modifer(new Interaction(1));
+//        react.supprimer(new Interaction(1));
+//        Interaction interaction = new Interaction(1, 2);
+//        if (react.userLIKE(interaction)) {
+//            match.ajouter(new Matching(interaction.getId_user1(), interaction.getId_user2(), Date.valueOf(LocalDate.now())));
+//        }//Matching automatique d'un user
+
 //        ---------Gestion Recette
 //        recette.ajouter(new Recette(1, "omlette", "photo.jpg", "bnina", "Petit dej", 20));
 //        Jeu j = new Jeu(8, 6, 1);
@@ -80,32 +89,12 @@ public class KoolMatch {
 //        System.out.println(jeu.rank());
 //        Jeu j1 = new Jeu(5);
 //        System.out.println(quiz.calcules(6, "rc1"));
-//        ---------
-
-
-//Creation des reaction lors d'une Interaction
-//        Interaction react1 = new Interaction("o", Date.valueOf("2022-02-14"), foulen.getId_user(), foulena.getId_user());
-//        Interaction react2 = new Interaction("o", Date.valueOf("2022-02-15"), foulena.getId_user(), foulen.getId_user());
-//        react.ajouter(react1);
-//        react.ajouter(react2);
-//        System.out.println(match.calculateAge(new User(1,Date.valueOf("1995-02-18"))));
-//      match.ajouter(new Matching(react.userLIKE(react1).getId_user2(),react.userLIKE(react1).getId_user1(),  Date.valueOf(LocalDate.now())));
-//        if (react.supprimer(new Interaction(3))) {
-//            System.out.println("Interaction supprimé.");
-//        } else {
-//            System.out.println("Erreur de suppression Interaction");
-//        }
-//        if (react.modifer(new Interaction(4))) {
-//            System.out.println("Date de reaction modifié avec succes.");
-//        } else {
-//            System.out.println("Erreur de modification.");
-//        }
-//--Affichage
+//        --Affichage
 //        System.out.println(user.afficher());
 //        System.out.println(admin.afficher());
 //        System.out.println(gerant.afficher());
-//        System.out.println(match.afficher());
-//        System.out.println(react.afficher());
+        System.out.println(match.afficher());
+        System.out.println(react.afficher());
 //        System.out.println(recette.afficher());
 //        System.out.println(jeu.afficher());
 //        System.out.println(quiz.afficher());

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 26 fév. 2022 à 16:12
+-- Généré le : sam. 26 fév. 2022 à 17:53
 -- Version du serveur : 10.4.20-MariaDB
 -- Version de PHP : 7.3.29
 
@@ -135,6 +135,14 @@ CREATE TABLE `interaction` (
   `id_user2` int(11) NOT NULL,
   `archive` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `interaction`
+--
+
+INSERT INTO `interaction` (`id_interaction`, `type_interaction`, `date_interaction`, `id_user1`, `id_user2`, `archive`) VALUES
+(1, 'o', '1998-09-01', 1, 2, 0),
+(2, 'o', '2022-02-15', 2, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -457,7 +465,7 @@ ALTER TABLE `gerant`
 -- AUTO_INCREMENT pour la table `interaction`
 --
 ALTER TABLE `interaction`
-  MODIFY `id_interaction` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_interaction` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `invitation`

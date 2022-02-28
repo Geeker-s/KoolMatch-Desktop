@@ -18,6 +18,7 @@ public class Interaction {
     private Date date_interaction;
     private int id_user1;
     private int id_user2;
+    private int archive;
 
     public Interaction() {
     }
@@ -43,7 +44,6 @@ public class Interaction {
         this.id_user1 = id_user1;
         this.id_user2 = id_user2;
     }
-    
 
     public Interaction(int id_interaction, String type_interaction, Date date_interaction, int id_user1, int id_user2) {
         this.id_interaction = id_interaction;
@@ -93,9 +93,17 @@ public class Interaction {
         this.id_user2 = id_user2;
     }
 
+    public int getArchive() {
+        return archive;
+    }
+
+    public void setArchive(int archive) {
+        this.archive = archive;
+    }
+
     @Override
     public String toString() {
-        return "\nReact:" + "\n\tid_interaction=" + id_interaction + "\n\ttype_interaction=" + type_interaction + "\n\tdate_interaction=" + date_interaction + "\n\tid_user1=" + id_user1 + "\n\td_user2=" + id_user2 + "\n"+'}';
+        return "\nReact:" + "\n\tid_interaction=" + id_interaction + "\n\ttype_interaction=" + type_interaction + "\n\tdate_interaction=" + date_interaction + "\n\tid_user1=" + id_user1 + "\n\td_user2=" + id_user2 + "\n" + '}';
     }
 
     @Override
@@ -124,6 +132,5 @@ public class Interaction {
         }
         return true;
     }
-    
-    
+
 }

@@ -10,10 +10,12 @@ import static javafx.application.Application.launch;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -27,23 +29,29 @@ public class KoolmatchFX extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Recette.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+        primaryStage.setTitle("Koolmatch");
         primaryStage.setScene(new Scene(root));
         //set stage borderless
         primaryStage.initStyle(StageStyle.UNDECORATED);
+        
+        
 
         //drag it here
-        root.setOnMousePressed(event -> {
-            x = event.getSceneX();
-            y = event.getSceneY();
-        });
-        root.setOnMouseDragged(event -> {
-
-            primaryStage.setX(event.getScreenX() - x);
-            primaryStage.setY(event.getScreenY() - y);
-
-        });
+//        root.setOnMousePressed(event -> {
+//            x = event.getSceneX();
+//            y = event.getSceneY();
+//        });
+//        root.setOnMouseDragged(event -> {
+//
+//            primaryStage.setX(event.getScreenX() - x);
+//            primaryStage.setY(event.getScreenY() - y);
+//
+//        });
         primaryStage.show();
+        Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+        primaryStage.setX((primScreenBounds.getWidth() - primaryStage.getWidth()) / 2);
+        primaryStage.setY((primScreenBounds.getHeight() - primaryStage.getHeight()) / 2);
     }
 
     /**
