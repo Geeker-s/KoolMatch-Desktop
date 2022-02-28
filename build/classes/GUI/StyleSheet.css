@@ -1,0 +1,60 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 28 févr. 2022, 10:27:15
+    Author     : Asus
+*/
+.button{
+    
+    -fx-background-color:  #40E0D0 ;
+    -fx-background-radius:10px;
+        
+        -fx-border-color:#000000;
+        -fx-border-width:1px;
+        -fx-border-style:solid;
+            -fx-border-radius:10px;
+    
+}
+
+.supp_inv{
+    
+    -fx-background-color:   #FFA69E ;
+    -fx-background-radius:10px;
+        
+        -fx-border-color:#000000;
+        -fx-border-width:1px;
+        -fx-border-style:solid;
+            -fx-border-radius:10px;
+}
+.tabv{
+    
+     -fx-border-color:#000000;
+        -fx-border-width:2px;
+        -fx-border-style:solid;
+            -fx-border-radius:10px;
+}
+.pane{
+    -fx-background-color:   #FFA69E ;
+    
+}
+.bigpane{
+    
+    -fx-border-color:  #DCDCDC;
+}
+
+.label_title{
+    
+    -fx-font-family: 'Times New Roman', serif;
+  -fx-font-size: 30px;
+  -fx-color: #000;
+}
+.lv{
+    
+    -fx-border-color:#000000;
+        -fx-border-width:2px;
+        -fx-border-style:solid;
+            -fx-border-radius:10px;
+}

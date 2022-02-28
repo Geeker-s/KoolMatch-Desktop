@@ -20,11 +20,12 @@ public class event {
     private String theme_event;
     private String  adresse_event;
     private int telephone ;
+    private int archive ;
 
     public event() {
     }
 
-    public event(int id_event, String nom_event, Date dd_event, Date df_event, String theme_event, String adresse_event, int telephone) {
+    public event(int id_event, String nom_event, Date dd_event, Date df_event, String theme_event, String adresse_event, int telephone,int archive) {
         this.id_event = id_event;
         this.nom_event = nom_event;
         this.dd_event = dd_event;
@@ -32,6 +33,7 @@ public class event {
         this.theme_event = theme_event;
         this.adresse_event = adresse_event;
         this.telephone = telephone;
+        this.archive = archive;
     }
 
     public event(String nom_event, Date dd_event, Date df_event, String theme_event, String adresse_event, int telephone) {
@@ -109,9 +111,22 @@ public class event {
         this.telephone = telephone;
     }
 
+    public int getArchive() {
+        return archive;
+    }
+
+    public void setArchive(int archive) {
+        this.archive = archive;
+    }
+
+    
     @Override
     public String toString() {
-        return "event{" + "id_event=" + id_event + ", nom_event=" + nom_event + ", dd_event=" + dd_event.toString() + ", df_event=" + df_event.toString() + ", theme_event=" + theme_event + ", adresse_event=" + adresse_event + ", telephone=" + telephone + '}';
+        
+        String event = "";
+        
+        event +=    "id_event=" + id_event + ", nom_event=" + nom_event + ", dd_event=" + dd_event.toString() + ", df_event=" + df_event.toString() + ", theme_event=" + theme_event + ", adresse_event=" + adresse_event + ", telephone=" + telephone + "\n" ;
+        return event ;//"  event{" + "id_event=" + id_event + ", nom_event=" + nom_event + ", dd_event=" + dd_event.toString() + ", df_event=" + df_event.toString() + ", theme_event=" + theme_event + ", adresse_event=" + adresse_event + ", telephone=" + telephone + '}' ;
     }
 
    

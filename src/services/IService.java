@@ -17,10 +17,13 @@ public interface IService<T> {
     public void ajouter(T p);
 
     public List<T> afficher();
+     
 
     public boolean modifer(T p);
 
     public boolean supprimer(T p);
     
     public List<T> Recherche(T p);
+    
+   
 }

@@ -29,15 +29,16 @@ public class KoolMatch {
        
         ServiceInvitation i ;
         i = new ServiceInvitation();
+        
        
        //AJOUT ET AFFICHAGE EVENT
        //e.ajouter(new event( "scary night ",Date.valueOf("2022-10-31"),Date.valueOf("2022-10-31")," halloween","esprit", 99485632));
-       //System.out.println( e.afficher().toString() )  ;
+      // System.out.println( e.afficher().toString() )  ;
         //e.supprimer(new  event (3) );
       
         
         
-        //System.out.println( e.Recherche(new event ("test")));
+        System.out.println( e.Recherche(new event ("test")));
        
        // System.out.println(i.Tri());
         
@@ -51,12 +52,12 @@ public class KoolMatch {
        //System.out.println( i.afficher().toString());
        
        //SUPPRIMER EVENT 
- //if (e.supprimer(new event(3))) {
-          //  System.out.println("Supprimé avec succes.");
-       // } else {
-         //   System.out.println("Erreur de suppression.");
-      //  }
-//System.out.println( e.afficher().toString());
+ //if (e.supprimer(new event(5))) {
+   //         System.out.println("Supprimé avec succes.");
+     //   } else {
+       //     System.out.println("Erreur de suppression.");
+        //}
+ //System.out.println( e.afficher().toString());
     
     //MODIFIER EVENT
       //  if (e.modifer(new event(4))) {

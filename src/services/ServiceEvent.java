@@ -18,6 +18,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import javafx.collections.ObservableList;
 import utils.MyDB;
 
 /**
@@ -27,6 +28,7 @@ import utils.MyDB;
 public class ServiceEvent implements IService<event> {
     
     private Connection cnx;
+    public ObservableList afficher_1;
 
     public ServiceEvent() {
         cnx = MyDB.getInstance().getCnx();
@@ -35,7 +37,7 @@ public class ServiceEvent implements IService<event> {
     @Override
     public void ajouter( event p) {
  try {
-             String querry="INSERT INTO `evenement`( `nom_event`, `dd_event`, `df_event`, `theme_event`, `adresse_event`, `telephone`) VALUES ('"+p.getNom_event()+"','"+p.getDd_event()+"','"+p.getDf_event()+"','"+p.getTheme_event()+"','"+p.getAdresse_event()+"','"+p.getTelephone()+"')";
+             String querry="INSERT INTO `evenement`( `nom_event`, `dd_event`, `df_event`, `theme_event`, `adresse_event`, `telephone`) VALUES ('"+p.getNom_event()+"','"+p.getDd_event()+"','"+p.getDf_event()+"','"+p.getTheme_event()+"','"+p.getAdresse_event()+"','"+p.getTelephone()+"' )";
             Statement stm =cnx.createStatement();
         
         stm.executeUpdate(querry);
@@ -50,13 +52,13 @@ public class ServiceEvent implements IService<event> {
     public List<event> afficher() {
         List<event> events = new ArrayList<>();
         try {
-            String req = "SELECT * FROM evenement" ;
+            String req = "SELECT * FROM evenement  WHERE archive = 0 " ;
             
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             
             while(rs.next()){
-            events.add(new event(rs.getInt(1),rs.getString(2),rs.getDate(3),rs.getDate(4),rs.getString(5),rs.getString(6),rs.getInt(7)))  ; 
+            events.add(new event(rs.getInt(1),rs.getString(2),rs.getDate(3),rs.getDate(4),rs.getString(5),rs.getString(6),rs.getInt(7),rs.getInt(8) ) )  ; 
             }
             
         } catch (SQLException ex) {
@@ -64,6 +66,8 @@ public class ServiceEvent implements IService<event> {
         }
         return events ;
     }
+     
+   
 
     @Override
     public boolean modifer(event p) {
@@ -110,6 +114,8 @@ public class ServiceEvent implements IService<event> {
         List<event> events = afficher();
         return events.stream().sorted(comparator).collect(Collectors.toList());
     }
+
+   
 
    
 
