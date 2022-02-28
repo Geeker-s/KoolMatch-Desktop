@@ -29,6 +29,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.SwipeEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
@@ -88,6 +89,8 @@ public class FrontController implements Initializable {
     CardController c;
     List<User> matches;
     int i;
+    @FXML
+    private HBox filter;
 
     public void setI(int i) {
         this.i = i;
