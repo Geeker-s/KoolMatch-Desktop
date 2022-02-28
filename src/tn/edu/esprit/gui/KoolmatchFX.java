@@ -29,14 +29,11 @@ public class KoolmatchFX extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("AfficherRestaurant.fxml"));
         primaryStage.setTitle("Koolmatch");
         primaryStage.setScene(new Scene(root));
         //set stage borderless
         primaryStage.initStyle(StageStyle.UNDECORATED);
-        
-        
-
         //drag it here
 //        root.setOnMousePressed(event -> {
 //            x = event.getSceneX();
