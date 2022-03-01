@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 26 fév. 2022 à 17:53
+-- Généré le : lun. 28 fév. 2022 à 19:47
 -- Version du serveur : 10.4.20-MariaDB
 -- Version de PHP : 7.3.29
 
@@ -136,14 +136,6 @@ CREATE TABLE `interaction` (
   `archive` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Déchargement des données de la table `interaction`
---
-
-INSERT INTO `interaction` (`id_interaction`, `type_interaction`, `date_interaction`, `id_user1`, `id_user2`, `archive`) VALUES
-(1, 'o', '1998-09-01', 1, 2, 0),
-(2, 'o', '2022-02-15', 2, 1, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -192,13 +184,6 @@ CREATE TABLE `matching` (
   `date_matching` date NOT NULL,
   `archive` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Déchargement des données de la table `matching`
---
-
-INSERT INTO `matching` (`id_match`, `id_user1`, `id_user2`, `date_matching`, `archive`) VALUES
-(1, 1, 2, '2019-09-20', 0);
 
 -- --------------------------------------------------------
 
@@ -302,11 +287,23 @@ CREATE TABLE `restaurant` (
   `specialite_restaurant` varchar(20) NOT NULL,
   `id_gerant` int(20) NOT NULL,
   `image` varchar(50) NOT NULL,
+  `archive` int(1) NOT NULL DEFAULT 0,
   `nb_placeResto` int(11) NOT NULL,
-  `image_structure_resturant` int(11) NOT NULL,
+  `image_structure_resturant` varchar(255) NOT NULL,
   `description` varchar(100) NOT NULL,
-  `archive` int(1) NOT NULL DEFAULT 0
+  `lien` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `restaurant`
+--
+
+INSERT INTO `restaurant` (`id_restaurant`, `nom_restaurant`, `adresse_restaurant`, `telephone_restaurant`, `siteweb_restaurant`, `specialite_restaurant`, `id_gerant`, `image`, `archive`, `nb_placeResto`, `image_structure_resturant`, `description`, `lien`) VALUES
+(8, 'Baguette', 'Tunisia', 2202255, 'www.kfc.com', 'FastfOOD', 5, 'src/tn/edu/esprit/images/logo.png', 0, 10, 'aaaa', 'uiuh', 'ggg'),
+(9, 'Kitchen', 'klibya', 2202255, 'www.kfc.com', 'FastfOOD', 5, 'src/tn/edu/esprit/images/logo.png', 0, 10, 'aaaa', 'uiuh', 'ggg'),
+(10, 'Kitchen', 'klibya', 2202255, 'www.kfc.com', 'FastfOOD', 5, 'src/tn/edu/esprit/images/logo.png', 0, 10, 'aaaa', 'uiuh', 'ggg'),
+(11, 'sdfsf', 'sdfsdfsf', 872782, 'fghfgh', 'fdghd', 5, 'src/tn/edu/esprit/images/logo.png', 0, 10, 'src/tn/edu/esprit/images/Screen Shot 2021-11-27 at 11.07.19 AM.png', 'dgdfgd', 'null'),
+(12, 'TaxiPizza', 'Marsa', 26847953, 'www.kfc.com', 'Lablebi', 5, 'src/tn/edu/esprit/images/femme2.jpeg', 0, 5, 'src/tn/edu/esprit/images/femme1.jpeg', 'ddeeded', 'null');
 
 -- --------------------------------------------------------
 
@@ -317,7 +314,6 @@ CREATE TABLE `restaurant` (
 CREATE TABLE `user` (
   `id_user` int(20) NOT NULL,
   `email_user` varchar(100) NOT NULL,
-  `login_user` varchar(20) NOT NULL,
   `password_user` varchar(20) NOT NULL,
   `nom_user` varchar(20) NOT NULL,
   `prenom_user` varchar(20) NOT NULL,
@@ -340,10 +336,10 @@ CREATE TABLE `user` (
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`id_user`, `email_user`, `login_user`, `password_user`, `nom_user`, `prenom_user`, `dateNaissance_user`, `sexe_user`, `telephone_user`, `photo_user`, `description_user`, `maxDistance_user`, `preferredMinAge_user`, `preferredMaxAge_user`, `adresse_user`, `latitude`, `longitude`, `Interet_user`, `archive`) VALUES
-(1, 'yakoubi.marwen@esprit.tn', 'marwen', '1234', 'marwen', 'yakoubi', '1998-05-14', 'homme', 29163283, 'photo.jpeg', 'I love lablebi', 50, 20, 25, 'Ariana Essoughra', 36.90138, 10.19012, 21412, 0),
-(2, 'wassim.benromdhane.1@esprit.tn', 'wassim', '1234', 'wassim', 'benromdhane', '1998-05-14', 'femme', 94366666, 'photo.png', 'I love sushi', 20, 20, 28, 'Soukra', 36.87427, 10.27263, 22211, 0),
-(3, 'matchkool@gmail.com', 'kool', '1234', 'marwen', 'yakoubi', '1998-05-14', 'homme', 29163283, 'photo.jpeg', 'I love hargma', 10, 20, 28, 'Ariana', 36.85858, 10.18436, 21422, 0);
+INSERT INTO `user` (`id_user`, `email_user`, `password_user`, `nom_user`, `prenom_user`, `dateNaissance_user`, `sexe_user`, `telephone_user`, `photo_user`, `description_user`, `maxDistance_user`, `preferredMinAge_user`, `preferredMaxAge_user`, `adresse_user`, `latitude`, `longitude`, `Interet_user`, `archive`) VALUES
+(1, 'yakoubi.marwen@esprit.tn', '1234', 'Marwen', 'Yakoubi', '1998-05-14', 'homme', 29163283, 'marwen.jpg', 'I love lablebi', 50, 20, 25, 'Ariana Essoughra', 36.90138, 10.19012, 21412, 0),
+(2, 'wassim.benromdhane.1@esprit.tn', '1234', 'Eya', 'Benromdhane', '1998-05-14', 'femme', 94366666, 'femme1.jpeg', 'I love sushi', 20, 20, 28, 'Soukra', 36.87427, 10.27263, 22211, 0),
+(3, 'wassimbenr@gmail.com', '1234', 'Sondes', 'kharroubi', '1998-05-14', 'femme', 29163283, 'femme3.jpg', 'I love hargma', 10, 20, 28, 'Ariana', 36.85858, 10.18436, 21422, 0);
 
 --
 -- Index pour les tables déchargées
@@ -465,7 +461,7 @@ ALTER TABLE `gerant`
 -- AUTO_INCREMENT pour la table `interaction`
 --
 ALTER TABLE `interaction`
-  MODIFY `id_interaction` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_interaction` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT pour la table `invitation`
@@ -513,7 +509,7 @@ ALTER TABLE `reservation`
 -- AUTO_INCREMENT pour la table `restaurant`
 --
 ALTER TABLE `restaurant`
-  MODIFY `id_restaurant` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_restaurant` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT pour la table `user`

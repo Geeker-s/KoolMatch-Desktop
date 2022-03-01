@@ -7,7 +7,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -166,7 +165,7 @@
                   <Button fx:id="btnSkip" layoutX="311.0" layoutY="490.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="29.0" prefWidth="86.0" style="-fx-background-color: #FFA69E; -fx-background-radius: 90;" text="Skip" textFill="WHITE" />
                   <Button fx:id="btnLike" layoutX="405.0" layoutY="490.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="29.0" prefWidth="86.0" style="-fx-background-color: #FFA69E; -fx-background-radius: 90;" text="Like" textFill="WHITE" />
                   <Pane fx:id="card" layoutX="285.0" layoutY="113.0" prefHeight="350.0" prefWidth="230.0" />
-                  <HBox fx:id="filter" layoutX="14.0" layoutY="14.0" prefHeight="42.0" prefWidth="772.0" />
+                  <Pane fx:id="filter" layoutX="5.0" layoutY="13.0" prefHeight="89.0" prefWidth="783.0" />
                </children></Pane>
             <Pane fx:id="pnlConversation" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false">
                <children>

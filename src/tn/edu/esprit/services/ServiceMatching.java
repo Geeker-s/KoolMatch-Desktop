@@ -55,8 +55,8 @@ public class ServiceMatching implements IService<Matching> {
                 System.out.println(ex.getMessage());
             }
             try {
-                Mail.sendMail(u1.getEmail_user());
-                Mail.sendMail(u2.getEmail_user());
+//                Mail.sendMail(u1.getEmail_user());
+//                Mail.sendMail(u2.getEmail_user());
             } catch (Exception ex) {
                 Logger.getLogger(ServiceMatching.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -187,17 +187,17 @@ public class ServiceMatching implements IService<Matching> {
         return x;
     }
 
-    public List<User> filter(User u) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Age minimum Preferre : ");
-        String preferredMinAge = sc.nextLine();
-        System.out.println("Age maximum Preferre : ");
-        String preferredMaxAge = sc.nextLine();
-        System.out.println("Distance maximum Preferre : ");
-        String maxDistance = sc.nextLine();
-        int ageMin = Integer.parseInt(preferredMinAge);
-        int ageMax = Integer.parseInt(preferredMaxAge);
-        double distance = Double.parseDouble(maxDistance);
+    public List<User> filter(User u,int ageMin,int ageMax,double distance) {
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("Age minimum Preferre : ");
+//        String preferredMinAge = sc.nextLine();
+//        System.out.println("Age maximum Preferre : ");
+//        String preferredMaxAge = sc.nextLine();
+//        System.out.println("Distance maximum Preferre : ");
+//        String maxDistance = sc.nextLine();
+//        int ageMin = Integer.parseInt(preferredMinAge);
+//        int ageMax = Integer.parseInt(preferredMaxAge);
+//        double distance = Double.parseDouble(maxDistance);
         try {
             String req = " UPDATE `user` SET `preferredMinAge_user` = '" + ageMin + "', `preferredMaxAge_user` = '" + ageMax + "', `maxDistance_user` = '" + distance + "' WHERE `id_user` = '" + u.getId_user() + "'";
             Statement stm = cnx.createStatement();

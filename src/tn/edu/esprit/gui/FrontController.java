@@ -98,10 +98,11 @@ public class FrontController implements Initializable {
     private Pane card;
 
     CardController c;
+    FilterController f;
     List<User> matches;
     int i;
     @FXML
-    private HBox filter;
+    private Pane filter;
     @FXML
     private Label nom_user;
     @FXML
@@ -126,6 +127,10 @@ public class FrontController implements Initializable {
 
     public void setC(CardController c) {
         this.c = c;
+    }
+
+    public void setF(FilterController f) {
+        this.f = f;
     }
 
     public Pane getCard() {
@@ -159,6 +164,19 @@ public class FrontController implements Initializable {
         setMatches(CurrentUser, matches);
         setI(0);
         c.setAffichage(matches.get(getI()));
+
+        FXMLLoader loadFilter = new FXMLLoader(getClass().getResource("filter.fxml"));
+        Pane newLoadfilter;
+        try {
+            newLoadfilter = loadFilter.load();
+            filter.getChildren().add(newLoadfilter);
+        } catch (IOException ex) {
+            ex.getMessage();
+        }
+        FilterController fcontroller = (FilterController) loader.getController();
+        //setters
+        setF(fcontroller);
+
     }
 
     @FXML
