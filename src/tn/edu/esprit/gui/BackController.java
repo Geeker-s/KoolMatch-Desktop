@@ -103,6 +103,14 @@ public class BackController implements Initializable {
         } catch (IOException ex) {
             ex.getMessage();
         }
+        FXMLLoader loadGestionuser = new FXMLLoader(getClass().getResource("gestionUser.fxml"));
+        Pane PaneGestionuser;
+        try {
+            PaneGestionuser = loadGestionuser.load();
+            pnlProfile.getChildren().add(PaneGestionuser);
+        } catch (IOException ex) {
+            ex.getMessage();
+        }
 
     }
 

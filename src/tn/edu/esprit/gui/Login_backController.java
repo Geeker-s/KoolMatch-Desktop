@@ -56,9 +56,7 @@ public class Login_backController implements Initializable {
 
             ServiceAdmin admin = new ServiceAdmin();
             Admin root = new Admin();
-
             ServiceGerant gerant = new ServiceGerant();
-
             root.setLogin_admin(tfusernameBack.getText());
             root.setPassword_admin(tfpasswordBack.getText());
             boolean verify = admin.login(root.getLogin_admin(), root.getPassword_admin());
