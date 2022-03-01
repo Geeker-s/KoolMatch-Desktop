@@ -35,7 +35,9 @@ import services.ServiceInvitation;
  */
 public class FXMLEventController implements Initializable {
     
+    @FXML
     private ListView <String> LvEvent; 
+    
     ObservableList<Event> events = FXCollections.observableArrayList();
     //ObservableList<events>;
 
@@ -49,6 +51,7 @@ public class FXMLEventController implements Initializable {
         // TODO
 ServiceEvent ev = new ServiceEvent();
     LvEvent.getItems().addAll(ev.afficher().toString());
+      
         
     
          LvEvent.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
@@ -65,28 +68,9 @@ ServiceEvent ev = new ServiceEvent();
     
     
     
-   private void showEvent(ActionEvent event) {
-    ServiceEvent ev = new ServiceEvent();
-    LvEvent.getItems().addAll(ev.afficher().toString());
-    
-    
-    
-            
-
-     
-   }
+   
     
 
- //   private void PDF (ActionEvent event) {
- //   ServiceInvitation ii = new ServiceInvitation();
-    
-    
-    
-
-     
-  //  }
-
-   //BACK 
     
     
  

@@ -28,7 +28,7 @@ import utils.MyDB;
 public class ServiceEvent implements IService<event> {
     
     private Connection cnx;
-    public ObservableList afficher_1;
+    
 
     public ServiceEvent() {
         cnx = MyDB.getInstance().getCnx();

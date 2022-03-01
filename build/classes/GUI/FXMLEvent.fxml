@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane id="AnchorPane" prefHeight="517.0" prefWidth="795.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLEventController">
+<AnchorPane id="AnchorPane" prefHeight="523.0" prefWidth="877.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLEventController">
    <children>
-      <Pane layoutX="-7.0" prefHeight="400.0" prefWidth="682.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="0.0">
+      <Pane layoutX="-7.0" prefHeight="523.0" prefWidth="915.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-7.0" AnchorPane.rightAnchor="-31.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ListView fx:id="LvEvent" layoutX="283.0" layoutY="92.0" prefHeight="356.0" prefWidth="490.0" styleClass="lv" stylesheets="@StyleSheet.css" />
-            <Pane layoutX="7.0" prefHeight="517.0" prefWidth="251.0" styleClass="pane" stylesheets="@StyleSheet.css" />
-            <Button fx:id="showev" layoutX="468.0" layoutY="38.0" mnemonicParsing="false" onAction="#showEvent" text="Button" />
+            <ListView fx:id="LvEvent" layoutX="283.0" layoutY="92.0" prefHeight="356.0" prefWidth="581.0" styleClass="lv" stylesheets="@StyleSheet.css" />
+            <Pane layoutX="7.0" prefHeight="517.0" prefWidth="251.0" styleClass="pane" stylesheets="@StyleSheet.css">
+               <children>
+                  <Label layoutX="12.0" layoutY="13.0" prefHeight="43.0" prefWidth="221.0" styleClass="label_title" stylesheets="@StyleSheet.css" text="Evenements" />
+               </children></Pane>
          </children>
       </Pane>
    </children>

@@ -29,7 +29,7 @@ public class NewFXMain extends Application {
     public void start(Stage primaryStage) {
       Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("FXMLEvent.fxml"));
+            root = FXMLLoader.load(getClass().getResource("FXMLInvfront.fxml"));
         
         Scene scene = new Scene(root);
         

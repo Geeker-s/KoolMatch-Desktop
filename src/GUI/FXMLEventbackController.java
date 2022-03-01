@@ -12,13 +12,16 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import entities.event;
 import java.awt.Desktop;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -114,39 +117,48 @@ public class FXMLEventbackController implements Initializable {
     
             
 
+     }
      
-    }
-    
-    
-    public void pdf() {
-        
-        Document doc = new Document();
-         try {
-             PdfWriter.getInstance(doc,new  FileOutputStream("C:\\Users\\Asus\\OneDrive\\Bureau\\Invitation.pdf"));
-             doc.open();
-              Font f=new Font(Font.FontFamily.HELVETICA,50.0f,Font.UNDERLINE,BaseColor.PINK);
-             doc.add(new Paragraph("Invitation : ",f));
-             
-             Image img;
-            img = Image.getInstance("C:\\Users\\Asus\\OneDrive\\Bureau\\KoolMatch\\src\\Images\\matchy-cool-logo-png.png");
-             doc.add(img);
-             
-             doc.close();
-             Desktop.getDesktop().open(new File ("C:\\Users\\Asus\\OneDrive\\Bureau\\Invitation.pdf"));
-             
-             
-         } catch (FileNotFoundException ex) {
-             Logger.getLogger(ServiceInvitation.class.getName()).log(Level.SEVERE, null, ex);
-         } catch (DocumentException ex) {
-             Logger.getLogger(ServiceInvitation.class.getName()).log(Level.SEVERE, null, ex);
-         } catch (IOException ex) {
-             Logger.getLogger(ServiceInvitation.class.getName()).log(Level.SEVERE, null, ex);
-         }
-        
-    }
     
 
-    @FXML
-    private void initialize(ActionEvent event) {
+     
+      @FXML
+      
+     private void addevent(ActionEvent event) {
+        ServiceEvent e = new ServiceEvent();
+        event ev = new event();
+        ev.setNom_event(TFnom.getText());
+        ev.setTheme_event(TFtheme.getText());
+        ev.setAdresse_event(TFadresse.getText());
+        ev.setTelephone(Integer.parseInt(TFtel.getText()));
+        LocalDate FDate  = DPdd.getValue();
+        String  Sdate = String.valueOf(FDate);
+        ev.setDd_event(Date.valueOf(Sdate));
+        LocalDate FFDate  = DPdf.getValue();
+        String  SSdate = String.valueOf(FFDate);
+        ev.setDf_event(Date.valueOf(SSdate));
+        e.ajouter(ev);
+        TFnom.setText("");
+        TFtheme.setText("");
+        TFadresse.setText("");
+        TFtel.setText("");
+        
+        DPdd.getEditor().clear();
+        DPdf.getEditor().clear();
+
     }
+     
+     
+     @FXML
+    void modiffevent(ActionEvent event) {
+
+    }
+
 }
+
+    
+    
+   
+    
+
+    

@@ -18,7 +18,7 @@
             <Pane layoutX="290.0" layoutY="85.0" prefHeight="517.0" prefWidth="609.0" style="-fx-background-color: #DCDCDC;">
                <children>
                   <Button fx:id="supprimer" layoutX="498.0" layoutY="411.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="104.0" style="-fx-border-radius: 10; -fx-background-radius: 10; -fx-background-color: #FFA69E; -fx-border-color: #000000;" text="Supprimer" />
-                  <ComboBox fx:id="combo_event" layoutX="327.0" layoutY="412.0" onAction="#initialize" prefWidth="150.0" />
+                  <ComboBox fx:id="combo_event" layoutX="327.0" layoutY="412.0" prefWidth="150.0" />
                   <TableView fx:id="tbviewEvent" layoutX="125.0" layoutY="24.0" prefHeight="324.0" prefWidth="460.0">
                     <columns>
                       <TableColumn fx:id="colnom" prefWidth="75.0" text="Nom" />
@@ -34,8 +34,8 @@
             <StackPane layoutX="290.0" prefHeight="89.0" prefWidth="609.0" style="-fx-background-color: #FFA69E;" />
             <Pane layoutX="-2.0" layoutY="-4.0" prefHeight="609.0" prefWidth="307.0" style="-fx-background-color: #FFA69E;" stylesheets="@StyleSheet.css">
                <children>
-                  <Button fx:id="Modify1" layoutX="177.0" layoutY="491.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: #40E0D0; -fx-border-radius: 10; -fx-background-radius: 10; -fx-border-color: #000000;" text="Modifer" />
-                  <Button fx:id="ADDevent" layoutX="52.0" layoutY="491.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-background-color: #40E0D0; -fx-border-color: #000000;" text="Ajouter" />
+                  <Button fx:id="Modify1" layoutX="177.0" layoutY="491.0" mnemonicParsing="false" onAction="#modiffevent" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: #40E0D0; -fx-border-radius: 10; -fx-background-radius: 10; -fx-border-color: #000000;" text="Modifer" />
+                  <Button fx:id="ADDevent" layoutX="52.0" layoutY="491.0" mnemonicParsing="false" onAction="#addevent" prefHeight="25.0" prefWidth="83.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-background-color: #40E0D0; -fx-border-color: #000000;" text="Ajouter" />
                   <DatePicker fx:id="DPdf" layoutX="93.0" layoutY="413.0" />
                   <Label layoutX="26.0" layoutY="423.0" text="Date fin" />
                   <DatePicker fx:id="DPdd" layoutX="93.0" layoutY="364.0" />

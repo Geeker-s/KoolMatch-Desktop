@@ -7,7 +7,10 @@ package GUI;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ListView;
+import services.ServiceInvitation;
 
 /**
  * FXML Controller class
@@ -19,8 +22,21 @@ public class FXMLInvfrontController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
+    
+      @FXML
+    private ListView<String> listvI;
+    
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+         
+        ServiceInvitation i = new ServiceInvitation();
+    listvI.getItems().addAll(i.afficher().toString());
+      
+        
+        
         // TODO
     }    
     

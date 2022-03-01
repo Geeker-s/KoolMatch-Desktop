@@ -78,6 +78,7 @@ public class ServiceInvitation implements IService<invitation> {
             ex.getStackTrace();
         }
         return invitations;
+        
     }
 
     @Override
