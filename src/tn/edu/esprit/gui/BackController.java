@@ -111,6 +111,14 @@ public class BackController implements Initializable {
         } catch (IOException ex) {
             ex.getMessage();
         }
+        FXMLLoader loadevent = new FXMLLoader(getClass().getResource("EventBack.fxml"));
+        Pane PaneEvent;
+        try {
+            PaneEvent = loadevent.load();
+            pnlEvent.getChildren().add(PaneEvent);
+        } catch (IOException ex) {
+            ex.getMessage();
+        }
 
     }
 

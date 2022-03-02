@@ -173,6 +173,15 @@ public class FrontController implements Initializable {
         } catch (IOException ex) {
             ex.getMessage();
         }
+
+//        FXMLLoader loadmsg = new FXMLLoader(getClass().getResource("Room.fxml"));
+//        Pane paneMsg;
+//        try {
+//            paneMsg = loadmsg.load();
+//            pnlConversation.getChildren().add(paneMsg);
+//        } catch (IOException ex) {
+//            ex.getMessage();
+//        }
         FilterController fcontroller = (FilterController) loader.getController();
         //setters
         setF(fcontroller);

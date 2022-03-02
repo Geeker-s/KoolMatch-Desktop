@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="560.0" prefWidth="330.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.edu.esprit.gui.Room">
+   <children>
+      <StackPane layoutY="67.0" prefHeight="494.0" prefWidth="330.0">
+         <children>
+            <Pane fx:id="chat" prefHeight="200.0" prefWidth="330.0" style="-fx-background-color: #263238;">
+               <children>
+                  <TextArea fx:id="msgRoom" editable="false" layoutX="-7.0" prefHeight="456.0" prefWidth="340.0" style="-fx-background-color: #263238;" styleClass="text-area" wrapText="true">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </TextArea>
+                  <AnchorPane layoutY="453.0" prefHeight="45.0" prefWidth="330.0" style="-fx-background-color: #263238;">
+                     <children>
+                        <ImageView fitHeight="42.0" fitWidth="73.0" layoutX="280.0" layoutY="-5.0" onMouseClicked="#handleSendEvent" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons/icons8-sent.png" />
+                           </image>
+                        </ImageView>
+                        <TextField fx:id="msgField" layoutX="2.0" layoutY="-2.0" onKeyPressed="#sendMessageByKey" prefHeight="38.0" prefWidth="274.0" promptText="Write messages here....">
+                           <font>
+                              <Font name="Arial" size="19.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </Pane>
+         </children>
+      </StackPane>
+      <AnchorPane prefHeight="67.0" prefWidth="330.0" style="-fx-background-color: #102027;">
+         <children>
+            <Label fx:id="clientName" layoutX="80.0" layoutY="13.0" prefHeight="24.0" prefWidth="93.0" text="Username" textFill="#c1ffbf" wrapText="true">
+               <font>
+                  <Font name="Arial" size="19.0" />
+               </font>
+            </Label>
+            <Circle fx:id="showProPic" fill="DODGERBLUE" layoutX="35.0" layoutY="34.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

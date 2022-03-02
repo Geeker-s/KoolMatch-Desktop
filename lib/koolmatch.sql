@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le : lun. 28 fév. 2022 à 19:47
--- Version du serveur : 10.4.20-MariaDB
--- Version de PHP : 7.3.29
+-- Hôte : localhost:8889
+-- Généré le : mer. 02 mars 2022 à 00:17
+-- Version du serveur : 5.7.34
+-- Version de PHP : 7.4.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,7 +31,7 @@ CREATE TABLE `admin` (
   `id_admin` int(50) NOT NULL,
   `login_admin` varchar(20) NOT NULL,
   `password_admin` varchar(20) NOT NULL,
-  `archive` int(8) NOT NULL DEFAULT 0
+  `archive` int(8) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -56,7 +56,7 @@ CREATE TABLE `conversation` (
   `titre_conversation` varchar(20) NOT NULL,
   `id_user1` int(20) NOT NULL,
   `id_user2` int(20) NOT NULL,
-  `archive` int(11) NOT NULL DEFAULT 0
+  `archive` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -83,8 +83,16 @@ CREATE TABLE `evenement` (
   `theme_event` varchar(50) NOT NULL,
   `adresse_event` varchar(20) NOT NULL,
   `telephone` int(20) NOT NULL,
-  `archive` int(1) NOT NULL DEFAULT 0
+  `archive` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `evenement`
+--
+
+INSERT INTO `evenement` (`id_event`, `nom_event`, `dd_event`, `df_event`, `theme_event`, `adresse_event`, `telephone`, `archive`) VALUES
+(1, 'sd', '2022-10-31', '2022-10-31', ' halloween', 'esprit', 99485632, 0),
+(2, 'aea', '2022-03-16', '2022-03-09', 'aeaze', 'qsqsf', 1233, 1);
 
 -- --------------------------------------------------------
 
@@ -96,30 +104,21 @@ CREATE TABLE `gerant` (
   `id_gerant` int(20) NOT NULL,
   `nom_gerant` varchar(100) NOT NULL,
   `prenom_gerant` varchar(100) NOT NULL,
+  `email_gerant` varchar(255) NOT NULL,
+  `password_gerant` varchar(255) NOT NULL,
   `telephone_gerant` int(20) NOT NULL,
   `dd_abonnement` date NOT NULL,
   `df_abonnement` date NOT NULL,
-  `archive` int(1) NOT NULL DEFAULT 0
+  `archive` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `gerant`
 --
 
-INSERT INTO `gerant` (`id_gerant`, `nom_gerant`, `prenom_gerant`, `telephone_gerant`, `dd_abonnement`, `df_abonnement`, `archive`) VALUES
-(1, 'test', 'test', 197, '2022-02-14', '2022-05-14', 1),
-(2, 'test', 'test', 55423984, '2022-02-14', '2022-05-14', 0),
-(6, 'test', 'test', 55423984, '2022-02-14', '2022-05-14', 0),
-(8, 'test', 'test', 55423984, '2022-02-14', '2022-05-14', 0),
-(9, 'test', 'test', 55423984, '2022-02-14', '2022-05-14', 0),
-(10, 'test', 'test', 55423984, '2022-02-14', '2022-05-14', 0),
-(11, 'test', 'test', 55423984, '2022-02-14', '2022-05-14', 0),
-(12, 'test', 'test', 55423984, '2022-02-14', '2022-05-14', 0),
-(14, 'test', 'test', 55423984, '2022-02-14', '2022-05-14', 1),
-(16, 'test5', 'test6', 22565454, '2022-06-01', '2022-09-01', 1),
-(17, 'test27', 'test16', 22565454, '2022-06-01', '2022-09-01', 1),
-(18, 'test27', 'test16', 22565454, '2022-06-01', '2022-09-01', 1),
-(19, 'test77', 'test16', 22565454, '2022-06-01', '2022-09-01', 1);
+INSERT INTO `gerant` (`id_gerant`, `nom_gerant`, `prenom_gerant`, `email_gerant`, `password_gerant`, `telephone_gerant`, `dd_abonnement`, `df_abonnement`, `archive`) VALUES
+(20, 'dede', 'axx', 'aa', 'aa', 11, '2022-03-01', '2022-03-31', 1),
+(21, 'ddfff', 'zz', 'zz', 'zz', 22, '2022-03-18', '2022-03-10', 0);
 
 -- --------------------------------------------------------
 
@@ -133,7 +132,7 @@ CREATE TABLE `interaction` (
   `date_interaction` date NOT NULL,
   `id_user1` int(11) NOT NULL,
   `id_user2` int(11) NOT NULL,
-  `archive` int(1) NOT NULL DEFAULT 0
+  `archive` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -146,7 +145,7 @@ CREATE TABLE `invitation` (
   `id_invitation` int(20) NOT NULL,
   `id_event` int(20) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `archive` int(1) NOT NULL DEFAULT 0
+  `archive` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -160,7 +159,7 @@ CREATE TABLE `jeu` (
   `score_jeu` int(20) NOT NULL,
   `id_quiz` int(20) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `archive` int(1) NOT NULL DEFAULT 0
+  `archive` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -182,7 +181,7 @@ CREATE TABLE `matching` (
   `id_user1` int(20) NOT NULL,
   `id_user2` int(20) NOT NULL,
   `date_matching` date NOT NULL,
-  `archive` int(1) NOT NULL DEFAULT 0
+  `archive` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -196,7 +195,7 @@ CREATE TABLE `message` (
   `msg_message` varchar(100) NOT NULL,
   `date_message` date NOT NULL,
   `id_conversation` int(20) NOT NULL,
-  `archive` int(1) NOT NULL DEFAULT 0
+  `archive` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -223,7 +222,7 @@ CREATE TABLE `quiz` (
   `rf31` text NOT NULL,
   `rf32` text NOT NULL,
   `rf33` text NOT NULL,
-  `archive` int(1) DEFAULT 0
+  `archive` int(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -246,7 +245,7 @@ CREATE TABLE `recette` (
   `description_recette` varchar(50) NOT NULL,
   `categorie_recette` varchar(20) NOT NULL,
   `duree_recette` int(20) NOT NULL,
-  `archive` int(1) NOT NULL DEFAULT 0
+  `archive` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -269,7 +268,7 @@ CREATE TABLE `reservation` (
   `nbPlace_reservation` int(20) NOT NULL,
   `id_restaurant` int(20) NOT NULL,
   `id_user` int(20) NOT NULL,
-  `archive` int(1) NOT NULL DEFAULT 0
+  `archive` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -287,7 +286,7 @@ CREATE TABLE `restaurant` (
   `specialite_restaurant` varchar(20) NOT NULL,
   `id_gerant` int(20) NOT NULL,
   `image` varchar(50) NOT NULL,
-  `archive` int(1) NOT NULL DEFAULT 0,
+  `archive` int(1) NOT NULL DEFAULT '0',
   `nb_placeResto` int(11) NOT NULL,
   `image_structure_resturant` varchar(255) NOT NULL,
   `description` varchar(100) NOT NULL,
@@ -329,7 +328,7 @@ CREATE TABLE `user` (
   `latitude` double NOT NULL,
   `longitude` double NOT NULL,
   `Interet_user` int(20) NOT NULL,
-  `archive` int(1) NOT NULL DEFAULT 0
+  `archive` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -449,13 +448,13 @@ ALTER TABLE `conversation`
 -- AUTO_INCREMENT pour la table `evenement`
 --
 ALTER TABLE `evenement`
-  MODIFY `id_event` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_event` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `gerant`
 --
 ALTER TABLE `gerant`
-  MODIFY `id_gerant` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_gerant` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT pour la table `interaction`
