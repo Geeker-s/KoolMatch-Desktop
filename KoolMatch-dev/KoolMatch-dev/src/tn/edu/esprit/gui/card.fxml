@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxHeight="350.0" maxWidth="230.0" prefHeight="350.0" prefWidth="230.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.edu.esprit.gui.CardController">
+   <children>
+      <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="#ffa59e" height="350.0" layoutX="2.0" layoutY="1.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="5.0" width="230.0" />
+      <ImageView fx:id="photo" fitHeight="344.0" fitWidth="220.0" layoutX="7.0" layoutY="5.0" nodeOrientation="INHERIT" pickOnBounds="true" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1e1e1e" height="117.0" layoutX="8.0" layoutY="231.0" opacity="0.41" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="2.0" width="218.0" />
+      <Label fx:id="nom" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="232.0" prefHeight="20.0" prefWidth="215.0" text="Foulena ben foulena" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <effect>
+            <DropShadow color="#fffdfd" height="44.475" radius="32.85625" spread="0.17" width="88.95" />
+         </effect>
+         <padding>
+            <Insets left="2.0" top="5.0" />
+         </padding>
+      </Label>
+      <Label fx:id="age" contentDisplay="CENTER" layoutX="10.0" layoutY="260.0" prefHeight="20.0" prefWidth="215.0" text="25" textAlignment="JUSTIFY" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <effect>
+            <DropShadow color="#fffdfd" height="44.475" radius="32.85625" spread="0.17" width="88.95" />
+         </effect>
+         <padding>
+            <Insets left="2.0" />
+         </padding>
+      </Label>
+      <Label fx:id="adresse" contentDisplay="CENTER" layoutX="10.0" layoutY="280.0" prefHeight="20.0" prefWidth="215.0" text="Ariana Essoughra" textAlignment="JUSTIFY" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <effect>
+            <DropShadow color="#fffdfd" height="44.475" radius="32.85625" spread="0.17" width="88.95" />
+         </effect>
+         <padding>
+            <Insets left="2.0" />
+         </padding>
+      </Label>
+      <Label fx:id="description" contentDisplay="CENTER" layoutX="10.0" layoutY="300.0" prefHeight="40.0" prefWidth="215.0" text="J'aime les sushi" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <effect>
+            <DropShadow color="#fffdfd" height="44.475" radius="32.85625" spread="0.17" width="88.95" />
+         </effect>
+         <padding>
+            <Insets left="2.0" />
+         </padding>
+      </Label>
+   </children>
+</AnchorPane>
