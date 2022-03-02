@@ -12,10 +12,12 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import tn.edu.esprit.model.Matching;
 import tn.edu.esprit.utils.MyDB;
 
 /**
@@ -121,18 +123,23 @@ public class ServiceInteraction implements IService<Interaction> {
     }
 
     public boolean userLIKE(Interaction p) {
+        ServiceMatching match = new ServiceMatching();
         List<Interaction> likes = afficher()
                 .stream()
                 .filter(l -> l.getArchive() == 0)
                 .filter(l -> "o".equals(l.getType_interaction()))
-                .filter(l -> l.getId_user1() == p.getId_user1() || l.getId_user2() == p.getId_user1())
-                .filter(l -> l.getId_user1() == p.getId_user2() || l.getId_user2() == p.getId_user2())
+                .filter(l -> l.getId_user1() == p.getId_user2() && l.getId_user2() == p.getId_user1())
                 .collect(Collectors.toList());
-        if ( likes != null){
-            likes.stream()
-                 .forEach(l->supprimer(l));
-        }
-        else {
+        if (likes.size()!=0) {
+            match.ajouter(new Matching(p.getId_user1(), p.getId_user2(), Date.valueOf(LocalDate.now())));
+            afficher()
+                    .stream()
+                    .filter(l -> l.getArchive() == 0)
+                    .filter(l -> "o".equals(l.getType_interaction()))
+                    .filter(l -> l.getId_user1() == p.getId_user1() || l.getId_user2() == p.getId_user1())
+                    .filter(l -> l.getId_user1() == p.getId_user2() || l.getId_user2() == p.getId_user2())
+                    .forEach(l -> supprimer(l));
+        } else {
             return false;
         }
         return true;

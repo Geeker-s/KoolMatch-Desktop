@@ -12,10 +12,15 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import tn.edu.esprit.model.Reservation;
 import tn.edu.esprit.services.ServiceReservation;
 
@@ -50,15 +55,16 @@ public class FormulaireReservationController implements Initializable {
     @FXML
     private void valider(ActionEvent event) throws IOException {
 
-        ServiceReservation sp = new ServiceReservation();
-        Reservation p = new Reservation();
-
-        p.setId_restaurant(Integer.parseInt(Fidresto.getText()));
-        p.setNbPlace_reservation(Integer.parseInt(Fnbrplace.getText()));
-        Date Date_reservation = Date.valueOf(this.disponibilite.getValue());
-        p.setDate_reservation(Date_reservation);
-        p.setId_user(Integer.parseInt(FIdUSER.getText()));
-        sp.ajouter(p);
+//        ServiceReservation sp = new ServiceReservation();
+//        Reservation p = new Reservation();
+//
+//        p.setId_restaurant(Integer.parseInt(Fidresto.getText()));
+//        p.setNbPlace_reservation(Integer.parseInt(Fnbrplace.getText()));
+//        Date Date_reservation = Date.valueOf(this.disponibilite.getValue());
+//        p.setDate_reservation(Date_reservation);
+//        p.setId_user(Integer.parseInt(FIdUSER.getText()));
+//        sp.ajouter(p);
+ 
 
     }
 

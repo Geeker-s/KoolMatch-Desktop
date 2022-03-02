@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="603.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.edu.esprit.gui.EventBackController">
+   <children>
+      <Pane layoutY="-7.0" prefHeight="603.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane layoutX="290.0" layoutY="85.0" prefHeight="517.0" prefWidth="609.0" style="-fx-background-color: #DCDCDC;">
+               <children>
+                  <Button fx:id="supprimer" layoutX="33.0" layoutY="390.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="27.0" prefWidth="104.0" style="-fx-border-radius: 10; -fx-background-radius: 10; -fx-background-color: #FFA69E; -fx-border-color: #000000;" text="Supprimer" />
+                  <ListView fx:id="tbviewEvent" layoutX="33.0" layoutY="47.0" onMousePressed="#index" prefHeight="329.0" prefWidth="339.0" />
+               </children>
+            </Pane>
+            <StackPane layoutX="290.0" prefHeight="89.0" prefWidth="609.0" style="-fx-background-color: #FFA69E;" />
+            <Pane layoutX="-2.0" layoutY="-4.0" prefHeight="609.0" prefWidth="293.0">
+               <children>
+                  <Button fx:id="ADDevent" layoutX="25.0" layoutY="478.0" mnemonicParsing="false" onAction="#addevent" prefHeight="25.0" prefWidth="83.0" text="Ajouter" />
+                  <DatePicker fx:id="DPdf" layoutX="119.0" layoutY="418.0" prefHeight="27.0" prefWidth="160.0" />
+                  <Label layoutX="26.0" layoutY="423.0" text="Date fin" />
+                  <DatePicker fx:id="DPdd" layoutX="119.0" layoutY="368.0" prefHeight="27.0" prefWidth="160.0" />
+                  <TextField fx:id="TFtel" layoutX="119.0" layoutY="306.0" />
+                  <Label layoutX="18.0" layoutY="364.0" text="Date debut" />
+                  <Label layoutX="18.0" layoutY="311.0" text="Num telephone" />
+                  <TextField fx:id="TFadresse" layoutX="119.0" layoutY="248.0" />
+                  <Label layoutX="22.0" layoutY="253.0" text="Adresse" />
+                  <TextField fx:id="TFtheme" layoutX="119.0" layoutY="185.0" />
+                  <TextField fx:id="TFnom" layoutX="119.0" layoutY="124.0" />
+                  <Label layoutX="26.0" layoutY="198.0" text="theme" />
+                  <Label layoutX="15.0" layoutY="129.0" text="Nom evenement" />
+                  <Label layoutX="12.0" layoutY="34.0" prefHeight="49.0" prefWidth="213.0" styleClass="label_title" text="Gerer evenement" />
+                  <Button layoutX="129.0" layoutY="478.0" mnemonicParsing="false" onAction="#modiffevent" prefHeight="17.0" prefWidth="83.0" text="Modifier" />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -1,11 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.edu.esprit.gui.QuickviewController">
-    
+
+<AnchorPane id="AnchorPane" prefHeight="628.0" prefWidth="1063.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="tn.edu.esprit.gui.QuickviewController">
+   <children>
+      <Label fx:id="nom_restaurant" layoutX="483.0" layoutY="43.0" prefHeight="35.0" prefWidth="227.0" text="koolmatch">
+         <font>
+            <Font name="Cambria Math" size="31.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="idimage_viewStru" fitHeight="1.0" fitWidth="1.0" layoutX="11.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+         <effect>
+            <InnerShadow />
+         </effect>
+      </ImageView>
+      <Label layoutX="159.0" layoutY="130.0" prefHeight="21.0" prefWidth="124.0" text="Details" textFill="#bf1b51">
+         <font>
+            <Font name="Cambria Italic" size="24.0" />
+         </font>
+      </Label>
+      <VBox layoutX="584.0" layoutY="193.0" prefHeight="384.0" prefWidth="325.0" spacing="33.0">
+         <children>
+            <Label fx:id="id_num" text="Label" />
+            <Label fx:id="id_addr" text="Label" />
+            <Label fx:id="id_site" text="Label" />
+            <ImageView fx:id="idimage_view" fitHeight="219.0" fitWidth="515.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </ImageView>
+         </children>
+      </VBox>
+      <Label layoutX="635.0" layoutY="130.0" prefHeight="30.0" prefWidth="314.0" text="Coordonnés et emplacement " textFill="#bf1b51">
+         <font>
+            <Font name="Cambria Italic" size="24.0" />
+         </font>
+      </Label>
+      <VBox layoutX="68.0" layoutY="193.0" prefHeight="257.0" prefWidth="239.0" spacing="35.0">
+         <children>
+            <Label text="Specialité :">
+               <font>
+                  <Font name="Cambria Italic" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="is_spe" text="Label" />
+            <Label text="Description :">
+               <font>
+                  <Font name="Cambria Italic" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="id_desc" text="Label" />
+            <Label text="Nombre de places :">
+               <font>
+                  <Font name="Cambria Italic" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="id_nomb" text="Label" />
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>

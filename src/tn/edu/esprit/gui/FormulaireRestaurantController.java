@@ -19,7 +19,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -30,6 +32,7 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import tn.edu.esprit.model.Restaurant;
 import tn.edu.esprit.services.ServiceRestaurant;
 
@@ -125,6 +128,11 @@ public class FormulaireRestaurantController implements Initializable {
         Files.copy(pathfrom, pathto, StandardCopyOption.REPLACE_EXISTING);
 
         sp.ajouter(p);
+        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("AfficherRestaurant.fxml")));
+
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
 
     }
 

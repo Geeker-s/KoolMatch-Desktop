@@ -9,6 +9,7 @@ import com.mysql.cj.Messages;
 import tn.edu.esprit.model.Restaurant;
 import tn.edu.esprit.model.User;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -52,6 +53,7 @@ public class ServiceRestaurant implements IService<Restaurant> {
         List<Restaurant> Restaurant = new ArrayList<>();
         try {
             String req = "SELECT * FROM restaurant WHERE `archive` = 0";
+
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
@@ -63,16 +65,52 @@ public class ServiceRestaurant implements IService<Restaurant> {
         return Restaurant;
     }
 
-    @Override
+    public Restaurant GetRestobyid(int b) throws SQLException {
+
+        //-------------------- Update ----------//
+        Restaurant pr = new Restaurant();
+
+        String query = "select * from restaurant where id_restaurant = ? ";
+        PreparedStatement ps;
+        try {
+            ps = MyDB.getInstance().getCnx().prepareCall(query);
+            ps.setInt(1, b);
+            ResultSet rest = ps.executeQuery();
+
+            while (rest.next()) {
+                pr.setId_restaurant(rest.getInt("id_restaurant"));
+                pr.setNom_restaurant(rest.getString("nom_restaurant"));
+                pr.setAdresse_restaurant(rest.getString("adresse_restaurant"));
+                pr.setTelephone_restaurant(rest.getInt("telephone_restaurant"));
+                pr.setSiteweb_restaurant(rest.getString("siteweb_restaurant"));
+                pr.setSpecialite_restaurant(rest.getString("specialite_restaurant"));
+                pr.setId_gerant(rest.getInt("id_gerant"));
+                pr.setImage(rest.getString("image"));
+                pr.setArchive(rest.getInt("archive"));
+                pr.setNb_placeResto(rest.getInt("nb_placeResto"));
+                pr.setImage_structure_resturant(rest.getString("image_structure_resturant"));
+
+                pr.setDescription(rest.getString("description"));
+                pr.setLien(rest.getString("lien")
+                );
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceRestaurant.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return pr;
+
+    }
+
+    /*
     public boolean modifer(Restaurant p) {
 
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Nouveau Nom : ");
-        String newNom = sc.nextLine();
+       
 
         try {
 
-            String req = " UPDATE `restaurant` SET `nom_restaurant` = '" + newNom + "' WHERE `id_restaurant` = '" + p.getId_restaurant() + "'";
+            String req = " UPDATE `restaurant` SET `nom_restaurant` = '" + p.getNom_restaurant() + "' WHERE `id_restaurant` = '" + p.getId_restaurant() + "'";
             Statement stm = cnx.createStatement();
             stm.executeUpdate(req);
 
@@ -81,6 +119,26 @@ public class ServiceRestaurant implements IService<Restaurant> {
             return false;
         }
         return true;
+    }*/
+    public void UpdateResto(Restaurant b) throws SQLException {
+        //-------------------- Update ----------//
+
+        String reqUp = "update restaurant set nom_restaurant =? ,adresse_restaurant =?,telephone_restaurant =?,siteweb_restaurant =?,specialite_restaurant =?,image =?,nb_placeResto =?, description =? where id_restaurant=?";
+
+        PreparedStatement pss = MyDB.getInstance().getCnx().prepareStatement(reqUp);
+
+        pss.setString(1, b.getNom_restaurant());
+        pss.setString(2, b.getAdresse_restaurant());
+        pss.setInt(3, b.getTelephone_restaurant());
+        pss.setString(4, b.getSiteweb_restaurant());
+        pss.setString(5, b.getSpecialite_restaurant());
+        pss.setString(6, b.getImage());
+        pss.setInt(7, b.getNb_placeResto());
+        pss.setString(8, b.getDescription());
+        pss.setInt(9, b.getId_restaurant());
+
+        pss.executeUpdate();
+
     }
 
     @Override
@@ -134,6 +192,11 @@ public class ServiceRestaurant implements IService<Restaurant> {
     }
 
     public Iterable<Restaurant> RechercheEvenementParNom(String recherche) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean modifer(Restaurant p) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
