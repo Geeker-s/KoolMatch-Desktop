@@ -68,6 +68,8 @@ public class RecetteController implements Initializable {
     private ComboBox<String> tri;
     @FXML
     private TextField rech;
+    @FXML
+    private Label remarque;
    
 
     /**
@@ -85,9 +87,11 @@ public class RecetteController implements Initializable {
     @FXML
     private void bAjouer(ActionEvent event) {
         ServiceRecette Recette = new ServiceRecette();
+      if ( nplat.getText().isEmpty() || nplat.getText().matches("[0-9]") ||catg.getText().isEmpty() || catg.getText().matches("[0-9]") ||desc.getText().isEmpty() || catg.getText().matches("[0-9]") || Integer.parseInt(duree.getText())<0 ) { remarque.setText("veuillez entrer un nom valide"); }
+      else {
            Recette r = new Recette(nplat.getText(),prec.getText(), desc.getText(), catg.getText(),Integer.parseInt(duree.getText())) ;
                Recette.ajouter(r);
-    }
+    }}
 
     @FXML
     private void Bmodifier(ActionEvent event) {

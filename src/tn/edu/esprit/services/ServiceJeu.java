@@ -101,12 +101,12 @@ FROM <nom_table> ; */
     public List<Jeu> rank() {
         List<Jeu> jeux = new ArrayList<>();
         try {
-            String req = "SELECT score_jeu, id_quiz,id_user, DENSE_RANK() over (order by score_jeu DESC) FROM jeu WHERE etat = '" + 1 + "'";
+            String req = "SELECT score_jeu, DENSE_RANK() over (order by score_jeu DESC) FROM jeu WHERE archive = 0";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
 
             while (rs.next()) {
-                jeux.add(new Jeu(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4)));
+                jeux.add(new Jeu(rs.getInt(1),rs.getInt(2)));
             }
 
         } catch (SQLException ex) {
