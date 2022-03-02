@@ -17,7 +17,7 @@
          <children>
             <Pane fx:id="chat" prefHeight="200.0" prefWidth="330.0" style="-fx-background-color: #263238;">
                <children>
-                  <TextArea fx:id="msgRoom" editable="false" layoutX="-7.0" prefHeight="456.0" prefWidth="340.0" style="-fx-background-color: #263238;" styleClass="text-area" wrapText="true">
+                  <TextArea fx:id="msgRoom" editable="false" layoutX="3.0" prefHeight="456.0" prefWidth="323.0" style="-fx-background-color: #263238;" styleClass="text-area" wrapText="true">
                      <font>
                         <Font name="Arial" size="16.0" />
                      </font>

@@ -167,40 +167,13 @@
                   <Pane fx:id="card" layoutX="285.0" layoutY="113.0" prefHeight="350.0" prefWidth="230.0" />
                   <Pane fx:id="filter" layoutX="5.0" layoutY="13.0" prefHeight="89.0" prefWidth="783.0" />
                </children></Pane>
-            <Pane fx:id="pnlConversation" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false">
-               <children>
-                  <Label text="Conversation" textFill="WHITE" />
-               </children></Pane>
-            <Pane fx:id="pnlProfile" prefHeight="200.0" prefWidth="200.0" visible="false">
-               <children>
-                  <Label text="Profile" textFill="WHITE" />
-               </children></Pane>
-            <Pane fx:id="pnlRestaurant" prefHeight="200.0" prefWidth="200.0" visible="false">
-               <children>
-                  <Label text="Restaurant" textFill="WHITE" />
-               </children></Pane>
-            <Pane fx:id="pnlRecettes" prefHeight="200.0" prefWidth="200.0" visible="false">
-               <children>
-                  <Label layoutX="57.0" layoutY="25.0" text="Recette" textFill="#e7e5e5">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane fx:id="pnlEvent" prefHeight="200.0" prefWidth="200.0" visible="false">
-               <children>
-                  <Label layoutX="151.0" layoutY="102.0" text="event" textFill="WHITE" />
-               </children></Pane>
-            <Pane fx:id="pnlSettings" prefHeight="200.0" prefWidth="200.0" visible="false">
-               <children>
-                  <Label text="Settings" textFill="WHITE" />
-               </children>
-            </Pane>
-            <Pane fx:id="pnlLogout" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false">
-               <children>
-                  <Label layoutX="141.0" layoutY="92.0" text="Logout" textFill="WHITE" />
-               </children></Pane>
+            <Pane fx:id="pnlConversation" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" />
+            <Pane fx:id="pnlProfile" prefHeight="200.0" prefWidth="200.0" />
+            <Pane fx:id="pnlRestaurant" prefHeight="200.0" prefWidth="200.0" />
+            <Pane fx:id="pnlRecettes" prefHeight="200.0" prefWidth="200.0" />
+            <Pane fx:id="pnlEvent" prefHeight="200.0" prefWidth="200.0" />
+            <Pane fx:id="pnlSettings" prefHeight="200.0" prefWidth="200.0" />
+            <Pane fx:id="pnlLogout" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" />
          </children>
       </StackPane>
    </children>

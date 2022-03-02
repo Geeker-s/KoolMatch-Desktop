@@ -15,9 +15,9 @@ import java.sql.SQLException;
 
 public class MyDB {
 
-    public final String url = "jdbc:mysql://127.0.0.1:8889/koolmatch"; //port = 8889 for mac
+    public final String url = "jdbc:mysql://127.0.0.1:3306/koolmatch"; //port = 8889 for mac
     public final String login = "root";
-    public final String pwd = "root"; //root for mac
+    public final String pwd = ""; //root for mac
     
     Connection connexion;
     public static MyDB instance;

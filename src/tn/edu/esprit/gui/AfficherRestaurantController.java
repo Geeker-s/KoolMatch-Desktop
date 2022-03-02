@@ -170,7 +170,7 @@ public class AfficherRestaurantController implements Initializable {
                  */
                 FontAwesomeIconView tq = new FontAwesomeIconView(FontAwesomeIcon.EXPAND);
                 tq.setFill(Color.BLACK);
-                tq.setSize("20");
+                tq.setSize("18");
 
                 tq.setCursor(Cursor.HAND);
                 /**
@@ -181,7 +181,7 @@ public class AfficherRestaurantController implements Initializable {
                     Restaurant.setId_courant(p3.getId_restaurant());
 
                     try {
-                        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/gui/Quickview.fxml")));
+                        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Quickview.fxml")));
 
                         Stage stage = new Stage();
                         stage.setScene(scene);
@@ -232,25 +232,18 @@ public class AfficherRestaurantController implements Initializable {
 
                 Text nomt = new Text(" Nom :");
                 Label nom = new Label(p3.getNom_restaurant());
-                Text prixt = new Text(" Sp: ");
+                Text prixt = new Text(" Spécialité : ");
                 Label prix = new Label(p3.getSpecialite_restaurant());
-
-                FontAwesomeIconView users = new FontAwesomeIconView(FontAwesomeIcon.USERS);
-                users.setFill(Color.DARKBLUE);
-                users.setSize("15");
-
-                users.setLayoutX(150);
-                users.setLayoutY(185);
 
                 // Label nbpart= new Label(String.valueOf(p3.getParticiate()));
                 //  nbpart.setLayoutX(180);
                 //  nbpart.setLayoutY(165);
-                prix.setLayoutX(100);
+                prix.setLayoutX(133);
                 prix.setLayoutY(185);
 
                 nomt.setLayoutX(50);
                 nomt.setLayoutY(180);
-                nom.setLayoutX(100);
+                nom.setLayoutX(103);
                 nom.setLayoutY(165);
                 prixt.setLayoutX(50);
                 prixt.setLayoutY(200);
@@ -263,12 +256,12 @@ public class AfficherRestaurantController implements Initializable {
                  */
                 FontAwesomeIconView web = new FontAwesomeIconView(FontAwesomeIcon.YOUTUBE_PLAY);
                 web.setFill(Color.RED);
-                web.setSize("20");
+                web.setSize("25");
 
                 web.setCursor(Cursor.HAND);
 
-                web.setLayoutX(120);
-                web.setLayoutY(240);
+                web.setLayoutX(80);
+                web.setLayoutY(241);
 
                 web.setOnMouseClicked((MouseEvent event) -> {
                     Restaurant.setId_courant(p3.getId_restaurant());
@@ -293,12 +286,12 @@ public class AfficherRestaurantController implements Initializable {
                  */
                 FontAwesomeIconView fb = new FontAwesomeIconView(FontAwesomeIcon.FACEBOOK_SQUARE);
                 fb.setFill(Color.BLUE);
-                fb.setSize("20");
+                fb.setSize("25");
 
                 fb.setCursor(Cursor.HAND);
 
                 fb.setLayoutX(150);
-                fb.setLayoutY(240);
+                fb.setLayoutY(241);
                 fb.setOnMouseClicked((MouseEvent event) -> {
 
                     System.out.println("FB succes!");
@@ -326,14 +319,51 @@ public class AfficherRestaurantController implements Initializable {
                 /**
                  * ***************************************
                  */
-                Button btn = new Button("Delete");
-                btn.setLayoutX(5);
+                 FontAwesomeIconView btn = new FontAwesomeIconView(FontAwesomeIcon.REMOVE);
+                btn.setFill(Color.BLACK);
+                btn.setSize("25");
 
-                pane.getChildren().addAll(pane2, nomt, prixt, nom, prix, users, web, fb, btn);
+                btn.setCursor(Cursor.HAND);
+
+                btn.setLayoutX(40);
+                btn.setLayoutY(80);
+                btn.setOnMouseClicked((MouseEvent event) -> {
+//                              
+                    service_pr.supprimer(p3);
+                    ListView_Produits.setItems(null);
+                    getShowPane();
+                });
+                
+                  FontAwesomeIconView UP = new FontAwesomeIconView(FontAwesomeIcon.MAP);
+                UP.setFill(Color.RED);
+                UP.setSize("25");
+
+                UP.setCursor(Cursor.HAND);
+
+                UP.setLayoutX(200);
+                UP.setLayoutY(80);
+                UP.setOnMouseClicked((MouseEvent event) -> {
+
+                    System.out.println("FB succes!");
+
+                    
+                       Restaurant.setId_courant(p3.getId_restaurant());
+
+                    try {
+                        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("UpdateRestaurant.fxml")));
+
+                        Stage stage = new Stage();
+                        stage.setScene(scene);
+                        stage.show();
+                    } catch (IOException e) {
+                        Logger logger = Logger.getLogger(getClass().getName());
+                        logger.log(Level.SEVERE, "Failed to create new Window.", e);
+                    }});
+                pane.getChildren().addAll(pane2, nomt, prixt, nom, prix, web, fb, btn,UP);
 //                             Label idp = new Label(String.valueOf(p3.getId_restaurant()));
 //                                idp.setLayoutX(25);
 //                                idp.setLayoutY(15);
-                //   Button btn = new Button("Delete");
+                // Button btn = new Button("Delete");
                 //  btn.setLayoutX(5);
 //                           btn.setLayoutY(50);
 //                               Button afficheid = new Button("afficheid");
@@ -345,13 +375,7 @@ public class AfficherRestaurantController implements Initializable {
 //                                      getShowPane();
 //                                });
 //                             
-//                             btn.setOnMouseClicked((MouseEvent event) -> {
-//                              
-//                                     service_pr.SupprimerProduit(p3);
-//                                     ListView_Produits.setItems(null);
-//                                      getShowPane();
-//                                });
-//                            pane.getChildren().addAll(idp,btn,afficheid);
+
             }
 
             if (k == 2) {
@@ -371,7 +395,7 @@ public class AfficherRestaurantController implements Initializable {
                  */
                 FontAwesomeIconView tq = new FontAwesomeIconView(FontAwesomeIcon.EXPAND);
                 tq.setFill(Color.BLACK);
-                tq.setSize("20");
+                tq.setSize("18");
 
                 tq.setCursor(Cursor.HAND);
                 /**
@@ -382,7 +406,7 @@ public class AfficherRestaurantController implements Initializable {
                     Restaurant.setId_courant(p3.getId_restaurant());
 
                     try {
-                        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/gui/Quickview.fxml")));
+                        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Quickview.fxml")));
 
                         Stage stage = new Stage();
                         stage.setScene(scene);
@@ -391,6 +415,7 @@ public class AfficherRestaurantController implements Initializable {
                         Logger logger = Logger.getLogger(getClass().getName());
                         logger.log(Level.SEVERE, "Failed to create new Window.", e);
                     }
+
                 });
 
                 /**
@@ -401,7 +426,7 @@ public class AfficherRestaurantController implements Initializable {
                  */
                 FontAwesomeIconView t1 = new FontAwesomeIconView(FontAwesomeIcon.BELL);
                 t1.setFill(Color.BROWN);
-                t1.setSize("20");
+                t1.setSize("22");
                 t1.setLayoutX(755);
                 t1.setLayoutY(85);
                 t1.setCursor(Cursor.HAND);
@@ -439,6 +464,8 @@ public class AfficherRestaurantController implements Initializable {
                 hb2.setStyle("-fx-background-color: #2cbae3");
                 pane2.getChildren().addAll(hb, hb2);
 
+                
+                
                 String A = p3.getImage();
 //                A = "src/tn/edu/esprit/images/" + A;
                 File F1 = new File(A);
@@ -454,27 +481,20 @@ public class AfficherRestaurantController implements Initializable {
                 image.setLayoutY(-35);
                 pane2.getChildren().add(image);
 
-                FontAwesomeIconView users = new FontAwesomeIconView(FontAwesomeIcon.USERS);
-                users.setFill(Color.DARKBLUE);
-                users.setSize("15");
-
-                users.setLayoutX(430);
-                users.setLayoutY(185);
-
                 //Label nbpart= new Label(String.valueOf(p3.getParticiate()));
                 /* nbpart.setLayoutX(460);
                                 nbpart.setLayoutY(165);*/
                 Text nomt = new Text("Nom : ");
                 Label nom = new Label(p3.getNom_restaurant());
-                Text prixt = new Text("Type : ");
-                Label prix = new Label(String.valueOf(p3.getSiteweb_restaurant()));
+                Text prixt = new Text("Spécialité : ");
+                Label prix = new Label(String.valueOf(p3.getSpecialite_restaurant()));
                 nomt.setLayoutX(325);
                 nomt.setLayoutY(180);
                 nom.setLayoutX(375);
                 nom.setLayoutY(165);
-                prixt.setLayoutX(325);
+                prixt.setLayoutX(327);
                 prixt.setLayoutY(200);
-                prix.setLayoutX(375);
+                prix.setLayoutX(406);
                 prix.setLayoutY(185);
                 nomt.setStyle("-fx-font-weight: bold;-fx-fill : #ce3b67");
                 prixt.setStyle("-fx-font-weight: bold;-fx-fill : #ce3b67");
@@ -490,12 +510,12 @@ public class AfficherRestaurantController implements Initializable {
                  */
                 FontAwesomeIconView web = new FontAwesomeIconView(FontAwesomeIcon.YOUTUBE_PLAY);
                 web.setFill(Color.RED);
-                web.setSize("20");
+                web.setSize("25");
 
                 web.setCursor(Cursor.HAND);
 
-                web.setLayoutX(370);
-                web.setLayoutY(240);
+                web.setLayoutX(352);
+                web.setLayoutY(241);
 
                 web.setOnMouseClicked((MouseEvent event) -> {
                     Restaurant.setId_courant(p3.getId_restaurant());
@@ -512,20 +532,51 @@ public class AfficherRestaurantController implements Initializable {
                     stage.show();
                 });
 
+                
+                
+                
+                
+                
+                
+                FontAwesomeIconView UP = new FontAwesomeIconView(FontAwesomeIcon.MAP);
+                UP.setFill(Color.RED);
+                UP.setSize("25");
+
+                UP.setCursor(Cursor.HAND);
+
+                UP.setLayoutX(470);
+                UP.setLayoutY(80);
+                UP.setOnMouseClicked((MouseEvent event) -> {
+
+                    System.out.println("FB succes!");
+
+                    
+                       Restaurant.setId_courant(p3.getId_restaurant());
+
+                    try {
+                        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("UpdateRestaurant.fxml")));
+
+                        Stage stage = new Stage();
+                        stage.setScene(scene);
+                        stage.show();
+                    } catch (IOException e) {
+                        Logger logger = Logger.getLogger(getClass().getName());
+                        logger.log(Level.SEVERE, "Failed to create new Window.", e);
+                    }});
+                
                 /**
                  * **********************************************
-                 */
-                /**
-                 * **********************partage facebook********************
+              
+              **********************partage facebook********************
                  */
                 FontAwesomeIconView fb = new FontAwesomeIconView(FontAwesomeIcon.FACEBOOK_SQUARE);
                 fb.setFill(Color.BLUE);
-                fb.setSize("20");
+                fb.setSize("25");
 
                 fb.setCursor(Cursor.HAND);
 
                 fb.setLayoutX(400);
-                fb.setLayoutY(240);
+                fb.setLayoutY(241);
                 fb.setOnMouseClicked((MouseEvent event) -> {
 
                     System.out.println("FB succes!");
@@ -550,14 +601,22 @@ public class AfficherRestaurantController implements Initializable {
                     n.showConfirm();
 
                 });
+                
+                   FontAwesomeIconView btn = new FontAwesomeIconView(FontAwesomeIcon.REMOVE);
+                btn.setFill(Color.BLACK);
+                btn.setSize("25");
 
-                /**
-                 * ***************************************
-                 */
-                /**
-                 * ******************
-                 */
-                pane.getChildren().addAll(pane2, nomt, prixt, nom, prix, users, web, fb);
+                btn.setCursor(Cursor.HAND);
+
+                btn.setLayoutX(310);
+                btn.setLayoutY(80);
+                btn.setOnMouseClicked((MouseEvent event) -> {
+//                              
+                    service_pr.supprimer(p3);
+                    ListView_Produits.setItems(null);
+                    getShowPane();
+                });
+                pane.getChildren().addAll(pane2, nomt, prixt, nom, prix, web, fb,UP,btn);
             }
 
             if (k == 3) {
@@ -571,7 +630,7 @@ public class AfficherRestaurantController implements Initializable {
 
                 FontAwesomeIconView t1 = new FontAwesomeIconView(FontAwesomeIcon.BELL);
                 t1.setFill(Color.BROWN);
-                t1.setSize("20");
+                t1.setSize("22");
                 t1.setLayoutX(755);
                 t1.setLayoutY(85);
                 t1.setCursor(Cursor.HAND);
@@ -603,7 +662,7 @@ public class AfficherRestaurantController implements Initializable {
                  */
                 FontAwesomeIconView tq = new FontAwesomeIconView(FontAwesomeIcon.EXPAND);
                 tq.setFill(Color.BLACK);
-                tq.setSize("20");
+                tq.setSize("18");
 
                 tq.setCursor(Cursor.HAND);
                 /**
@@ -614,7 +673,7 @@ public class AfficherRestaurantController implements Initializable {
                     Restaurant.setId_courant(p3.getId_restaurant());
 
                     try {
-                        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/gui/Quickview.fxml")));
+                        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Quickview.fxml")));
 
                         Stage stage = new Stage();
                         stage.setScene(scene);
@@ -635,12 +694,6 @@ public class AfficherRestaurantController implements Initializable {
                 HBox hb = new HBox(tq);
                 HBox hb2 = new HBox(t1);
 
-                FontAwesomeIconView users = new FontAwesomeIconView(FontAwesomeIcon.USERS);
-                users.setFill(Color.DARKBLUE);
-                users.setSize("15");
-
-                users.setLayoutX(710);
-                users.setLayoutY(185);
 
                 /*    Label nbpart= new Label(String.valueOf(p3.getParticiate()));
                             
@@ -679,15 +732,15 @@ public class AfficherRestaurantController implements Initializable {
 
                 Text nomt = new Text("Nom : ");
                 Label nom = new Label(p3.getNom_restaurant());
-                Text prixt = new Text("Type : ");
-                Label prix = new Label(p3.getSiteweb_restaurant());
+                Text prixt = new Text("Spécialité : ");
+                Label prix = new Label(p3.getSpecialite_restaurant());
                 nomt.setLayoutX(600);
                 nomt.setLayoutY(180);
                 nom.setLayoutX(650);
                 nom.setLayoutY(165);
                 prixt.setLayoutX(600);
                 prixt.setLayoutY(200);
-                prix.setLayoutX(650);
+                prix.setLayoutX(680);
                 prix.setLayoutY(185);
                 nomt.setStyle("-fx-font-weight: bold;-fx-fill : #ce3b67");
                 prixt.setStyle("-fx-font-weight: bold;-fx-fill : #ce3b67");
@@ -697,12 +750,12 @@ public class AfficherRestaurantController implements Initializable {
                  */
                 FontAwesomeIconView web = new FontAwesomeIconView(FontAwesomeIcon.YOUTUBE_PLAY);
                 web.setFill(Color.RED);
-                web.setSize("20");
+                web.setSize("25");
 
                 web.setCursor(Cursor.HAND);
 
-                web.setLayoutX(650);
-                web.setLayoutY(240);
+                web.setLayoutX(630);
+                web.setLayoutY(241);
 
                 web.setOnMouseClicked((MouseEvent event) -> {
                     Restaurant.setId_courant(p3.getId_restaurant());
@@ -727,12 +780,12 @@ public class AfficherRestaurantController implements Initializable {
                  */
                 FontAwesomeIconView fb = new FontAwesomeIconView(FontAwesomeIcon.FACEBOOK_SQUARE);
                 fb.setFill(Color.BLUE);
-                fb.setSize("20");
+                fb.setSize("24");
 
                 fb.setCursor(Cursor.HAND);
 
                 fb.setLayoutX(680);
-                fb.setLayoutY(240);
+                fb.setLayoutY(241);
                 fb.setOnMouseClicked((MouseEvent event) -> {
 
                     System.out.println("FB succes!");
@@ -757,10 +810,48 @@ public class AfficherRestaurantController implements Initializable {
 
                 });
 
-                /**
-                 * ***************************************
-                 */
-                pane.getChildren().addAll(pane2, nomt, prixt, nom, prix, users, web, fb);
+                    FontAwesomeIconView btn = new FontAwesomeIconView(FontAwesomeIcon.REMOVE);
+                btn.setFill(Color.BLACK);
+                btn.setSize("25");
+
+                btn.setCursor(Cursor.HAND);
+
+                btn.setLayoutX(588);
+                btn.setLayoutY(80);
+                btn.setOnMouseClicked((MouseEvent event) -> {
+//                              
+                    service_pr.supprimer(p3);
+                    ListView_Produits.setItems(null);
+                    getShowPane();
+                });
+                
+                  FontAwesomeIconView UP = new FontAwesomeIconView(FontAwesomeIcon.MAP);
+                UP.setFill(Color.RED);
+                UP.setSize("25");
+
+                UP.setCursor(Cursor.HAND);
+
+                UP.setLayoutX(760);
+                UP.setLayoutY(80);
+                UP.setOnMouseClicked((MouseEvent event) -> {
+
+                    System.out.println("FB succes!");
+
+                    
+                       Restaurant.setId_courant(p3.getId_restaurant());
+
+                    try {
+                        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("UpdateRestaurant.fxml")));
+
+                        Stage stage = new Stage();
+                        stage.setScene(scene);
+                        stage.show();
+                    } catch (IOException e) {
+                        Logger logger = Logger.getLogger(getClass().getName());
+                        logger.log(Level.SEVERE, "Failed to create new Window.", e);
+                    }});
+                
+                pane.getChildren().addAll(pane2, nomt, prixt, nom, prix, web, fb,btn,UP);
 
             }
             k++;

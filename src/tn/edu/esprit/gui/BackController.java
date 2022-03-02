@@ -119,6 +119,18 @@ public class BackController implements Initializable {
         } catch (IOException ex) {
             ex.getMessage();
         }
+        FXMLLoader loadRestaurant = new FXMLLoader(getClass().getResource("FormulaireRestaurant.fxml"));
+        Pane PaneRestau;
+        try {
+            PaneRestau = loadRestaurant.load();
+            PaneRestau.setCenterShape(true);
+            PaneRestau.setPrefWidth(749);
+            PaneRestau.setPrefHeight(576);
+            PaneRestau.setScaleShape(true);
+            pnlRestaurant.getChildren().add(PaneRestau);
+        } catch (IOException ex) {
+            ex.getMessage();
+        }
 
     }
 
