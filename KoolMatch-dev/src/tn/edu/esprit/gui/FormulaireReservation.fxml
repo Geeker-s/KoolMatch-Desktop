@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="basepane" prefHeight="656.0" prefWidth="851.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.edu.esprit.gui.FormulaireReservationController">
+   <children>
+  
+            <Pane fx:id="mypane" prefHeight="656.0" prefWidth="866.0">
+         <children>
+            <HBox layoutX="330.0" layoutY="-2.0" prefHeight="43.0" prefWidth="158.0" />
+            <Label layoutX="37.0" layoutY="3.0" text="Bienvenue">
+               <font>
+                  <Font name="System Bold" size="29.0" />
+               </font>
+               <padding>
+                  <Insets left="150.0" />
+               </padding>
+            </Label>
+            <ScrollPane layoutX="503.0" layoutY="3.0" prefHeight="656.0" prefWidth="363.0">
+               <content>
+                  <ImageView fx:id="idimage" fitWidth="1269.0">
+                     <image>
+                        <Image url="@../images/google.jpg" />
+                     </image>
+                  </ImageView>
+               </content>
+            </ScrollPane>
+            <VBox layoutX="14.0" layoutY="130.0" prefHeight="489.0" prefWidth="127.0" spacing="50.0">
+               <children>
+                  <Label text="Nom restaurant :" />
+                  <Label text="Saisir votre nom :" />
+                  <Label text="Saisir votre prénom :" />
+                  <Label text="Saisir votre numéro :" />
+                  <Label text="Nombre de places :" />
+                  <Label text="Date de réservation :" />
+               </children>
+            </VBox>
+            <VBox layoutX="229.0" layoutY="120.0" prefHeight="428.0" prefWidth="217.0" spacing="42.0">
+               <children>
+                  <TextField fx:id="nomres" />
+                  <TextField fx:id="nomuser" layoutX="10.0" layoutY="10.0" />
+                  <TextField fx:id="prenom" layoutX="10.0" layoutY="36.0" />
+                  <TextField fx:id="numtel" layoutX="10.0" layoutY="62.0" />
+                  <TextField fx:id="Fnbrplace" layoutX="10.0" layoutY="88.0" />
+                  <DatePicker fx:id="disponibilite" prefHeight="26.0" prefWidth="218.0" />
+               </children>
+            </VBox>
+            <Button fx:id="idvalider" layoutX="433.0" layoutY="611.0" mnemonicParsing="false" text="Valider" />
+         </children>
+      </Pane>
+   </children>
+   
+</AnchorPane>
