@@ -7,6 +7,7 @@ package tn.edu.esprit.gui;
 
 import java.net.URL;
 import java.sql.Date;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
@@ -84,15 +85,10 @@ public class GestionUserController implements Initializable {
         listuser.getItems().addAll(u.afficher());
     }
 
-   
-
     @FXML
     private void addGerant(MouseEvent event) {
-        if (nomGerant.getText() == null || prenomGerant.getText() == null || mdpGerant.getText() == null || emailGerant.getText() == null
-                || telGerant.getText() == null || dda.getValue() == null || ddf.getValue() == null) {
-            formulairecontrol.setText("Ajoutez tous les données");
-        } else {
-            formulairecontrol.setText(null);
+        if (this.isValidated()) {
+            Statement stmt;
         }
         ServiceGerant g = new ServiceGerant();
         Gerant gr = new Gerant();
@@ -118,6 +114,8 @@ public class GestionUserController implements Initializable {
         ddf.getEditor().clear();
         listGerant.getItems().clear();
         listGerant.getItems().addAll(g.afficher());
+        ddaGcontrol.setText(null);
+        ddaGcontrol.setText(null);
 
     }
 
@@ -246,10 +244,35 @@ public class GestionUserController implements Initializable {
 
     @FXML
     private void ddaGerantControl(KeyEvent event) {
+       
+            ddaGcontrol.setText(null);
+        
     }
 
     @FXML
     private void ddfGerantControl(KeyEvent event) {
+         ddaGcontrol.setText(null);
     }
 
+    private boolean isValidated() {
+
+        if (nomGerant.getText().equals("")) {
+            nomGcontrol.setText("Ajouter le nom du gérant");
+        } else if (prenomGerant.getText().equals("")) {
+            prenomGcontrol.setText("Ajouter le prenom du gérant");
+        } else if (mdpGerant.getText().equals("")) {
+            mdpGcontrol.setText("Ajouter un mot de passe ");
+        } else if (emailGerant.getText().equals("")) {
+            emailGcontrol.setText("Ajouter l'email du gérant ");
+        } else if (telGerant.getText().equals("")) {
+            telGcontrol.setText("Ajouter le téléphone ");
+        } else if (dda.getValue() == null) {
+            ddaGcontrol.setText("Ajouter date début abonnement ");
+        } else if (ddf.getValue() == null) {
+            ddfGcontrol.setText("Ajouter date fin abonnement ");
+        } else {
+            return true;
+        }
+        return false;
+    }
 }
