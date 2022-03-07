@@ -5,11 +5,13 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="544.0" prefWidth="725.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.edu.esprit.gui.ConsulterjeuController">
+<AnchorPane id="AnchorPane" prefHeight="544.0" prefWidth="725.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.edu.esprit.gui.ConsulterjeuController">
    <children>
       <ListView fx:id="listj" layoutX="14.0" layoutY="24.0" prefHeight="212.0" prefWidth="368.0" />
       <ListView fx:id="listq" layoutX="14.0" layoutY="272.0" prefHeight="200.0" prefWidth="483.0" />
       <PieChart fx:id="chart" layoutX="402.0" layoutY="14.0" prefHeight="255.0" prefWidth="295.0" />
-      <Button fx:id="quiz" layoutX="566.0" layoutY="319.0" mnemonicParsing="false" onAction="#gquiz" prefHeight="32.0" prefWidth="93.0" text="Gerer un Quiz" />
+      <Button fx:id="quiz" layoutX="534.0" layoutY="319.0" mnemonicParsing="false" onAction="#gquiz" prefHeight="32.0" prefWidth="126.0" text="Ajouter un Quiz" />
+      <Button fx:id="excel" layoutX="14.0" layoutY="236.0" mnemonicParsing="false" onAction="#excel" prefHeight="32.0" prefWidth="126.0" text="Generer excel" />
+      <Button layoutX="534.0" layoutY="372.0" mnemonicParsing="false" onAction="#gerer" prefHeight="32.0" prefWidth="126.0" text="Gerer un Quiz" />
    </children>
 </AnchorPane>

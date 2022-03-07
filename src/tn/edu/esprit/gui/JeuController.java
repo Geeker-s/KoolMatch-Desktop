@@ -8,12 +8,14 @@ package tn.edu.esprit.GUI;
 import tn.edu.esprit.model.Jeu;
 import tn.edu.esprit.model.Quiz;
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import tn.edu.esprit.services.ServiceJeu;
 import tn.edu.esprit.services.ServiceQuiz;
 
@@ -24,7 +26,10 @@ import tn.edu.esprit.services.ServiceQuiz;
  */
 public class JeuController implements Initializable {
     ServiceQuiz quiz = new ServiceQuiz();
-         Quiz q = quiz.rechercher(new Quiz(6)).get(0);
+    Random r = new Random();
+    Integer i = quiz.afficher().size();
+    
+         Quiz q = quiz.afficher().get(r.nextInt( i));
           ServiceJeu jeu = new ServiceJeu();
          
 
@@ -80,6 +85,7 @@ public class JeuController implements Initializable {
               R32.setText(q.getRf32());
               R33.setText(q.getRf33());
               RC3.setText(q.getRc3());
+              
     }    
 
     @FXML
@@ -94,8 +100,35 @@ public class JeuController implements Initializable {
         if (RC3.isSelected()) {
                         sc=sc+10;
         }
-        Jeu j = new Jeu(sc, q.getId_quiz(), 0/*this user*/);
+        Jeu j = new Jeu(sc, q.getId_quiz(), 3/*this user*/);
+        jeu.ajouter(j);
         
+    }
+
+
+
+    @FXML
+    private void Randomiz(MouseEvent event) {
+             Random r1 = new Random();
+    Integer j = quiz.afficher().size();
+         Quiz q = quiz.afficher().get(r.nextInt( i));
+            Q1.setText(q.getQ1());
+              R1.setText(q.getRf11());
+              R2.setText(q.getRf12());
+              R3.setText(q.getRf13());
+              RC.setText(q.getRc1());
+              Q2.setText(q.getQ2());
+              R21.setText(q.getRf21());
+              R22.setText(q.getRf22());
+              R23.setText(q.getRf23());
+              RC2.setText(q.getRc2());
+              Q3.setText(q.getQ3());
+              R31.setText(q.getRf31());
+              R32.setText(q.getRf32());
+              R33.setText(q.getRf33());
+              RC3.setText(q.getRc3());
+              
+              
     }
     
 }

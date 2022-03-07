@@ -69,9 +69,9 @@ public class ServiceJeu implements IService<Jeu> {
         return true;
     }
 
-    public boolean supprimerc(Jeu p) {
+    public boolean supprimerc() {
         try {
-            String querry = "DELETE FROM jeu WHERE id_jeu = '" + p.getId_jeu() + "'";
+            String querry = "DELETE FROM jeu WHERE archive =1'" ;
             Statement stm = cnx.createStatement();
             stm.executeUpdate(querry);
         } catch (SQLException ex) {

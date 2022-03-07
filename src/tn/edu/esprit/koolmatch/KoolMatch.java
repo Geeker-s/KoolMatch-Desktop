@@ -61,7 +61,7 @@ public class KoolMatch {
 //        ---------
 //        --Testing
         //Creation des utilisateurs
-        User foulen = user.afficher()
+        /* User foulen = user.afficher()
                 .stream()
                 .filter(e -> e.getId_user() == 1)
                 .findAny()
@@ -71,7 +71,9 @@ public class KoolMatch {
                 .filter(e -> e.getId_user() == 2)
                 .findAny()
                 .orElse(null);
-
+        */
+        Quiz r = new Quiz(1, 0, "qa1é", "rc1", "rf11", "rf12", "rf13", "q2", "rc2", "rf21", "rf22", "rf23", "q3", "rc3", "rf31", "rf3", "rf33");
+           quiz.modifer(r);
 //        ---------Gestion Matching
 //        match.hex("010"); //hexcode du profile
 //        match.ajouter(new Matching(foulen.getId_user(), foulena.getId_user(), Date.valueOf(LocalDate.now())));

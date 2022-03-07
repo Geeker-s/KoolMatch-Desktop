@@ -5,6 +5,9 @@
  */
 package tn.edu.esprit.GUI;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import tn.edu.esprit.model.Recette;
 import java.net.URL;
 import java.util.List;
@@ -12,8 +15,10 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -21,8 +26,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
+import org.controlsfx.control.Notifications;
 import tn.edu.esprit.services.ServiceRecette;
 
 /**
@@ -43,15 +53,13 @@ public class RecetteController implements Initializable {
     @FXML
     private Button AjouterR;
     @FXML
-    private Label label;
-    @FXML
     private TextField nplat;
     @FXML
     private TextField prec;
     @FXML
     private TextArea desc;
     @FXML
-    private TextField catg;
+    private ComboBox<String> catg;
     @FXML
     private TextField duree;
     @FXML
@@ -59,17 +67,17 @@ public class RecetteController implements Initializable {
     @FXML
     private Button SupprimerR;
     @FXML
-    private TextField idr;
-    @FXML
-    private ImageView source;
-    @FXML
     private ListView<Recette> listv;
     @FXML
     private ComboBox<String> tri;
     @FXML
     private TextField rech;
+    private int a;
     @FXML
-    private Label remarque;
+    private ImageView photo;
+    private File Current_file;
+ 
+    private String file_image;
    
 
     /**
@@ -77,50 +85,71 @@ public class RecetteController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
-    listv.setItems(list);
-     tri.setItems(Listt);
-    }    
+        file_image = "src/tn/edu/esprit/images/" + file_image;
+        
+       afficher();
 
+    
+     tri.setItems(Listt);
+     changemessage();
+    }    
+   private void afficher() {
+       ObservableList<String> listc=FXCollections.observableList(r.affichercat());
+       ObservableList<Recette> list=FXCollections.observableList(r.afficher());
+         listv.setItems(list);
+         catg.setItems(listc);
+    }
   
 
     @FXML
     private void bAjouer(ActionEvent event) {
+        file_image = "src/tn/edu/esprit/images/" + file_image;
+        
         ServiceRecette Recette = new ServiceRecette();
-      if ( nplat.getText().isEmpty() || nplat.getText().matches("[0-9]") ||catg.getText().isEmpty() || catg.getText().matches("[0-9]") ||desc.getText().isEmpty() || catg.getText().matches("[0-9]") || Integer.parseInt(duree.getText())<0 ) { remarque.setText("veuillez entrer un nom valide"); }
+      if ( nplat.getText().isEmpty() || nplat.getText().matches("[0-9]") ||catg.getValue().equals("choisir categorie")  ||desc.getText().isEmpty() || desc.getText().matches("[0-9]") || Integer.parseInt(duree.getText())<0 ) { Notifications notificationBuilder=Notifications.create()
+              .title("Erreur").text("Veuillez verifier vos champs").graphic(null).hideAfter(javafx.util.Duration.seconds(5))
+              .position(Pos.CENTER_LEFT)
+              .onAction(new EventHandler<ActionEvent>(){
+                  public void handle(ActionEvent event)
+                      {
+                          System.out.println("clicked ON");
+                      }
+              });
+      notificationBuilder.darkStyle();
+      notificationBuilder.show();}
       else {
-           Recette r = new Recette(nplat.getText(),prec.getText(), desc.getText(), catg.getText(),Integer.parseInt(duree.getText())) ;
-               Recette.ajouter(r);
+           Recette r1 = new Recette(nplat.getText(),file_image, desc.getText(), catg.getValue(),Integer.parseInt(duree.getText())) ;
+               Recette.ajouter(r1);
     }}
 
     @FXML
     private void Bmodifier(ActionEvent event) {
-        ServiceRecette Recette = new ServiceRecette();
-           Recette r = new Recette(Integer.parseInt(idr.getText()), desc.getText()) ;
-               Recette.modifer(r);
-    }
+         file_image = "src/tn/edu/esprit/images/" + file_image;
+Recette c = new Recette();
+         ServiceRecette sr = new ServiceRecette();
+        c.setNom_recette(nplat.getText());
+                c.setDescription_recette(desc.getText());
+                c.setDuree_recette(Integer.parseInt(duree.getText()));
+                c.setCategorie_recette(catg.getValue());
+                 c.setPhoto_recette(file_image);
+              c.setId_recette(listv.getSelectionModel().getSelectedItem().getId_recette());
+                sr.modifer(c);
+                
+                afficher();    }
 
     @FXML
     private void Bsupprimer(ActionEvent event) {
          ServiceRecette Recette = new ServiceRecette();
-            Recette r1 = new Recette(Integer.parseInt(idr.getText()),"b","b", "a", "c",0) ;
+            Recette r1 = new Recette(a,"b","b", "a", "c",0) ;
                Recette.supprimer(r1);
+               System.out.println(a);
     }
 
   
 
     private void Laffichage(MouseEvent event) {
-        ServiceRecette Recette = new ServiceRecette();
-               Recette.afficher();
-    }
-
-    @FXML
-    private void handleButtonAction(MouseEvent event) {
-    }
-
-    @FXML
-    private void drag(MouseEvent event) {
-        
+        ObservableList<Recette> list=FXCollections.observableList(r.afficher());
+        listv.setItems(list);
     }
 
     @FXML
@@ -136,7 +165,66 @@ public class RecetteController implements Initializable {
     }
 
     @FXML
-    private void rechercher(ActionEvent event) {
+    private void cache(ActionEvent event) {
+        ServiceRecette Recette = new ServiceRecette();
+               Recette.supprimerc();
+    }
+
+ private void changemessage() {
+        listv.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent arg0) {
+                a = listv.getSelectionModel().getSelectedIndex();
+            }
+        });
+    }
+
+    @FXML
+    private void handleButtonAction(MouseEvent event) {
+    }
+
+    @FXML
+    private void insertion(MouseEvent event) {
+        Recette c = listv.getSelectionModel().getSelectedItem();
+        nplat.setText(c.getNom_recette());
+        desc.setText(c.getDescription_recette());
+        catg.setValue(c.getCategorie_recette());
+        prec.setText(c.getPhoto_recette());
+        duree.setText(String.valueOf(c.getDuree_recette()));
+        
+    }
+
+    @FXML
+    private void Drag(DragEvent event) {
+           Dragboard board = event.getDragboard();
+        if (board.hasFiles()) {
+            event.acceptTransferModes(TransferMode.ANY);
+        }
+    }
+
+    @FXML
+    private void Drop(DragEvent event) throws FileNotFoundException {
+          Dragboard board = event.getDragboard();
+        List<File> phil = board.getFiles();
+        FileInputStream fis;
+        fis = new FileInputStream(phil.get(0));
+        Image image = new Image(fis);
+        File selectedFile = phil.get(0);
+        if (selectedFile != null) {
+
+            String test = selectedFile.getAbsolutePath();
+            System.out.println(test);
+
+            Current_file = selectedFile.getAbsoluteFile();
+            file_image = Current_file.getName();
+            Recette e = new Recette();
+            e.setPhoto_recette(selectedFile.getName());
+            photo.setImage(image);
+        }
+    }
+
+    @FXML
+    private void rechercher(MouseEvent event) {
         ServiceRecette sr =new ServiceRecette();
        // Recette recette = sr.recherchern(new Recette(rech.getText())).get(0) ;
        Recette rec = new Recette(rech.getText());
@@ -145,8 +233,8 @@ public class RecetteController implements Initializable {
     }
 
     @FXML
-    private void ref(ActionEvent event) {
-        ObservableList<Recette> listref=FXCollections.observableList(r.afficher());
+    private void ref(MouseEvent event) {
+         ObservableList<Recette> listref=FXCollections.observableList(r.afficher());
         listv.setItems(listref);
     }
     

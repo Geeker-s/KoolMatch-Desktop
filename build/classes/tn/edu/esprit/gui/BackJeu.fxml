@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="569.0" prefWidth="824.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.edu.esprit.GUI.BackJeuController">
+<AnchorPane id="AnchorPane" prefHeight="569.0" prefWidth="824.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.edu.esprit.GUI.BackJeuController">
    <children>
       <TextField fx:id="inQ1" layoutX="276.0" layoutY="14.0" prefHeight="26.0" prefWidth="236.0" promptText="Taper 1ere Question">
          <font>
@@ -29,6 +29,5 @@
       <Button layoutX="627.0" layoutY="497.0" mnemonicParsing="false" onAction="#AjouterQ" prefHeight="26.0" prefWidth="113.0" text="Ajouter un Quiz" />
       <Button layoutX="24.0" layoutY="497.0" mnemonicParsing="false" onAction="#ModifierQ" prefHeight="26.0" prefWidth="130.0" text="Modifier in Quiz" />
       <Button layoutX="163.0" layoutY="497.0" mnemonicParsing="false" onAction="#SuppQ" prefHeight="26.0" prefWidth="130.0" text="Supprimer un Quiz" />
-      <TextField fx:id="idq" layoutX="306.0" layoutY="498.0" prefHeight="26.0" prefWidth="194.0" promptText="Veuillez entrer l'id du Quiz" />
    </children>
 </AnchorPane>

@@ -120,7 +120,11 @@ public class Jeu {
 
     @Override
     public String toString() {
-        return "Jeu" + "score_jeu=" + score_jeu + ", rank=" + id_quiz + "";
+       // return "Jeu" + "score_jeu=" + score_jeu + ", rank=" + id_quiz + "";
+       return String.format( "%-20s",score_jeu)
+                + String.format( "%-20s ",id_quiz)
+                
+                 ;
     }
   
 }

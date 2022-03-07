@@ -20,9 +20,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.ImagePattern;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import static tn.edu.esprit.gui.LoginController.CurrentUser;
 import tn.edu.esprit.model.Recette;
 import tn.edu.esprit.services.ServiceRecette;
@@ -47,6 +51,10 @@ public class RecetteFrontController implements Initializable {
     private TextField duree;
     @FXML
     private TextField catg;
+    @FXML
+    private Button jouer;
+    @FXML
+    private AnchorPane pane;
 
     /**
      * Initializes the controller class.
@@ -54,7 +62,6 @@ public class RecetteFrontController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-       
         listr.setItems(list);
     }    
 
@@ -72,10 +79,17 @@ public class RecetteFrontController implements Initializable {
 
     @FXML
     private void play(ActionEvent event) throws IOException {
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("jeu.fxml"));
-        Parent root = loader.load();
-        tn.edu.esprit.GUI.JeuController ap= loader.getController();
-        play.getScene().setRoot(root);
+        Stage primaryStage;
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Jeu.fxml"));
+                    Parent root1 = (Parent) fxmlLoader.load();
+                    Stage stage = new Stage();
+//                  stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.setScene(new Scene(root1));
+                    stage.initStyle(StageStyle.UNDECORATED);
+                    stage.show();
+                    Stage CurrentStage = (Stage) play.getScene().getWindow();
+                    CurrentStage.close();
     }
-    
+
+  
 }

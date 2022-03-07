@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="568.0" prefWidth="743.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.edu.esprit.gui.RecetteFrontController">
+<AnchorPane id="AnchorPane" fx:id="pane" prefHeight="568.0" prefWidth="743.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.edu.esprit.gui.RecetteFrontController">
    <children>
       <Label alignment="TOP_CENTER" layoutX="277.0" layoutY="28.0" prefHeight="30.0" prefWidth="185.0" text="Espaces Recettes" textFill="RED">
          <font>
