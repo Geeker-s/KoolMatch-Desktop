@@ -32,7 +32,7 @@ public class ServiceAdmin implements IService<Admin> {
     @Override
     public void ajouter(Admin p) {
         try {
-            String querry = "INSERT INTO `admin`( `login_admin`, `password_admin`, `archive`) VALUES ('" + p.getLogin_admin() + "' ,'" + p.getPassword_admin() + "','"+p.getArchive()+"')";
+            String querry = "INSERT INTO `admin`( `login_admin`, `password_admin`, `archive`) VALUES ('" + p.getLogin_admin() + "' ,'" + p.getPassword_admin() + "','" + p.getArchive() + "')";
             Statement stm = cnx.createStatement();
 
             stm.executeUpdate(querry);
@@ -92,36 +92,52 @@ public class ServiceAdmin implements IService<Admin> {
 
     }
 
-    public boolean login(String login_admin, String password_admin) {
-        boolean success = false;
+    public Boolean login(String u, String p) throws SQLException {
+        String req = "SELECT * FROM `admin` WHERE login_admin =\'" + u + "\' and password_admin=\'" + p + "\'";
+        Admin a = new Admin();
         try {
-            Statement stm = cnx.createStatement();
+            Statement ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            System.out.println(rs);
+            if (rs != null) {
+                while (rs.next()) {
 
-            String req = "SELECT password_admin FROM admin WHERE login_admin='" + login_admin + "'";
-            ResultSet rs = stm.executeQuery(req);
-            rs = stm.executeQuery(req);
-
-            while (rs.next()) {
-                if (password_admin.equals(rs.getString(1)))
-                    System.out.println("Bienvenue");
-                else
-                    System.out.println("Vérifier mot de passe");
-                return false;
-
+                    a.setId_admin(rs.getInt("id_admin"));
+                    a.setLogin_admin(rs.getString("login_admin"));
+                    a.setPassword_admin(rs.getString("password_admin"));
+                    return true;
+                }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            ex.getMessage();
         }
+        return false;
+    }
 
-        return success;
+    public Admin AssignCurrentAdmin(String u, String p) throws SQLException {
+        Admin a = new Admin();
+        String req = "SELECT * FROM `admin` WHERE login_admin =\'" + u + "\' and password_admin=\'" + p + "\'";
+        try {
+            Statement ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            if (rs != null) {
+                while (rs.next()) {
+                    a.setId_admin(rs.getInt("id_admin"));
+                    a.setLogin_admin(rs.getString("login_admin"));
+                    a.setPassword_admin(rs.getString("password_admin"));
+
+                }
+            }
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
+        return a;
     }
 
     @Override
     public List<Admin> rechercher(Admin p) {
         List<Admin> a = afficher();
-        return  a.stream().filter(b -> b.getId_admin() == p.getId_admin()).collect(Collectors.toList());  
+        return a.stream().filter(b -> b.getId_admin() == p.getId_admin()).collect(Collectors.toList());
     }
-
-    
 
 }

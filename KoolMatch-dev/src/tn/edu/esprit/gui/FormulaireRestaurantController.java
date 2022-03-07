@@ -19,7 +19,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -30,6 +33,9 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import static tn.edu.esprit.gui.LoginController.CurrentUser;
 import tn.edu.esprit.model.Restaurant;
 import tn.edu.esprit.services.ServiceRestaurant;
 
@@ -40,8 +46,6 @@ import tn.edu.esprit.services.ServiceRestaurant;
  */
 public class FormulaireRestaurantController implements Initializable {
 
-    @FXML
-    private TextField Fidgerant;
     @FXML
     private TextField Fnom;
     @FXML
@@ -129,10 +133,28 @@ public class FormulaireRestaurantController implements Initializable {
             Alert a = new Alert(null, " veuillez saisir votre nom", ButtonType.CLOSE);
             a.showAndWait();
             System.out.println(" not correct");
-        } else if (!checkText(Fdescription.getText())) {
-            Alert a = new Alert(null, "verifier votre description", ButtonType.CLOSE);
-            a.showAndWait();
+        } else if(!checkText(Fdescription.getText())){
+   
+  
+           Fdescription.setStyle("-fx-text-inner-color: red");
+           Fdescription.setStyle("-fx-prompt-text-fill: red");
+           Fdescription.setStyle("-fx-border-color: red");
+        
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.initStyle(StageStyle.TRANSPARENT);
+            
+            alert.setTitle("Attention");
+            alert.setContentText("Veuillez entrer une description du restaurant!");
+            
+            alert.showAndWait();
+           Fdescription.setCursor(Cursor.WAIT);
+           Fdescription.setStyle("-fx-text-inner-color:  #663399");
+            Fdescription.setStyle("-fx-prompt-text-fill:  #663399");
+
             System.out.println(" not correct");
+            
+      
         } else if (!checkText(Fsite.getText())) {
             Alert a = new Alert(null, "verifier votre site", ButtonType.CLOSE);
             a.showAndWait();
@@ -141,9 +163,30 @@ public class FormulaireRestaurantController implements Initializable {
             Alert a = new Alert(null, " veuillez saisir votre Telephone.", ButtonType.CLOSE);
             a.showAndWait();
             System.out.println(" not correct");
+        } else if(!checkText(Fadresse.getText())){
+   
+  
+            Fadresse.setStyle("-fx-text-inner-color: red");
+            Fadresse.setStyle("-fx-prompt-text-fill: red");
+            Fadresse.setStyle("-fx-border-color: red");
+            
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.initStyle(StageStyle.TRANSPARENT);
+            
+            alert.setTitle("Attention");
+            alert.setContentText("Veuillez entrer l'adresse du restaurant!");
+            alert.showAndWait();
+            Fadresse.setCursor(Cursor.WAIT);
+            Fadresse.setStyle("-fx-text-inner-color:  #663399");
+            Fadresse.setStyle("-fx-prompt-text-fill:  #663399");
+            
+
+                  
+   
         } else {
             // p.setId_restaurant(Integer.parseInt(Fid.getText()));
-           // p.setId_gerant(Integer.parseInt(Fidgerant.getText()));
+            p.setId_gerant( CurrentUser.getId_user());
             p.setNom_restaurant(Fnom.getText());
             p.setAdresse_restaurant(Fadresse.getText());
             p.setTelephone_restaurant(Integer.parseInt(Ftelephone.getText()));
@@ -174,7 +217,11 @@ public class FormulaireRestaurantController implements Initializable {
             Files.copy(pathfrom, pathto, StandardCopyOption.REPLACE_EXISTING);
 
             sp.ajouter(p);
+        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("AfficherRestaurant.fxml")));
 
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
         }
     }
 

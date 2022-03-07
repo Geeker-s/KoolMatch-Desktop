@@ -13,6 +13,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -91,7 +92,7 @@ public class AfficherRestaurantController implements Initializable {
     public void getShowPane() {
         List<Restaurant> AllProducts = new ArrayList();
         if (recherche.equals("")) {
-            for (Restaurant p : service_pr.afficher()) {
+            for (Restaurant p : service_pr.MesResto()) {
                 AllProducts.add(p);
             }
         } else {
@@ -337,14 +338,59 @@ public class AfficherRestaurantController implements Initializable {
 
                 btn.setLayoutX(40);
                 btn.setLayoutY(80);
+                
+                
+               // ---------------------------------------------delete alert  
+                
+                
                 btn.setOnMouseClicked((MouseEvent event) -> {
-                              
-                    service_pr.supprimer(p3);
-                    ListView_Produits.setItems(null);
-                    getShowPane();
+                       
+                    Alert  b = new Alert(AlertType.NONE);
+                    
+                    
+                                b.setAlertType(Alert.AlertType.CONFIRMATION);
+        b.setTitle("Confirmation");
+        b.setHeaderText(null);
+        b.setContentText("Are you sure to delete this Categorie");
+      
+        Optional <ButtonType> action = b.showAndWait();
+         
+        if(action.get()== ButtonType.OK)
+        {    
+            
+        
+           
+      service_pr.supprimer(p3);
+            
+        getShowPane();
+    }
+        else
+        {
+            getShowPane();
+        
+        }
+                    
+                    
+                    
+                  //  service_pr.supprimer(p3);
+                  //  ListView_Produits.setItems(null);
+                  //  getShowPane();
                    
                 });
 
+                
+                
+    
+      
+  // ---------------------------------------------delete alert 
+                
+                
+                
+                
+                
+                
+                
+                
                 FontAwesomeIconView UP = new FontAwesomeIconView(FontAwesomeIcon.MAP);
                 UP.setFill(Color.RED);
                 UP.setSize("25");
@@ -613,12 +659,44 @@ public class AfficherRestaurantController implements Initializable {
 
                 btn.setLayoutX(310);
                 btn.setLayoutY(80);
-                btn.setOnMouseClicked((MouseEvent event) -> {
-//                              
-                    service_pr.supprimer(p3);
-                    ListView_Produits.setItems(null);
-                    getShowPane();
+                
+                
+                
+                  btn.setOnMouseClicked((MouseEvent event) -> {
+                       
+                    Alert  b = new Alert(AlertType.NONE);
+                    
+                    
+                                b.setAlertType(Alert.AlertType.CONFIRMATION);
+        b.setTitle("Confirmation");
+        b.setHeaderText(null);
+        b.setContentText("Are you sure to delete this Categorie");
+      
+        Optional <ButtonType> action = b.showAndWait();
+         
+        if(action.get()== ButtonType.OK)
+        {    
+            
+        
+           
+      service_pr.supprimer(p3);
+            
+        getShowPane();
+    }
+        else
+        {
+            getShowPane();
+        
+        }
                 });
+                
+                
+                
+                
+                
+                
+                
+                
                 pane.getChildren().addAll(pane2, nomt, prixt, nom, prix, web, fb, UP, btn);
             }
 
@@ -822,11 +900,32 @@ public class AfficherRestaurantController implements Initializable {
                 btn.setLayoutX(588);
                 btn.setLayoutY(80);
                 btn.setOnMouseClicked((MouseEvent event) -> {
-//                              
-                    service_pr.supprimer(p3);
-                    ListView_Produits.setItems(null);
-                  
-                   
+//                    btn.setOnMouseClicked((MouseEvent event) -> {
+                       
+                    Alert  b = new Alert(AlertType.NONE);
+                    
+                    
+                                b.setAlertType(Alert.AlertType.CONFIRMATION);
+        b.setTitle("Confirmation");
+        b.setHeaderText(null);
+        b.setContentText("Are you sure to delete this Categorie");
+      
+        Optional <ButtonType> action = b.showAndWait();
+         
+        if(action.get()== ButtonType.OK)
+        {    
+            
+        
+           
+      service_pr.supprimer(p3);
+            
+        getShowPane();
+    }
+        else
+        {
+            getShowPane();
+        
+        }
                     getShowPane();
                        });
 

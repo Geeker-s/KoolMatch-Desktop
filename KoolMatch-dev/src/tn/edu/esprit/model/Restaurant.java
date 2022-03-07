@@ -17,7 +17,11 @@ public class Restaurant {
     public static int getId_courant() {
         return id_courant;
     }
- 
+    private static int id_courant_do;
+
+    public static int getId_courant_do() {
+        return id_courant_do;
+    }
 
     public static void setId_courant(int id_courant) {
         Restaurant.id_courant = id_courant;
@@ -33,6 +37,7 @@ public class Restaurant {
     private String image;
     private int archive;
     private int nb_placeResto;
+    public int getAdresse_restaurant;
     private String image_structure_resturant;
     private String description;
     private String lien;
@@ -159,7 +164,13 @@ public class Restaurant {
         this.archive = archive;
     }
 
-  
+    public int getGetAdresse_restaurant() {
+        return getAdresse_restaurant;
+    }
+
+    public void setGetAdresse_restaurant(int getAdresse_restaurant) {
+        this.getAdresse_restaurant = getAdresse_restaurant;
+    }
 
     public String getImage_structure_resturant() {
         return image_structure_resturant;

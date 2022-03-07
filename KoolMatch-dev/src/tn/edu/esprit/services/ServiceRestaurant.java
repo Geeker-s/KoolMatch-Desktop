@@ -28,6 +28,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import static tn.edu.esprit.gui.LoginController.CurrentUser;
 import tn.edu.esprit.utils.MyDB;
 
 /**
@@ -71,6 +72,25 @@ public class ServiceRestaurant implements IService<Restaurant> {
         }
         return Restaurant;
     }
+
+     public List<Restaurant> MesResto() {
+        List<Restaurant> Restaurant = new ArrayList<>();
+        try {
+            String req = "SELECT * FROM restaurant WHERE `archive` = 1 AND id_gerant="+CurrentUser.getId_user();
+                    //+ CurrentUser.getId_user();
+
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+                Restaurant.add(new Restaurant(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getString(8), rs.getInt(9), rs.getInt(10), rs.getString(11), rs.getString(12), rs.getString(13)));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return Restaurant;
+    }
+
+    
 
     public Restaurant GetRestobyid(int b) throws SQLException {
 
@@ -130,7 +150,7 @@ public class ServiceRestaurant implements IService<Restaurant> {
     public void UpdateResto(Restaurant b) throws SQLException {
         //-------------------- Update ----------//
 
-        String reqUp = "update restaurant set nom_restaurant =? ,adresse_restaurant =?,telephone_restaurant =?,siteweb_restaurant =?,specialite_restaurant =?,image =?,nb_placeResto =?, description =? where id_restaurant=?";
+        String reqUp = " UPDATE`restaurant` SET `nom_restaurant` =? ,`adresse_restaurant` =?,`telephone_restaurant` =?,`siteweb_restaurant` =?,`specialite_restaurant` =?,`image` =?,`nb_placeResto` =?, `description` =? WHERE`id_restaurant`=? ";
 
         PreparedStatement pss = MyDB.getInstance().getCnx().prepareStatement(reqUp);
 
@@ -193,7 +213,7 @@ public class ServiceRestaurant implements IService<Restaurant> {
     public Iterable<Restaurant> RechercheRestaurantsParNom(String recherche) {
         List ALLproducts = new ArrayList();
         try {
-            String query = "select * from restaurant WHERE nom_restaurant LIKE '%" + recherche + "%';";
+            String query = "select * from restaurant WHERE  archive =0 and  nom_restaurant LIKE '%" + recherche + "%';";
             Statement st = MyDB.getInstance().getCnx().createStatement();
             ResultSet rest = st.executeQuery(query);
             while (rest.next()) {

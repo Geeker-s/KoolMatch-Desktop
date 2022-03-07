@@ -5,6 +5,7 @@
  */
 package tn.edu.esprit.gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -14,7 +15,10 @@ import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -32,9 +36,9 @@ public class SplashController implements Initializable {
     @FXML
     private Label labe1;
     @FXML
-    private Button suivant;
+    private Button Ajouter;
     @FXML
-    private Button retour;
+    private Button MesR;
 
     /**
      * Initializes the controller class.
@@ -58,6 +62,23 @@ rotateTransition.play();
 }
 
     @FXML
-    private void suivant(ActionEvent event) {
+    private void Ajouter(ActionEvent event) throws IOException {
+           Scene scene = new Scene(FXMLLoader.load(getClass().getResource("FormulaireRestaurant.fxml")));
+
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+        }
+    
+  
+
+    @FXML
+    private void MesResto(ActionEvent event) throws IOException {
+         Scene scene = new Scene(FXMLLoader.load(getClass().getResource("AfficherRestaurantUser.fxml")));
+
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+        }
+
     }
-}

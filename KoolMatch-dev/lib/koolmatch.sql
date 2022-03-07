@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 28 fév. 2022 à 19:47
+-- Généré le : mer. 02 mars 2022 à 04:15
 -- Version du serveur : 10.4.20-MariaDB
 -- Version de PHP : 7.3.29
 
@@ -86,6 +86,14 @@ CREATE TABLE `evenement` (
   `archive` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Déchargement des données de la table `evenement`
+--
+
+INSERT INTO `evenement` (`id_event`, `nom_event`, `dd_event`, `df_event`, `theme_event`, `adresse_event`, `telephone`, `archive`) VALUES
+(1, 'sd', '2022-10-31', '2022-10-31', ' halloween', 'esprit', 99485632, 0),
+(2, 'aea', '2022-03-16', '2022-03-09', 'aeaze', 'qsqsf', 1233, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -96,6 +104,8 @@ CREATE TABLE `gerant` (
   `id_gerant` int(20) NOT NULL,
   `nom_gerant` varchar(100) NOT NULL,
   `prenom_gerant` varchar(100) NOT NULL,
+  `email_gerant` varchar(255) NOT NULL,
+  `password_gerant` varchar(255) NOT NULL,
   `telephone_gerant` int(20) NOT NULL,
   `dd_abonnement` date NOT NULL,
   `df_abonnement` date NOT NULL,
@@ -106,20 +116,9 @@ CREATE TABLE `gerant` (
 -- Déchargement des données de la table `gerant`
 --
 
-INSERT INTO `gerant` (`id_gerant`, `nom_gerant`, `prenom_gerant`, `telephone_gerant`, `dd_abonnement`, `df_abonnement`, `archive`) VALUES
-(1, 'test', 'test', 197, '2022-02-14', '2022-05-14', 1),
-(2, 'test', 'test', 55423984, '2022-02-14', '2022-05-14', 0),
-(6, 'test', 'test', 55423984, '2022-02-14', '2022-05-14', 0),
-(8, 'test', 'test', 55423984, '2022-02-14', '2022-05-14', 0),
-(9, 'test', 'test', 55423984, '2022-02-14', '2022-05-14', 0),
-(10, 'test', 'test', 55423984, '2022-02-14', '2022-05-14', 0),
-(11, 'test', 'test', 55423984, '2022-02-14', '2022-05-14', 0),
-(12, 'test', 'test', 55423984, '2022-02-14', '2022-05-14', 0),
-(14, 'test', 'test', 55423984, '2022-02-14', '2022-05-14', 1),
-(16, 'test5', 'test6', 22565454, '2022-06-01', '2022-09-01', 1),
-(17, 'test27', 'test16', 22565454, '2022-06-01', '2022-09-01', 1),
-(18, 'test27', 'test16', 22565454, '2022-06-01', '2022-09-01', 1),
-(19, 'test77', 'test16', 22565454, '2022-06-01', '2022-09-01', 1);
+INSERT INTO `gerant` (`id_gerant`, `nom_gerant`, `prenom_gerant`, `email_gerant`, `password_gerant`, `telephone_gerant`, `dd_abonnement`, `df_abonnement`, `archive`) VALUES
+(20, 'dede', 'axx', 'aa', 'aa', 11, '2022-03-01', '2022-03-31', 1),
+(21, 'ahmed', 'zz', 'zz', 'zz', 22, '2022-03-18', '2022-03-10', 0);
 
 -- --------------------------------------------------------
 
@@ -302,8 +301,11 @@ INSERT INTO `restaurant` (`id_restaurant`, `nom_restaurant`, `adresse_restaurant
 (8, 'Baguette', 'Tunisia', 2202255, 'www.kfc.com', 'FastfOOD', 5, 'src/tn/edu/esprit/images/logo.png', 0, 10, 'aaaa', 'uiuh', 'ggg'),
 (9, 'Kitchen', 'klibya', 2202255, 'www.kfc.com', 'FastfOOD', 5, 'src/tn/edu/esprit/images/logo.png', 0, 10, 'aaaa', 'uiuh', 'ggg'),
 (10, 'Kitchen', 'klibya', 2202255, 'www.kfc.com', 'FastfOOD', 5, 'src/tn/edu/esprit/images/logo.png', 0, 10, 'aaaa', 'uiuh', 'ggg'),
-(11, 'sdfsf', 'sdfsdfsf', 872782, 'fghfgh', 'fdghd', 5, 'src/tn/edu/esprit/images/logo.png', 0, 10, 'src/tn/edu/esprit/images/Screen Shot 2021-11-27 at 11.07.19 AM.png', 'dgdfgd', 'null'),
-(12, 'TaxiPizza', 'Marsa', 26847953, 'www.kfc.com', 'Lablebi', 5, 'src/tn/edu/esprit/images/femme2.jpeg', 0, 5, 'src/tn/edu/esprit/images/femme1.jpeg', 'ddeeded', 'null');
+(11, 'sdfsf', 'sdfsdfsf', 872782, 'fghfgh', 'fdghd', 5, 'src/tn/edu/esprit/images/logo.png', 1, 10, 'src/tn/edu/esprit/images/Screen Shot 2021-11-27 at 11.07.19 AM.png', 'dgdfgd', 'null'),
+(12, 'TaxiPizza', 'Marsa', 26847953, 'www.kfc.com', 'Lablebi', 5, 'src/tn/edu/esprit/images/femme2.jpeg', 0, 5, 'src/tn/edu/esprit/images/femme1.jpeg', 'ddeeded', 'null'),
+(13, 'aloalo', 'aloalo', 20, 'aloalo', 'makarouna', 20, 'src/tn/edu/esprit/images/s.jpg', 0, 20, 'src/tn/edu/esprit/images/d.jpg', 'aloalo', 'null'),
+(14, 'cdcd', 'sd', 52, 'sdg', 'qsdgvsd', 20, 'src/tn/edu/esprit/images/d.jpg', 0, 2, 'src/tn/edu/esprit/images/s.jpg', 'sdf', 'null'),
+(15, 'azee', 'zegze', 20, 'zeg', 'zeg', 20, 'src/tn/edu/esprit/images/d.jpg', 0, 2, 'src/tn/edu/esprit/images/s.jpg', 'qsdf', 'null');
 
 -- --------------------------------------------------------
 
@@ -449,13 +451,13 @@ ALTER TABLE `conversation`
 -- AUTO_INCREMENT pour la table `evenement`
 --
 ALTER TABLE `evenement`
-  MODIFY `id_event` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_event` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `gerant`
 --
 ALTER TABLE `gerant`
-  MODIFY `id_gerant` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_gerant` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT pour la table `interaction`
@@ -509,13 +511,13 @@ ALTER TABLE `reservation`
 -- AUTO_INCREMENT pour la table `restaurant`
 --
 ALTER TABLE `restaurant`
-  MODIFY `id_restaurant` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_restaurant` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_user` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

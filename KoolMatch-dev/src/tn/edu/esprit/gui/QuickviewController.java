@@ -49,7 +49,6 @@ public class QuickviewController implements Initializable {
     private Label id_nomb;
     @FXML
     private Label id_desc;
-   
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -77,15 +76,6 @@ public class QuickviewController implements Initializable {
         System.out.println(p1.getImage_structure_resturant());
         File file1 = new File(a1);
         Image image = new Image(file.toURI().toString());
-        
-        
-        
-        
-        
-        
-        
-        
-       
 
     }
 

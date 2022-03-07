@@ -39,7 +39,6 @@ public class User {
     public User(int id_user, String email_user, String password_user, String nom_user, String prenom_user, Date dateNaissance_user, String sexe_user, int telephone_user, String photo_user, String description_user, int maxDistance_user, int preferredMinAge_user, int preferredMaxAge_user, String adresse_user, double latitude_user, double longitude_user, int interet_user) {
         this.id_user = id_user;
         this.email_user = email_user;
-
         this.password_user = password_user;
         this.nom_user = nom_user;
         this.prenom_user = prenom_user;
@@ -78,6 +77,21 @@ public class User {
         this.interet_user = interet_user;
         this.archive = archive ;
     }
+
+    public User(String email_user, String password_user, String nom_user, String prenom_user, Date dateNaissance_user, String sexe_user, int telephone_user, String adresse_user) {
+        this.email_user = email_user;
+        this.password_user = password_user;
+        this.nom_user = nom_user;
+        this.prenom_user = prenom_user;
+        this.dateNaissance_user = dateNaissance_user;
+        this.sexe_user = sexe_user;
+        this.telephone_user = telephone_user;
+        this.adresse_user = adresse_user;
+    }
+
+   
+    
+    
 
     public User(int id_user) {
         this.id_user = id_user;

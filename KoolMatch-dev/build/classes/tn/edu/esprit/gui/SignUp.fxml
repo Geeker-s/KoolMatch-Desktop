@@ -2,10 +2,9 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
@@ -27,7 +26,7 @@
             <Insets left="15.0" right="15.0" top="20.0" />
          </VBox.margin>
          <children>
-            <TextField maxHeight="1.7976931348623157E308" prefHeight="45.0" prefWidth="218.0" promptText="Nom" HBox.hgrow="ALWAYS">
+            <TextField fx:id="nom" maxHeight="1.7976931348623157E308" prefHeight="45.0" prefWidth="218.0" promptText="Nom" HBox.hgrow="ALWAYS">
                <font>
                   <Font size="15.0" />
                </font>
@@ -37,7 +36,7 @@
             </TextField>
             <HBox alignment="CENTER" prefHeight="45.0" prefWidth="241.0" style="-fx-background-color: trasparent; -fx-border-color: #DEDEE4; -fx-border-width: 0,0,1,0;">
                <children>
-                  <TextField maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="45.0" prefWidth="182.0" promptText="Prénom" HBox.hgrow="ALWAYS">
+                  <TextField fx:id="prenom" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="45.0" prefWidth="182.0" promptText="Prénom" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -51,7 +50,7 @@
       </HBox>
       <HBox alignment="CENTER" layoutX="25.0" layoutY="173.0" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: trasparent; -fx-border-color: #DEDEE4; -fx-border-width: 0,0,1,0;">
          <children>
-            <TextField maxHeight="1.7976931348623157E308" prefHeight="45.0" prefWidth="100.0" promptText="Email" HBox.hgrow="ALWAYS">
+            <TextField fx:id="email" maxHeight="1.7976931348623157E308" prefHeight="45.0" prefWidth="100.0" promptText="Email" HBox.hgrow="ALWAYS">
                <font>
                   <Font size="15.0" />
                </font>
@@ -63,11 +62,19 @@
       </HBox>
       <HBox alignment="CENTER" layoutX="25.0" layoutY="95.0" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: trasparent; -fx-border-color: #DEDEE4; -fx-border-width: 0,0,1,0;">
          <children>
-            <PasswordField maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Mot de passe" HBox.hgrow="ALWAYS">
+            <PasswordField fx:id="mdp" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="45.0" prefWidth="186.0" promptText="Mot de passe" HBox.hgrow="ALWAYS">
                <font>
                   <Font size="15.0" />
                </font>
             </PasswordField>
+            <TextField fx:id="tel" maxHeight="1.7976931348623157E308" prefHeight="45.0" prefWidth="211.0" promptText="Téléphone">
+               <opaqueInsets>
+                  <Insets left="5.0" />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </TextField>
          </children>
          <VBox.margin>
             <Insets left="15.0" right="15.0" top="20.0" />
@@ -78,25 +85,21 @@
             <Insets left="15.0" right="15.0" top="20.0" />
          </VBox.margin>
          <children>
-            <DatePicker maxHeight="1.7976931348623157E308" prefHeight="25.0" prefWidth="427.0" HBox.hgrow="ALWAYS">
+            <DatePicker fx:id="datenaissance" maxHeight="1.7976931348623157E308" prefHeight="45.0" prefWidth="289.0" promptText="Date de naissance" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin>
             </DatePicker>
-            <MenuButton alignment="CENTER" maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="45.0" prefWidth="450.0" text="Sexe" textAlignment="CENTER" HBox.hgrow="ALWAYS">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
-              </items>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </MenuButton>
+            <ComboBox fx:id="sexe" maxHeight="1.7976931348623157E308" onAction="#select" prefHeight="25.0" prefWidth="256.0" promptText="Sexe">
+               <opaqueInsets>
+                  <Insets left="17.0" />
+               </opaqueInsets>
+            </ComboBox>
          </children>
       </HBox>
       <HBox alignment="CENTER" layoutX="25.0" layoutY="205.0" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: trasparent; -fx-border-color: #DEDEE4; -fx-border-width: 0,0,1,0;">
          <children>
-            <TextField maxHeight="1.7976931348623157E308" prefHeight="45.0" prefWidth="100.0" promptText="Email" HBox.hgrow="ALWAYS">
+            <TextField fx:id="adresse" maxHeight="1.7976931348623157E308" prefHeight="45.0" prefWidth="229.0" promptText="Adresse" HBox.hgrow="ALWAYS">
                <font>
                   <Font size="15.0" />
                </font>
@@ -108,7 +111,7 @@
       </HBox>
       <HBox alignment="CENTER" layoutX="25.0" layoutY="95.0" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: trasparent; -fx-border-color: #DEDEE4; -fx-border-width: 0,0,1,0;">
          <children>
-            <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="120.0" style="-fx-background-color: #FFA69E; -fx-background-radius: 5; -fx-text-fill: #FFFFFF;" text="S'inscrire">
+            <Button fx:id="btnsignup" mnemonicParsing="false" onAction="#signup" prefHeight="39.0" prefWidth="120.0" style="-fx-background-color: #FFA69E; -fx-background-radius: 5; -fx-text-fill: #FFFFFF;" text="S'inscrire">
                <font>
                   <Font size="15.0" />
                </font>

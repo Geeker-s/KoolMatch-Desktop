@@ -74,6 +74,9 @@ public class AfficherRestaurantUserController implements Initializable {
     private JFXListView<Pane> ListView_Produits;
     @FXML
     private JFXTextField rechercher;
+    
+    
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -87,7 +90,7 @@ public class AfficherRestaurantUserController implements Initializable {
     public void getShowPane() {
         List<Restaurant> AllProducts = new ArrayList();
         if (recherche.equals("")) {
-            for (Restaurant p : service_pr.afficher()) {
+            for (Restaurant p : service_pr.MesResto()) {
                 AllProducts.add(p);
             }
         } else {

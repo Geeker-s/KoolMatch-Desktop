@@ -13,6 +13,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import tn.edu.esprit.api.sendSMS;
 import tn.edu.esprit.model.Conversations;
+import tn.edu.esprit.model.Evenement;
+import tn.edu.esprit.model.Invitation;
 import tn.edu.esprit.model.Jeu;
 import tn.edu.esprit.model.Messages;
 import tn.edu.esprit.model.Quiz;
@@ -21,8 +23,10 @@ import tn.edu.esprit.model.Reservation;
 import tn.edu.esprit.model.Restaurant;
 import tn.edu.esprit.services.ServiceAdmin;
 import tn.edu.esprit.services.ServiceConversation;
+import tn.edu.esprit.services.ServiceEvent;
 import tn.edu.esprit.services.ServiceGerant;
 import tn.edu.esprit.services.ServiceInteraction;
+import tn.edu.esprit.services.ServiceInvitation;
 import tn.edu.esprit.services.ServiceJeu;
 import tn.edu.esprit.services.ServiceMatching;
 import tn.edu.esprit.services.ServiceMessage;
@@ -57,6 +61,8 @@ public class KoolMatch {
         ServiceConversation conv = new ServiceConversation();
         ServiceRestaurant restau = new ServiceRestaurant();
         ServiceReservation reserv = new ServiceReservation();
+        ServiceEvent event = new ServiceEvent();
+        ServiceInvitation invitation = new ServiceInvitation();
 
 //        ---------
 //        --Testing
@@ -108,23 +114,21 @@ public class KoolMatch {
 //        msg.ajouter(m);
 //        msg.ajouter(new Messages("hello"), co.getId_conversation());
 //        System.out.println(conv.Recherche(new Conversations("mohamed said")));
-
-
-//        -- -- -- ---Gestion Restaurant
-       Restaurant resto = new Restaurant(3, "Kitchen", "Tunisia", 2202255, "www.kfc.com", "FastfOOD", 5, "aa", 0, 10, "aaaa", "uiuh", "ggg");
+//        -- -- -- ---Gestion Restaurant 
+//        Restaurant resto = new Restaurant(8, "Kitchen", "Tunisia", 2202255, "www.kfc.com", "FastfOOD", 5, "aa", 0, 10, "aaaa", "uiuh", "ggg");
 //        Restaurant resto1 = new Restaurant(10, "Kitchen", "klibya", 2202255, "www.kfc.com", "FastfOOD", 5, "aa", 0, 10, "aaaa", "uiuh", "ggg");
 //        restau.ajouter(resto1);
 //        restau.supprimer(resto);
- //       if (restau.modifer(resto)) {
-  //          System.out.println("restaurant modifié avec succes.");
-   //     } else {
-    //        System.out.println("Erreur de modification.");
-   //     }
+//        if (restau.modifer(resto)) {
+//            System.out.println("restaurant modifié avec succes.");
+//        } else {
+//            System.out.println("Erreur de modification.");
+//        }
 //        System.out.println(restau.rechercher(resto1));
 //        System.out.println(restau.rechercherSpecialite(resto1));
 //        System.out.println(reserv.Tri());
-       sendSMS s = new sendSMS();
-        s.sendSMS(foulen);
+//        sendSMS s = new sendSMS();
+//        s.sendSMS(foulen);
 //        if (restau.supprimer(new Restaurant(1))) {
 //            System.out.println("retaurant supprimé.");
 //        } else {
@@ -140,16 +144,50 @@ public class KoolMatch {
 //            System.out.println("Erreur de modification.");
 //        }
 //
-//if (reserv.modifer(new Reservation(2))) { 
-// System.out.println("reservation modifié avec succes.");
-//   } else {
-//     System.out.println("Erreur de modification.");
-//}
+//        if (reserv.modifer(new Reservation(2))) {
+//            System.out.println("reservation modifié avec succes.");
+//        } else {
+//            System.out.println("Erreur de modification.");
+//        }
 //
 //        if (reserv.supprimer(new Reservation(1))) {
 //            System.out.println("reservation supprimé.");
 //        } else {
 //            System.out.println("Erreur de suppression Interaction");
+//        }
+//        -- -- -- ---Gestion Evenement
+//        e.ajouter(new Evenement("scary night ", Date.valueOf("2022-10-31"), Date.valueOf("2022-10-31"), " halloween", "esprit", 99485632));
+//        e.supprimer(new Evenement(1));
+//
+//        System.out.println(e.rechercher(new Evenement("test")));
+//        System.out.println(i.Tri());
+//
+//        i.ajouter(new Invitation(159, 23));
+//
+//        if (e.supprimer(new Evenement(5))) {
+//            System.out.println("Supprimé avec succes.");
+//        } else {
+//            System.out.println("Erreur de suppression.");
+//        }
+//        System.out.println(e.afficher().toString());
+//
+//        if (e.modifer(new Evenement(4))) {
+//            System.out.println("Numéro modifié avec succes.");
+//        } else {
+//            System.out.println("Erreur de modification.");
+//        }
+//
+//        if (i.modifer(new Invitation(1))) {
+//            System.out.println("id modifié avec succes.");
+//        } else {
+//            System.out.println("Erreur de modification.");
+//        }
+//        System.out.println(i.afficher().toString());
+//
+//        if (i.supprimer(new Invitation(2))) {
+//            System.out.println("Supprimé avec succes.");
+//        } else {
+//            System.out.println("Erreur de suppression.");
 //        }
 //        -- -- -- ---Affichage
 //        System.out.println(user.afficher());
@@ -164,5 +202,7 @@ public class KoolMatch {
 //        System.out.println(conv.afficher());
 //        System.out.println(restau.afficher());
 //        System.out.println(reserv.afficher());
+//        System.out.println(e.afficher());
+//        System.out.println(i.afficher());
     }
 }
