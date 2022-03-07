@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -79,7 +81,7 @@ public class FormulaireReservationController implements Initializable {
      */
       private boolean NoDate() {
         boolean test = false;
-        System.out.println(ChronoUnit.DAYS.between(this.disponibilite.getValue(), this.disponibilite.getValue()));
+        System.out.println(ChronoUnit.DAYS.between(this.disponibilite.getValue(), (Temporal) Calendar.getInstance().getTime()));
         int b = (int) ChronoUnit.DAYS.between(LocalDate.now(), this.disponibilite.getValue());
         System.out.println("aaaaaaaaaa" + b);
         if (b < 0) {
@@ -101,6 +103,10 @@ public class FormulaireReservationController implements Initializable {
                     }
                 });
         n.showWarning();}
+       
+       
+       
+       
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
@@ -117,6 +123,13 @@ public class FormulaireReservationController implements Initializable {
         nomres.setText(p1.getNom_restaurant());
         nomres.setEditable(false);
 
+        nomuser.setText(CurrentUser.getNom_user());
+         nomuser.setEditable(false);
+          prenom.setText(CurrentUser.getPrenom_user());
+         prenom.setEditable(false);
+        
+         numtel.setText(String.valueOf(CurrentUser.getTelephone_user()));
+         
         String a = p1.getImage();
         System.out.println(a);
         System.out.println(p1.getImage());
@@ -134,12 +147,8 @@ public class FormulaireReservationController implements Initializable {
 
         ServiceUser sp2 = new ServiceUser();
 
-        //nomres.setText(p1.getNom_restaurant());
-        User p2 = new User();
-
-        p2.setPrenom_user(prenom.getText());
-        p2.setTelephone_user(Integer.parseInt(numtel.getText()));
-
+       //nomres.setText(p1.getNom_restaurant());
+  
       Reservation p = new Reservation();
 
         p.setId_restaurant(p1.getId_restaurant());
@@ -147,11 +156,87 @@ public class FormulaireReservationController implements Initializable {
         p.setId_user(1);
 
         //  p2.setNom_user(nomuser.getText());//nom cureetn user 
+       // p.setNbPlace_reservation(Integer.parseInt(Fnbrplace.getText()));
+      // Date Date_reservation = Date.valueOf(this.disponibilite.getValue());
+      // p.setDate_reservation(Date_reservation);
+       
+            int b = (int) ChronoUnit.DAYS.between(LocalDate.now(), this.disponibilite.getValue());
+       if (Fnbrplace.getText().equals(""))
+       
+       {
+         Alert alert = new Alert(AlertType.ERROR);
+
+            alert.setTitle("Error alert");
+            alert.setHeaderText("nombre invalid ");
+            alert.setContentText("veuillez saisir le nombre de places");
+
+            alert.showAndWait();
+       }
+      
+       else if (b<=0)
+           {
+               
+               Alert alert = new Alert(AlertType.ERROR);  
+               
+
+            alert.setTitle("Error alert");
+            alert.setHeaderText("date invalid ");
+            alert.setContentText("veuillez saisir une date supérieur à aujourd'hui");
+
+            alert.showAndWait();
+               
+               }
+           
+           
+       else if (sp.Already_reserved(CurrentUser.getId_user(), Date.valueOf(disponibilite.getValue())))
+               
+               {
+                  Alert alert = new Alert(AlertType.ERROR);  
+               
+
+            alert.setTitle("Error alert");
+            alert.setHeaderText("reservé déja ");
+            alert.setContentText("vous avez déja reservé dans cette date");
+
+            alert.showAndWait();
+      } 
+               
+       else if (sp.place_disponible(p1, Integer.parseInt(Fnbrplace.getText()), Date.valueOf(disponibilite.getValue()) )==false) 
+   
+           
+       {
+                  Alert alert = new Alert(AlertType.ERROR);  
+               
+
+            alert.setTitle("Error alert");
+            alert.setHeaderText("Complet");
+            alert.setContentText("toute les places sont réservés");
+
+            alert.showAndWait();
+      }
+       
+       
+       else {
+       
+               p.setId_restaurant(p1.getId_restaurant());
+         p.setId_user(CurrentUser.getId_user());
+      
+        //  p2.setNom_user(nomuser.getText());//nom cureetn user 
         p.setNbPlace_reservation(Integer.parseInt(Fnbrplace.getText()));
        Date Date_reservation = Date.valueOf(this.disponibilite.getValue());
        p.setDate_reservation(Date_reservation);
+       sp.ajouter(p);
+       
+           System.out.println("ajoute avec succes ");
+       
+       // rodou yemchi l page okhra mes reservation par exemple 
+       
+       }
+    
+    }
+       
 
-        if (Integer.parseInt(Fnbrplace.getText()) > p1.getNb_placeResto()) {
+       /* if (Integer.parseInt(Fnbrplace.getText()) > p1.getNb_placeResto()) {
             Alert alert = new Alert(AlertType.ERROR);
 
             alert.setTitle("Error alert");
@@ -170,9 +255,8 @@ if (disponibilite.equals("")) {
             Alert alert = new Alert(AlertType.ERROR);
 
             alert.setTitle("Error alert");
-            alert.setHeaderText("Le nombre de places n'est pas disponible pour aujourd'hui, veuillez voir une autre date ");
-            alert.setContentText("Le nombre de places est inférieur au nombre de restaurant que vous choisissez");
-
+            alert.setHeaderText("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh ");
+            alert.setContentText("hhhhhhhhhhhhhhhhhhhhhhhhh");
             alert.showAndWait();
    
       System.out.println("uyfgoopm");
@@ -183,6 +267,7 @@ if (disponibilite.equals("")) {
         }
         
 
-    }    
-
+     
+       */   
 }
+

@@ -19,8 +19,11 @@ import tn.edu.esprit.utils.MyDB;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
+import java.util.Collection;
 import tn.edu.esprit.model.User;
 import java.util.Comparator;
+import java.util.Iterator;
+import java.util.ListIterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -211,6 +214,59 @@ public class ServiceReservation implements IService<Reservation> {
         }
 
         return ALLproducts;
+
+    }
+    
+    
+    public boolean place_disponible(Restaurant r, int nbr, java.util.Date datereservation) throws SQLException {
+
+        //SELECT sum(nbPlace_reservation) FROM `reservation` where cast(date_reservation as date) = '2022-03-16' 
+        int reserve = 0;
+        String query = "SELECT sum(nbPlace_reservation) as reserve FROM `reservation` where cast(date_reservation as date) = '" + datereservation + "' and id_restaurant ="+r.getId_restaurant()+" ";
+        Statement st = MyDB.getInstance().getCnx().createStatement();
+        ResultSet rs = st.executeQuery(query);
+        while (rs.next()) {
+            //  System.out.println(rest.first());
+            // test.add(rest.first());
+            reserve = rs.getInt("reserve");
+        }
+        System.out.println("nombre des pkaces restosss "+r.getNb_placeResto());
+        
+        if (reserve + nbr > r.getNb_placeResto()) {
+            System.out.println("pas des plcs");
+            System.out.println("reserve"+reserve);
+            return false;
+        } else {
+            System.out.println("il ya des place dispo");
+            System.out.println("reserve"+reserve);
+            return true;
+            
+        }
+    }
+
+    public boolean Already_reserved(int id_user, java.util.Date datereservation) throws SQLException{
+        List<Reservation> test = new ArrayList();
+       // WHERE date_reservation = "+datereservation+" and
+       //SELECT * FROM `reservation` WHERE cast(date_reservation as date) = "2022-03-16" 
+       
+          String query = "select * from reservation  WHERE cast(date_reservation as date)= '"+datereservation+"' and archive =0 and  id_user = " + id_user + ";";
+            Statement st = MyDB.getInstance().getCnx().createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while  (rs.next()) {
+              //  System.out.println(rest.first());
+           // test.add(rest.first());
+                   test.add(new Reservation(rs.getInt(1), rs.getDate(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6)));
+            }
+        if (test.isEmpty())
+        {
+            System.out.println(datereservation);
+            System.out.println("aaaaaaaa"+test.size());
+            System.out.println("pas d reservation");
+            return false;}
+        else 
+            
+        {  System.out.println("y a des reservation");
+            return true;}
 
     }
 

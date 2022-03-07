@@ -187,40 +187,29 @@ public class AfficherReservationUserController implements Initializable {
 
                 btn.setCursor(Cursor.HAND);
 
-                
-                
-                   btn.setOnMouseClicked((MouseEvent event) -> {
-                       
-                    Alert  b = new Alert(Alert.AlertType.NONE);
-                    
-                    
-                                b.setAlertType(Alert.AlertType.CONFIRMATION);
-        b.setTitle("Confirmation");
-        b.setHeaderText(null);
-        b.setContentText("Êtes-vous sûr de vouloir supprimer cette réservation");
-      
-        Optional <ButtonType> action = b.showAndWait();
-         
-        if(action.get()== ButtonType.OK)
-        {    
-            
-        
-           
-      service_pr.supprimer(p3);
-            
-        getShowPane();
-    }
-        else
-        {
-            getShowPane();
-        
-        }
-                    
-                    
-         
+                btn.setOnMouseClicked((MouseEvent event) -> {
+
+                    Alert b = new Alert(Alert.AlertType.NONE);
+
+                    b.setAlertType(Alert.AlertType.CONFIRMATION);
+                    b.setTitle("Confirmation");
+                    b.setHeaderText(null);
+                    b.setContentText("Êtes-vous sûr de vouloir supprimer cette réservation");
+
+                    Optional<ButtonType> action = b.showAndWait();
+
+                    if (action.get() == ButtonType.OK) {
+
+                        service_pr.supprimer(p3);
+
+                        getShowPane();
+                    } else {
+                        getShowPane();
+
+                    }
+
                 });
 
-                
                 /**
                  * ******************************
                  */
@@ -240,10 +229,10 @@ public class AfficherReservationUserController implements Initializable {
                 hb2.setStyle("-fx-background-color: #2cbae3");
                 pane2.getChildren().addAll(hb, hb2);
 
-        Text nomt = new Text(String.valueOf("nom "+ ":"  + p3.getId_restaurant()));
-                Text prenom = new Text("prenom"+ ":" +String.valueOf(p3.getId_user()));
-                Text num = new Text("hello" + ""+ String.valueOf(p3.getNbPlace_reservation()));
-                Label nom = new Label(" bonjour" + ":"+String.valueOf(p3.getNbPlace_reservation()));
+                Text nomt = new Text("Nom"+ ":   "+ CurrentUser.getNom_user());
+                Text prenom = new Text("Prénom" + CurrentUser.getPrenom_user());
+                Text num = new Text("Telephone" + String.valueOf(CurrentUser.getTelephone_user()));
+                Label nom = new Label("Nombre de place" + ":" + String.valueOf(p3.getNbPlace_reservation()));
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd ");
                 String strDate = dateFormat.format(p3.getDate_reservation());
                 Text prixt = new Text(strDate);
@@ -274,7 +263,7 @@ public class AfficherReservationUserController implements Initializable {
                 /**
                  * **********************partage facebook********************
                  */
-                      pane.getChildren().addAll(pane2, nomt, prixt, nom, btn,prenom,num);
+                pane.getChildren().addAll(pane2, nomt, prixt, nom, btn, prenom, num);
 //                             
 
             }
@@ -311,52 +300,33 @@ public class AfficherReservationUserController implements Initializable {
 
                 btn.setCursor(Cursor.HAND);
 
-               
-                
-               
-                
-               // ---------------------------------------------delete alert  
-                
-                
+                // ---------------------------------------------delete alert  
                 btn.setOnMouseClicked((MouseEvent event) -> {
-                       
-                    Alert  b = new Alert(Alert.AlertType.NONE);
-                    
-                    
-                                b.setAlertType(Alert.AlertType.CONFIRMATION);
-        b.setTitle("Confirmation");
-        b.setHeaderText(null);
-        b.setContentText("Êtes-vous sûr de vouloir supprimer cette réservation");
-      
-        Optional <ButtonType> action = b.showAndWait();
-         
-        if(action.get()== ButtonType.OK)
-        {    
-            
-        
-           
-      service_pr.supprimer(p3);
-            
-        getShowPane();
-    }
-        else
-        {
-            getShowPane();
-        
-        }
-                    
-                    
-                    
-                  //  service_pr.supprimer(p3);
-                  //  ListView_Produits.setItems(null);
-                  //  getShowPane();
-                   
+
+                    Alert b = new Alert(Alert.AlertType.NONE);
+
+                    b.setAlertType(Alert.AlertType.CONFIRMATION);
+                    b.setTitle("Confirmation");
+                    b.setHeaderText(null);
+                    b.setContentText("Êtes-vous sûr de vouloir supprimer cette réservation");
+
+                    Optional<ButtonType> action = b.showAndWait();
+
+                    if (action.get() == ButtonType.OK) {
+
+                        service_pr.supprimer(p3);
+
+                        getShowPane();
+                    } else {
+                        getShowPane();
+
+                    }
+
+                    //  service_pr.supprimer(p3);
+                    //  ListView_Produits.setItems(null);
+                    //  getShowPane();
                 });
 
-                
-                
-                
-                
                 HBox hb = new HBox(tq);
                 HBox hb2 = new HBox(btn);
 
@@ -373,13 +343,13 @@ public class AfficherReservationUserController implements Initializable {
                 hb2.setStyle("-fx-background-color: #2cbae3");
                 pane2.getChildren().addAll(hb, hb2);
 
-                Text nomt = new Text("Nom"+ CurrentUser.getNom_user());
-                Text prenom = new Text("Prénom"+CurrentUser.getPrenom_user());
-                Text num = new Text("Telephone"+String.valueOf(CurrentUser.getTelephone_user()));
+                Text nomt = new Text("Nom" + CurrentUser.getNom_user());
+                Text prenom = new Text("Prénom" + CurrentUser.getPrenom_user());
+                Text num = new Text("Telephone" + String.valueOf(CurrentUser.getTelephone_user()));
 //                Text nomt = new Text(String.valueOf("nom "+ ":"  + p3.getId_restaurant()));
 //                Text prenom = new Text("prenom"+ ":" +String.valueOf(p3.getId_user()));
 //                Text num = new Text("hello" + ""+ String.valueOf(p3.getNbPlace_reservation()));
-                Label nom = new Label(" bonjour" + ":"+String.valueOf(p3.getNbPlace_reservation()));
+                Label nom = new Label(" bonjour" + ":" + String.valueOf(p3.getNbPlace_reservation()));
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd ");
                 String strDate = dateFormat.format(p3.getDate_reservation());
                 Text prixt = new Text(strDate);
@@ -405,7 +375,7 @@ public class AfficherReservationUserController implements Initializable {
                  *
                  **********************partage facebook********************
                  */
-                pane.getChildren().addAll(pane2, nomt, prixt, nom, btn,prenom,num);
+                pane.getChildren().addAll(pane2, nomt, prixt, nom, btn, prenom, num);
             }
 
             if (k == 3) {
@@ -430,39 +400,29 @@ public class AfficherReservationUserController implements Initializable {
                 btn.setLayoutY(240);
 
                 btn.setCursor(Cursor.HAND);
-                        
-                
-                btn.setOnMouseClicked((MouseEvent event) -> {
-                       
-                    Alert  b = new Alert(Alert.AlertType.NONE);
-                    
-                    
-                                b.setAlertType(Alert.AlertType.CONFIRMATION);
-        b.setTitle("Confirmation");
-        b.setHeaderText(null);
-        b.setContentText("Êtes-vous sûr de vouloir supprimer cette réservation");
-      
-        Optional <ButtonType> action = b.showAndWait();
-         
-        if(action.get()== ButtonType.OK)
-        {    
-            
-        
-           
-      service_pr.supprimer(p3);
-            
-        getShowPane();
-    }
-        else
-        {
-            getShowPane();
-        
-        }
-                    
-          
-                   
-                });
 
+                btn.setOnMouseClicked((MouseEvent event) -> {
+
+                    Alert b = new Alert(Alert.AlertType.NONE);
+
+                    b.setAlertType(Alert.AlertType.CONFIRMATION);
+                    b.setTitle("Confirmation");
+                    b.setHeaderText(null);
+                    b.setContentText("Êtes-vous sûr de vouloir supprimer cette réservation");
+
+                    Optional<ButtonType> action = b.showAndWait();
+
+                    if (action.get() == ButtonType.OK) {
+
+                        service_pr.supprimer(p3);
+
+                        getShowPane();
+                    } else {
+                        getShowPane();
+
+                    }
+
+                });
 
                 Text t1 = new Text("");
                 HBox hb = new HBox(tq);
@@ -483,10 +443,10 @@ public class AfficherReservationUserController implements Initializable {
                 pane2.getChildren().addAll(hb, hb2);
 
                 String A = p4.getImage();
-          Text nomt = new Text(String.valueOf("nom "+ ":"  + p3.getId_restaurant()));
-                Text prenom = new Text("prenom"+ ":" +String.valueOf(p3.getId_user()));
-                Text num = new Text("hello" + ""+ String.valueOf(p3.getNbPlace_reservation()));
-                Label nom = new Label(" bonjour" + ":"+String.valueOf(p3.getNbPlace_reservation()));
+                Text nomt = new Text("Nom" + CurrentUser.getNom_user());
+                Text prenom = new Text("Prénom" + CurrentUser.getPrenom_user());
+                Text num = new Text("Telephone" + String.valueOf(CurrentUser.getTelephone_user()));
+                Label nom = new Label(" bonjour" + ":" + String.valueOf(p3.getNbPlace_reservation()));
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd ");
                 String strDate = dateFormat.format(p3.getDate_reservation());
                 Text prixt = new Text(strDate);
@@ -517,7 +477,7 @@ public class AfficherReservationUserController implements Initializable {
                 /**
                  * **********************partage facebook********************
                  */
-                      pane.getChildren().addAll(pane2, nomt, prixt, nom, btn,prenom,num);
+                pane.getChildren().addAll(pane2, nomt, prixt, nom, btn, prenom, num);
 
             }
             k++;
