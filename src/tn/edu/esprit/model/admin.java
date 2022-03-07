@@ -9,29 +9,29 @@ package tn.edu.esprit.model;
  *
  * @author MED ZOUARI
  */
-public class admin {
+public class Admin {
     private int id_admin ;
     private String login_admin;
     private String password_admin;
     private int archive;
 
-    public admin() {
+    public Admin() {
     }
 
-    public admin(int id_admin, String login_admin, String password_admin) {
+    public Admin(int id_admin, String login_admin, String password_admin) {
         this.id_admin = id_admin;
         this.login_admin = login_admin;
         this.password_admin = password_admin;
         this.archive = archive;
     }
 
-    public admin(String login_admin, String password_admin) {
+    public Admin(String login_admin, String password_admin) {
         this.login_admin = login_admin;
         this.password_admin = password_admin;
         this.archive = archive;
     }
 
-    public admin(int id_admin) {
+    public Admin(int id_admin) {
         this.id_admin = id_admin;
     }
 

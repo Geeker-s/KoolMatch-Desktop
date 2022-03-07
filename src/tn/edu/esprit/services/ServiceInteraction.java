@@ -12,9 +12,12 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import tn.edu.esprit.model.Matching;
 import tn.edu.esprit.utils.MyDB;
 
 /**
@@ -31,12 +34,21 @@ public class ServiceInteraction implements IService<Interaction> {
 
     @Override
     public void ajouter(Interaction p) {
-        try {
-            String querry = "INSERT INTO `interaction` (`type_interaction`,`date_interaction`,`id_user1`,`id_user2`) VALUES('" + p.getType_interaction() + "','" + p.getDate_interaction() + "','" + p.getId_user1() + "','" + p.getId_user2() + "')";
-            Statement stm = cnx.createStatement();
-            stm.executeUpdate(querry);
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+        Interaction x = afficher()
+                .stream()
+                .filter(m -> m.getId_interaction() == p.getId_interaction())
+                .findAny()
+                .orElse(null);
+        if (x == null) {
+            try {
+                String querry = "INSERT INTO `interaction` (`type_interaction`,`date_interaction`,`id_user1`,`id_user2`) VALUES('" + p.getType_interaction() + "','" + p.getDate_interaction() + "','" + p.getId_user1() + "','" + p.getId_user2() + "')";
+                Statement stm = cnx.createStatement();
+                stm.executeUpdate(querry);
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        } else {
+            System.out.println("Interaction existe deja!");
         }
     }
 
@@ -44,7 +56,7 @@ public class ServiceInteraction implements IService<Interaction> {
     public List<Interaction> afficher() {
         List<Interaction> interactions = new ArrayList<>();
         try {
-            String req = "SELECT * FROM interaction";
+            String req = "SELECT * FROM interaction WHERE archive=0";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
@@ -53,74 +65,83 @@ public class ServiceInteraction implements IService<Interaction> {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-
         return interactions;
     }
 
     @Override
     public boolean modifer(Interaction p) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Nouveau Date : ");
-        String date = sc.nextLine();
-        Date newDate = Date.valueOf(date);
-        try {
-            String req = " UPDATE `interaction` SET `date_interaction` = '" + newDate + "' WHERE `id_interaction` = '" + p.getId_interaction() + "'";
-            Statement stm = cnx.createStatement();
-            stm.executeUpdate(req);
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+        Interaction x = afficher()
+                .stream()
+                .filter(m -> m.getId_interaction() == p.getId_interaction())
+                .filter(m -> m.getArchive() == 0)
+                .findAny()
+                .orElse(null);
+        if (x != null) {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Nouveau Date : ");
+            String date = sc.nextLine();
+            Date newDate = Date.valueOf(date);
+            try {
+                String req = " UPDATE `interaction` SET `date_interaction` = '" + newDate + "' WHERE `id_interaction` = '" + p.getId_interaction() + "'";
+                Statement stm = cnx.createStatement();
+                stm.executeUpdate(req);
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+                System.out.println("Erreur de modification.");
+                return false;
+            }
+        } else {
+            System.out.println("Interaction not found!");
             return false;
         }
+        System.out.println("Date modifié avec succes.");
         return true;
-
     }
 
     @Override
     public boolean supprimer(Interaction p) {
-        try {
-            String querry = "DELETE FROM `interaction` WHERE `id_interaction` = '" + p.getId_interaction() + "'";
-            Statement stm = cnx.createStatement();
-            stm.executeUpdate(querry);
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+        Interaction x = afficher()
+                .stream()
+                .filter(m -> m.getId_interaction() == p.getId_interaction())
+                .filter(m -> m.getArchive() == 0)
+                .findAny()
+                .orElse(null);
+        if (x != null) {
+            try {
+                String querry = "UPDATE `interaction` SET archive=1 WHERE `id_interaction` = '" + p.getId_interaction() + "'";
+                Statement stm = cnx.createStatement();
+                stm.executeUpdate(querry);
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+                return false;
+            }
+        } else {
+            System.out.println("Interaction not found!");
             return false;
         }
         return true;
     }
 
-    public Interaction userLIKE(Interaction p) {
-        List<Interaction> likes = new ArrayList<>();
-        try {
-            String req = "SELECT `id_interaction`,`id_user1`,`id_user2` FROM `interaction` WHERE (`type_interaction` = 'o') AND (`id_user1`='" + p.getId_user1() + "' or `id_user2` ='" + p.getId_user1() + "')";
-            Statement st = cnx.createStatement();
-            ResultSet rs = st.executeQuery(req);
-            while (rs.next()) {
-                likes.add(new Interaction(rs.getInt(1), rs.getInt(2), rs.getInt(3)));
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+    public boolean userLIKE(Interaction p) {
+        ServiceMatching match = new ServiceMatching();
+        List<Interaction> likes = afficher()
+                .stream()
+                .filter(l -> l.getArchive() == 0)
+                .filter(l -> "o".equals(l.getType_interaction()))
+                .filter(l -> l.getId_user1() == p.getId_user2() && l.getId_user2() == p.getId_user1())
+                .collect(Collectors.toList());
+        if (likes.size()!=0) {
+            match.ajouter(new Matching(p.getId_user1(), p.getId_user2(), Date.valueOf(LocalDate.now())));
+            afficher()
+                    .stream()
+                    .filter(l -> l.getArchive() == 0)
+                    .filter(l -> "o".equals(l.getType_interaction()))
+                    .filter(l -> l.getId_user1() == p.getId_user1() || l.getId_user2() == p.getId_user1())
+                    .filter(l -> l.getId_user1() == p.getId_user2() || l.getId_user2() == p.getId_user2())
+                    .forEach(l -> supprimer(l));
+        } else {
+            return false;
         }
-        Interaction X = new Interaction(0, 0, 0);
-        for (int i = 0; i < likes.size(); i++) {
-            X.setId_interaction(likes.get(i).getId_interaction());
-            X.setId_user1(likes.get(i).getId_user2());
-            X.setId_user2(likes.get(i).getId_user1());
-            if (likes.get(i).equals(X)) {  //nthabet mel equals
-                try {
-                    //usr1 = id1 et usr2 =id2 ou l3aks
-                    String querry = "DELETE FROM `interaction` WHERE `id_interaction` = '" + X.getId_interaction() + "'";
-                    Statement stm = cnx.createStatement();
-                    stm.executeUpdate(querry);
-                } catch (SQLException ex) {
-                    System.out.println(ex.getMessage());
-                }
-            }
-        }
-        return X; //new Interaction(foulen.getId_user(), foulena.getId_user())
-    }
-
-    public boolean userMATCH(List<Interaction> listLike) {
-
         return true;
     }
 }

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="576.0" prefWidth="794.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.edu.esprit.gui.GestionUserController">
+   <children>
+      <VBox layoutX="14.0" layoutY="34.0" prefHeight="285.0" prefWidth="174.0">
+         <children>
+            <Label prefHeight="18.0" prefWidth="100.0" text="Nom Gérant" textFill="#949090">
+               <font>
+                  <Font name="Lato Black" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="5.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Prénom Gérant" textFill="#949090">
+               <font>
+                  <Font name="Lato Black" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="5.0" top="27.0" />
+               </VBox.margin>
+            </Label>
+            <Label layoutX="15.0" layoutY="53.0" text="Mot de passe" textFill="#949090">
+               <font>
+                  <Font name="Lato Black" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="5.0" top="15.0" />
+               </VBox.margin>
+            </Label>
+            <Label layoutX="15.0" layoutY="53.0" prefHeight="18.0" prefWidth="93.0" text="Email" textFill="#949090">
+               <font>
+                  <Font name="Lato Black" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="5.0" top="27.0" />
+               </VBox.margin>
+            </Label>
+            <Label layoutX="15.0" layoutY="86.0" text="Téléphone" textFill="#949090">
+               <font>
+                  <Font name="Lato Black" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="5.0" top="22.0" />
+               </VBox.margin>
+            </Label>
+            <Label layoutX="15.0" layoutY="86.0" text="Date début abonnement" textFill="#949090">
+               <font>
+                  <Font name="Lato Black" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="5.0" top="24.0" />
+               </VBox.margin>
+            </Label>
+            <Label layoutX="15.0" layoutY="149.0" prefHeight="26.0" prefWidth="156.0" text="Date fin abonnement" textFill="#949090">
+               <font>
+                  <Font name="Lato Black" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="5.0" top="18.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="180.0" layoutY="40.0" prefHeight="220.0" prefWidth="174.0">
+         <children>
+            <TextField fx:id="nomGerant" blendMode="MULTIPLY" onKeyReleased="#nomGerantControl" prefHeight="20.0" prefWidth="174.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </TextField>
+            <Label fx:id="nomGcontrol" prefHeight="17.0" prefWidth="183.0" textFill="#ff3a3a">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <TextField fx:id="prenomGerant" blendMode="MULTIPLY" onKeyReleased="#prenomGerantControl">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </TextField>
+            <Label fx:id="prenomGcontrol" prefHeight="35.0" prefWidth="174.0" textFill="#ff3a3a">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="mdpGerant" blendMode="MULTIPLY" onKeyReleased="#mdpGerantControl">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </PasswordField>
+            <Label fx:id="mdpGcontrol" prefHeight="96.0" prefWidth="174.0" textFill="#ff3a3a">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <TextField fx:id="emailGerant" blendMode="MULTIPLY" onKeyReleased="#emailGerantControl">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </TextField>
+            <Label fx:id="emailGcontrol" prefHeight="35.0" prefWidth="174.0" textFill="#ff3a3a">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <TextField fx:id="telGerant" blendMode="MULTIPLY" onKeyReleased="#telGerantControl">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </TextField>
+            <Label fx:id="telGcontrol" prefHeight="35.0" prefWidth="174.0" textFill="#ff3a3a">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="dda" blendMode="MULTIPLY" onKeyReleased="#ddaGerantControl">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </DatePicker>
+            <Label fx:id="ddaGcontrol" prefHeight="35.0" prefWidth="174.0" textFill="#ff3a3a">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="ddf" blendMode="MULTIPLY" layoutX="10.0" layoutY="155.0" onKeyReleased="#ddfGerantControl">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <opaqueInsets>
+                  <Insets top="50.0" />
+               </opaqueInsets>
+            </DatePicker>
+            <Label fx:id="ddfGcontrol" prefHeight="35.0" prefWidth="174.0" textFill="#ff3a3a">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <ListView fx:id="listGerant" blendMode="MULTIPLY" layoutX="405.0" layoutY="49.0" onMousePressed="#index" prefHeight="257.0" prefWidth="379.0" />
+      <Button layoutX="483.0" layoutY="315.0" mnemonicParsing="false" onMouseClicked="#addGerant" style="-fx-background-color: #FFA69E; -fx-background-radius: 90;" text="Ajouter" textFill="WHITE">
+         <font>
+            <Font name="Lato Regular" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="557.0" layoutY="315.0" mnemonicParsing="false" onMouseClicked="#updateGerant" style="-fx-background-color: #FFA69E; -fx-background-radius: 90;" text="Modifier" textFill="WHITE">
+         <font>
+            <Font name="Lato Regular" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="639.0" layoutY="315.0" mnemonicParsing="false" onAction="#deleteGerant" style="-fx-background-color: #FFA69E; -fx-background-radius: 90;" text="Supprimer" textFill="WHITE">
+         <font>
+            <Font name="Lato Regular" size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="15.0" layoutY="7.0" text="Gestion des Gérants" textFill="#949090">
+         <font>
+            <Font name="Lato Black" size="23.0" />
+         </font>
+         <effect>
+            <InnerShadow color="#797575" height="0.0" radius="2.535" width="12.14" />
+         </effect>
+      </Label>
+      <Label layoutX="22.0" layoutY="362.0" text="Gestion des utilisateurs" textFill="#949090">
+         <font>
+            <Font name="Lato Black" size="23.0" />
+         </font>
+      </Label>
+      <Button layoutX="350.0" layoutY="542.0" mnemonicParsing="false" onAction="#deleteUser" style="-fx-background-color: #FFA69E; -fx-background-radius: 90;" text="Supprimer" textFill="WHITE">
+         <font>
+            <Font name="Lato Regular" size="14.0" />
+         </font>
+      </Button>
+      <Label fx:id="ddfGcontrol1" layoutX="10.0" layoutY="10.0" prefHeight="35.0" prefWidth="174.0" textFill="#ff3a3a">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label fx:id="formulairecontrol" layoutX="53.0" layoutY="333.0" prefHeight="17.0" prefWidth="261.0" textFill="#ff3c3c">
+         <font>
+            <Font name="Lato Black" size="12.0" />
+         </font>
+      </Label>
+      <ListView fx:id="listuser" layoutX="20.0" layoutY="399.0" prefHeight="140.0" prefWidth="769.0" />
+   </children>
+</AnchorPane>
