@@ -58,18 +58,35 @@ public class SignInController implements Initializable {
 
     @FXML
     private void connexion(ActionEvent event) {
-
         try {
             ServiceUser us = new ServiceUser();
             User usr = new User();
             usr.setEmail_user(tfusername.getText());
             usr.setPassword_user(tfpassword.getText());
             boolean verify = us.login(usr.getEmail_user(), usr.getPassword_user());
-            if (verify) {
+            CurrentUser = us.AssignCurrentUser(usr.getEmail_user(), usr.getPassword_user());
+
+            if (verify && !CurrentUser.getAdresse_user().equals("x")) {
                 try {
-                    CurrentUser = us.AssignCurrentUser(usr.getEmail_user(), usr.getPassword_user());
+
                     Stage primaryStage;
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("front.fxml"));
+                    Parent root1 = (Parent) fxmlLoader.load();
+                    Stage stage = new Stage();
+//                  stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.setScene(new Scene(root1));
+                    stage.initStyle(StageStyle.UNDECORATED);
+                    stage.show();
+                    Stage CurrentStage = (Stage) login.getScene().getWindow();
+                    CurrentStage.close();
+                } catch (IOException ex) {
+                    ex.getMessage();
+                }
+
+            } else if (verify) {
+                try {
+                    Stage primaryStage;
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("form.fxml"));
                     Parent root1 = (Parent) fxmlLoader.load();
                     Stage stage = new Stage();
 //                  stage.initModality(Modality.APPLICATION_MODAL);
@@ -82,10 +99,6 @@ public class SignInController implements Initializable {
                 } catch (IOException ex) {
                     ex.getMessage();
                 }
-            } else {
-
-                //message errur 
-                //iffasakh les champs el kol
             }
 
         } catch (SQLException ex) {
@@ -94,7 +107,8 @@ public class SignInController implements Initializable {
     }
 
     @FXML
-    private void emailControl(KeyEvent event) {
+    private void emailControl(KeyEvent event
+    ) {
         String PATTERN = "^[a-zA-Z0-9]{0,30}[@][a-zA-Z0-9]{0,10}[.][a-zA-Z]{0,5}$";
         Pattern p = Pattern.compile(PATTERN);
         Matcher match = p.matcher(tfusername.getText());
@@ -106,8 +120,9 @@ public class SignInController implements Initializable {
     }
 
     @FXML
-    private void mdpControl(KeyEvent event) {
-        String PATTERN ="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=\\S+$).{8,15}$";
+    private void mdpControl(KeyEvent event
+    ) {
+        String PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=\\S+$).{8,15}$";
         Pattern p = Pattern.compile(PATTERN);
         Matcher match = p.matcher(tfpassword.getText());
         if (!match.matches()) {

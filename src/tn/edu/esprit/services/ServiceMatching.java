@@ -6,7 +6,6 @@
 package tn.edu.esprit.services;
 
 import tn.edu.esprit.interfaces.IService;
-import tn.edu.esprit.gps.Mapa;
 import tn.edu.esprit.model.Matching;
 import tn.edu.esprit.model.User;
 import java.sql.Connection;
@@ -213,11 +212,11 @@ public class ServiceMatching implements IService<Matching> {
                 .collect(Collectors.toList());
     }
 
-    public void mapGPS(User u) {
-
-        final Mapa example = new Mapa("test", u.getLatitude_user(), u.getLongitude_user());
-        example.generateMarker(Mapa.map.getCenter());
-    }
+//    public void mapGPS(User u) {
+//
+//        final Mapa example = new Mapa("test", u.getLatitude_user(), u.getLongitude_user());
+//        example.generateMarker(Mapa.map.getCenter());
+//    }
 
     //  This function converts decimal degrees to radians
     private double deg2rad(double deg) {
