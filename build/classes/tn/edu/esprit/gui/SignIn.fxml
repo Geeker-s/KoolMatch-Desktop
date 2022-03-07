@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox id="VBox " alignment="CENTER" prefHeight="480.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.edu.esprit.gui.SignInController">
+<VBox id="VBox " alignment="CENTER" prefHeight="480.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.edu.esprit.gui.SignInController">
    <children>
       <Label alignment="CENTER" contentDisplay="BOTTOM" prefHeight="45.0" prefWidth="200.0" text="Connexion" textAlignment="CENTER" textFill="#ffa69e">
          <font>
@@ -24,16 +24,21 @@
             <Insets left="15.0" right="15.0" top="20.0" />
          </VBox.margin>
          <children>
-            <TextField fx:id="tfusername" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Email" HBox.hgrow="ALWAYS">
+            <TextField fx:id="tfusername" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onKeyReleased="#emailControl" promptText="Email" HBox.hgrow="ALWAYS">
                <font>
                   <Font size="15.0" />
                </font>
             </TextField>
          </children>
       </HBox>
+      <Label fx:id="emailcontrol" prefHeight="37.0" prefWidth="446.0" textFill="#ff4141">
+         <font>
+            <Font name="Tahoma" size="12.0" />
+         </font>
+      </Label>
       <HBox alignment="CENTER" layoutX="25.0" layoutY="95.0" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: trasparent; -fx-border-color: #DEDEE4; -fx-border-width: 0,0,1,0;">
          <children>
-            <PasswordField fx:id="tfpassword" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Mot de passe" HBox.hgrow="ALWAYS">
+            <PasswordField fx:id="tfpassword" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onKeyReleased="#mdpControl" promptText="Mot de passe" HBox.hgrow="ALWAYS">
                <font>
                   <Font size="15.0" />
                </font>
@@ -43,6 +48,11 @@
             <Insets left="15.0" right="15.0" top="20.0" />
          </VBox.margin>
       </HBox>
+      <Label fx:id="passcontrol" prefHeight="100.0" prefWidth="446.0" textFill="#ff4141">
+         <font>
+            <Font name="Tahoma" size="12.0" />
+         </font>
+      </Label>
       <HBox alignment="CENTER" layoutX="25.0" layoutY="95.0" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: trasparent; -fx-border-color: #DEDEE4; -fx-border-width: 0,0,1,0;">
          <children>
             <Button alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Mot de passe oublié ?" HBox.hgrow="ALWAYS">

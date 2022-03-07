@@ -46,7 +46,6 @@ public class SignUpController implements Initializable {
     private ComboBox sexe;
     @FXML
     private Button btnsignup;
-    @FXML
     private TextField adresse;
     @FXML
     private TextField tel;
@@ -82,7 +81,6 @@ public class SignUpController implements Initializable {
         String Sdate = String.valueOf(FDate);
         u.setDateNaissance_user(Date.valueOf(Sdate));
         u.setSexe_user(sexe.getSelectionModel().getSelectedItem().toString());
-        u.setAdresse_user(adresse.getText());
         us.ajouter(u);
         nom.setText("");
         prenom.setText("");
@@ -91,7 +89,7 @@ public class SignUpController implements Initializable {
         tel.setText("");
         datenaissance.getEditor().clear();
         sexe.setValue("");
-        adresse.setText("");
+        
 
     }
 

@@ -93,7 +93,52 @@ public class ServiceGerant implements IService<Gerant> {
 
         return true;
     }
+public Boolean login(String u, String p) throws SQLException {
+        String req = "SELECT * FROM `gerant` WHERE email_gerant =\'" + u + "\' and password_gerant=\'" + p + "\'";
+        Gerant a = new Gerant();
+        try {
+            Statement ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            System.out.println(rs);
+            if (rs != null) {
+                while (rs.next()) {
 
+                    a.setId_gerant(rs.getInt("id_gerant"));
+                    a.setEmail_gerant(rs.getString("email_gerant"));
+                    a.setPassword_gerant(rs.getString("password_gerant"));
+                    return true;
+                }
+            }
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
+        return false;
+    }
+
+    public Gerant AssignCurrentGerant(String u, String p) throws SQLException {
+        Gerant g = new Gerant();
+        String req = "SELECT * FROM `gerant` WHERE email_gerant =\'" + u + "\' and password_gerant=\'" + p + "\'";
+        try {
+            Statement ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(req);
+            if (rs != null) {
+                while (rs.next()) {
+                    g.setId_gerant(rs.getInt("id_gerant"));
+                    g.setNom_gerant(rs.getString("nom_gerant"));
+                    g.setPrenom_gerant(rs.getString("prenom_gerant"));
+                    g.setEmail_gerant(rs.getString("email_gerant"));
+                    g.setPassword_gerant(rs.getString("password_gerant"));
+                    g.setTelephone_gerant(rs.getInt("telephone_gerant"));
+                    g.setDd_abonnement(rs.getDate("dd_abonnement"));
+                    g.setDf_abonnement(rs.getDate("df_abonnement"));
+
+                }
+            }
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
+        return g;
+    }
     @Override
     public List<Gerant> rechercher(Gerant p) {
         List<Gerant> g = afficher();

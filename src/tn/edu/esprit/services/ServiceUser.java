@@ -93,27 +93,7 @@ public class ServiceUser implements IService<User> {
         return true;
     }
 
-//    public boolean login(String login_user, String password_user) {
-//        boolean success = false;
-//        try {
-//            Statement stm = cnx.createStatement();
-//            String req = "SELECT password_user FROM user WHERE login_user='" + login_user + "'";
-//            ResultSet rs = stm.executeQuery(req);
-//            rs = stm.executeQuery(req);
-//            while (rs.next()) {
-//                if (password_user.equals(rs.getString(1))) {
-//                    System.out.println("Bienvenue");
-//                } else {
-//                    System.out.println("Vérifier mot de passe");
-//                }
-//            return false;
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        return success;
-//    }
+
     public Boolean login(String u, String p) throws SQLException {
         String req = "SELECT * FROM `user` WHERE email_user =\'" + u + "\' and password_user=\'" + p + "\'";
         User user = new User();
