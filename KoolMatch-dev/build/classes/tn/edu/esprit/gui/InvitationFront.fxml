@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane id="AnchorPane" prefHeight="526.0" prefWidth="814.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.edu.esprit.gui.InvitationFrontController">
+    <stylesheets>
+        <URL value="@fxmlinvfront.css" />
+    </stylesheets>
+   <children>
+      <Pane layoutX="177.0" layoutY="91.0" prefHeight="526.0" prefWidth="814.0" style="-fx-background-color: F5F5F5;" stylesheets="@StyleSheet.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ListView fx:id="listvI" layoutX="318.0" layoutY="89.0" prefHeight="349.0" prefWidth="469.0" styleClass="tabv" stylesheets="@StyleSheet.css" />
+            <Pane layoutX="-4.0" layoutY="-7.0" prefHeight="533.0" prefWidth="209.0" styleClass="pane" stylesheets="@StyleSheet.css">
+               <children>
+                  <Label layoutX="34.0" layoutY="35.0" prefHeight="48.0" prefWidth="169.0" styleClass="label_title" stylesheets="@StyleSheet.css" text="Invitations " />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
