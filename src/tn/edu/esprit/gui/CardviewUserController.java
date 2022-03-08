@@ -7,62 +7,67 @@ package tn.edu.esprit.gui;
 
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import tn.edu.esprit.model.User;
-import tn.edu.esprit.services.ServiceMatching;
 import tn.edu.esprit.services.ServiceUser;
 
 /**
  * FXML Controller class
  *
- * @author dedpy
+ * @author MED ZOUARI
  */
-public class CardController implements Initializable {
+public class CardviewUserController implements Initializable {
 
-    private ImageView photo;
+    @FXML
+    private Circle photo;
     @FXML
     private Label nom;
+    @FXML
     private Label age;
+    @FXML
     private Label adresse;
+    @FXML
     private Label description;
+    @FXML
+    private Button sup;
+    List<User> users = new ArrayList<>();
 
-    FrontController mainControll;
-    @FXML
-    private Label tel;
-    @FXML
-    private Label dda;
-    @FXML
-    private Label ddf;
-
-    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
-    }
-
-    public void setMainController(FrontController controller) {
-        this.mainControll = controller;
     }
 
     public void setAffichage(User u) {
-        ServiceMatching match = new ServiceMatching();
+        ServiceUser user = new ServiceUser();
         File file = new File("src/tn/edu/esprit/images/" + u.getPhoto_user());
         Image image = new Image(file.toURI().toString());
-        photo.setImage(image);
-        nom.setText(u.getNom_user());
-        age.setText(String.valueOf(match.calculateAge(u)));
+        photo.setFill(new ImagePattern(image));
+        nom.setText(u.getNom_user()+" "+u.getPrenom_user());
+        age.setText(String.valueOf(user.calculateAge(u)));
         adresse.setText(u.getAdresse_user());
         description.setText(u.getDescription_user());
     }
 
+
+
+    @FXML
+    private void deleteUser(ActionEvent event) {
+
+        
+    }
 }

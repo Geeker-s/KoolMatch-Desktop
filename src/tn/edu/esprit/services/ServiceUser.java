@@ -7,9 +7,11 @@ package tn.edu.esprit.services;
 
 import tn.edu.esprit.model.User;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -181,4 +183,27 @@ public class ServiceUser implements IService<User> {
         return success;
 
     }
+    public static int calculateAge(User u) {
+        int year;
+        year = u.getDateNaissance_user().getYear();
+        return Date.valueOf(LocalDate.now()).getYear() - year;
+    }
+
+public String selectPassword(String email_user) {
+
+        try {
+            Statement stm = cnx.createStatement();
+            String querry = "SELECT * from user where email_user= '" + email_user + "'";
+
+            ResultSet rs = stm.executeQuery(querry);
+            while (rs.next()) {
+
+                return rs.getString(3);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return "this username is not related to any account in estn";
+    }
+    
 }

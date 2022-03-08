@@ -139,52 +139,52 @@ public class SignInController implements Initializable {
         }
     }
 
-//    @FXML
-//    private void ForgetPassword(ActionEvent event) {
-//        ServiceUser us = new ServiceUser();
-//
-//        String to = us.selectEmail(tfusername.getText());
-//        String from = "emailmteei";
-//        String host = "smtp.gmail.com";
-//        final String username = "emailmteei";
-//        final String password = "mdp";
-//
-//        //setup mail server
-//        Properties props = System.getProperties();
-//        props.put("mail.smtp.auth", "true");
-//        props.put("mail.smtp.starttls.enable", "true");
-//        props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
-//
-//        props.put("mail.smtp.host", host);
-//        props.put("mail.smtp.port", "587");
-//
-//        Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
-//            @Override
-//            protected PasswordAuthentication getPasswordAuthentication() {
-//                return new PasswordAuthentication(username, password);
-//            }
-//        });
-//
-//        try {
-//
-//            //create mail
-//            MimeMessage m = new MimeMessage(session);
-//            m.setFrom(new InternetAddress(from));
-//            m.addRecipient(MimeMessage.RecipientType.TO, new InternetAddress(to));
-//            m.setSubject("Reset your password!");
-//            m.setText("Hey! your password is : " + us.selectPassword(tfusername.getText()));
-//
-//            //send mail
-//            Transport.send(m);
-//
-//            System.out.println("Message sent!");
-//
-//        } catch (MessagingException e) {
-//            e.printStackTrace();
-//        }
-//
-//        tfusername.clear();
-//        tfpassword.clear();
-//    }
+    @FXML
+    private void ForgetPassword(ActionEvent event) {
+        ServiceUser us = new ServiceUser();
+        User usr = new User();
+        String to = tfusername.getText();
+        String from = "matchkool@gmail.com";
+        String host = "smtp.gmail.com";
+        final String username = "matchkool@gmail.com";
+        final String password = "esprit123*";
+
+        //setup mail server
+        Properties props = System.getProperties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.port", "587");
+
+        Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+
+        try {
+
+            //create mail
+            MimeMessage m = new MimeMessage(session);
+            m.setFrom(new InternetAddress(from));
+            m.addRecipient(MimeMessage.RecipientType.TO, new InternetAddress(to));
+            m.setSubject("Reset your password!");
+            m.setText("Hey! Votre mot de passe est: " +  us.selectPassword(tfusername.getText()));
+
+            //send mail
+            Transport.send(m);
+
+            System.out.println("Message sent!");
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+
+        tfusername.clear();
+        tfpassword.clear();
+    }
 
 }

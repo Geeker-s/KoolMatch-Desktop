@@ -3,10 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/MED%20ZOUARI/Desktop/Maroo/KoolMatch/src/tn/edu/esprit/gui/CardviewUserController.java</file>
+            <file>file:/C:/Users/MED%20ZOUARI/Desktop/Maroo/KoolMatch/src/tn/edu/esprit/gui/GestionUserController.java</file>
             <file>file:/C:/Users/MED%20ZOUARI/Desktop/Maroo/KoolMatch/src/tn/edu/esprit/gui/SignInController.java</file>
-            <file>file:/C:/Users/MED%20ZOUARI/Desktop/Maroo/KoolMatch/src/tn/edu/esprit/utils/Mail.java</file>
-            <file>file:/C:/Users/MED%20ZOUARI/Desktop/Maroo/KoolMatch/src/tn/edu/esprit/gui/SignIn.fxml</file>
-            <file>file:/C:/Users/MED%20ZOUARI/Desktop/Maroo/KoolMatch/src/tn/edu/esprit/utils/MyDB.java</file>
+            <file>file:/C:/Users/MED%20ZOUARI/Desktop/Maroo/KoolMatch/src/tn/edu/esprit/gui/KoolmatchFX.java</file>
+            <file>file:/C:/Users/MED%20ZOUARI/Desktop/Maroo/KoolMatch/src/tn/edu/esprit/services/ServiceUser.java</file>
+            <file>file:/C:/Users/MED%20ZOUARI/Desktop/Maroo/KoolMatch/src/tn/edu/esprit/gui/LoginController.java</file>
+            <file>file:/C:/Users/MED%20ZOUARI/Desktop/Maroo/KoolMatch/src/tn/edu/esprit/gui/CardviewGerantController.java</file>
         </group>
     </open-files>
 </project-private>
