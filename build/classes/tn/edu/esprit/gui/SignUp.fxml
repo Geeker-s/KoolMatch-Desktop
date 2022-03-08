@@ -26,7 +26,7 @@
             <Insets left="15.0" right="15.0" top="20.0" />
          </VBox.margin>
          <children>
-            <TextField fx:id="nom" maxHeight="1.7976931348623157E308" prefHeight="45.0" prefWidth="218.0" promptText="Nom" HBox.hgrow="ALWAYS">
+            <TextField fx:id="nom" maxHeight="1.7976931348623157E308" onKeyReleased="#nomUControl" prefHeight="45.0" prefWidth="218.0" promptText="Nom" HBox.hgrow="ALWAYS">
                <font>
                   <Font size="15.0" />
                </font>
@@ -36,7 +36,7 @@
             </TextField>
             <HBox alignment="CENTER" prefHeight="45.0" prefWidth="241.0" style="-fx-background-color: trasparent; -fx-border-color: #DEDEE4; -fx-border-width: 0,0,1,0;">
                <children>
-                  <TextField fx:id="prenom" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="45.0" prefWidth="182.0" promptText="Prénom" HBox.hgrow="ALWAYS">
+                  <TextField fx:id="prenom" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onKeyReleased="#prenomUcontrol" prefHeight="45.0" prefWidth="182.0" promptText="Prénom" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -48,26 +48,44 @@
             </HBox>
          </children>
       </HBox>
+      <HBox maxWidth="-Infinity" prefHeight="27.0" prefWidth="453.0">
+         <children>
+            <Label fx:id="nomcontrol" prefHeight="24.0" prefWidth="209.0" textFill="#ff3434">
+               <HBox.margin>
+                  <Insets left="2.0" right="10.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="prenomcontrol" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="223.0" textFill="#ff4848">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
       <HBox alignment="CENTER" layoutX="25.0" layoutY="173.0" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: trasparent; -fx-border-color: #DEDEE4; -fx-border-width: 0,0,1,0;">
          <children>
-            <TextField fx:id="email" maxHeight="1.7976931348623157E308" prefHeight="45.0" prefWidth="100.0" promptText="Email" HBox.hgrow="ALWAYS">
+            <TextField fx:id="email" maxHeight="1.7976931348623157E308" onKeyReleased="#emailUcontrol" prefHeight="45.0" prefWidth="100.0" promptText="Email" HBox.hgrow="ALWAYS">
                <font>
                   <Font size="15.0" />
                </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
             </TextField>
          </children>
          <VBox.margin>
             <Insets left="15.0" right="15.0" top="20.0" />
          </VBox.margin>
       </HBox>
+      <Label fx:id="emailcontrol" prefHeight="30.0" prefWidth="453.0" textFill="#ff3434" />
       <HBox alignment="CENTER" layoutX="25.0" layoutY="95.0" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: trasparent; -fx-border-color: #DEDEE4; -fx-border-width: 0,0,1,0;">
          <children>
-            <PasswordField fx:id="mdp" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="45.0" prefWidth="186.0" promptText="Mot de passe" HBox.hgrow="ALWAYS">
+            <PasswordField fx:id="mdp" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onKeyReleased="#mdpUcontrol" prefHeight="45.0" prefWidth="186.0" promptText="Mot de passe" HBox.hgrow="ALWAYS">
                <font>
                   <Font size="15.0" />
                </font>
             </PasswordField>
-            <TextField fx:id="tel" maxHeight="1.7976931348623157E308" prefHeight="45.0" prefWidth="211.0" promptText="Téléphone">
+            <TextField fx:id="tel" maxHeight="1.7976931348623157E308" onKeyReleased="#telUcontrol" prefHeight="45.0" prefWidth="198.0" promptText="Téléphone">
                <opaqueInsets>
                   <Insets left="5.0" />
                </opaqueInsets>
@@ -79,6 +97,20 @@
          <VBox.margin>
             <Insets left="15.0" right="15.0" top="20.0" />
          </VBox.margin>
+      </HBox>
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="449.0">
+         <children>
+            <Label fx:id="mdpcontrol" prefHeight="31.0" prefWidth="230.0" textFill="#ff3434">
+               <HBox.margin>
+                  <Insets left="2.0" right="10.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="telcontrol" prefHeight="33.0" prefWidth="216.0" textFill="#ff3434">
+               <HBox.margin>
+                  <Insets left="24.0" />
+               </HBox.margin>
+            </Label>
+         </children>
       </HBox>
       <HBox alignment="CENTER" layoutX="25.0" layoutY="238.0" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: trasparent; -fx-border-color: #DEDEE4; -fx-border-width: 0,0,1,0;">
          <VBox.margin>
@@ -97,21 +129,23 @@
             </ComboBox>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="25.0" layoutY="205.0" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: trasparent; -fx-border-color: #DEDEE4; -fx-border-width: 0,0,1,0;">
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="453.0">
          <children>
-            <TextField fx:id="adresse" maxHeight="1.7976931348623157E308" prefHeight="45.0" prefWidth="229.0" promptText="Adresse" HBox.hgrow="ALWAYS">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </TextField>
+            <Label fx:id="dncontrol" prefHeight="36.0" prefWidth="232.0" textFill="#ff3434">
+               <HBox.margin>
+                  <Insets left="4.0" right="10.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="sexcontrol" prefHeight="32.0" prefWidth="207.0" textFill="#ff3434">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Label>
          </children>
-         <VBox.margin>
-            <Insets left="15.0" right="15.0" top="20.0" />
-         </VBox.margin>
       </HBox>
-      <HBox alignment="CENTER" layoutX="25.0" layoutY="95.0" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: trasparent; -fx-border-color: #DEDEE4; -fx-border-width: 0,0,1,0;">
+      <HBox alignment="CENTER" layoutX="25.0" layoutY="95.0" prefHeight="94.0" prefWidth="450.0" style="-fx-background-color: trasparent; -fx-border-color: #DEDEE4; -fx-border-width: 0,0,1,0;">
          <children>
-            <Button fx:id="btnsignup" mnemonicParsing="false" onAction="#signup" prefHeight="39.0" prefWidth="120.0" style="-fx-background-color: #FFA69E; -fx-background-radius: 5; -fx-text-fill: #FFFFFF;" text="S'inscrire">
+            <Button fx:id="btnsignup" mnemonicParsing="false" onAction="#signup" prefHeight="31.0" prefWidth="120.0" style="-fx-background-color: #FFA69E; -fx-background-radius: 5; -fx-text-fill: #FFFFFF;" text="S'inscrire">
                <font>
                   <Font size="15.0" />
                </font>

@@ -8,6 +8,7 @@ package tn.edu.esprit.gui;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,6 +27,12 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import static tn.edu.esprit.gui.LoginController.CurrentUser;
 import tn.edu.esprit.model.User;
 import tn.edu.esprit.services.ServiceUser;
@@ -58,18 +65,35 @@ public class SignInController implements Initializable {
 
     @FXML
     private void connexion(ActionEvent event) {
-
         try {
             ServiceUser us = new ServiceUser();
             User usr = new User();
             usr.setEmail_user(tfusername.getText());
             usr.setPassword_user(tfpassword.getText());
             boolean verify = us.login(usr.getEmail_user(), usr.getPassword_user());
-            if (verify) {
+            CurrentUser = us.AssignCurrentUser(usr.getEmail_user(), usr.getPassword_user());
+
+            if (verify && !CurrentUser.getAdresse_user().equals("x")) {
                 try {
-                    CurrentUser = us.AssignCurrentUser(usr.getEmail_user(), usr.getPassword_user());
+
                     Stage primaryStage;
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("front.fxml"));
+                    Parent root1 = (Parent) fxmlLoader.load();
+                    Stage stage = new Stage();
+//                  stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.setScene(new Scene(root1));
+                    stage.initStyle(StageStyle.UNDECORATED);
+                    stage.show();
+                    Stage CurrentStage = (Stage) login.getScene().getWindow();
+                    CurrentStage.close();
+                } catch (IOException ex) {
+                    ex.getMessage();
+                }
+
+            } else if (verify) {
+                try {
+                    Stage primaryStage;
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("form.fxml"));
                     Parent root1 = (Parent) fxmlLoader.load();
                     Stage stage = new Stage();
 //                  stage.initModality(Modality.APPLICATION_MODAL);
@@ -82,10 +106,6 @@ public class SignInController implements Initializable {
                 } catch (IOException ex) {
                     ex.getMessage();
                 }
-            } else {
-
-                //message errur 
-                //iffasakh les champs el kol
             }
 
         } catch (SQLException ex) {
@@ -94,7 +114,8 @@ public class SignInController implements Initializable {
     }
 
     @FXML
-    private void emailControl(KeyEvent event) {
+    private void emailControl(KeyEvent event
+    ) {
         String PATTERN = "^[a-zA-Z0-9]{0,30}[@][a-zA-Z0-9]{0,10}[.][a-zA-Z]{0,5}$";
         Pattern p = Pattern.compile(PATTERN);
         Matcher match = p.matcher(tfusername.getText());
@@ -106,15 +127,64 @@ public class SignInController implements Initializable {
     }
 
     @FXML
-    private void mdpControl(KeyEvent event) {
-        String PATTERN ="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=\\S+$).{8,15}$";
+    private void mdpControl(KeyEvent event
+    ) {
+        String PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!/@#$%^&*])(?=\\S+$).{8,15}$";
         Pattern p = Pattern.compile(PATTERN);
         Matcher match = p.matcher(tfpassword.getText());
         if (!match.matches()) {
-            passcontrol.setText("Mot de passe doit contenir minimum 9 caractére \nMinimum un carctére miniscule et un caractère majuscule \nDoit contenir un carctère spécial ! @ # &");
+            passcontrol.setText("Mot de passe non valide");
         } else {
             passcontrol.setText(null);
         }
     }
+
+//    @FXML
+//    private void ForgetPassword(ActionEvent event) {
+//        ServiceUser us = new ServiceUser();
+//
+//        String to = us.selectEmail(tfusername.getText());
+//        String from = "emailmteei";
+//        String host = "smtp.gmail.com";
+//        final String username = "emailmteei";
+//        final String password = "mdp";
+//
+//        //setup mail server
+//        Properties props = System.getProperties();
+//        props.put("mail.smtp.auth", "true");
+//        props.put("mail.smtp.starttls.enable", "true");
+//        props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+//
+//        props.put("mail.smtp.host", host);
+//        props.put("mail.smtp.port", "587");
+//
+//        Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+//            @Override
+//            protected PasswordAuthentication getPasswordAuthentication() {
+//                return new PasswordAuthentication(username, password);
+//            }
+//        });
+//
+//        try {
+//
+//            //create mail
+//            MimeMessage m = new MimeMessage(session);
+//            m.setFrom(new InternetAddress(from));
+//            m.addRecipient(MimeMessage.RecipientType.TO, new InternetAddress(to));
+//            m.setSubject("Reset your password!");
+//            m.setText("Hey! your password is : " + us.selectPassword(tfusername.getText()));
+//
+//            //send mail
+//            Transport.send(m);
+//
+//            System.out.println("Message sent!");
+//
+//        } catch (MessagingException e) {
+//            e.printStackTrace();
+//        }
+//
+//        tfusername.clear();
+//        tfpassword.clear();
+//    }
 
 }

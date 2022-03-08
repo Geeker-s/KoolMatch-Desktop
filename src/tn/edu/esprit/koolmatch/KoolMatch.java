@@ -81,7 +81,6 @@ public class KoolMatch {
 //        ---------Gestion Matching
 //        match.hex("010"); //hexcode du profile
 //        match.ajouter(new Matching(foulen.getId_user(), foulena.getId_user(), Date.valueOf(LocalDate.now())));
-//        match.mapGPS(foulen);
 //        double kilo = match.distance(foulen.getLatitude_user(), foulen.getLongitude_user(), foulena.getLatitude_user(), foulena.getLongitude_user());
 //        System.out.println("\n\t" + kilo);
 //        match.supprimer(new Matching(1));
