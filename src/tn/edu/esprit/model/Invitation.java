@@ -12,17 +12,27 @@ package tn.edu.esprit.model;
 public class Invitation {
     
     private int id_invitation;
-    private int id_event;
+    private String nom_event;
     private int id_user;
+     private int archive;
 
-    public Invitation(int id_invitation, int id_event, int id_user) {
+    public Invitation(int id_invitation, String nom_event, int id_user, int archive) {
         this.id_invitation = id_invitation;
-        this.id_event = id_event;
+        this.nom_event = nom_event;
+        this.id_user = id_user;
+        this.archive = archive;
+    }
+
+    public Invitation(int id_invitation,  String nom_event, int id_user) {
+        this.id_invitation = id_invitation;
+        this.nom_event = nom_event;
         this.id_user = id_user;
     }
 
-    public Invitation(int id_event, int id_user) {
-        this.id_event = id_event;
+   
+
+    public Invitation( String nom_event, int id_user) {
+        this.nom_event = nom_event;
         this.id_user = id_user;
     }
 
@@ -39,21 +49,58 @@ public class Invitation {
         return id_invitation;
     }
 
-    public int getId_event() {
-        return id_event;
+    public String getNom_event() {
+        return nom_event;
     }
 
     public int getId_user() {
         return id_user;
     }
 
+    public int getArchive() {
+        return archive;
+    }
+    
+
+    public void setNom_event(String nom_event) {
+        this.nom_event = nom_event;
+    }
+
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
+    }
+
+    public void setId_invitation(int id_invitation) {
+        this.id_invitation = id_invitation;
+    }
+    
+
+    public void setArchive(int archive) {
+        this.archive = archive;
+    }
+
+  
+    
+    
+
     @Override
     public String toString() {
-        return "invitation{" + "id_invitation=" + id_invitation + ", id_event=" + id_event + ", id_user=" + id_user + '}';
+        return
+                String.format( "%-20s",id_invitation)
+               +  String.format("%-20s",nom_event)
+                + String.format( "%-20s",id_user);
+// "invitation{" + "id_invitation=" + id_invitation + ", nom_event=" + nom_event + ", id_user=" + id_user + '}';
     }
+
 
     
     
     
     
 }
+   
+    
+    
+    
+    
+

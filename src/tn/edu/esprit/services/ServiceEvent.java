@@ -18,6 +18,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import tn.edu.esprit.utils.MyDB;
 
@@ -69,7 +70,12 @@ public class ServiceEvent implements IService<Evenement> {
     public boolean modifer(Evenement p) {
 
         try {
-            String req = " UPDATE `evenement` SET `nom_event` = '" + p.getNom_event() + "' WHERE `id_event` = '" + p.getId_event() + "'";
+            String req = " UPDATE `evenement` SET `nom_event`= '" + p.getNom_event()+ "' , "
+                    + "`dd_event` ='" + p.getDd_event() + "' ,"
+                    + "`df_event`='" + p.getDf_event() + "',"
+                    + "`theme_event`='" + p.getTheme_event() + "',"
+                    + "`adresse_event`='" + p.getAdresse_event() + "',"
+                    + "`telephone` = '" + p.getTelephone() + "' WHERE `id_event` = '" + p.getId_event()+ "'";
             Statement stm = cnx.createStatement();
             stm.executeUpdate(req);
         } catch (SQLException ex) {
@@ -104,5 +110,31 @@ public class ServiceEvent implements IService<Evenement> {
         List<Evenement> events = afficher();
         return events.stream().sorted(comparator).collect(Collectors.toList());
     }
+    
+    
+    
+    public List<String> affichernom() {
+        List<String> events = new ArrayList<>();
+        try {
+            String req = "SELECT `nom_event` FROM `evenement`  WHERE archive = 0 ";
 
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+
+            while (rs.next()) {
+                events.add(rs.getString(1));
+            }
+
+        } catch (SQLException ex) {
+            ex.getStackTrace();
+        }
+        return events;
+    }
+    
+    
+     
+        
+ 
 }
+
+

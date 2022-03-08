@@ -189,11 +189,19 @@ public class FrontController implements Initializable {
         } catch (IOException ex) {
             ex.getMessage();
         }
-                FXMLLoader loaderRecette = new FXMLLoader(getClass().getResource("RecetteFront.fxml"));
+        FXMLLoader loaderRecette = new FXMLLoader(getClass().getResource("RecetteFront.fxml"));
         Pane newLoadedRecette;
         try {
             newLoadedRecette = loaderRecette.load();
             pnlRecettes.getChildren().add(newLoadedRecette);
+        } catch (IOException ex) {
+            ex.getMessage();
+        }
+        FXMLLoader loadEvent = new FXMLLoader(getClass().getResource("Event.fxml"));
+        Pane newLoadedEvent;
+        try {
+            newLoadedEvent = loadEvent.load();
+            pnlEvent.getChildren().add(newLoadedEvent);
         } catch (IOException ex) {
             ex.getMessage();
         }

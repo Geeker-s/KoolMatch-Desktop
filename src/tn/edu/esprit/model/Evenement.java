@@ -44,6 +44,7 @@ public class Evenement {
         this.adresse_event = adresse_event;
         this.telephone = telephone;
     }
+    
 
     public Evenement(int id_event) {
         this.id_event = id_event;
@@ -125,8 +126,22 @@ public class Evenement {
 
     @Override
     public String toString() {
-        return "Evenement{" + "id_event=" + id_event + ", nom_event=" + nom_event + ", dd_event=" + dd_event + ", df_event=" + df_event + ", theme_event=" + theme_event + ", adresse_event=" + adresse_event + ", telephone=" + telephone + ", archive=" + archive + '}';
+        return 
+      
+                //"Evenement{" + "id_event=" + id_event + ", nom_event=" + nom_event + ", dd_event=" + dd_event + ", df_event=" + df_event + ", theme_event=" + theme_event + ", adresse_event=" + adresse_event + ", telephone=" + telephone + ", archive=" + archive + '}';
+                String.format( "%-20s",id_event)
+               +  String.format( "%-20s",nom_event)
+                + String.format( "%-20s",dd_event)
+                + String.format( "%-20s",df_event)
+                + String.format( "%-20s",theme_event)
+                + String.format( "%-20s",adresse_event)
+                
+                + String.format( "%-20s",telephone) ;
+                
     }
+    
+    
+    
 
 
 
