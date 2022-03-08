@@ -21,6 +21,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -35,6 +36,8 @@ import javafx.scene.input.TransferMode;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 import static tn.edu.esprit.gui.LoginController.CurrentUser;
 import tn.edu.esprit.model.Restaurant;
 import tn.edu.esprit.services.ServiceRestaurant;
@@ -217,6 +220,15 @@ public class FormulaireRestaurantController implements Initializable {
             Files.copy(pathfrom, pathto, StandardCopyOption.REPLACE_EXISTING);
 
             sp.ajouter(p);
+            
+        
+        Notifications notificationBuilder = Notifications.create()
+        .title("Alert").text("Restaurant ajouté avec succé").graphic(null).hideAfter(Duration.seconds(3))
+                .position(Pos.BOTTOM_RIGHT);
+        notificationBuilder.darkStyle();
+        notificationBuilder.show();
+        
+         
         Scene scene = new Scene(FXMLLoader.load(getClass().getResource("AfficherRestaurant.fxml")));
 
         Stage stage = new Stage();

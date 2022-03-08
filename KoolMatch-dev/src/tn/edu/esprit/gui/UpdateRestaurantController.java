@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -23,6 +24,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 import tn.edu.esprit.model.Restaurant;
 import tn.edu.esprit.services.ServiceRestaurant;
 
@@ -91,6 +94,13 @@ public class UpdateRestaurantController implements Initializable {
         p1.setNb_placeResto(Integer.parseInt(id_nomb.getText()));
         p1.setTelephone_restaurant(Integer.parseInt(id_tel.getText()));
        service.update(p1);
+       
+        Notifications notificationBuilder = Notifications.create()
+        .title("Alert").text("Restaurant Modifié avec succès").graphic(null).hideAfter(Duration.seconds(3))
+                .position(Pos.BOTTOM_RIGHT);
+        notificationBuilder.darkStyle();
+        notificationBuilder.show();
+        
         
         Scene scene = new Scene(FXMLLoader.load(getClass().getResource("AfficherRestaurant.fxml")));
        

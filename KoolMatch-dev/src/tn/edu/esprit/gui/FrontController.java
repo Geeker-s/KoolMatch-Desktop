@@ -181,7 +181,7 @@ public class FrontController implements Initializable {
         } catch (IOException ex) {
             ex.getMessage();
         }
-          FXMLLoader loadRestaurant = new FXMLLoader(getClass().getResource("Front_Reservation.fxml"));
+          FXMLLoader loadRestaurant = new FXMLLoader(getClass().getResource("Front_reservation.fxml"));
         Pane PaneRestau;
         try {
             PaneRestau = loadRestaurant.load();

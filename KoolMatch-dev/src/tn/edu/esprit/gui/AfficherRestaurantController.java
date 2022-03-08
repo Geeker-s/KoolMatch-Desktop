@@ -45,6 +45,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import tn.edu.esprit.api.FB;
 import tn.edu.esprit.model.Restaurant;
@@ -60,7 +61,7 @@ public class AfficherRestaurantController implements Initializable {
     public String recherche = "";
 
     final Tooltip tooltip = new Tooltip();
-    
+
     private Restaurant p1;
 
     ServiceRestaurant service_pr = new ServiceRestaurant();
@@ -79,16 +80,10 @@ public class AfficherRestaurantController implements Initializable {
         // ListView_Produits.setMouseTransparent( true );
         ListView_Produits.setFocusTraversable(false);
         getShowPane();
-        
-    
-     
-       
-               
-            
-        
 
     }
- ServiceRestaurant service = new ServiceRestaurant();
+    ServiceRestaurant service = new ServiceRestaurant();
+
     public void getShowPane() {
         List<Restaurant> AllProducts = new ArrayList();
         if (recherche.equals("")) {
@@ -338,59 +333,40 @@ public class AfficherRestaurantController implements Initializable {
 
                 btn.setLayoutX(40);
                 btn.setLayoutY(80);
-                
-                
-               // ---------------------------------------------delete alert  
-                
-                
+
+                // ---------------------------------------------delete alert  
                 btn.setOnMouseClicked((MouseEvent event) -> {
-                       
-                    Alert  b = new Alert(AlertType.NONE);
-                    
-                    
-                                b.setAlertType(Alert.AlertType.CONFIRMATION);
-        b.setTitle("Confirmation");
-        b.setHeaderText(null);
-        b.setContentText("Are you sure to delete this Categorie");
-      
-        Optional <ButtonType> action = b.showAndWait();
-         
-        if(action.get()== ButtonType.OK)
-        {    
-            
-        
-           
-      service_pr.supprimer(p3);
-            
-        getShowPane();
-    }
-        else
-        {
-            getShowPane();
-        
-        }
-                    
-                    
-                    
-                  //  service_pr.supprimer(p3);
-                  //  ListView_Produits.setItems(null);
-                  //  getShowPane();
-                   
+
+                    Alert b = new Alert(AlertType.NONE);
+
+                    b.setAlertType(Alert.AlertType.CONFIRMATION);
+                    b.setTitle("Confirmation");
+                    b.setHeaderText(null);
+                    b.setContentText("Are you sure to delete this Categorie");
+
+                    Optional<ButtonType> action = b.showAndWait();
+
+                    if (action.get() == ButtonType.OK) {
+
+                        service_pr.supprimer(p3);
+                        Notifications notificationBuilder = Notifications.create()
+                                .title("Alert").text("Restaurant supprimé avec succès").graphic(null).hideAfter(Duration.seconds(3))
+                                .position(Pos.BOTTOM_RIGHT);
+                        notificationBuilder.darkStyle();
+                        notificationBuilder.show();
+
+                        getShowPane();
+                    } else {
+                        getShowPane();
+
+                    }
+
+                    //  service_pr.supprimer(p3);
+                    //  ListView_Produits.setItems(null);
+                    //  getShowPane();
                 });
 
-                
-                
-    
-      
-  // ---------------------------------------------delete alert 
-                
-                
-                
-                
-                
-                
-                
-                
+                // ---------------------------------------------delete alert 
                 FontAwesomeIconView UP = new FontAwesomeIconView(FontAwesomeIcon.MAP);
                 UP.setFill(Color.RED);
                 UP.setSize("25");
@@ -659,44 +635,33 @@ public class AfficherRestaurantController implements Initializable {
 
                 btn.setLayoutX(310);
                 btn.setLayoutY(80);
-                
-                
-                
-                  btn.setOnMouseClicked((MouseEvent event) -> {
-                       
-                    Alert  b = new Alert(AlertType.NONE);
-                    
-                    
-                                b.setAlertType(Alert.AlertType.CONFIRMATION);
-        b.setTitle("Confirmation");
-        b.setHeaderText(null);
-        b.setContentText("Are you sure to delete this Categorie");
-      
-        Optional <ButtonType> action = b.showAndWait();
-         
-        if(action.get()== ButtonType.OK)
-        {    
-            
-        
-           
-      service_pr.supprimer(p3);
-            
-        getShowPane();
-    }
-        else
-        {
-            getShowPane();
-        
-        }
+
+                btn.setOnMouseClicked((MouseEvent event) -> {
+
+                    Alert b = new Alert(AlertType.NONE);
+
+                    b.setAlertType(Alert.AlertType.CONFIRMATION);
+                    b.setTitle("Confirmation");
+                    b.setHeaderText(null);
+                    b.setContentText("Are you sure to delete this Categorie");
+
+                    Optional<ButtonType> action = b.showAndWait();
+
+                    if (action.get() == ButtonType.OK) {
+
+                        service_pr.supprimer(p3);
+                        Notifications notificationBuilder = Notifications.create()
+                                .title("Alert").text("Restaurant supprimé avec succès").graphic(null).hideAfter(Duration.seconds(3))
+                                .position(Pos.BOTTOM_RIGHT);
+                        notificationBuilder.darkStyle();
+                        notificationBuilder.show();
+                        getShowPane();
+                    } else {
+                        getShowPane();
+
+                    }
                 });
-                
-                
-                
-                
-                
-                
-                
-                
+
                 pane.getChildren().addAll(pane2, nomt, prixt, nom, prix, web, fb, UP, btn);
             }
 
@@ -901,33 +866,31 @@ public class AfficherRestaurantController implements Initializable {
                 btn.setLayoutY(80);
                 btn.setOnMouseClicked((MouseEvent event) -> {
 //                    btn.setOnMouseClicked((MouseEvent event) -> {
-                       
-                    Alert  b = new Alert(AlertType.NONE);
-                    
-                    
-                                b.setAlertType(Alert.AlertType.CONFIRMATION);
-        b.setTitle("Confirmation");
-        b.setHeaderText(null);
-        b.setContentText("Are you sure to delete this Categorie");
-      
-        Optional <ButtonType> action = b.showAndWait();
-         
-        if(action.get()== ButtonType.OK)
-        {    
-            
-        
-           
-      service_pr.supprimer(p3);
-            
-        getShowPane();
-    }
-        else
-        {
-            getShowPane();
-        
-        }
+
+                    Alert b = new Alert(AlertType.NONE);
+
+                    b.setAlertType(Alert.AlertType.CONFIRMATION);
+                    b.setTitle("Confirmation");
+                    b.setHeaderText(null);
+                    b.setContentText("Are you sure to delete this Categorie");
+
+                    Optional<ButtonType> action = b.showAndWait();
+
+                    if (action.get() == ButtonType.OK) {
+
+                        service_pr.supprimer(p3);
+                        Notifications notificationBuilder = Notifications.create()
+                                .title("Alert").text("Restaurant supprimé avec succès").graphic(null).hideAfter(Duration.seconds(3))
+                                .position(Pos.BOTTOM_RIGHT);
+                        notificationBuilder.darkStyle();
+                        notificationBuilder.show();
+                        getShowPane();
+                    } else {
+                        getShowPane();
+
+                    }
                     getShowPane();
-                       });
+                });
 
                 FontAwesomeIconView UP = new FontAwesomeIconView(FontAwesomeIcon.MAP);
                 UP.setFill(Color.RED);

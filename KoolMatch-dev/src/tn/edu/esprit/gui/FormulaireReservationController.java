@@ -22,8 +22,10 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -36,6 +38,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import static tn.edu.esprit.gui.LoginController.CurrentUser;
 import tn.edu.esprit.model.Reservation;
@@ -133,7 +137,7 @@ public class FormulaireReservationController implements Initializable {
     }
 
     @FXML
-    private void insert(ActionEvent event) throws SQLException {
+    private void insert(ActionEvent event) throws SQLException, IOException {
         p1 = sp1.GetRestobyid(Restaurant.getId_courant());
        sendSMS sms = new sendSMS();
        ServiceReservation sp = new ServiceReservation();
@@ -224,25 +228,18 @@ public class FormulaireReservationController implements Initializable {
        p.setAdresse(p1.getAdresse_restaurant());
        sp.ajouter(p);
        tn.edu.esprit.api.sendSMS.sendSMS(CurrentUser);
-      
+      Notifications notificationBuilder = Notifications.create()
+        .title("Alert").text("Bienvenue dans mon restaurant, Merci pour ta confiance").graphic(null).hideAfter(Duration.seconds(5))
+                .position(Pos.BOTTOM_RIGHT);
+        notificationBuilder.darkStyle();
+        notificationBuilder.show();
    
   
          
-         Alert alert = new Alert(AlertType.INFORMATION);
-
-            alert.setTitle("Bienvenue dans mon restaurant");
-            alert.setHeaderText(null);
-            alert.setContentText("Merci pour ta confiance");
-
-            alert.showAndWait();
-
-       
-       
-       
-           System.out.println("ajoute avec succes ");
-       
-       // rodou yemchi l page okhra mes reservation par exemple 
-       
+  
+ 
+      
+       }
        }
     
     }
@@ -281,5 +278,4 @@ if (disponibilite.equals("")) {
 
      
        */   
-}
 

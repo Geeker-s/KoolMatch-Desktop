@@ -35,7 +35,6 @@ public class QuickviewController implements Initializable {
     private Label nom_restaurant;
     @FXML
     private ImageView idimage_view;
-    @FXML
     private ImageView idimage_viewStru;
     @FXML
     private Label is_spe;
@@ -49,6 +48,8 @@ public class QuickviewController implements Initializable {
     private Label id_nomb;
     @FXML
     private Label id_desc;
+    @FXML
+    private Label id_site1;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
