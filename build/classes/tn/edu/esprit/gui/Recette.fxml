@@ -60,5 +60,6 @@
          <image>
             <Image url="@../images/drag.png" />
          </image></ImageView>
+      <Button fx:id="jeu" layoutX="677.0" layoutY="467.0" mnemonicParsing="false" onAction="#jeu" prefHeight="26.0" prefWidth="105.0" text="Consulter Jeu" />
     </children>
 </AnchorPane>

@@ -4,16 +4,20 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/admin/Desktop/KoolMatch/src/tn/edu/esprit/services/ServiceQuiz.java</file>
+            <file>file:/C:/Users/admin/Desktop/KoolMatch/src/tn/edu/esprit/model/Recette.java</file>
             <file>file:/C:/Users/admin/Desktop/KoolMatch/src/tn/edu/esprit/gui/QuickviewController.java</file>
             <file>file:/C:/Users/admin/Desktop/KoolMatch/src/tn/edu/esprit/gui/RecetteController.java</file>
             <file>file:/C:/Users/admin/Desktop/KoolMatch/src/tn/edu/esprit/services/ServiceRecette.java</file>
             <file>file:/C:/Users/admin/Desktop/KoolMatch/src/tn/edu/esprit/gui/JeuController.java</file>
+            <file>file:/C:/Users/admin/Desktop/KoolMatch/src/tn/edu/esprit/utils/MyDB.java</file>
             <file>file:/C:/Users/admin/Desktop/KoolMatch/src/tn/edu/esprit/gui/KoolmatchFX.java</file>
+            <file>file:/C:/Users/admin/Desktop/KoolMatch/src/tn/edu/esprit/gui/CardController.java</file>
             <file>file:/C:/Users/admin/Desktop/KoolMatch/src/tn/edu/esprit/koolmatch/KoolMatch.java</file>
             <file>file:/C:/Users/admin/Desktop/KoolMatch/src/tn/edu/esprit/gui/FormulaireRestaurantController.java</file>
             <file>file:/C:/Users/admin/Desktop/KoolMatch/src/tn/edu/esprit/gui/RecetteFrontController.java</file>
             <file>file:/C:/Users/admin/Desktop/KoolMatch/src/tn/edu/esprit/gui/BackJeuController.java</file>
             <file>file:/C:/Users/admin/Desktop/KoolMatch/src/tn/edu/esprit/gui/ConsulterjeuController.java</file>
+            <file>file:/C:/Users/admin/Desktop/KoolMatch/src/tn/edu/esprit/gui/FrontController.java</file>
             <file>file:/C:/Users/admin/Desktop/KoolMatch/src/tn/edu/esprit/gui/FormulaireReservationController.java</file>
             <file>file:/C:/Users/admin/Desktop/KoolMatch/src/tn/edu/esprit/services/ServiceJeu.java</file>
         </group>

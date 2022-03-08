@@ -74,6 +74,7 @@ public class RecetteFrontController implements Initializable {
         File file = new File(rec.getPhoto_recette());
         Image image = new Image(file.toURI().toString());
         img.setImage(image);
+        System.out.println(img.getImage());
         
     }
 

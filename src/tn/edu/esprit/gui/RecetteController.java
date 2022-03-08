@@ -8,6 +8,7 @@ package tn.edu.esprit.GUI;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import tn.edu.esprit.model.Recette;
 import java.net.URL;
 import java.util.List;
@@ -17,8 +18,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -32,6 +36,8 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.controlsfx.control.Notifications;
 import tn.edu.esprit.services.ServiceRecette;
 
@@ -54,7 +60,6 @@ public class RecetteController implements Initializable {
     private Button AjouterR;
     @FXML
     private TextField nplat;
-    @FXML
     private TextField prec;
     @FXML
     private TextArea desc;
@@ -78,6 +83,8 @@ public class RecetteController implements Initializable {
     private File Current_file;
  
     private String file_image;
+    @FXML
+    private Button jeu;
    
 
     /**
@@ -106,7 +113,7 @@ public class RecetteController implements Initializable {
         file_image = "src/tn/edu/esprit/images/" + file_image;
         
         ServiceRecette Recette = new ServiceRecette();
-      if ( nplat.getText().isEmpty() || nplat.getText().matches("[0-9]") ||catg.getValue().equals("choisir categorie")  ||desc.getText().isEmpty() || desc.getText().matches("[0-9]") || Integer.parseInt(duree.getText())<0 ) { Notifications notificationBuilder=Notifications.create()
+      if ( nplat.getText().isEmpty() || nplat.getText().matches("[0-9]") ||catg.getValue().equals("choisir categorie")  ||desc.getText().isEmpty() || desc.getText().matches("[0-9]") || Integer.parseInt(duree.getText())<0  ) { Notifications notificationBuilder=Notifications.create()
               .title("Erreur").text("Veuillez verifier vos champs").graphic(null).hideAfter(javafx.util.Duration.seconds(5))
               .position(Pos.CENTER_LEFT)
               .onAction(new EventHandler<ActionEvent>(){
@@ -140,7 +147,7 @@ Recette c = new Recette();
     @FXML
     private void Bsupprimer(ActionEvent event) {
          ServiceRecette Recette = new ServiceRecette();
-            Recette r1 = new Recette(a,"b","b", "a", "c",0) ;
+            Recette r1 = new Recette(listv.getSelectionModel().getSelectedItem().getId_recette(),"b","b", "a", "c",0) ;
                Recette.supprimer(r1);
                System.out.println(a);
     }
@@ -236,6 +243,20 @@ Recette c = new Recette();
     private void ref(MouseEvent event) {
          ObservableList<Recette> listref=FXCollections.observableList(r.afficher());
         listv.setItems(listref);
+    }
+
+    @FXML
+    private void jeu(ActionEvent event) throws IOException {
+         Stage primaryStage;
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Consulterjeu.fxml"));
+                    Parent root1 = (Parent) fxmlLoader.load();
+                    Stage stage = new Stage();
+//                  stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.setScene(new Scene(root1));
+                    stage.initStyle(StageStyle.UNDECORATED);
+                    stage.show();
+                    Stage CurrentStage = (Stage) jeu.getScene().getWindow();
+                    CurrentStage.close();
     }
     
 }
