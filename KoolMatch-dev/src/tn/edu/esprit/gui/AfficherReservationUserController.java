@@ -84,7 +84,7 @@ public class AfficherReservationUserController implements Initializable {
     public void getShowPane() {
         List<Reservation> AllProducts = new ArrayList();
         if (recherche.equals("")) {
-            for (Reservation p : service_pr.afficher()) {
+            for (Reservation p : service_pr.MesReservations()) {
                 AllProducts.add(p);
 
             }
@@ -229,10 +229,13 @@ public class AfficherReservationUserController implements Initializable {
                 hb2.setStyle("-fx-background-color: #2cbae3");
                 pane2.getChildren().addAll(hb, hb2);
 
-                Text nomt = new Text("Nom"+ ":   "+ CurrentUser.getNom_user());
-                Text prenom = new Text("Prénom" + CurrentUser.getPrenom_user());
-                Text num = new Text("Telephone" + String.valueOf(CurrentUser.getTelephone_user()));
-                Label nom = new Label("Nombre de place" + ":" + String.valueOf(p3.getNbPlace_reservation()));
+                Text nomt = new Text("Nom :" + p3.getNom_resto());
+                Text prenom = new Text("Adresse  :" + p3.getAdresse());
+                Text num = new Text("Telephone :" + String.valueOf(CurrentUser.getTelephone_user()));
+//                Text nomt = new Text(String.valueOf("nom "+ ":"  + p3.getId_restaurant()));
+//                Text prenom = new Text("prenom"+ ":" +String.valueOf(p3.getId_user()));
+//                Text num = new Text("hello" + ""+ String.valueOf(p3.getNbPlace_reservation()));
+                Label nom = new Label("Nombre de places :" + String.valueOf(p3.getNbPlace_reservation()));
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd ");
                 String strDate = dateFormat.format(p3.getDate_reservation());
                 Text prixt = new Text(strDate);
@@ -343,13 +346,13 @@ public class AfficherReservationUserController implements Initializable {
                 hb2.setStyle("-fx-background-color: #2cbae3");
                 pane2.getChildren().addAll(hb, hb2);
 
-                Text nomt = new Text("Nom" + CurrentUser.getNom_user());
-                Text prenom = new Text("Prénom" + CurrentUser.getPrenom_user());
-                Text num = new Text("Telephone" + String.valueOf(CurrentUser.getTelephone_user()));
+                Text nomt = new Text("Nom :" + p3.getNom_resto());
+                Text prenom = new Text("Adresse  :" + p3.getAdresse());
+                Text num = new Text("Telephone :" + String.valueOf(CurrentUser.getTelephone_user()));
 //                Text nomt = new Text(String.valueOf("nom "+ ":"  + p3.getId_restaurant()));
 //                Text prenom = new Text("prenom"+ ":" +String.valueOf(p3.getId_user()));
 //                Text num = new Text("hello" + ""+ String.valueOf(p3.getNbPlace_reservation()));
-                Label nom = new Label(" bonjour" + ":" + String.valueOf(p3.getNbPlace_reservation()));
+                Label nom = new Label("Nombre de places :" + String.valueOf(p3.getNbPlace_reservation()));
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd ");
                 String strDate = dateFormat.format(p3.getDate_reservation());
                 Text prixt = new Text(strDate);
@@ -443,10 +446,13 @@ public class AfficherReservationUserController implements Initializable {
                 pane2.getChildren().addAll(hb, hb2);
 
                 String A = p4.getImage();
-                Text nomt = new Text("Nom" + CurrentUser.getNom_user());
-                Text prenom = new Text("Prénom" + CurrentUser.getPrenom_user());
-                Text num = new Text("Telephone" + String.valueOf(CurrentUser.getTelephone_user()));
-                Label nom = new Label(" bonjour" + ":" + String.valueOf(p3.getNbPlace_reservation()));
+                Text nomt = new Text("Nom :" + p3.getNom_resto());
+                Text prenom = new Text("Adresse  :" + p3.getAdresse());
+                Text num = new Text("Telephone :" + String.valueOf(CurrentUser.getTelephone_user()));
+//                Text nomt = new Text(String.valueOf("nom "+ ":"  + p3.getId_restaurant()));
+//                Text prenom = new Text("prenom"+ ":" +String.valueOf(p3.getId_user()));
+//                Text num = new Text("hello" + ""+ String.valueOf(p3.getNbPlace_reservation()));
+                Label nom = new Label("Nombre de places :" + String.valueOf(p3.getNbPlace_reservation()));
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd ");
                 String strDate = dateFormat.format(p3.getDate_reservation());
                 Text prixt = new Text(strDate);

@@ -30,6 +30,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.Reflection;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -224,9 +225,17 @@ public class FormulaireReservationController implements Initializable {
        sp.ajouter(p);
        tn.edu.esprit.api.sendSMS.sendSMS(CurrentUser);
       
-       
-       
-       
+   
+  
+         
+         Alert alert = new Alert(AlertType.INFORMATION);
+
+            alert.setTitle("Bienvenue dans mon restaurant");
+            alert.setHeaderText(null);
+            alert.setContentText("Merci pour ta confiance");
+
+            alert.showAndWait();
+
        
        
        

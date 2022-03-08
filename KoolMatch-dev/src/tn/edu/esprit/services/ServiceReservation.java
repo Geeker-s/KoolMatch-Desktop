@@ -176,11 +176,11 @@ public class ServiceReservation implements IService<Reservation> {
     public List<Reservation> MesReservations() {
         List<Reservation> Reservation = new ArrayList<>();
         try {
-            String req = "SELECT * FROM reservation WHERE `archive` = 1 AND id_user=" + CurrentUser.getId_user();
+            String req = "SELECT * FROM reservation WHERE `archive` = 0 AND id_user=" + CurrentUser.getId_user();
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                Reservation.add(new Reservation(rs.getInt(1), rs.getDate(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6)));
+                Reservation.add(new Reservation(rs.getInt(1), rs.getDate(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6),rs.getString(7),rs.getString(8),rs.getString(9)));
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -197,14 +197,16 @@ public class ServiceReservation implements IService<Reservation> {
             ResultSet rest = st.executeQuery(query);
             while (rest.next()) {
                 Reservation pr = new Reservation();
-                Restaurant pre = new Restaurant();
+              
 
                 pr.setId_reservation(rest.getInt("id_reservation"));
                 pr.setDate_reservation(rest.getDate("date_reservation"));
                 pr.setNbPlace_reservation(rest.getInt("NbPlace_reservation"));
                 pr.setId_restaurant(rest.getInt("id_restaurant"));
                 pr.setId_user(rest.getInt("id_user"));
-                pre.setNom_restaurant("nom_restaurant");
+                pr.setNom_resto(rest.getString("nom_resto"));  
+                pr.setImage(rest.getString("image"));  
+                pr.setAdresse(rest.getString("adresse"));  
 
                 ALLproducts.add(pr);
             }
