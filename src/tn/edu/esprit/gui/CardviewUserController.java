@@ -17,9 +17,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import tn.edu.esprit.model.User;
 import tn.edu.esprit.services.ServiceUser;
 
@@ -44,11 +46,24 @@ public class CardviewUserController implements Initializable {
     private Button sup;
     List<User> users = new ArrayList<>();
 
+    User u;
+    @FXML
+    private Rectangle rec;
+
+    public User getU() {
+        return u;
+    }
+
+    public void setU(User u) {
+        this.u = u;
+    }
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         // TODO
     }
 
@@ -57,17 +72,16 @@ public class CardviewUserController implements Initializable {
         File file = new File("src/tn/edu/esprit/images/" + u.getPhoto_user());
         Image image = new Image(file.toURI().toString());
         photo.setFill(new ImagePattern(image));
-        nom.setText(u.getNom_user()+" "+u.getPrenom_user());
+        nom.setText(u.getNom_user() + " " + u.getPrenom_user());
         age.setText(String.valueOf(user.calculateAge(u)));
         adresse.setText(u.getAdresse_user());
         description.setText(u.getDescription_user());
     }
 
-
-
     @FXML
     private void deleteUser(ActionEvent event) {
-
-        
+        ServiceUser us = new ServiceUser();
+        us.supprimer(getU());
+        rec.setFill(Color.BLACK);
     }
 }

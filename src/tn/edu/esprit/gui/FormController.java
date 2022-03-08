@@ -12,10 +12,15 @@ import com.lynden.gmapsfx.javascript.object.GoogleMap;
 import com.lynden.gmapsfx.javascript.object.LatLong;
 import com.teamdev.jxmaps.LatLng;
 import com.teamdev.jxmaps.MapOptions;
+import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,6 +31,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import static tn.edu.esprit.gui.LoginController.CurrentUser;
@@ -78,12 +84,20 @@ public class FormController implements Initializable {
     private TextArea description;
     @FXML
     private Button valider;
+    @FXML
+    private Button importer;
+    @FXML
+    private Button modifier;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        final FileChooser fileChooser = new FileChooser();
+        final Desktop desktop = Desktop.getDesktop();
+
         ToggleGroup group1 = new ToggleGroup();
         ToggleGroup group2 = new ToggleGroup();
         ToggleGroup group3 = new ToggleGroup();
@@ -110,7 +124,25 @@ public class FormController implements Initializable {
         r52.setToggleGroup(group5);
         r53.setToggleGroup(group5);
 
+        importer.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                photo.clear();
+                fileChooser.setTitle("Select image");
+
+                fileChooser.setInitialDirectory(new File(System.getProperty("user.home"), ""));
+                File file = fileChooser.showOpenDialog(null);
+
+                if (file != null) {
+                    List<File> files = Arrays.asList(file);
+                    photo.setText(file.getName());
+                }
+            }
+        }
+        );
+        /// 
         System.out.println(CurrentUser);
+
     }
 
     @FXML
@@ -187,6 +219,71 @@ public class FormController implements Initializable {
         }
 //        System.out.println(u);
 
+    }
+
+    public void load(User u) {
+
+        valider.setVisible(false);
+        modifier.setVisible(true);
+        adresse.setText(u.getAdresse_user());
+        photo.setText(u.getPhoto_user());
+        description.setText(u.getDescription_user());
+        r11.setSelected(true);
+
+    }
+
+    @FXML
+    private void mod(ActionEvent event) {
+        ServiceMatching m = new ServiceMatching();
+        ServiceUser us = new ServiceUser();
+        User u = new User();
+
+        String Interet = "";
+        if (r11.isSelected()) {
+            Interet += "100";
+        } else if (r12.isSelected()) {
+            Interet += "010";
+        } else if (r13.isSelected()) {
+            Interet += "001";
+        }
+
+        if (r21.isSelected()) {
+            Interet += "100";
+        } else if (r22.isSelected()) {
+            Interet += "010";
+        } else if (r23.isSelected()) {
+            Interet += "001";
+        }
+
+        if (r31.isSelected()) {
+            Interet += "100";
+        } else if (r32.isSelected()) {
+            Interet += "010";
+        } else if (r33.isSelected()) {
+            Interet += "001";
+        }
+
+        if (r41.isSelected()) {
+            Interet += "100";
+        } else if (r42.isSelected()) {
+            Interet += "010";
+        } else if (r43.isSelected()) {
+            Interet += "001";
+        }
+
+        if (r51.isSelected()) {
+            Interet += "100";
+        } else if (r52.isSelected()) {
+            Interet += "010";
+        } else if (r53.isSelected()) {
+            Interet += "001";
+        }
+
+        CurrentUser.setInteret_user(m.hex(Interet));
+        CurrentUser.setDescription_user(description.getText());
+        CurrentUser.setPhoto_user(photo.getText());
+        CurrentUser.setAdresse_user(adresse.getText());
+        us.modifer(CurrentUser);
     }
 
 }

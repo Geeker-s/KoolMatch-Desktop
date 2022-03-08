@@ -205,6 +205,20 @@ public class FrontController implements Initializable {
         } catch (IOException ex) {
             ex.getMessage();
         }
+        FXMLLoader loadP = new FXMLLoader(getClass().getResource("form.fxml"));
+        Pane newLoadedP;
+        try {
+            newLoadedP = loadP.load();
+            pnlProfile.getChildren().add(newLoadedP);
+        } catch (IOException ex) {
+            ex.getMessage();
+        }
+        FormController controllerP = (FormController) loadP.getController();
+        //setters
+        controllerP.load(CurrentUser);
+
+        
+        
 //        FilterController fcontroller = (FilterController) loader.getController();
 //        setters
 //        setF(fcontroller);
