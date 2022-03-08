@@ -36,7 +36,7 @@ import services.ServiceInvitation;
 public class FXMLEventController implements Initializable {
     
     @FXML
-    private ListView <String> LvEvent; 
+    private ListView <Event> LvEvent; 
     
     ObservableList<Event> events = FXCollections.observableArrayList();
     //ObservableList<events>;
@@ -50,7 +50,7 @@ public class FXMLEventController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 ServiceEvent ev = new ServiceEvent();
-    LvEvent.getItems().addAll(ev.afficher().toString());
+    LvEvent.getItems().addAll(ev.afficher());
       
         
     

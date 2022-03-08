@@ -101,7 +101,7 @@ public class FXMLEventback2Controller implements Initializable {
         
          ServiceInvitation i = new ServiceInvitation();
          invitation in = new invitation();
-        in.setTelephone(Integer.parseInt(TF_ide.getText()));
+        in.set(Integer.parseInt(TF_ide.getText()));
         ev.setTelephone(Integer.parseInt(TFtel.getText()));
         LocalDate FDate  = DPdd.getValue();
         String  Sdate = String.valueOf(FDate);

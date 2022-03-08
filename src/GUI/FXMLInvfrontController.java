@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import entities.invitation;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -25,7 +26,7 @@ public class FXMLInvfrontController implements Initializable {
     
     
       @FXML
-    private ListView<String> listvI;
+    private ListView<invitation> listvI;
     
     
     
@@ -33,7 +34,7 @@ public class FXMLInvfrontController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
          
         ServiceInvitation i = new ServiceInvitation();
-    listvI.getItems().addAll(i.afficher().toString());
+    listvI.getItems().addAll(i.afficher());
       
         
         
