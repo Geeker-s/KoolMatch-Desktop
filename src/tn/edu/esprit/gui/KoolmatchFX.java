@@ -30,6 +30,8 @@ public class KoolmatchFX extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
         primaryStage.setTitle("Koolmatch");
         primaryStage.setScene(new Scene(root));
         //set stage borderless

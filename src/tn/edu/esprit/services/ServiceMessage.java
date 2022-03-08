@@ -29,11 +29,12 @@ public class ServiceMessage implements IService<Messages>{
         cnx = MyDB.getInstance().getCnx();
     }
     
-@Override
-    public void ajouter(Messages p) {
+
+    public void ajouter(Messages p, int id_con) {
         
         try {
-             String querry="UPDATE `message` SET `msg_message`='"+p.getMsg_message()+"',`date_message`='"+p.getDate_message()+"' WHERE `id_message`='"+p.getId_message()+"'";
+  String querry = "INSERT INTO `message`( `msg_message`, `date_message`, `id_conversation`) VALUES ('" + p.getMsg_message() + "' ,'" + p.getDate_message() + "','" + id_con + "')";
+//    String querry="UPDATE `message` SET `msg_message`='"+p.getMsg_message()+"',`date_message`='"+p.getDate_message()+"' WHERE `id_message`='"+p.getId_message()+"'";
             Statement stm =cnx.createStatement();
         
         stm.executeUpdate(querry);
@@ -43,17 +44,18 @@ public class ServiceMessage implements IService<Messages>{
         }
     }
 
-    @Override
-    public List<Messages> afficher() {
+    
+     
+    public List<Messages> afficher(Conversations p ) {
         
          List<Messages> message = new ArrayList<>();
         try {
-            String req = " SELECT * FROM `message` WHERE `archive` = 0 ";
+            String req = " SELECT * FROM `message` WHERE `archive` = 0 and id_conversation = "+p.getId_conversation();
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             
             while(rs.next()){
-                message.add(new Messages(rs.getInt(1),rs.getString(2)));
+                message.add(new Messages(rs.getInt(1),rs.getString(2),rs.getString(3)));
             }
             
         } catch (SQLException ex) {
@@ -64,11 +66,9 @@ public class ServiceMessage implements IService<Messages>{
 
     @Override
     public boolean modifer(Messages p) {
-                Scanner sc = new Scanner(System.in);
-        System.out.println("le message : ");
-        String message = sc.nextLine();
+      
           try {
-           String req = "UPDATE `message` SET `msg_message`='"+message+"',`date_message`='"+p.getDate_message()+"' WHERE `id_message`='"+p.getId_message()+"'";
+           String req = "UPDATE `message` SET `msg_message`='"+p.getMsg_message()+"',`date_message`='"+p.getDate_message()+"' WHERE `id_message`='"+p.getId_message()+"'";
             Statement stm = cnx.createStatement();
             stm.executeUpdate(req);
         } catch (SQLException ex) {
@@ -98,6 +98,36 @@ public class ServiceMessage implements IService<Messages>{
         return conver.stream().filter(b -> b.getMsg_message().equals(r.getMsg_message())).collect(Collectors.toList());
     }
 
+
+    public List<String> afficherr(Conversations p) {
+       List<String> conversation = new ArrayList<>();
+        try {
+            String req = " SELECT `msg_message` FROM `message` WHERE `archive`= 0 and `id_conversation` = " +p.getId_conversation();
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            
+            while(rs.next()){
+                conversation.add(rs.getString(1));
+                        //add(new conversations(rs.getString(1));
+            }
+            
+        } catch (SQLException ex) {
+            ex.getStackTrace();
+        }
+        return conversation;
+
+
+    } 
+
+    @Override
+    public List<Messages> afficher() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void ajouter(Messages p) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 
 

@@ -57,9 +57,9 @@ public class ServiceQuiz implements IService<Quiz> {
     }
 
     @Override
-    public boolean modifer(Quiz p) {
+    public boolean modifer(Quiz r) {
         try {
-            String req = " UPDATE quiz SET id_jeu = '" + p.getId_jeu() + "' WHERE id_quiz = '" + p.getId_quiz() + "'";
+            String req = " UPDATE quiz SET Q1 = '"+ r.getQ1()+"', rc1 = '" + r.getRc1()+"', rf11 = '" + r.getRf11() +"', rf12 = '" + r.getRf12()+"', rf13 = '" + r.getRf13()+"', Q2 = '" + r.getQ2()+"', rc2 = '" + r.getRc2()+"', rf21 = '" + r.getRf21()+"', rf22 = '" + r.getRf22()+"', rf23 = '" + r.getRf23()+"', Q3 = '" + r.getQ3()+"', rc3 = '" + r.getRc3()+"', rf31 = '" + r.getRf31()+"', rf32 = '" + r.getRf32()+"', rf33 = '" + r.getRf33()+ "' WHERE id_quiz = '" + r.getId_quiz()+ "'";
             Statement stm = cnx.createStatement();
             stm.executeUpdate(req);
         } catch (SQLException ex) {
@@ -104,6 +104,10 @@ public class ServiceQuiz implements IService<Quiz> {
     public List<Quiz> rechercher(Quiz r) {
         List<Quiz> quiz = afficher();
         return quiz.stream().filter(b -> b.getId_jeu() == r.getId_jeu()).collect(Collectors.toList());
+    }
+     public List<Quiz> rechercherq(Quiz r) {
+        List<Quiz> quiz = afficher();
+        return quiz.stream().filter(b -> b.getId_quiz()== r.getId_quiz()).collect(Collectors.toList());
     }
 
 }

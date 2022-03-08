@@ -16,6 +16,17 @@ public class Conversations {
     private int id_user1;
     private int id_user2;
 
+    public Conversations(String titre_conversation) {
+        this.titre_conversation = titre_conversation;
+    }
+
+    public Conversations(int id_conversation, String titre_conversation) {
+        this.id_conversation = id_conversation;
+        this.titre_conversation = titre_conversation;
+    }
+
+    
+    
     public Conversations() {
     }
 
@@ -70,7 +81,14 @@ public class Conversations {
 
     @Override
     public String toString() {
-        return "conversations{" + "id_conversation=" + id_conversation + ", titre_conversation=" + titre_conversation + ", id_user1=" + id_user1 + ", id_user2=" + id_user2 + '}';
+        return titre_conversation ;
     }
+
+
+
+ 
+
+
+
 
 }

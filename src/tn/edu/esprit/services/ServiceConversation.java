@@ -34,8 +34,6 @@ public class ServiceConversation implements IService<Conversations> {
             Statement stm = cnx.createStatement();
             String querry = "INSERT INTO `conversation`( `titre_conversation`, `id_user1`, `id_user2`) VALUES ('" + p.getTitre_conversation() + "' ,'" + p.getId_user1() + "','" + p.getId_user2() + "')";
             stm.executeUpdate(querry);
-            String querry1 = "INSERT INTO `message`( id_conversation ) select max(id_conversation) from conversation";
-            stm.executeUpdate(querry1);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -43,14 +41,16 @@ public class ServiceConversation implements IService<Conversations> {
 
     @Override
     public List<Conversations> afficher() {
-        List<Conversations> conversation = new ArrayList<>();
+       List<Conversations> conversation = new ArrayList<>();
         try {
-            String req = "SELECT * FROM conversation WHERE archive = 0 ";
+            String req = " SELECT * FROM `conversation` WHERE `archive` = 0 ";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
-            while (rs.next()) {
-                conversation.add(new Conversations(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4)));
+            
+            while(rs.next()){
+                conversation.add(new Conversations(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getByte(4)));
             }
+            
         } catch (SQLException ex) {
             ex.getStackTrace();
         }
@@ -59,11 +59,9 @@ public class ServiceConversation implements IService<Conversations> {
 
     @Override
     public boolean modifer(Conversations p) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("titre conversation : ");
-        String titre_conversation = sc.nextLine();
+
         try {
-            String req = " UPDATE `conversation` SET `titre_conversation` = '" + titre_conversation + "' WHERE `id_conversation` = '" + p.getId_conversation() + "'";
+            String req = " UPDATE `conversation` SET `titre_conversation` = '" + p.getTitre_conversation()+ "' WHERE `id_conversation` = '" + p.getId_conversation() + "'";
             Statement stm = cnx.createStatement();
             stm.executeUpdate(req);
         } catch (SQLException ex) {
@@ -111,5 +109,26 @@ public class ServiceConversation implements IService<Conversations> {
         List<Conversations> conv = afficher();
         return conv.stream().sorted(comparator).collect(Collectors.toList());
     }
+    
+    
+        public List<String> afficherr() {
+       List<String> conversation = new ArrayList<>();
+        try {
+            String req = " SELECT titre_conversation  FROM `conversation` WHERE `archive` = 0 ";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            
+            while(rs.next()){
+                conversation.add(rs.getString(1));
+                        //add(new conversations(rs.getString(1));
+            }
+            
+        } catch (SQLException ex) {
+            ex.getStackTrace();
+        }
+        return conversation;
+
+
+    } 
 
 }

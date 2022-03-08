@@ -113,9 +113,18 @@ public class Jeu {
         return true;
     }
 
+    public Jeu(int score_jeu, int id_quiz) {
+        this.score_jeu = score_jeu;
+        this.id_quiz = id_quiz;
+    }
+
     @Override
     public String toString() {
-        return "Jeu{" + "id_jeu=" + id_jeu + ", score_jeu=" + score_jeu + ", id_quiz=" + id_quiz + ", id_user=" + id_user + '}';
+       // return "Jeu" + "score_jeu=" + score_jeu + ", rank=" + id_quiz + "";
+       return String.format( "%-20s",score_jeu)
+                + String.format( "%-20s ",id_quiz)
+                
+                 ;
     }
   
 }
