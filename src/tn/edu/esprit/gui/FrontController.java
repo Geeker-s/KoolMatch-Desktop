@@ -181,6 +181,14 @@ public class FrontController implements Initializable {
         } catch (IOException ex) {
             ex.getMessage();
         }
+        FXMLLoader loaderRestaurant = new FXMLLoader(getClass().getResource("Front_reservation.fxml"));
+        Pane newLoadedR;
+        try {
+            newLoadedR = loaderRestaurant.load();
+            pnlRestaurant.getChildren().add(newLoadedR);
+        } catch (IOException ex) {
+            ex.getMessage();
+        }
 //        FilterController fcontroller = (FilterController) loader.getController();
 //        setters
 //        setF(fcontroller);

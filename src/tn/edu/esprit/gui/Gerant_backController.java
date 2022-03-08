@@ -75,6 +75,16 @@ public class Gerant_backController implements Initializable {
         nom_gerant.setText(CurrentGerant.getNom_gerant() + " " + CurrentGerant.getPrenom_gerant());
         pnlHome.setStyle("-fx-background-color : #e7e5e5");
         pnlHome.toFront();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("splash.fxml"));
+        Pane newLoadedPane;
+        try {
+            newLoadedPane = loader.load();
+            pnlRestaurant.getChildren().add(newLoadedPane);
+        } catch (IOException ex) {
+            ex.getMessage();
+        }
+
     }
 
     @FXML

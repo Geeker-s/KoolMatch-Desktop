@@ -23,7 +23,7 @@ public class sendSMS {
         Twilio.init("AC819daf1663c267f81b66523a3ff664af", "aaa2795e8daceaa62b4ef9c056da4b1a");
         Message message = Message.creator(new PhoneNumber("+21658658857"),
                 new PhoneNumber("+19036648306"),
-                "Nom: " + o.getNom_user() + " Numero: " + o.getTelephone_user() + " Email: " + o.getEmail_user()).create();
+                "Votre Réservation est effectue avec succée: Nom: " + o.getNom_user() + " Numero: " + o.getTelephone_user() + " Email: " + o.getEmail_user()).create();
 
         System.out.println(message.getSid());
     }

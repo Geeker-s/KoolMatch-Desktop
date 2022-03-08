@@ -21,6 +21,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -33,6 +34,9 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import static tn.edu.esprit.gui.LoginController.CurrentUser;
+import static tn.edu.esprit.gui.Login_backController.CurrentGerant;
 import tn.edu.esprit.model.Restaurant;
 import tn.edu.esprit.services.ServiceRestaurant;
 
@@ -43,8 +47,6 @@ import tn.edu.esprit.services.ServiceRestaurant;
  */
 public class FormulaireRestaurantController implements Initializable {
 
-    @FXML
-    private TextField Fidgerant;
     @FXML
     private TextField Fnom;
     @FXML
@@ -80,6 +82,37 @@ public class FormulaireRestaurantController implements Initializable {
     private Path pathto1;
     private File Current_file1;
 
+    private boolean testTextInput(String a) {
+
+        boolean b = true;
+        if (a.length() == 0 || testNumberInput(a)) {
+            b = false;
+        }
+
+        return b;
+
+    }
+
+    private boolean testNumberInput(String a) {
+        boolean b = false;
+        if (a.matches("^[0-9]*")) {
+            b = true;
+        }
+        return b;
+    }
+
+    private boolean checkText(String b) {
+
+        if (this.testTextInput(b) || (this.testTextInput(b)) || (this.testTextInput(b)) || (this.testTextInput(b))) {
+
+            return true;
+
+        } else {
+            return false;
+
+        }
+
+    }
     @FXML
     private ImageView imageView_structure;
 
@@ -96,44 +129,101 @@ public class FormulaireRestaurantController implements Initializable {
 
         ServiceRestaurant sp = new ServiceRestaurant();
         Restaurant p = new Restaurant();
-        // p.setId_restaurant(Integer.parseInt(Fid.getText()));
-        p.setId_gerant(Integer.parseInt(Fidgerant.getText()));
-        p.setNom_restaurant(Fnom.getText());
-        p.setAdresse_restaurant(Fadresse.getText());
-        p.setTelephone_restaurant(Integer.parseInt(Ftelephone.getText()));
-        p.setSiteweb_restaurant(Fsite.getText());
-        p.setSpecialite_restaurant(Fspecialite.getText());
-        p.setNb_placeResto(Integer.parseInt(Fnombre.getText()));
-        //  p.setImage(Fimage.getText());
-        // p.setImage_structure_resturant(Fstructure.getText());
-        p.setDescription(Fdescription.getText());
 
-        file_image = "src/tn/edu/esprit/images/" + file_image;
+        if (Fnom.getText().length() == 0) {
+            Alert a = new Alert(null, " veuillez saisir votre nom", ButtonType.CLOSE);
+            a.showAndWait();
+            System.out.println(" not correct");
+        } else if(!checkText(Fdescription.getText())){
+   
+  
+           Fdescription.setStyle("-fx-text-inner-color: red");
+           Fdescription.setStyle("-fx-prompt-text-fill: red");
+           Fdescription.setStyle("-fx-border-color: red");
+        
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.initStyle(StageStyle.TRANSPARENT);
+            
+            alert.setTitle("Attention");
+            alert.setContentText("Veuillez entrer une description du restaurant!");
+            
+            alert.showAndWait();
+           Fdescription.setCursor(Cursor.WAIT);
+           Fdescription.setStyle("-fx-text-inner-color:  #663399");
+            Fdescription.setStyle("-fx-prompt-text-fill:  #663399");
 
-        p.setImage(file_image);
+            System.out.println(" not correct");
+            
+      
+        } else if (!checkText(Fsite.getText())) {
+            Alert a = new Alert(null, "verifier votre site", ButtonType.CLOSE);
+            a.showAndWait();
+            System.out.println(" not correct");
+        } else if (Fnombre.getText().length() == 9) {
+            Alert a = new Alert(null, " veuillez saisir votre Telephone.", ButtonType.CLOSE);
+            a.showAndWait();
+            System.out.println(" not correct");
+        } else if(!checkText(Fadresse.getText())){
+   
+  
+            Fadresse.setStyle("-fx-text-inner-color: red");
+            Fadresse.setStyle("-fx-prompt-text-fill: red");
+            Fadresse.setStyle("-fx-border-color: red");
+            
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.initStyle(StageStyle.TRANSPARENT);
+            
+            alert.setTitle("Attention");
+            alert.setContentText("Veuillez entrer l'adresse du restaurant!");
+            alert.showAndWait();
+            Fadresse.setCursor(Cursor.WAIT);
+            Fadresse.setStyle("-fx-text-inner-color:  #663399");
+            Fadresse.setStyle("-fx-prompt-text-fill:  #663399");
+            
 
-        pathfrom = FileSystems.getDefault().getPath(Current_file.getPath());
-        pathto = FileSystems.getDefault().getPath("src/tn/edu/esprit/images/" + Current_file.getName());
-        Path targetDir = FileSystems.getDefault().getPath("");
-        System.out.println(targetDir);
-        Files.copy(pathfrom, pathto, StandardCopyOption.REPLACE_EXISTING);
+                  
+   
+        } else {
+            // p.setId_restaurant(Integer.parseInt(Fid.getText()));
+            p.setId_gerant( CurrentGerant.getId_gerant());
+            p.setNom_restaurant(Fnom.getText());
+            p.setAdresse_restaurant(Fadresse.getText());
+            p.setTelephone_restaurant(Integer.parseInt(Ftelephone.getText()));
+            p.setSiteweb_restaurant(Fsite.getText());
+            p.setSpecialite_restaurant(Fspecialite.getText());
+            p.setNb_placeResto(Integer.parseInt(Fnombre.getText()));
+            //  p.setImage(Fimage.getText());
+            // p.setImage_structure_resturant(Fstructure.getText());
+            p.setDescription(Fdescription.getText());
 
-        file_image1 = "src/tn/edu/esprit/images/" + file_image1;
-        p.setImage_structure_resturant(file_image1);
+            file_image = "src/tn/edu/esprit/images/" + file_image;
 
-        pathfrom = FileSystems.getDefault().getPath(Current_file.getPath());
-        pathto = FileSystems.getDefault().getPath("src/tn/edu/esprit/images/" + Current_file.getName());
-        Path targetDir1 = FileSystems.getDefault().getPath("src/tn/edu/esprit/images/");
-        System.out.println(targetDir1);
-        Files.copy(pathfrom, pathto, StandardCopyOption.REPLACE_EXISTING);
+            p.setImage(file_image);
 
-        sp.ajouter(p);
+            pathfrom = FileSystems.getDefault().getPath(Current_file.getPath());
+            pathto = FileSystems.getDefault().getPath("src/tn/edu/esprit/images/" + Current_file.getName());
+            Path targetDir = FileSystems.getDefault().getPath("");
+            System.out.println(targetDir);
+            Files.copy(pathfrom, pathto, StandardCopyOption.REPLACE_EXISTING);
+
+            file_image1 = "src/tn/edu/esprit/images/" + file_image1;
+            p.setImage_structure_resturant(file_image1);
+
+            pathfrom = FileSystems.getDefault().getPath(Current_file.getPath());
+            pathto = FileSystems.getDefault().getPath("src/tn/edu/esprit/images/" + Current_file.getName());
+            Path targetDir1 = FileSystems.getDefault().getPath("src/tn/edu/esprit/images/");
+            System.out.println(targetDir1);
+            Files.copy(pathfrom, pathto, StandardCopyOption.REPLACE_EXISTING);
+
+            sp.ajouter(p);
         Scene scene = new Scene(FXMLLoader.load(getClass().getResource("AfficherRestaurant.fxml")));
 
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
-
+        }
     }
 
     @FXML

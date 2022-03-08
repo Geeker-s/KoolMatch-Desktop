@@ -6,6 +6,7 @@
 package tn.edu.esprit.services;
 
 import com.mysql.cj.Messages;
+import com.teamdev.jxmaps.a;
 import tn.edu.esprit.model.Restaurant;
 import tn.edu.esprit.model.User;
 import java.sql.Connection;
@@ -16,12 +17,19 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+import static tn.edu.esprit.gui.LoginController.CurrentUser;
+import static tn.edu.esprit.gui.Login_backController.CurrentGerant;
 import tn.edu.esprit.utils.MyDB;
 
 /**
@@ -31,6 +39,7 @@ import tn.edu.esprit.utils.MyDB;
 public class ServiceRestaurant implements IService<Restaurant> {
 
     private final Connection cnx;
+    Alert b = new Alert(AlertType.NONE);
 
     public ServiceRestaurant() {
         cnx = MyDB.getInstance().getCnx();
@@ -64,6 +73,25 @@ public class ServiceRestaurant implements IService<Restaurant> {
         }
         return Restaurant;
     }
+
+     public List<Restaurant> MesResto() {
+        List<Restaurant> Restaurant = new ArrayList<>();
+        try {
+            String req = "SELECT * FROM restaurant WHERE `archive` = 0 AND id_gerant="+CurrentGerant.getId_gerant();
+                    //+ CurrentUser.getId_user();
+
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+                Restaurant.add(new Restaurant(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getString(8), rs.getInt(9), rs.getInt(10), rs.getString(11), rs.getString(12), rs.getString(13)));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return Restaurant;
+    }
+
+    
 
     public Restaurant GetRestobyid(int b) throws SQLException {
 
@@ -120,39 +148,43 @@ public class ServiceRestaurant implements IService<Restaurant> {
         }
         return true;
     }*/
-    public void UpdateResto(Restaurant b) throws SQLException {
-        //-------------------- Update ----------//
-
-        String reqUp = "update restaurant set nom_restaurant =? ,adresse_restaurant =?,telephone_restaurant =?,siteweb_restaurant =?,specialite_restaurant =?,image =?,nb_placeResto =?, description =? where id_restaurant=?";
-
-        PreparedStatement pss = MyDB.getInstance().getCnx().prepareStatement(reqUp);
-
-        pss.setString(1, b.getNom_restaurant());
-        pss.setString(2, b.getAdresse_restaurant());
-        pss.setInt(3, b.getTelephone_restaurant());
-        pss.setString(4, b.getSiteweb_restaurant());
-        pss.setString(5, b.getSpecialite_restaurant());
-        pss.setString(6, b.getImage());
-        pss.setInt(7, b.getNb_placeResto());
-        pss.setString(8, b.getDescription());
-        pss.setInt(9, b.getId_restaurant());
-
-        pss.executeUpdate();
-
-    }
-
-    @Override
-    public boolean supprimer(Restaurant p) {
-        /*   try {
-            String querry = "DELETE FROM `restaurant` WHERE `id_restaurant` = '" + p.getId_restaurant()+ "'";
+//    public void UpdateResto(Restaurant b) throws SQLException {
+//        //-------------------- Update ----------//
+//
+//        String reqUp = " UPDATE restaurant SET nom_restaurant = ? ,adresse_restaurant = ?,telephone_restaurant = ?, siteweb_restaurant = ?,specialite_restaurant = ?, image = ?, nb_placeResto = ?, description = ? WHERE  id_restaurant = ? ";
+//
+//        PreparedStatement pss = MyDB.getInstance().getCnx().prepareStatement(reqUp);
+//
+//        pss.setString(1, b.getNom_restaurant());
+//        pss.setString(2, b.getAdresse_restaurant());
+//        pss.setInt(3, b.getTelephone_restaurant());
+//        pss.setString(4, b.getSiteweb_restaurant());
+//        pss.setString(5, b.getSpecialite_restaurant());
+//        pss.setString(6, b.getImage());
+//        pss.setInt(7, b.getNb_placeResto());
+//        pss.setString(8, b.getDescription());
+//        pss.setInt(9, b.getId_restaurant());
+//
+//        pss.executeUpdate();
+//
+//    }
+        public boolean update(Restaurant P) {
+        
+            System.out.println(P.getId_restaurant());
+        try{
+            String req = " UPDATE restaurant SET nom_restaurant  = '" + P.getNom_restaurant()+ "' ,adresse_restaurant  = '" + P.getAdresse_restaurant()+ "' ,telephone_restaurant  = '" + P.getTelephone_restaurant()+ "' ,siteweb_restaurant = '" + P.getSiteweb_restaurant()+ "' ,specialite_restaurant = '" + P.getSpecialite_restaurant()+ "' ,image  = '" + P.getImage()+ "' ,nb_placeResto   = '" + P.getNb_placeResto()+ "'  WHERE id_restaurant = '" + P.getId_restaurant() + "' ";
             Statement stm = cnx.createStatement();
-            stm.executeUpdate(querry);
+            stm.executeUpdate(req);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             return false;
         }
         return true;
-        }*/
+    }
+
+    @Override
+    public boolean supprimer(Restaurant p) {
+
         try {
             String req = " UPDATE `restaurant` SET `archive` = 1  WHERE `id_restaurant` = '" + p.getId_restaurant() + "'";
             Statement stm = cnx.createStatement();
@@ -184,6 +216,7 @@ public class ServiceRestaurant implements IService<Restaurant> {
     public List<Restaurant> rechercher(Restaurant p) {
         List<Restaurant> a = afficher();
         return a.stream().filter(b -> (b.getAdresse_restaurant().equals(p.getAdresse_restaurant()))).collect(Collectors.toList());
+
     }
 
     public List<Restaurant> rechercherSpecialite(Restaurant p) {
@@ -191,13 +224,40 @@ public class ServiceRestaurant implements IService<Restaurant> {
         return a.stream().filter(b -> (b.getSpecialite_restaurant().equals(p.getSpecialite_restaurant()))).collect(Collectors.toList());
     }
 
-    public Iterable<Restaurant> RechercheEvenementParNom(String recherche) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Iterable<Restaurant> RechercheRestaurantsParNom(String recherche) {
+        List ALLproducts = new ArrayList();
+        try {
+            String query = "select * from restaurant WHERE  archive =0 and  nom_restaurant LIKE '%" + recherche + "%';";
+            Statement st = MyDB.getInstance().getCnx().createStatement();
+            ResultSet rest = st.executeQuery(query);
+            while (rest.next()) {
+                Restaurant pr = new Restaurant();
+
+                pr.setId_restaurant(rest.getInt("id_restaurant"));
+                pr.setNom_restaurant(rest.getString("nom_restaurant"));
+                pr.setAdresse_restaurant(rest.getString("adresse_restaurant"));
+                pr.setTelephone_restaurant(rest.getInt("telephone_restaurant"));
+                pr.setSiteweb_restaurant(rest.getString("siteweb_restaurant"));
+                pr.setSpecialite_restaurant(rest.getString("specialite_restaurant"));
+                pr.setLien(rest.getString("lien"));
+                pr.setImage(rest.getString("image"));
+
+                ALLproducts.add(pr);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceRestaurant.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return ALLproducts;
+
     }
 
     @Override
     public boolean modifer(Restaurant p) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
 
 }
