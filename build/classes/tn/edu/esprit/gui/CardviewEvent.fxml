@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxHeight="350.0" maxWidth="266.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="290.0" prefWidth="266.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.edu.esprit.gui.CardviewEventController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffa69e" height="296.0" layoutY="-2.0" stroke="TRANSPARENT" strokeType="INSIDE" width="266.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1e1e1e" height="270.0" layoutX="8.0" layoutY="10.0" opacity="0.41" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="2.0" width="250.0" />
+      <Label fx:id="nom" alignment="CENTER" contentDisplay="CENTER" layoutX="117.0" layoutY="32.0" prefHeight="22.0" prefWidth="122.0" text="nom" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <effect>
+            <DropShadow color="#fffdfd" height="44.475" radius="32.85625" spread="0.17" width="88.95" />
+         </effect>
+         <padding>
+            <Insets left="2.0" top="5.0" />
+         </padding>
+      </Label>
+      <Label fx:id="theme" alignment="CENTER" contentDisplay="CENTER" layoutX="117.0" layoutY="72.0" prefHeight="20.0" prefWidth="122.0" text="25" textAlignment="JUSTIFY" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <effect>
+            <DropShadow color="#fffdfd" height="44.475" radius="32.85625" spread="0.17" width="88.95" />
+         </effect>
+         <padding>
+            <Insets left="2.0" />
+         </padding>
+      </Label>
+      <Label fx:id="adresse" alignment="CENTER" contentDisplay="CENTER" layoutX="130.0" layoutY="108.0" prefHeight="20.0" prefWidth="122.0" text="Ariana Essoughra" textAlignment="JUSTIFY" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <effect>
+            <DropShadow color="#fffdfd" height="44.475" radius="32.85625" spread="0.17" width="88.95" />
+         </effect>
+         <padding>
+            <Insets left="2.0" />
+         </padding>
+      </Label>
+      <Label fx:id="date" alignment="CENTER" contentDisplay="CENTER" layoutX="105.0" layoutY="146.0" prefHeight="20.0" prefWidth="146.0" text="J'aime les sushi" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <effect>
+            <DropShadow color="#fffdfd" height="44.475" radius="32.85625" spread="0.17" width="88.95" />
+         </effect>
+         <padding>
+            <Insets left="2.0" />
+         </padding>
+      </Label>
+      <Label fx:id="contact" layoutX="144.0" layoutY="184.0" prefHeight="18.0" prefWidth="94.0" text="Contact">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="13.0" layoutY="34.0" prefHeight="18.0" prefWidth="86.0" text="EVENEMENT :">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="13.0" layoutY="73.0" prefHeight="18.0" prefWidth="86.0" text="THEME :">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="13.0" layoutY="109.0" prefHeight="18.0" prefWidth="86.0" text="Adresse : ">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="13.0" layoutY="147.0" prefHeight="18.0" prefWidth="86.0" text="Date : ">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="13.0" layoutY="185.0" prefHeight="18.0" prefWidth="86.0" text="Contact : ">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
