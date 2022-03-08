@@ -5,16 +5,21 @@
  */
 package tn.edu.esprit.gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -22,6 +27,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import tn.edu.esprit.model.Gerant;
 import tn.edu.esprit.model.User;
 import tn.edu.esprit.services.ServiceGerant;
@@ -46,9 +53,7 @@ public class GestionUserController implements Initializable {
     private DatePicker dda;
     @FXML
     private DatePicker ddf;
-    @FXML
     private ListView<Gerant> listGerant;
-    @FXML
     private ListView<User> listuser;
     @FXML
     private TextField emailGerant;
@@ -72,6 +77,12 @@ public class GestionUserController implements Initializable {
     private Label ddfGcontrol1;
     @FXML
     private Label formulairecontrol;
+    List<User> users = new ArrayList<>();
+    List<Gerant> gerants = new ArrayList<>();
+    @FXML
+    private GridPane user;
+    @FXML
+    private GridPane gerant;
 
     /**
      * Initializes the controller class.
@@ -79,10 +90,10 @@ public class GestionUserController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ServiceGerant g = new ServiceGerant();
-        listGerant.getItems().addAll(g.afficher());
+        afficherG();
+        ServiceUser us = new ServiceUser();
+        afficherU();
 
-        ServiceUser u = new ServiceUser();
-        listuser.getItems().addAll(u.afficher());
     }
 
     @FXML
@@ -152,7 +163,6 @@ public class GestionUserController implements Initializable {
 
     }
 
-    @FXML
     private void index(MouseEvent event) {
         Gerant g = listGerant.getSelectionModel().getSelectedItem();
 
@@ -166,7 +176,6 @@ public class GestionUserController implements Initializable {
 
     }
 
-    @FXML
     private void deleteUser(ActionEvent event) {
         ServiceUser u = new ServiceUser();
         User user = listuser.getSelectionModel().getSelectedItem();
@@ -244,14 +253,14 @@ public class GestionUserController implements Initializable {
 
     @FXML
     private void ddaGerantControl(KeyEvent event) {
-       
-            ddaGcontrol.setText(null);
-        
+
+        ddaGcontrol.setText(null);
+
     }
 
     @FXML
     private void ddfGerantControl(KeyEvent event) {
-         ddaGcontrol.setText(null);
+        ddaGcontrol.setText(null);
     }
 
     private boolean isValidated() {
@@ -274,5 +283,57 @@ public class GestionUserController implements Initializable {
             return true;
         }
         return false;
+    }
+
+    public void afficherU() {
+
+        int colum = 0;
+        int row = 0;
+        ServiceUser us = new ServiceUser();
+        users = us.afficher();
+        try {
+            for (int i = 0; i < users.size(); i++) {
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("CardviewUser.fxml"));
+                AnchorPane anchorPane = loader.load();
+                CardviewUserController controller = loader.getController();
+                controller.setAffichage(users.get(i));
+
+                ++colum;
+
+                user.add(anchorPane, colum++, row);
+                GridPane.setMargin(anchorPane, new Insets(25, 15, 0, 0));
+
+            }
+        } catch (IOException e) {
+            e.getMessage();
+        }
+
+    }
+
+    public void afficherG() {
+
+        int colum = 0;
+        int row = 0;
+        ServiceGerant g = new ServiceGerant();
+        gerants = g.afficher();
+        try {
+            for (int i = 0; i < gerants.size(); i++) {
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("CardviewGerant.fxml"));
+                AnchorPane anchorPane = loader.load();
+                CardviewGerantController cont = loader.getController();
+                cont.setAffichage(gerants.get(i));
+
+                ++colum;
+
+                gerant.add(anchorPane, colum++, row);
+                GridPane.setMargin(anchorPane, new Insets(25, 15, 0, 0));
+
+            }
+        } catch (IOException e) {
+            e.getMessage();
+        }
+
     }
 }

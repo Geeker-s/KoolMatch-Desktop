@@ -8,6 +8,7 @@ package tn.edu.esprit.gui;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,6 +27,12 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import static tn.edu.esprit.gui.LoginController.CurrentUser;
 import tn.edu.esprit.model.User;
 import tn.edu.esprit.services.ServiceUser;
@@ -122,14 +129,62 @@ public class SignInController implements Initializable {
     @FXML
     private void mdpControl(KeyEvent event
     ) {
-        String PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=\\S+$).{8,15}$";
+        String PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!/@#$%^&*])(?=\\S+$).{8,15}$";
         Pattern p = Pattern.compile(PATTERN);
         Matcher match = p.matcher(tfpassword.getText());
         if (!match.matches()) {
-            passcontrol.setText("Mot de passe doit contenir minimum 9 caractére \nMinimum un carctére miniscule et un caractère majuscule \nDoit contenir un carctère spécial ! @ # &");
+            passcontrol.setText("Mot de passe non valide");
         } else {
             passcontrol.setText(null);
         }
+    }
+
+    @FXML
+    private void ForgetPassword(ActionEvent event) {
+        ServiceUser us = new ServiceUser();
+        User usr = new User();
+        String to = tfusername.getText();
+        String from = "matchkool@gmail.com";
+        String host = "smtp.gmail.com";
+        final String username = "matchkool@gmail.com";
+        final String password = "esprit123*";
+
+        //setup mail server
+        Properties props = System.getProperties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.port", "587");
+
+        Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+
+        try {
+
+            //create mail
+            MimeMessage m = new MimeMessage(session);
+            m.setFrom(new InternetAddress(from));
+            m.addRecipient(MimeMessage.RecipientType.TO, new InternetAddress(to));
+            m.setSubject("Reset your password!");
+            m.setText("Hey! Votre mot de passe est: " +  us.selectPassword(tfusername.getText()));
+
+            //send mail
+            Transport.send(m);
+
+            System.out.println("Message sent!");
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+
+        tfusername.clear();
+        tfpassword.clear();
     }
 
 }

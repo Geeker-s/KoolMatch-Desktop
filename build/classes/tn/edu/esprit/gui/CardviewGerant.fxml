@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxHeight="350.0" maxWidth="238.0" prefHeight="225.0" prefWidth="238.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.edu.esprit.gui.CardviewGerantController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffa59e" height="225.0" stroke="TRANSPARENT" strokeType="INSIDE" width="238.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1e1e1e" height="117.0" layoutX="8.0" layoutY="99.0" opacity="0.41" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="2.0" width="218.0" />
+      <Label fx:id="nom" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="100.0" prefHeight="20.0" prefWidth="215.0" text="Foulena ben foulena" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <effect>
+            <DropShadow color="#fffdfd" height="44.475" radius="32.85625" spread="0.17" width="88.95" />
+         </effect>
+         <padding>
+            <Insets left="2.0" top="5.0" />
+         </padding>
+      </Label>
+      <Label fx:id="tel" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="128.0" prefHeight="20.0" prefWidth="215.0" text="29163283" textAlignment="JUSTIFY" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <effect>
+            <DropShadow color="#fffdfd" height="44.475" radius="32.85625" spread="0.17" width="88.95" />
+         </effect>
+         <padding>
+            <Insets left="2.0" />
+         </padding>
+      </Label>
+      <Label fx:id="dda" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="152.0" prefHeight="20.0" prefWidth="215.0" text="09-03-2022" textAlignment="JUSTIFY" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <effect>
+            <DropShadow color="#fffdfd" height="44.475" radius="32.85625" spread="0.17" width="88.95" />
+         </effect>
+         <padding>
+            <Insets left="2.0" />
+         </padding>
+      </Label>
+      <Label fx:id="ddf" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="167.0" prefHeight="40.0" prefWidth="215.0" text="09-03-2023" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <effect>
+            <DropShadow color="#fffdfd" height="44.475" radius="32.85625" spread="0.17" width="88.95" />
+         </effect>
+         <padding>
+            <Insets left="2.0" />
+         </padding>
+      </Label>
+   </children>
+</AnchorPane>
