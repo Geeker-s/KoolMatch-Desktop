@@ -74,7 +74,7 @@ rotateTransition.play();
 
     @FXML
     private void MesResto(ActionEvent event) throws IOException {
-         Scene scene = new Scene(FXMLLoader.load(getClass().getResource("AfficherRestaurantUser.fxml")));
+         Scene scene = new Scene(FXMLLoader.load(getClass().getResource("AfficherRestaurant.fxml")));
 
         Stage stage = new Stage();
         stage.setScene(scene);

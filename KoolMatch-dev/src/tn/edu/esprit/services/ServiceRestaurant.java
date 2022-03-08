@@ -76,7 +76,7 @@ public class ServiceRestaurant implements IService<Restaurant> {
      public List<Restaurant> MesResto() {
         List<Restaurant> Restaurant = new ArrayList<>();
         try {
-            String req = "SELECT * FROM restaurant WHERE `archive` = 1 AND id_gerant="+CurrentUser.getId_user();
+            String req = "SELECT * FROM restaurant WHERE `archive` = 0 AND id_gerant="+CurrentUser.getId_user();
                     //+ CurrentUser.getId_user();
 
             Statement st = cnx.createStatement();
@@ -147,25 +147,38 @@ public class ServiceRestaurant implements IService<Restaurant> {
         }
         return true;
     }*/
-    public void UpdateResto(Restaurant b) throws SQLException {
-        //-------------------- Update ----------//
-
-        String reqUp = " UPDATE`restaurant` SET `nom_restaurant` =? ,`adresse_restaurant` =?,`telephone_restaurant` =?,`siteweb_restaurant` =?,`specialite_restaurant` =?,`image` =?,`nb_placeResto` =?, `description` =? WHERE`id_restaurant`=? ";
-
-        PreparedStatement pss = MyDB.getInstance().getCnx().prepareStatement(reqUp);
-
-        pss.setString(1, b.getNom_restaurant());
-        pss.setString(2, b.getAdresse_restaurant());
-        pss.setInt(3, b.getTelephone_restaurant());
-        pss.setString(4, b.getSiteweb_restaurant());
-        pss.setString(5, b.getSpecialite_restaurant());
-        pss.setString(6, b.getImage());
-        pss.setInt(7, b.getNb_placeResto());
-        pss.setString(8, b.getDescription());
-        pss.setInt(9, b.getId_restaurant());
-
-        pss.executeUpdate();
-
+//    public void UpdateResto(Restaurant b) throws SQLException {
+//        //-------------------- Update ----------//
+//
+//        String reqUp = " UPDATE restaurant SET nom_restaurant = ? ,adresse_restaurant = ?,telephone_restaurant = ?, siteweb_restaurant = ?,specialite_restaurant = ?, image = ?, nb_placeResto = ?, description = ? WHERE  id_restaurant = ? ";
+//
+//        PreparedStatement pss = MyDB.getInstance().getCnx().prepareStatement(reqUp);
+//
+//        pss.setString(1, b.getNom_restaurant());
+//        pss.setString(2, b.getAdresse_restaurant());
+//        pss.setInt(3, b.getTelephone_restaurant());
+//        pss.setString(4, b.getSiteweb_restaurant());
+//        pss.setString(5, b.getSpecialite_restaurant());
+//        pss.setString(6, b.getImage());
+//        pss.setInt(7, b.getNb_placeResto());
+//        pss.setString(8, b.getDescription());
+//        pss.setInt(9, b.getId_restaurant());
+//
+//        pss.executeUpdate();
+//
+//    }
+        public boolean update(Restaurant P) {
+        
+            System.out.println(P.getId_restaurant());
+        try{
+            String req = " UPDATE restaurant SET nom_restaurant  = '" + P.getNom_restaurant()+ "' ,adresse_restaurant  = '" + P.getAdresse_restaurant()+ "' ,telephone_restaurant  = '" + P.getTelephone_restaurant()+ "' ,siteweb_restaurant = '" + P.getSiteweb_restaurant()+ "' ,specialite_restaurant = '" + P.getSpecialite_restaurant()+ "' ,image  = '" + P.getImage()+ "' ,nb_placeResto   = '" + P.getNb_placeResto()+ "'  WHERE id_restaurant = '" + P.getId_restaurant() + "' ";
+            Statement stm = cnx.createStatement();
+            stm.executeUpdate(req);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -243,5 +256,7 @@ public class ServiceRestaurant implements IService<Restaurant> {
     public boolean modifer(Restaurant p) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
 
 }

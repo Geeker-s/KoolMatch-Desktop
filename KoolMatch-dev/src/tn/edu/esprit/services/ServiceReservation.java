@@ -46,7 +46,7 @@ public class ServiceReservation implements IService<Reservation> {
     @Override
     public void ajouter(Reservation p1) {
         try {
-            String querry = "INSERT INTO `reservation` (`id_reservation`,`date_reservation`,`nbPlace_reservation`,`id_restaurant`,`id_user`,`archive`) VALUES('" + p1.getId_reservation() + "','" + p1.getDate_reservation() + "','" + p1.getNbPlace_reservation() + "','" + p1.getId_restaurant() + "','" + p1.getId_user() + "','" + p1.getArchive() + "')";
+            String querry = "INSERT INTO `reservation` (`id_reservation`,`date_reservation`,`nbPlace_reservation`,`id_restaurant`,`id_user`,`archive`,`nom_resto`,`image`,`adresse`) VALUES('" + p1.getId_reservation() + "','" + p1.getDate_reservation() + "','" + p1.getNbPlace_reservation() + "','" + p1.getId_restaurant() + "','" + p1.getId_user() + "','" + p1.getArchive() + "','" + p1.getNom_resto() + "','" + p1.getImage() + "','" + p1.getAdresse()+ "')";
             Statement stm = cnx.createStatement();
             stm.executeUpdate(querry);
         } catch (SQLException ex) {
@@ -90,7 +90,7 @@ public class ServiceReservation implements IService<Reservation> {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                Reservation.add(new Reservation(rs.getInt(1), rs.getDate(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6)));
+                Reservation.add(new Reservation(rs.getInt(1), rs.getDate(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6),rs.getString(7),rs.getString(8),rs.getString(9)));
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -269,5 +269,7 @@ public class ServiceReservation implements IService<Reservation> {
             return true;}
 
     }
+
+   
 
 }

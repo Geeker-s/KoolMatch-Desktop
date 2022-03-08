@@ -43,6 +43,7 @@ import tn.edu.esprit.model.User;
 import tn.edu.esprit.services.ServiceReservation;
 import tn.edu.esprit.services.ServiceRestaurant;
 import tn.edu.esprit.services.ServiceUser;
+import tn.edu.esprit.api.sendSMS;
 
 /**
  * FXML Controller class
@@ -69,10 +70,6 @@ public class FormulaireReservationController implements Initializable {
     private TextField nomres;
     @FXML
     private TextField nomuser;
-    @FXML
-    private TextField prenom;
-    @FXML
-    private TextField numtel;
     @FXML
     private Button button;
 
@@ -123,13 +120,8 @@ public class FormulaireReservationController implements Initializable {
         nomres.setText(p1.getNom_restaurant());
         nomres.setEditable(false);
 
-        nomuser.setText(CurrentUser.getNom_user());
-         nomuser.setEditable(false);
-          prenom.setText(CurrentUser.getPrenom_user());
-         prenom.setEditable(false);
-        
-         numtel.setText(String.valueOf(CurrentUser.getTelephone_user()));
-         
+        nomuser.setText(p1.getAdresse_restaurant());
+        nomuser.setEditable(false);
         String a = p1.getImage();
         System.out.println(a);
         System.out.println(p1.getImage());
@@ -142,8 +134,9 @@ public class FormulaireReservationController implements Initializable {
     @FXML
     private void insert(ActionEvent event) throws SQLException {
         p1 = sp1.GetRestobyid(Restaurant.getId_courant());
-
+       sendSMS sms = new sendSMS();
        ServiceReservation sp = new ServiceReservation();
+       
 
         ServiceUser sp2 = new ServiceUser();
 
@@ -153,7 +146,7 @@ public class FormulaireReservationController implements Initializable {
 
         p.setId_restaurant(p1.getId_restaurant());
         // p.setId_user(CurrentUser.getId_user());
-        p.setId_user(1);
+       // p.setId_user(1);
 
         //  p2.setNom_user(nomuser.getText());//nom cureetn user 
        // p.setNbPlace_reservation(Integer.parseInt(Fnbrplace.getText()));
@@ -225,7 +218,17 @@ public class FormulaireReservationController implements Initializable {
         p.setNbPlace_reservation(Integer.parseInt(Fnbrplace.getText()));
        Date Date_reservation = Date.valueOf(this.disponibilite.getValue());
        p.setDate_reservation(Date_reservation);
+       p.setNom_resto(p1.getNom_restaurant());
+       p.setImage(p1.getImage());
+       p.setAdresse(p1.getAdresse_restaurant());
        sp.ajouter(p);
+       tn.edu.esprit.api.sendSMS.sendSMS(CurrentUser);
+      
+       
+       
+       
+       
+       
        
            System.out.println("ajoute avec succes ");
        

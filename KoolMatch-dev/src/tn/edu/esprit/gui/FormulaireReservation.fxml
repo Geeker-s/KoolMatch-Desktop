@@ -11,12 +11,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="basepane" prefHeight="656.0" prefWidth="851.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.edu.esprit.gui.FormulaireReservationController">
+<AnchorPane id="AnchorPane" fx:id="basepane" prefHeight="468.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.edu.esprit.gui.FormulaireReservationController">
    <children>
   
-            <Pane fx:id="mypane" prefHeight="656.0" prefWidth="866.0">
+            <Pane fx:id="mypane" prefHeight="472.0" prefWidth="859.0">
          <children>
-            <Label layoutX="37.0" layoutY="3.0" text="Bienvenue">
+            <Label layoutX="207.0" text="Bienvenue">
                <font>
                   <Font name="System Bold" size="29.0" />
                </font>
@@ -24,28 +24,36 @@
                   <Insets left="150.0" />
                </padding>
             </Label>
-            <ImageView fx:id="idimage" fitHeight="202.0" fitWidth="217.0" layoutX="572.0" layoutY="186.0" />
-            <VBox layoutX="14.0" layoutY="130.0" prefHeight="489.0" prefWidth="127.0" spacing="50.0">
+            <ImageView fx:id="idimage" fitHeight="202.0" fitWidth="217.0" layoutX="565.0" layoutY="135.0" />
+            <VBox layoutX="14.0" layoutY="130.0" prefHeight="246.0" prefWidth="184.0" spacing="50.0">
                <children>
-                  <Label text="Nom restaurant :" />
-                  <Label text="Saisir votre nom :" />
-                  <Label text="Saisir votre prénom :" />
-                  <Label text="Saisir votre numéro :" />
-                  <Label text="Nombre de places :" />
-                  <Label text="Date de réservation :" />
+                  <Label text="Nom restaurant :">
+                     <font>
+                        <Font name="Cambria Italic" size="20.0" />
+                     </font></Label>
+                  <Label text="Adresse :">
+                     <font>
+                        <Font name="Cambria Italic" size="20.0" />
+                     </font></Label>
+                  <Label text="Nombre de places :">
+                     <font>
+                        <Font name="Cambria Italic" size="20.0" />
+                     </font></Label>
+                  <Label text="Date de réservation :">
+                     <font>
+                        <Font name="Cambria Italic" size="20.0" />
+                     </font></Label>
                </children>
             </VBox>
             <VBox layoutX="229.0" layoutY="120.0" prefHeight="428.0" prefWidth="217.0" spacing="42.0">
                <children>
                   <TextField fx:id="nomres" />
                   <TextField fx:id="nomuser" layoutX="10.0" layoutY="10.0" />
-                  <TextField fx:id="prenom" layoutX="10.0" layoutY="36.0" />
-                  <TextField fx:id="numtel" layoutX="10.0" layoutY="62.0" />
                   <TextField fx:id="Fnbrplace" layoutX="10.0" layoutY="88.0" />
                   <DatePicker fx:id="disponibilite" prefHeight="26.0" prefWidth="218.0" />
                </children>
             </VBox>
-            <Button fx:id="button" layoutX="433.0" layoutY="611.0" mnemonicParsing="false" onAction="#insert" text="Insert" />
+            <Button fx:id="button" layoutX="763.0" layoutY="427.0" mnemonicParsing="false" onAction="#insert" prefHeight="31.0" prefWidth="88.0" text="valider" />
          </children>
       </Pane>
    </children>

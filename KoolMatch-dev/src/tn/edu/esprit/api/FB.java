@@ -23,14 +23,14 @@ public class FB {
 
     public static void publish(String s) throws FileNotFoundException {
         ////// lazemni nechoufhem  
-        String MY_APP_ID = "339743583185311";
-        String MY_APP_SECRET = "c4678b604004fd378b4d838993de2dbf";
-        String MyAccessToken = "EAAE0ZCreXKZA8BAE0LCNlLOZBq8EyxMim2Jr3zAM2eBTGh9iOzODyzWuBJQLiZCQ0wnraTwA85PfpOFMoMrteZA7eVlHmIZBbapqFruM6kPBQp4gMYD2DYH61qjyYaBHKlD0ZCQrp33DUC36phOmDnEGemPHREORYbKBXrcnFRcwv6DaKTmjrqtAZBTGRwV0ZAJgZD";
+        String MY_APP_ID = "721112175716489";
+        String MY_APP_SECRET = "0144b8b1c177290e37a91b165a06b2ae";
+        String MyAccessToken = "EAAKP2QMTqIkBAEkUAu1VnjCtp3W8GmZAlgSHlA9LaPs7nYS3e5kCxlE17wMLjrzjATiDRtOo1DvmtRwmkW8oMZAIUpKKFVjinAsRHQ3ACAkhUZBlOAVB5skT2ZAF9ptyimzLSftqVMIiRDr1ciiZCvqGHGDVVqex2r543tccNcja2z274xbOskwqNN2MDqp8BH6WV08pzqGZBn8656cL7P";
 
-        //AccessToken accessToken = new DefaultFacebookClient().obtainAppAccessToken(MY_APP_ID, MY_APP_SECRET);
+        AccessToken accessToken = new DefaultFacebookClient().obtainAppAccessToken(MY_APP_ID, MY_APP_SECRET);
         DefaultFacebookClient facebookClient = new DefaultFacebookClient(MyAccessToken);
         String fbMessage = "Hello from java!";
-        FileInputStream fb = new FileInputStream("C:\\wamp64\\www\\images\\" + s);
+        FileInputStream fb = new FileInputStream(s);
         //facebookClient.publish("me/feed", FacebookType.class, Parameter.with("message", fbMessage));
         facebookClient.publish("me/photos", FacebookType.class,
                 BinaryAttachment.with("jpg", fb),

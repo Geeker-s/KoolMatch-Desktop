@@ -90,7 +90,7 @@ public class AfficherRestaurantUserController implements Initializable {
     public void getShowPane() {
         List<Restaurant> AllProducts = new ArrayList();
         if (recherche.equals("")) {
-            for (Restaurant p : service_pr.MesResto()) {
+            for (Restaurant p : service_pr.afficher()) {
                 AllProducts.add(p);
             }
         } else {
