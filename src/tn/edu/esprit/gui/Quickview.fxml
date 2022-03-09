@@ -1,68 +1,165 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.Rating?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="628.0" prefWidth="1063.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="tn.edu.esprit.gui.QuickviewController">
+<AnchorPane id="AnchorPane" prefHeight="677.0" prefWidth="949.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.edu.esprit.gui.QuickviewController">
    <children>
-      <Label fx:id="nom_restaurant" layoutX="483.0" layoutY="43.0" prefHeight="35.0" prefWidth="227.0" text="koolmatch">
+      <Label fx:id="nom_restaurant" layoutX="405.0" layoutY="43.0" prefHeight="35.0" prefWidth="140.0" text="koolmatch">
          <font>
             <Font name="Cambria Math" size="31.0" />
          </font>
       </Label>
-      <ImageView fx:id="idimage_viewStru" fitHeight="1.0" fitWidth="1.0" layoutX="11.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-         <effect>
-            <InnerShadow />
-         </effect>
-      </ImageView>
-      <Label layoutX="159.0" layoutY="130.0" prefHeight="21.0" prefWidth="124.0" text="Details" textFill="#bf1b51">
+      <Label layoutX="150.0" layoutY="130.0" prefHeight="30.0" prefWidth="75.0" text="Details" textFill="#bf1b51">
          <font>
             <Font name="Cambria Italic" size="24.0" />
          </font>
       </Label>
-      <VBox layoutX="584.0" layoutY="193.0" prefHeight="384.0" prefWidth="325.0" spacing="33.0">
+      <VBox layoutX="524.0" layoutY="176.0" prefHeight="427.0" prefWidth="393.0" spacing="33.0" style="-fx-background-color: #fceffb;">
          <children>
-            <Label fx:id="id_num" text="Label" />
-            <Label fx:id="id_addr" text="Label" />
-            <Label fx:id="id_site" text="Label" />
-            <ImageView fx:id="idimage_view" fitHeight="219.0" fitWidth="515.0" pickOnBounds="true" preserveRatio="true">
+            <Label fx:id="id_num" prefHeight="28.0" prefWidth="124.0" text="Label">
+               <font>
+                  <Font size="19.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="12.0" top="50.0" />
+               </VBox.margin>
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/phone.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Label>
+            <Label fx:id="id_addr" text="Label">
+               <font>
+                  <Font size="19.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="12.0" />
+               </VBox.margin>
+               <graphic>
+                  <ImageView fitHeight="33.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/images%20(1).png" />
+                     </image>
+                  </ImageView>
+               </graphic></Label>
+            <Label fx:id="id_site" text="Label">
+               <font>
+                  <Font size="19.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="12.0" />
+               </VBox.margin>
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Search_52px.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Label>
+            <ImageView fx:id="idimage_view" fitHeight="108.0" fitWidth="270.0" pickOnBounds="true" preserveRatio="true">
                <effect>
                   <InnerShadow />
                </effect>
+               <VBox.margin>
+                  <Insets left="80.0" />
+               </VBox.margin>
             </ImageView>
+            <Rating fx:id="rating" rating="3.0">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="110.0" />
+               </VBox.margin>
+               <effect>
+                  <DropShadow color="#a87b7b" />
+               </effect>
+            </Rating>
          </children>
+         <effect>
+            <Glow>
+               <input>
+                  <InnerShadow />
+               </input>
+            </Glow>
+         </effect>
+         <opaqueInsets>
+            <Insets bottom="20.0" />
+         </opaqueInsets>
       </VBox>
-      <Label layoutX="635.0" layoutY="130.0" prefHeight="30.0" prefWidth="314.0" text="Coordonnés et emplacement " textFill="#bf1b51">
+      <Label layoutX="607.0" layoutY="130.0" prefHeight="30.0" prefWidth="288.0" text="Coordonnés et emplacement " textFill="#bf1b51">
          <font>
             <Font name="Cambria Italic" size="24.0" />
          </font>
       </Label>
-      <VBox layoutX="68.0" layoutY="193.0" prefHeight="257.0" prefWidth="239.0" spacing="35.0">
+      <VBox layoutX="31.0" layoutY="175.0" prefHeight="445.0" prefWidth="429.0" spacing="33.0" style="-fx-background-color: #fceffb;">
          <children>
-            <Label text="Specialité :">
+            <Label fx:id="id_site1">
                <font>
-                  <Font name="Cambria Italic" size="20.0" />
+                  <Font size="19.0" />
                </font>
+               <VBox.margin>
+                  <Insets left="12.0" />
+               </VBox.margin>
             </Label>
-            <Label fx:id="is_spe" text="Label" />
-            <Label text="Description :">
-               <font>
-                  <Font name="Cambria Italic" size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="id_desc" text="Label" />
-            <Label text="Nombre de places :">
-               <font>
-                  <Font name="Cambria Italic" size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="id_nomb" text="Label" />
+            <VBox prefHeight="331.0" prefWidth="387.0" spacing="35.0">
+               <children>
+                  <Label text="Specialité :" textFill="#5a2a6f">
+                     <font>
+                        <Font name="Cambria Italic" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="is_spe" text="Label">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <Label text="Description :" textFill="#5a2a6f">
+                     <font>
+                        <Font name="Cambria Italic" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="id_desc" text="Label">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <Label text="Nombre de places :" textFill="#5a2a6f">
+                     <font>
+                        <Font name="Cambria Italic" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="id_nomb" text="Label">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets left="13.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox prefHeight="0.0" prefWidth="333.0" />
          </children>
+         <effect>
+            <Glow>
+               <input>
+                  <InnerShadow />
+               </input>
+            </Glow>
+         </effect>
       </VBox>
+      <ImageView fitHeight="150.0" fitWidth="35.0" layoutX="593.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="id_valide" layoutX="852.0" layoutY="632.0" mnemonicParsing="false" onAction="#valider" text="Button" />
    </children>
 </AnchorPane>

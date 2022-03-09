@@ -11,13 +11,16 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import static javafx.scene.input.KeyCode.R;
+import org.controlsfx.control.Rating;
 import tn.edu.esprit.model.Restaurant;
 import tn.edu.esprit.services.ServiceRestaurant;
 
@@ -35,8 +38,7 @@ public class QuickviewController implements Initializable {
     private Label nom_restaurant;
     @FXML
     private ImageView idimage_view;
-    @FXML
-    private ImageView idimage_viewStru;
+   
     @FXML
     private Label is_spe;
     @FXML
@@ -49,6 +51,12 @@ public class QuickviewController implements Initializable {
     private Label id_nomb;
     @FXML
     private Label id_desc;
+    @FXML
+    private Label id_site1;
+    @FXML
+    private Rating rating;
+    @FXML
+    private Button id_valide;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -71,12 +79,17 @@ public class QuickviewController implements Initializable {
         id_nomb.setText(Integer.toString(p1.getNb_placeResto()));
         id_num.setText(Integer.toString(p1.getTelephone_restaurant()));
         is_spe.setText(p1.getSpecialite_restaurant());
-        idimage_viewStru.setImage(image1);
+       
         String a1 = p1.getImage_structure_resturant();
         System.out.println(p1.getImage_structure_resturant());
         File file1 = new File(a1);
         Image image = new Image(file.toURI().toString());
 
+    }
+
+    @FXML
+    private void valider(ActionEvent event) {
+       System.out.println("donner votre avis : "+rating.getRating());
     }
 
 }

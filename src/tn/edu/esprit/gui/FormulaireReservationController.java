@@ -22,8 +22,12 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -36,6 +40,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import static tn.edu.esprit.gui.LoginController.CurrentUser;
 import tn.edu.esprit.model.Reservation;
@@ -133,9 +139,9 @@ public class FormulaireReservationController implements Initializable {
     }
 
     @FXML
-    private void insert(ActionEvent event) throws SQLException {
+    private void insert(ActionEvent event) throws SQLException, IOException {
         p1 = sp1.GetRestobyid(Restaurant.getId_courant());
-       sendSMS sms = new sendSMS();
+       
        ServiceReservation sp = new ServiceReservation();
        
 
@@ -167,7 +173,7 @@ public class FormulaireReservationController implements Initializable {
             alert.showAndWait();
        }
       
-       else if (b<=0)
+       else if (b<0)
            {
                
                Alert alert = new Alert(AlertType.ERROR);  
@@ -227,15 +233,17 @@ public class FormulaireReservationController implements Initializable {
       
    
   
-         
-         Alert alert = new Alert(AlertType.INFORMATION);
+           Notifications notificationBuilder = Notifications.create()
+                    .title("Alert").text("Restaurant ajouté avec succé").graphic(null).hideAfter(Duration.seconds(3))
+                    .position(Pos.BOTTOM_RIGHT);
+            notificationBuilder.darkStyle();
+            notificationBuilder.show();
 
-            alert.setTitle("Bienvenue dans mon restaurant");
-            alert.setHeaderText(null);
-            alert.setContentText("Merci pour ta confiance");
-
-            alert.showAndWait();
-
+            Parent root = FXMLLoader.load(getClass().getResource("AfficherReservationUser.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
        
        
        

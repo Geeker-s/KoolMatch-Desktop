@@ -27,6 +27,8 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -45,6 +47,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import tn.edu.esprit.api.FB;
 import tn.edu.esprit.model.Restaurant;
@@ -60,7 +63,7 @@ public class AfficherRestaurantController implements Initializable {
     public String recherche = "";
 
     final Tooltip tooltip = new Tooltip();
-    
+
     private Restaurant p1;
 
     ServiceRestaurant service_pr = new ServiceRestaurant();
@@ -79,16 +82,10 @@ public class AfficherRestaurantController implements Initializable {
         // ListView_Produits.setMouseTransparent( true );
         ListView_Produits.setFocusTraversable(false);
         getShowPane();
-        
-    
-     
-       
-               
-            
-        
 
     }
- ServiceRestaurant service = new ServiceRestaurant();
+    ServiceRestaurant service = new ServiceRestaurant();
+
     public void getShowPane() {
         List<Restaurant> AllProducts = new ArrayList();
         if (recherche.equals("")) {
@@ -338,62 +335,43 @@ public class AfficherRestaurantController implements Initializable {
 
                 btn.setLayoutX(40);
                 btn.setLayoutY(80);
-                
-                
-               // ---------------------------------------------delete alert  
-                
-                
+
+                // ---------------------------------------------delete alert  
                 btn.setOnMouseClicked((MouseEvent event) -> {
-                       
-                    Alert  b = new Alert(AlertType.NONE);
-                    
-                    
-                                b.setAlertType(Alert.AlertType.CONFIRMATION);
-        b.setTitle("Confirmation");
-        b.setHeaderText(null);
-        b.setContentText("Are you sure to delete this Categorie");
-      
-        Optional <ButtonType> action = b.showAndWait();
-         
-        if(action.get()== ButtonType.OK)
-        {    
-            
-        
-           
-      service_pr.supprimer(p3);
-            
-        getShowPane();
-    }
-        else
-        {
-            getShowPane();
-        
-        }
-                    
-                    
-                    
-                  //  service_pr.supprimer(p3);
-                  //  ListView_Produits.setItems(null);
-                  //  getShowPane();
-                   
+
+                    Alert b = new Alert(AlertType.NONE);
+
+                    b.setAlertType(Alert.AlertType.CONFIRMATION);
+                    b.setTitle("Confirmation");
+                    b.setHeaderText(null);
+                    b.setContentText("voulez-vous vraiment supprimer ??" );
+
+                    Optional<ButtonType> action = b.showAndWait();
+
+                    if (action.get() == ButtonType.OK) {
+
+                        service_pr.supprimer(p3);
+                        Notifications notificationBuilder = Notifications.create()
+                                .title("Alert").text("Restaurant supprimé avec succès").graphic(null).hideAfter(Duration.seconds(3))
+                                .position(Pos.BOTTOM_RIGHT);
+                        notificationBuilder.darkStyle();
+                        notificationBuilder.show();
+
+                        getShowPane();
+                    } else {
+                        getShowPane();
+
+                    }
+
+                    //  service_pr.supprimer(p3);
+                    //  ListView_Produits.setItems(null);
+                    //  getShowPane();
                 });
 
-                
-                
-    
-      
-  // ---------------------------------------------delete alert 
-                
-                
-                
-                
-                
-                
-                
-                
-                FontAwesomeIconView UP = new FontAwesomeIconView(FontAwesomeIcon.MAP);
+                // ---------------------------------------------delete alert 
+                FontAwesomeIconView UP = new FontAwesomeIconView(FontAwesomeIcon.UNDO);
                 UP.setFill(Color.RED);
-                UP.setSize("25");
+                UP.setSize("18");
 
                 UP.setCursor(Cursor.HAND);
 
@@ -406,9 +384,9 @@ public class AfficherRestaurantController implements Initializable {
                     Restaurant.setId_courant(p3.getId_restaurant());
 
                     try {
-                        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("UpdateRestaurant.fxml")));
-
-                        Stage stage = new Stage();
+                       Parent root = FXMLLoader.load(getClass().getResource("UpdateRestaurant.fxml"));
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        Scene scene = new Scene(root);
                         stage.setScene(scene);
                         stage.show();
                     } catch (IOException e) {
@@ -587,9 +565,9 @@ public class AfficherRestaurantController implements Initializable {
                     stage.show();
                 });
 
-                FontAwesomeIconView UP = new FontAwesomeIconView(FontAwesomeIcon.MAP);
+                FontAwesomeIconView UP = new FontAwesomeIconView(FontAwesomeIcon.UNDO);
                 UP.setFill(Color.RED);
-                UP.setSize("25");
+                UP.setSize("18");
 
                 UP.setCursor(Cursor.HAND);
 
@@ -602,9 +580,9 @@ public class AfficherRestaurantController implements Initializable {
                     Restaurant.setId_courant(p3.getId_restaurant());
 
                     try {
-                        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("UpdateRestaurant.fxml")));
-
-                        Stage stage = new Stage();
+                        Parent root = FXMLLoader.load(getClass().getResource("UpdateRestaurant.fxml"));
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        Scene scene = new Scene(root);
                         stage.setScene(scene);
                         stage.show();
                     } catch (IOException e) {
@@ -659,44 +637,33 @@ public class AfficherRestaurantController implements Initializable {
 
                 btn.setLayoutX(310);
                 btn.setLayoutY(80);
-                
-                
-                
-                  btn.setOnMouseClicked((MouseEvent event) -> {
-                       
-                    Alert  b = new Alert(AlertType.NONE);
-                    
-                    
-                                b.setAlertType(Alert.AlertType.CONFIRMATION);
-        b.setTitle("Confirmation");
-        b.setHeaderText(null);
-        b.setContentText("Are you sure to delete this Categorie");
-      
-        Optional <ButtonType> action = b.showAndWait();
-         
-        if(action.get()== ButtonType.OK)
-        {    
-            
-        
-           
-      service_pr.supprimer(p3);
-            
-        getShowPane();
-    }
-        else
-        {
-            getShowPane();
-        
-        }
+
+                btn.setOnMouseClicked((MouseEvent event) -> {
+
+                    Alert b = new Alert(AlertType.NONE);
+
+                    b.setAlertType(Alert.AlertType.CONFIRMATION);
+                    b.setTitle("Confirmation");
+                    b.setHeaderText(null);
+                    b.setContentText("voulez-vous vraiment supprimer ??");
+
+                    Optional<ButtonType> action = b.showAndWait();
+
+                    if (action.get() == ButtonType.OK) {
+
+                        service_pr.supprimer(p3);
+                        Notifications notificationBuilder = Notifications.create()
+                                .title("Alert").text("Restaurant supprimé avec succès").graphic(null).hideAfter(Duration.seconds(3))
+                                .position(Pos.BOTTOM_RIGHT);
+                        notificationBuilder.darkStyle();
+                        notificationBuilder.show();
+                        getShowPane();
+                    } else {
+                        getShowPane();
+
+                    }
                 });
-                
-                
-                
-                
-                
-                
-                
-                
+
                 pane.getChildren().addAll(pane2, nomt, prixt, nom, prix, web, fb, UP, btn);
             }
 
@@ -901,35 +868,33 @@ public class AfficherRestaurantController implements Initializable {
                 btn.setLayoutY(80);
                 btn.setOnMouseClicked((MouseEvent event) -> {
 //                    btn.setOnMouseClicked((MouseEvent event) -> {
-                       
-                    Alert  b = new Alert(AlertType.NONE);
-                    
-                    
-                                b.setAlertType(Alert.AlertType.CONFIRMATION);
-        b.setTitle("Confirmation");
-        b.setHeaderText(null);
-        b.setContentText("Are you sure to delete this Categorie");
-      
-        Optional <ButtonType> action = b.showAndWait();
-         
-        if(action.get()== ButtonType.OK)
-        {    
-            
-        
-           
-      service_pr.supprimer(p3);
-            
-        getShowPane();
-    }
-        else
-        {
-            getShowPane();
-        
-        }
-                    getShowPane();
-                       });
 
-                FontAwesomeIconView UP = new FontAwesomeIconView(FontAwesomeIcon.MAP);
+                    Alert b = new Alert(AlertType.NONE);
+
+                    b.setAlertType(Alert.AlertType.CONFIRMATION);
+                    b.setTitle("Confirmation");
+                    b.setHeaderText(null);
+                    b.setContentText("voulez-vous vraiment supprimer ??");
+
+                    Optional<ButtonType> action = b.showAndWait();
+
+                    if (action.get() == ButtonType.OK) {
+
+                        service_pr.supprimer(p3);
+                        Notifications notificationBuilder = Notifications.create()
+                                .title("Alert").text("Restaurant supprimé avec succès").graphic(null).hideAfter(Duration.seconds(3))
+                                .position(Pos.BOTTOM_RIGHT);
+                        notificationBuilder.darkStyle();
+                        notificationBuilder.show();
+                        getShowPane();
+                    } else {
+                        getShowPane();
+
+                    }
+                    getShowPane();
+                });
+
+                FontAwesomeIconView UP = new FontAwesomeIconView(FontAwesomeIcon.UNDO);
                 UP.setFill(Color.RED);
                 UP.setSize("25");
 
@@ -944,9 +909,9 @@ public class AfficherRestaurantController implements Initializable {
                     Restaurant.setId_courant(p3.getId_restaurant());
 
                     try {
-                        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("UpdateRestaurant.fxml")));
-
-                        Stage stage = new Stage();
+                        Parent root = FXMLLoader.load(getClass().getResource("UpdateRestaurant.fxml"));
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        Scene scene = new Scene(root);
                         stage.setScene(scene);
                         stage.show();
                     } catch (IOException e) {
