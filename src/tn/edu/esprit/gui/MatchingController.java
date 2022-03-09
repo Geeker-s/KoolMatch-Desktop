@@ -5,18 +5,25 @@
  */
 package tn.edu.esprit.gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import tn.edu.esprit.model.Conversations;
 import tn.edu.esprit.model.Interaction;
 import tn.edu.esprit.model.Matching;
 import tn.edu.esprit.model.User;
+import tn.edu.esprit.services.ServiceConversation;
 import tn.edu.esprit.services.ServiceInteraction;
 import tn.edu.esprit.services.ServiceMatching;
 import tn.edu.esprit.services.ServiceUser;
@@ -35,7 +42,12 @@ public class MatchingController implements Initializable {
     @FXML
     private ListView<User> users;
 
+    List<User> u;
     User x = new User();
+    @FXML
+    private GridPane grid;
+    @FXML
+    private ListView<User> list;
 
     /**
      * Initializes the controller class.
@@ -45,7 +57,40 @@ public class MatchingController implements Initializable {
         // TODO
         ServiceUser user = new ServiceUser();
         users.getItems().addAll(user.afficher());
+//        afficher();
+
     }
+
+//    void afficher() {
+//
+//        int colum = 0;
+//        int row = 0;
+//        ServiceUser us = new ServiceUser();
+//        u = us.afficher();
+//        try {
+//            for (int i = 0; i < u.size(); i++) {
+//
+//                FXMLLoader loader = new FXMLLoader(getClass().getResource("card.fxml"));
+//                AnchorPane anchorPane = loader.load();
+//                anchorPane.setScaleShape(true);
+//                anchorPane.setPrefSize(183, 243);
+//                anchorPane.setMaxWidth(183);
+//                anchorPane.setMaxHeight(243);
+//                anchorPane.setLayoutX(25);
+//                anchorPane.setLayoutY(10);
+//                anchorPane.se tPrefWidth(row, i);
+//                CardController controller = loader.getController();
+//                controller.setAffichage(u.get(i));
+//                ++colum;
+//                
+//                grid.add(anchorPane, colum++, row);
+//                GridPane.setMargin(anchorPane, new Insets(5, 20, 10, 10));
+//
+//            }
+//        } catch (IOException e) {
+//            e.getMessage();
+//        }
+//    }
 
     @FXML
     private void index(MouseEvent event) {
@@ -69,8 +114,11 @@ public class MatchingController implements Initializable {
     @FXML
     private void autoMatch(ActionEvent event) {
         ServiceInteraction react = new ServiceInteraction();
-        react.userLIKE(reactions.getSelectionModel().getSelectedItem());
-
+        Interaction n = reactions.getSelectionModel().getSelectedItem();
+        react.userLIKE(n);
+        ServiceConversation c = new ServiceConversation();
+        ServiceUser u = new ServiceUser();
+        String nom = u.afficher().stream().filter(e->e.getId_user()==n.getId_user2()).findAny().orElse(null).getNom_user();
+        c.ajouter(new Conversations(nom, n.getId_user1(), n.getId_user2()));
     }
-
 }

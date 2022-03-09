@@ -5,21 +5,20 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="576.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="tn.edu.esprit.gui.MatchingController">
+<AnchorPane id="AnchorPane" prefHeight="576.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.edu.esprit.gui.MatchingController">
    <children>
-      <ListView fx:id="users" blendMode="MULTIPLY" layoutX="9.0" layoutY="11.0" onMousePressed="#index" orientation="HORIZONTAL" prefHeight="250.0" prefWidth="781.0" style="-fx-background-radius: 20;" />
-      <ListView fx:id="matches" blendMode="MULTIPLY" layoutX="9.0" layoutY="282.0" prefHeight="280.0" prefWidth="220.0" style="-fx-background-radius: 20;">
+      <ListView fx:id="users" blendMode="MULTIPLY" layoutX="9.0" layoutY="11.0" onMousePressed="#index" orientation="HORIZONTAL" prefHeight="265.0" prefWidth="778.0" style="-fx-background-radius: 20;" />
+      <ListView fx:id="matches" blendMode="MULTIPLY" layoutX="9.0" layoutY="297.0" prefHeight="265.0" prefWidth="220.0" style="-fx-background-radius: 20;">
          <opaqueInsets>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </opaqueInsets>
       </ListView>
-      <ListView fx:id="reactions" blendMode="MULTIPLY" layoutX="570.0" layoutY="282.0" prefHeight="280.0" prefWidth="220.0" style="-fx-background-radius: 20;">
+      <ListView fx:id="reactions" blendMode="MULTIPLY" layoutX="570.0" layoutY="297.0" prefHeight="265.0" prefWidth="220.0" style="-fx-background-radius: 20;">
          <opaqueInsets>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </opaqueInsets>
       </ListView>
-      <Button layoutX="327.0" layoutY="407.0" mnemonicParsing="false" onAction="#supprimerMatch" prefHeight="47.0" prefWidth="147.0" style="-fx-background-radius: 90; -fx-background-color: #FFA69E;" text="Supprimer Match" textFill="WHITE" />
-      <Button layoutX="327.0" layoutY="354.0" mnemonicParsing="false" onAction="#autoMatch" prefHeight="47.0" prefWidth="147.0" style="-fx-background-color: #FFA69E; -fx-background-radius: 90;" text="AUTO match" textFill="WHITE" />
+      <Button layoutX="327.0" layoutY="506.0" mnemonicParsing="false" onAction="#supprimerMatch" prefHeight="47.0" prefWidth="147.0" style="-fx-background-radius: 90; -fx-background-color: #FFA69E;" text="Supprimer Match" textFill="WHITE" />
+      <Button layoutX="327.0" layoutY="453.0" mnemonicParsing="false" onAction="#autoMatch" prefHeight="47.0" prefWidth="147.0" style="-fx-background-color: #FFA69E; -fx-background-radius: 90;" text="AUTO match" textFill="WHITE" />
    </children>
 </AnchorPane>

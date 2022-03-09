@@ -19,7 +19,7 @@ import tn.edu.esprit.utils.MyDB;
 
 /**
  *
- * @author dedpy
+ * @author Khaled
  */
 public class ServiceRecette implements IService<Recette> {
 
@@ -79,7 +79,8 @@ public class ServiceRecette implements IService<Recette> {
     @Override
     public boolean modifer(Recette r) {
         try {
-            String req = " UPDATE recette SET description_recette = '" + r.getDescription_recette() + "' WHERE id_recette = '" + r.getId_recette() + "'";
+            String req = " UPDATE recette SET nom_recette = '"+ r.getNom_recette()+"', photo_recette = '" + r.getPhoto_recette()+"', description_recette = '" + r.getDescription_recette() +"', categorie_recette = '" + r.getCategorie_recette()+"', duree_recette = '" + r.getDuree_recette()+ "' WHERE id_recette = '" + r.getId_recette() + "'";
+        
             Statement stm = cnx.createStatement();
             stm.executeUpdate(req);
         } catch (SQLException ex) {
@@ -101,11 +102,117 @@ public class ServiceRecette implements IService<Recette> {
         }
         return true;
     }
+     public boolean supprimerc() {
+        try {
+            String querry = "DELETE FROM recette WHERE archive =1" ;
+            Statement stm = cnx.createStatement();
+            stm.executeUpdate(querry);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+        return true;
+    }
 
     public List<Recette> Tri() {
         Comparator<Recette> comparator = Comparator.comparing(Recette::getDuree_recette);
         List<Recette> recette = afficher();
         return recette.stream().sorted(comparator).collect(Collectors.toList());
     }
+     public List<String> affichernp() {
+        List<String> Recette = new ArrayList<>();
+        try {
+            String req = "SELECT nom_recette FROM recette WHERE archive = 0 ";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
 
+            while (rs.next()) {
+                Recette.add(rs.getString(1));
+            }
+
+        } catch (SQLException ex) {
+            ex.getStackTrace();
+        }
+        return Recette;
+    }
+     public List<String> affichercat() {
+        List<String> Recette = new ArrayList<>();
+        try {
+            String req = "SELECT categorie_recette FROM recette WHERE archive = 0 ";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+
+            while (rs.next()) {
+                Recette.add(rs.getString(1));
+            }
+
+        } catch (SQLException ex) {
+            ex.getStackTrace();
+        }
+        return Recette;
+    }
+     public List<Recette> trinp() {
+        List<Recette> Recette = new ArrayList<>();
+        try {
+            String req = "SELECT * FROM recette WHERE archive = 0 order by nom_recette ";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+
+            while (rs.next()) {
+                Recette.add(new Recette(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6)));
+            }
+
+        } catch (SQLException ex) {
+            ex.getStackTrace();
+        }
+        return Recette;
+    }
+     public List<Recette> tridur() {
+        List<Recette> Recette = new ArrayList<>();
+        try {
+            String req = "SELECT * FROM recette WHERE archive = 0 order by duree_recette ";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+
+            while (rs.next()) {
+                Recette.add(new Recette(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6)));
+            }
+
+        } catch (SQLException ex) {
+            ex.getStackTrace();
+        }
+        return Recette;
+    }
+     public List<Recette> tricatg() {
+        List<Recette> Recette = new ArrayList<>();
+        try {
+            String req = "SELECT * FROM recette WHERE archive = 0 order by categorie_recette ";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+
+            while (rs.next()) {
+                Recette.add(new Recette(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6)));
+            }
+
+        } catch (SQLException ex) {
+            ex.getStackTrace();
+        }
+        return Recette;
+    }
+ public List<Recette> rechercherr(Recette r) {
+        List<Recette> recette = afficher();
+        return recette.stream().filter(b -> r.getNom_recette().equals(b.getNom_recette())).filter(b -> r.getCategorie_recette().equals(b.getCategorie_recette()) || r.getDescription_recette().equals(b.getDescription_recette()) || r.getDuree_recette()==b.getDuree_recette()).collect(Collectors.toList());
 }
+  public List<Recette> recherchern(Recette r) {
+        List<Recette> quiz = afficher();
+        return quiz.stream().filter(b -> b.getNom_recette().equals(r.getNom_recette())).collect(Collectors.toList());
+}
+    public List<Recette> recherchernn(String r) {
+        List<Recette> quiz = afficher();
+        return quiz.stream().filter(b -> b.getNom_recette().equals(r)).collect(Collectors.toList());
+}
+  /* public List<Recette> rechercherrr(String r) {
+        List<Recette> recette = afficher();
+        return recette.stream().filter(b -> r.equals(b.getCategorie_recette()) || r.equals(b.getDescription_recette()) || r.equals(Integer.toString(b.getDuree_recette()))).collect(Collectors.toList());
+} */
+  }

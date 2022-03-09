@@ -9,77 +9,98 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="778.0" prefWidth="826.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.edu.esprit.gui.FormulaireRestaurantController">
+<AnchorPane id="AnchorPane" prefHeight="569.0" prefWidth="780.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.edu.esprit.gui.FormulaireRestaurantController">
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
    <children>
-      <VBox layoutX="20.0" layoutY="-3.0" prefHeight="278.0" prefWidth="133.0" spacing="40.0">
+      <VBox layoutX="5.0" layoutY="-17.0" prefHeight="271.0" prefWidth="179.0" spacing="40.0">
          <children>
             <Label>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
             </Label>
-            <Label text="Nom restaurant :" underline="true" />
-            <Label text="Identification gérant :" underline="true" />
-            <Label text="Telephone restaurant :" underline="true" />
+            <Label text="Nom restaurant :">
+               <font>
+                  <Font name="Cambria Bold" size="17.0" />
+               </font></Label>
+            <Label text="Telephone :">
+               <font>
+                  <Font name="Cambria Bold" size="16.0" />
+               </font></Label>
+            <Label text="Description :">
+               <font>
+                  <Font name="Cambria Bold" size="17.0" />
+               </font>
+            </Label>
             <Label />
          </children>
       </VBox>
       <VBox layoutX="271.0" layoutY="50.0" prefHeight="98.0" prefWidth="186.0" spacing="30.0" />
-      <Button fx:id="Binsert" layoutX="602.0" layoutY="468.0" mnemonicParsing="false" onAction="#Insert" prefHeight="32.0" prefWidth="115.0" text="Insert" />
-      <ImageView fx:id="imageView_structure" fitHeight="100.0" fitWidth="97.0" layoutX="171.0" layoutY="436.0" onDragDropped="#image1Dropped" onDragOver="#image1DragOver" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="Binsert" layoutX="336.0" layoutY="530.0" mnemonicParsing="false" onAction="#Insert" prefHeight="32.0" prefWidth="115.0" style="-fx-background-radius: 90;" stylesheets="@style.css" text="Insert" />
+      <ImageView fx:id="imageView_resto" fitHeight="132.0" fitWidth="149.0" layoutX="160.0" layoutY="303.0" onDragDropped="#imageDropped" onDragOver="#imageDragOver" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/1.png" />
          </image>
       </ImageView>
-      <VBox layoutX="406.0" layoutY="54.0" prefHeight="182.0" prefWidth="133.0" spacing="45.0">
+      <ImageView fx:id="imageView_structure" fitHeight="121.0" fitWidth="133.0" layoutX="633.0" layoutY="323.0" onDragDropped="#image1Dropped" onDragOver="#image1DragOver" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/1.png" />
+         </image>
+      </ImageView>
+      <VBox layoutX="419.0" layoutY="39.0" prefHeight="218.0" prefWidth="170.0" spacing="45.0">
          <children>
-            <Label text="Nombre de places :" underline="true" />
-            <Label text="spécialité  :" underline="true" />
-            <Label prefHeight="18.0" prefWidth="68.0" text="Site  web :" underline="true" />
-            <Label text="Adresse" underline="true" />
+            <Label text="Nombre de places :">
+               <font>
+                  <Font name="Cambria Bold" size="17.0" />
+               </font></Label>
+            <Label text="spécialité  :">
+               <font>
+                  <Font name="Cambria Bold" size="17.0" />
+               </font></Label>
+            <Label prefHeight="19.0" prefWidth="98.0" styleClass="thumb" text="Site  web :">
+               <font>
+                  <Font name="Cambria Bold" size="17.0" />
+               </font></Label>
+            <Label text="Adresse :">
+               <font>
+                  <Font name="Cambria Bold" size="18.0" />
+               </font></Label>
          </children>
       </VBox>
-      <VBox layoutX="526.0" layoutY="46.0" prefHeight="220.0" prefWidth="186.0" spacing="40.0">
+      <VBox layoutX="568.0" layoutY="39.0" prefHeight="242.0" prefWidth="182.0" spacing="32.0">
          <children>
             <TextField fx:id="Fnombre" prefHeight="12.0" prefWidth="219.0" />
             <TextField fx:id="Fspecialite" />
             <TextField fx:id="Fsite" />
-            <TextField fx:id="Fadresse" />
+            <TextField fx:id="Fadresse" styleClass="track" stylesheets="@style.css" />
          </children>
       </VBox>
-      <VBox layoutX="163.0" layoutY="45.0" prefHeight="182.0" prefWidth="186.0" spacing="35.0">
+      <VBox layoutX="150.0" layoutY="41.0" prefHeight="84.0" prefWidth="243.0" spacing="30.0">
          <children>
-            <TextField fx:id="Fnom" prefHeight="25.0" prefWidth="206.0" />
-            <TextField fx:id="Fidgerant" />
+            <TextField fx:id="Fnom" />
             <TextField fx:id="Ftelephone" />
          </children>
       </VBox>
   
-      <HBox layoutX="20.0" layoutY="236.0" prefHeight="18.0" prefWidth="74.0">
-         <children>
-            <Label text="Description :" underline="true" />
-         </children>
-      </HBox>
-      <HBox layoutX="163.0" layoutY="242.0" prefHeight="98.0" prefWidth="243.0">
-         <children>
-            <TextField fx:id="Fdescription" prefHeight="98.0" prefWidth="190.0" />
-         </children>
-      </HBox>
-      <HBox layoutX="12.0" layoutY="434.0" prefHeight="100.0" prefWidth="133.0">
-         <children>
-            <ImageView fx:id="imageView_resto" fitHeight="110.0" fitWidth="97.0" onDragDropped="#imageDropped" onDragOver="#imageDragOver" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/1.png" />
-               </image>
-            </ImageView>
-         </children>
-      </HBox>
-      <HBox layoutX="449.0" layoutY="427.0" prefHeight="26.0" prefWidth="153.0" />
-      <Label layoutX="171.0" layoutY="402.0" text="Structure restaurant :" underline="true" />
-      <Label layoutX="18.0" layoutY="401.0" prefHeight="18.0" prefWidth="153.0" text="Image restaurant :" underline="true" />
+      <HBox layoutX="20.0" layoutY="236.0" prefHeight="18.0" prefWidth="74.0" />
+      <HBox layoutX="184.0" layoutY="242.0" prefHeight="98.0" prefWidth="243.0" />
+      <HBox layoutX="12.0" layoutY="434.0" prefHeight="26.0" prefWidth="148.0" />
+      <HBox layoutX="441.0" layoutY="434.0" prefHeight="26.0" prefWidth="237.0" />
+      <HBox layoutX="5.0" layoutY="330.0" prefHeight="19.0" prefWidth="105.0" />
+      <TextField fx:id="Fdescription" layoutX="150.0" layoutY="148.0" prefHeight="109.0" prefWidth="243.0" styleClass="corner" />
+      <Label layoutX="9.0" layoutY="349.0" prefHeight="20.0" prefWidth="148.0" text="Image restaurant :">
+         <font>
+            <Font name="Cambria Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="451.0" layoutY="363.0" prefHeight="20.0" prefWidth="182.0" text="Structure restaurant :">
+         <font>
+            <Font name="Cambria Bold" size="17.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -157,17 +157,7 @@
             </Label>
          </children>
       </VBox>
-      <Button layoutX="483.0" layoutY="315.0" mnemonicParsing="false" onMouseClicked="#addGerant" style="-fx-background-color: #FFA69E; -fx-background-radius: 90;" text="Ajouter" textFill="WHITE">
-         <font>
-            <Font name="Lato Regular" size="14.0" />
-         </font>
-      </Button>
-      <Button layoutX="557.0" layoutY="315.0" mnemonicParsing="false" onMouseClicked="#updateGerant" style="-fx-background-color: #FFA69E; -fx-background-radius: 90;" text="Modifier" textFill="WHITE">
-         <font>
-            <Font name="Lato Regular" size="14.0" />
-         </font>
-      </Button>
-      <Button layoutX="639.0" layoutY="315.0" mnemonicParsing="false" onAction="#deleteGerant" style="-fx-background-color: #FFA69E; -fx-background-radius: 90;" text="Supprimer" textFill="WHITE">
+      <Button layoutX="555.0" layoutY="315.0" mnemonicParsing="false" onMouseClicked="#addGerant" style="-fx-background-color: #FFA69E; -fx-background-radius: 90;" text="Ajouter" textFill="WHITE">
          <font>
             <Font name="Lato Regular" size="14.0" />
          </font>

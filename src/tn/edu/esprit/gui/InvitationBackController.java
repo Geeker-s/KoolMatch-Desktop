@@ -28,8 +28,13 @@ import java.net.URL;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,18 +46,30 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import tn.edu.esprit.services.ServiceEvent;
 import tn.edu.esprit.services.ServiceInvitation;
+import tn.edu.esprit.services.ServiceUser;
+import tn.edu.esprit.utils.MyDB;
+
 
 /**
  * FXML Controller class
  *
  * @author Asus
  */
+
 public class InvitationBackController implements Initializable {
+     private Connection cnx;
+     ServiceInvitation ev = new ServiceInvitation();
+
+    public InvitationBackController() {
+        cnx = MyDB.getInstance().getCnx();
+
+    }
 
     @FXML
     private Button Ajouter_inv;
@@ -60,19 +77,26 @@ public class InvitationBackController implements Initializable {
     private Button modif_inv;
     @FXML
     private Button bt_pdf;
+    
 
     @FXML
-    private TableView<String> tabv;
-
-    ObservableList<Invitation> invitations = FXCollections.observableArrayList();
-    @FXML
-    private TextField TF_ide;
-    @FXML
-    private TextField TF_idu;
-    @FXML
-    private TextField TF_supp_inv;
+    private ListView<Invitation> tabv;
+    
     @FXML
     private Button supp_in;
+     @FXML
+    private Button bt_ref;
+    
+    @FXML
+     private ComboBox<String> combo_ide;
+    
+    @FXML
+     private ComboBox<Integer> combo_idi;
+    @FXML 
+    private Label alert2;
+    
+   
+
 
     /**
      * Initializes the controller class.
@@ -80,101 +104,112 @@ public class InvitationBackController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        ServiceInvitation ev = new ServiceInvitation();
-        //tabv.setItems().addAll(ev.afficher());
+        
+        ServiceEvent e = new ServiceEvent();
+        ServiceInvitation i = new ServiceInvitation();
+        ServiceUser u = new ServiceUser ();
+        
+        tabv.getItems().addAll(ev.afficher());
+        combo_ide.getItems().addAll(e.affichernom());
+        
+        combo_idi.getItems().addAll(i.afficherid());
+        
+        
+    
+        
 
+        
         // TODO
     }
+    
+     @FXML
+    private void refINV(ActionEvent event) {
+        ObservableList<Invitation> listref=FXCollections.observableList(ev.afficher());
+        tabv.setItems(listref);
+       
+    }
+    
+    
+    
 
     @FXML
-    void addInv(ActionEvent event) {
+    private void addInv(ActionEvent event) {
+        
+        
+        
 
-//        ServiceInvitation i = new ServiceInvitation();
-//        Invitation in = new Invitation();
-//        in.setTelephone(Integer.parseInt(TF_ide.getText()));
-//        ev.setTelephone(Integer.parseInt(TFtel.getText()));
-//        LocalDate FDate = DPdd.getValue();
-//        String Sdate = String.valueOf(FDate);
-//        ev.setDd_event(Date.valueOf(Sdate));
-//        LocalDate FFDate = DPdf.getValue();
-//        String SSdate = String.valueOf(FFDate);
-//        ev.setDf_event(Date.valueOf(SSdate));
-//        e.ajouter(ev);
-//        TFnom.setText("");
-//        TFtheme.setText("");
-//        TFadresse.setText("");
-//        TFtel.setText("");
+        ServiceInvitation i = new ServiceInvitation();
+        Invitation inv = new Invitation();
+        
+       
+        
+        
+        inv.setNom_event(combo_ide.getValue());
+        inv.setId_user(combo_idi.getValue());
+        
+
+        i.ajouter(inv);
+        
+       
+        
 //
-//        DPdd.getEditor().clear();
-//        DPdf.getEditor().clear();
+
+//
+    }
+    
+    
+    
+     @FXML
+    private void index(javafx.scene.input.MouseEvent event) {
+        Invitation g = tabv.getSelectionModel().getSelectedItem();
+
+         combo_ide.setValue(g.getNom_event());
+
+        combo_idi.setValue(g.getId_user());
+
 
     }
 
     @FXML
-    private void pdf(ActionEvent event) throws SQLException {
-
-        Document doc = new Document();
-
-        try {
-
-            PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\Asus\\OneDrive\\Bureau\\Invitation.pdf"));
-            doc.open();
-            Font f = new Font(Font.FontFamily.HELVETICA, 50.0f, Font.UNDERLINE, BaseColor.PINK);
-            doc.add(new Paragraph("Invitation : ", f));
-
-            Image img;
-            img = Image.getInstance("C:\\Users\\Asus\\OneDrive\\Bureau\\KoolMatch\\src\\Images\\matchy-cool-logo-png.png");
-            doc.add(img);
-
-            PdfPTable table = new PdfPTable(3);
-            table.setWidthPercentage(100);
-            ////////////////////////////
-            PdfPCell cell;
-            cell = new PdfPCell(new Phrase("Id_invitation", FontFactory.getFont("Arial", 15)));
-            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            cell.setBackgroundColor(BaseColor.GRAY);
-            table.addCell(cell);
-
-            cell = new PdfPCell(new Phrase("Id_event", FontFactory.getFont("Arial", 15)));
-            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            cell.setBackgroundColor(BaseColor.GRAY);
-            table.addCell(cell);
-
-            cell = new PdfPCell(new Phrase("Id_user", FontFactory.getFont("Arial", 15)));
-            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            cell.setBackgroundColor(BaseColor.GRAY);
-            table.addCell(cell);
-
-            /////////////////////////////
-            cell = new PdfPCell(new Phrase(("Id_invitation"), FontFactory.getFont("Arial", 15)));
-            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            cell.setBackgroundColor(BaseColor.GRAY);
-            table.addCell(cell);
-
-            cell = new PdfPCell(new Phrase("Id_event", FontFactory.getFont("Arial", 15)));
-            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            cell.setBackgroundColor(BaseColor.GRAY);
-            table.addCell(cell);
-
-            cell = new PdfPCell(new Phrase("Id_user", FontFactory.getFont("Arial", 15)));
-            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            cell.setBackgroundColor(BaseColor.GRAY);
-            table.addCell(cell);
-
-            ////////////////////////////
-            doc.add(table);
-
-            doc.close();
-            Desktop.getDesktop().open(new File("C:\\Users\\Asus\\OneDrive\\Bureau\\Invitation.pdf"));
-
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ServiceInvitation.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (DocumentException ex) {
-            Logger.getLogger(ServiceInvitation.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ServiceInvitation.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+    private void supprimerINV(ActionEvent event) {
+        ServiceInvitation  in = new ServiceInvitation();
+        Invitation i = tabv.getSelectionModel().getSelectedItem();
+        in.supprimer(i);
+        tabv.getItems().remove(i);
     }
 
+
+    @FXML
+    void modiffINV(ActionEvent event) {
+
+        ServiceInvitation g = new ServiceInvitation();
+        //Invitation e = tabv.getSelectionModel().getSelectedItem().getId_invitation();
+        Invitation n = new Invitation();
+        n.setId_invitation(tabv.getSelectionModel().getSelectedItem().getId_invitation());
+
+//        n.setNom_event(e.getNom_event());
+//        n.setId_user(e.getId_user());
+
+     
+        
+      
+        
+        n.setNom_event(combo_ide.getValue());
+        n.setId_user(combo_idi.getValue());
+                
+        
+        
+        
+        g.modifer(n);
+
+   
+        combo_ide.getItems().clear();
+       combo_idi.getItems().clear();
+        
+        
+        
+        tabv.getItems().clear();
+        tabv.getItems().addAll(g.afficher());
+
+    }
 }

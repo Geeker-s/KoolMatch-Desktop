@@ -81,19 +81,20 @@ public class ServiceGerant implements IService<Gerant> {
 
     @Override
     public boolean supprimer(Gerant p) {
-        String req = " update gerant set archive = 1 where id_gerant='" + p.getId_gerant() + "'";
+        String req = "update gerant set archive = 1 where id_gerant='" + p.getId_gerant() + "'";
         try {
             Statement stm = cnx.createStatement();
             stm.executeUpdate(req);
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
             return false;
         }
-        System.out.println("Gérant supprimée");
+        System.out.println("gerant supprimée");
 
         return true;
     }
-public Boolean login(String u, String p) throws SQLException {
+
+    public Boolean login(String u, String p) throws SQLException {
         String req = "SELECT * FROM `gerant` WHERE email_gerant =\'" + u + "\' and password_gerant=\'" + p + "\'";
         Gerant a = new Gerant();
         try {
@@ -139,6 +140,7 @@ public Boolean login(String u, String p) throws SQLException {
         }
         return g;
     }
+
     @Override
     public List<Gerant> rechercher(Gerant p) {
         List<Gerant> g = afficher();

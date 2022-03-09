@@ -27,6 +27,10 @@ public class Recette {
         this.description_recette = description_recette;
     }
 
+    public Recette(String nom_recette) {
+        this.nom_recette = nom_recette;
+    }
+    
     public Recette(String nom_recette, String photo_recette, String description_recette, String categorie_recette, int duree_recette) {
         this.nom_recette = nom_recette;
         this.photo_recette = photo_recette;
@@ -42,8 +46,9 @@ public class Recette {
         this.photo_recette = photo_recette;
         this.description_recette = description_recette;
         this.categorie_recette = categorie_recette;
-        this.archive = 0;
+        this.duree_recette = duree_recette;
     }
+
 
     public Recette(int id_recette) {
         this.id_recette = id_recette;
@@ -107,7 +112,12 @@ public class Recette {
 
     @Override
     public String toString() {
-        return "Recette{" + "id_recette=" + id_recette + ", nom_recette=" + nom_recette + ", photo_recette=" + photo_recette + ", description_recette=" + description_recette + ", categorie_recette=" + categorie_recette + ", duree_recette=" + duree_recette + '}';
+       // return "Recette{" + "id_recette=" + id_recette + ", nom_recette=" + nom_recette + ", photo_recette=" + photo_recette + ", description_recette=" + description_recette + ", categorie_recette=" + categorie_recette + ", duree_recette=" + duree_recette + '}';
+       return String.format( "%-20s",nom_recette)
+                + String.format( "%-20s",description_recette)
+                + String.format( "%-20s",categorie_recette)
+                + String.format( "%-20s",duree_recette)
+                 ;
     }
 
 }

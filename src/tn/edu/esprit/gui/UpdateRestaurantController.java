@@ -55,9 +55,8 @@ public class UpdateRestaurantController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    
     @Override
-    
+
     public void initialize(URL url, ResourceBundle rb) {
 
         try {
@@ -72,10 +71,11 @@ public class UpdateRestaurantController implements Initializable {
         id_nomb.setText(Integer.toString(p1.getNb_placeResto()));
         id_tel.setText(Integer.toString(p1.getTelephone_restaurant()));
         String a = p1.getImage();
-        System.out.println(p1.getImage());
         File file = new File(a);
         Image image1 = new Image(file.toURI().toString());
         id_imag.setImage(image1);
+
+        System.out.println(p1.getImage());
 
     }
 
@@ -83,9 +83,17 @@ public class UpdateRestaurantController implements Initializable {
     private void Modifier(ActionEvent event) throws SQLException, IOException {
 
         System.out.println(p1.getId_restaurant());
-        service.UpdateResto(p1);
+       
+        p1.setNom_restaurant(id_nom.getText());
+        p1.setAdresse_restaurant(id_adr.getText());
+        p1.setDescription(id_desc.getText());
+        p1.setSpecialite_restaurant(id_sp.getText());
+        p1.setNb_placeResto(Integer.parseInt(id_nomb.getText()));
+        p1.setTelephone_restaurant(Integer.parseInt(id_tel.getText()));
+       service.update(p1);
+        
         Scene scene = new Scene(FXMLLoader.load(getClass().getResource("AfficherRestaurant.fxml")));
-
+       
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();

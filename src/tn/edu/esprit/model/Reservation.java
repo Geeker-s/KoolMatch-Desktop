@@ -19,13 +19,20 @@ public class Reservation {
     private int id_restaurant;
     private int id_user;
     private int archive;
+    private String nom_resto  ;
+    private String image ;
+    private String adresse;
 
-    public Reservation(int id_reservation, Date date_reservation, int nbPlace_reservation, int id_restaurant, int id_user) {
+    public Reservation(int id_reservation, Date date_reservation, int nbPlace_reservation, int id_restaurant, int id_user,int archive,String nom_resto,String image,String adresse) {
         this.id_reservation = id_reservation;
         this.date_reservation = date_reservation;
         this.nbPlace_reservation = nbPlace_reservation;
         this.id_restaurant = id_restaurant;
         this.id_user = id_user;
+        this.archive=archive;
+        this.nom_resto = nom_resto;
+        this.image=image;
+        this.adresse=adresse;
 
     }
 
@@ -94,9 +101,35 @@ public class Reservation {
         this.archive = archive;
     }
 
+    public String getNom_resto() {
+        return nom_resto;
+    }
+
+    public void setNom_resto(String nom_resto) {
+        this.nom_resto = nom_resto;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
     @Override
     public String toString() {
-        return "Reservation{" + "id_reservation=" + id_reservation + ", date_reservation=" + date_reservation + ", nbPlace_reservation=" + nbPlace_reservation + ", id_restaurant=" + id_restaurant + ", id_user=" + id_user + '\n' + '}';
+        return "Reservation{" + "id_reservation=" + id_reservation + ", date_reservation=" + date_reservation + ", nbPlace_reservation=" + nbPlace_reservation + ", id_restaurant=" + id_restaurant + ", id_user=" + id_user + ", archive=" + archive + ", nom_resto=" + nom_resto + ", image=" + image + ", adresse=" + adresse + '}';
     }
+
+   
 
 }

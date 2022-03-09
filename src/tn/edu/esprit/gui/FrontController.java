@@ -181,6 +181,44 @@ public class FrontController implements Initializable {
         } catch (IOException ex) {
             ex.getMessage();
         }
+        FXMLLoader loaderRestaurant = new FXMLLoader(getClass().getResource("Front_reservation.fxml"));
+        Pane newLoadedR;
+        try {
+            newLoadedR = loaderRestaurant.load();
+            pnlRestaurant.getChildren().add(newLoadedR);
+        } catch (IOException ex) {
+            ex.getMessage();
+        }
+        FXMLLoader loaderRecette = new FXMLLoader(getClass().getResource("RecetteFront.fxml"));
+        Pane newLoadedRecette;
+        try {
+            newLoadedRecette = loaderRecette.load();
+            pnlRecettes.getChildren().add(newLoadedRecette);
+        } catch (IOException ex) {
+            ex.getMessage();
+        }
+        FXMLLoader loadEvent = new FXMLLoader(getClass().getResource("Event.fxml"));
+        Pane newLoadedEvent;
+        try {
+            newLoadedEvent = loadEvent.load();
+            pnlEvent.getChildren().add(newLoadedEvent);
+        } catch (IOException ex) {
+            ex.getMessage();
+        }
+        FXMLLoader loadP = new FXMLLoader(getClass().getResource("form.fxml"));
+        Pane newLoadedP;
+        try {
+            newLoadedP = loadP.load();
+            pnlProfile.getChildren().add(newLoadedP);
+        } catch (IOException ex) {
+            ex.getMessage();
+        }
+        FormController controllerP = (FormController) loadP.getController();
+        //setters
+        controllerP.load(CurrentUser);
+
+        
+        
 //        FilterController fcontroller = (FilterController) loader.getController();
 //        setters
 //        setF(fcontroller);

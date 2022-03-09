@@ -13,6 +13,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,6 +31,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToolBar;
 import javafx.scene.control.Tooltip;
@@ -58,6 +60,8 @@ public class AfficherRestaurantController implements Initializable {
     public String recherche = "";
 
     final Tooltip tooltip = new Tooltip();
+    
+    private Restaurant p1;
 
     ServiceRestaurant service_pr = new ServiceRestaurant();
     Restaurant p = new Restaurant();
@@ -75,17 +79,24 @@ public class AfficherRestaurantController implements Initializable {
         // ListView_Produits.setMouseTransparent( true );
         ListView_Produits.setFocusTraversable(false);
         getShowPane();
+        
+    
+     
+       
+               
+            
+        
 
     }
-
+ ServiceRestaurant service = new ServiceRestaurant();
     public void getShowPane() {
         List<Restaurant> AllProducts = new ArrayList();
         if (recherche.equals("")) {
-            for (Restaurant p : service_pr.afficher()) {
+            for (Restaurant p : service_pr.MesResto()) {
                 AllProducts.add(p);
             }
         } else {
-            for (Restaurant p : service_pr.RechercheEvenementParNom(recherche)) {
+            for (Restaurant p : service_pr.RechercheRestaurantsParNom(recherche)) {
                 AllProducts.add(p);
 
             }
@@ -319,7 +330,7 @@ public class AfficherRestaurantController implements Initializable {
                 /**
                  * ***************************************
                  */
-                 FontAwesomeIconView btn = new FontAwesomeIconView(FontAwesomeIcon.REMOVE);
+                FontAwesomeIconView btn = new FontAwesomeIconView(FontAwesomeIcon.REMOVE);
                 btn.setFill(Color.BLACK);
                 btn.setSize("25");
 
@@ -327,14 +338,60 @@ public class AfficherRestaurantController implements Initializable {
 
                 btn.setLayoutX(40);
                 btn.setLayoutY(80);
-                btn.setOnMouseClicked((MouseEvent event) -> {
-//                              
-                    service_pr.supprimer(p3);
-                    ListView_Produits.setItems(null);
-                    getShowPane();
-                });
                 
-                  FontAwesomeIconView UP = new FontAwesomeIconView(FontAwesomeIcon.MAP);
+                
+               // ---------------------------------------------delete alert  
+                
+                
+                btn.setOnMouseClicked((MouseEvent event) -> {
+                       
+                    Alert  b = new Alert(AlertType.NONE);
+                    
+                    
+                                b.setAlertType(Alert.AlertType.CONFIRMATION);
+        b.setTitle("Confirmation");
+        b.setHeaderText(null);
+        b.setContentText("Are you sure to delete this Categorie");
+      
+        Optional <ButtonType> action = b.showAndWait();
+         
+        if(action.get()== ButtonType.OK)
+        {    
+            
+        
+           
+      service_pr.supprimer(p3);
+            
+        getShowPane();
+    }
+        else
+        {
+            getShowPane();
+        
+        }
+                    
+                    
+                    
+                  //  service_pr.supprimer(p3);
+                  //  ListView_Produits.setItems(null);
+                  //  getShowPane();
+                   
+                });
+
+                
+                
+    
+      
+  // ---------------------------------------------delete alert 
+                
+                
+                
+                
+                
+                
+                
+                
+                FontAwesomeIconView UP = new FontAwesomeIconView(FontAwesomeIcon.MAP);
                 UP.setFill(Color.RED);
                 UP.setSize("25");
 
@@ -346,8 +403,7 @@ public class AfficherRestaurantController implements Initializable {
 
                     System.out.println("FB succes!");
 
-                    
-                       Restaurant.setId_courant(p3.getId_restaurant());
+                    Restaurant.setId_courant(p3.getId_restaurant());
 
                     try {
                         Scene scene = new Scene(FXMLLoader.load(getClass().getResource("UpdateRestaurant.fxml")));
@@ -358,8 +414,9 @@ public class AfficherRestaurantController implements Initializable {
                     } catch (IOException e) {
                         Logger logger = Logger.getLogger(getClass().getName());
                         logger.log(Level.SEVERE, "Failed to create new Window.", e);
-                    }});
-                pane.getChildren().addAll(pane2, nomt, prixt, nom, prix, web, fb, btn,UP);
+                    }
+                });
+                pane.getChildren().addAll(pane2, nomt, prixt, nom, prix, web, fb, btn, UP);
 //                             Label idp = new Label(String.valueOf(p3.getId_restaurant()));
 //                                idp.setLayoutX(25);
 //                                idp.setLayoutY(15);
@@ -464,8 +521,6 @@ public class AfficherRestaurantController implements Initializable {
                 hb2.setStyle("-fx-background-color: #2cbae3");
                 pane2.getChildren().addAll(hb, hb2);
 
-                
-                
                 String A = p3.getImage();
 //                A = "src/tn/edu/esprit/images/" + A;
                 File F1 = new File(A);
@@ -532,12 +587,6 @@ public class AfficherRestaurantController implements Initializable {
                     stage.show();
                 });
 
-                
-                
-                
-                
-                
-                
                 FontAwesomeIconView UP = new FontAwesomeIconView(FontAwesomeIcon.MAP);
                 UP.setFill(Color.RED);
                 UP.setSize("25");
@@ -550,8 +599,7 @@ public class AfficherRestaurantController implements Initializable {
 
                     System.out.println("FB succes!");
 
-                    
-                       Restaurant.setId_courant(p3.getId_restaurant());
+                    Restaurant.setId_courant(p3.getId_restaurant());
 
                     try {
                         Scene scene = new Scene(FXMLLoader.load(getClass().getResource("UpdateRestaurant.fxml")));
@@ -562,12 +610,13 @@ public class AfficherRestaurantController implements Initializable {
                     } catch (IOException e) {
                         Logger logger = Logger.getLogger(getClass().getName());
                         logger.log(Level.SEVERE, "Failed to create new Window.", e);
-                    }});
-                
+                    }
+                });
+
                 /**
                  * **********************************************
-              
-              **********************partage facebook********************
+                 *
+                 **********************partage facebook********************
                  */
                 FontAwesomeIconView fb = new FontAwesomeIconView(FontAwesomeIcon.FACEBOOK_SQUARE);
                 fb.setFill(Color.BLUE);
@@ -601,8 +650,8 @@ public class AfficherRestaurantController implements Initializable {
                     n.showConfirm();
 
                 });
-                
-                   FontAwesomeIconView btn = new FontAwesomeIconView(FontAwesomeIcon.REMOVE);
+
+                FontAwesomeIconView btn = new FontAwesomeIconView(FontAwesomeIcon.REMOVE);
                 btn.setFill(Color.BLACK);
                 btn.setSize("25");
 
@@ -610,13 +659,45 @@ public class AfficherRestaurantController implements Initializable {
 
                 btn.setLayoutX(310);
                 btn.setLayoutY(80);
-                btn.setOnMouseClicked((MouseEvent event) -> {
-//                              
-                    service_pr.supprimer(p3);
-                    ListView_Produits.setItems(null);
-                    getShowPane();
+                
+                
+                
+                  btn.setOnMouseClicked((MouseEvent event) -> {
+                       
+                    Alert  b = new Alert(AlertType.NONE);
+                    
+                    
+                                b.setAlertType(Alert.AlertType.CONFIRMATION);
+        b.setTitle("Confirmation");
+        b.setHeaderText(null);
+        b.setContentText("Are you sure to delete this Categorie");
+      
+        Optional <ButtonType> action = b.showAndWait();
+         
+        if(action.get()== ButtonType.OK)
+        {    
+            
+        
+           
+      service_pr.supprimer(p3);
+            
+        getShowPane();
+    }
+        else
+        {
+            getShowPane();
+        
+        }
                 });
-                pane.getChildren().addAll(pane2, nomt, prixt, nom, prix, web, fb,UP,btn);
+                
+                
+                
+                
+                
+                
+                
+                
+                pane.getChildren().addAll(pane2, nomt, prixt, nom, prix, web, fb, UP, btn);
             }
 
             if (k == 3) {
@@ -810,7 +891,7 @@ public class AfficherRestaurantController implements Initializable {
 
                 });
 
-                    FontAwesomeIconView btn = new FontAwesomeIconView(FontAwesomeIcon.REMOVE);
+                FontAwesomeIconView btn = new FontAwesomeIconView(FontAwesomeIcon.REMOVE);
                 btn.setFill(Color.BLACK);
                 btn.setSize("25");
 
@@ -819,13 +900,36 @@ public class AfficherRestaurantController implements Initializable {
                 btn.setLayoutX(588);
                 btn.setLayoutY(80);
                 btn.setOnMouseClicked((MouseEvent event) -> {
-//                              
-                    service_pr.supprimer(p3);
-                    ListView_Produits.setItems(null);
+//                    btn.setOnMouseClicked((MouseEvent event) -> {
+                       
+                    Alert  b = new Alert(AlertType.NONE);
+                    
+                    
+                                b.setAlertType(Alert.AlertType.CONFIRMATION);
+        b.setTitle("Confirmation");
+        b.setHeaderText(null);
+        b.setContentText("Are you sure to delete this Categorie");
+      
+        Optional <ButtonType> action = b.showAndWait();
+         
+        if(action.get()== ButtonType.OK)
+        {    
+            
+        
+           
+      service_pr.supprimer(p3);
+            
+        getShowPane();
+    }
+        else
+        {
+            getShowPane();
+        
+        }
                     getShowPane();
-                });
-                
-                  FontAwesomeIconView UP = new FontAwesomeIconView(FontAwesomeIcon.MAP);
+                       });
+
+                FontAwesomeIconView UP = new FontAwesomeIconView(FontAwesomeIcon.MAP);
                 UP.setFill(Color.RED);
                 UP.setSize("25");
 
@@ -837,8 +941,7 @@ public class AfficherRestaurantController implements Initializable {
 
                     System.out.println("FB succes!");
 
-                    
-                       Restaurant.setId_courant(p3.getId_restaurant());
+                    Restaurant.setId_courant(p3.getId_restaurant());
 
                     try {
                         Scene scene = new Scene(FXMLLoader.load(getClass().getResource("UpdateRestaurant.fxml")));
@@ -849,9 +952,10 @@ public class AfficherRestaurantController implements Initializable {
                     } catch (IOException e) {
                         Logger logger = Logger.getLogger(getClass().getName());
                         logger.log(Level.SEVERE, "Failed to create new Window.", e);
-                    }});
-                
-                pane.getChildren().addAll(pane2, nomt, prixt, nom, prix, web, fb,btn,UP);
+                    }
+                });
+
+                pane.getChildren().addAll(pane2, nomt, prixt, nom, prix, web, fb, btn, UP);
 
             }
             k++;

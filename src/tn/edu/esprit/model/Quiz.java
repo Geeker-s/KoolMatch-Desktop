@@ -225,6 +225,26 @@ public class Quiz {
     public void setEtat(int archive) {
         this.archive = archive;
     }
+
+    @Override
+    public String toString() {
+       // return "Quiz{" + "id_quiz=" + id_quiz + ", id_jeu=" + id_jeu + ", archive=" + archive + ", q1=" + q1 + ", rc1=" + rc1 + ", rf11=" + rf11 + ", rf12=" + rf12 + ", rf13=" + rf13 + ", q2=" + q2 + ", rc2=" + rc2 + ", rf21=" + rf21 + ", rf22=" + rf22 + ", rf23=" + rf23 + ", q3=" + q3 + ", rc3=" + rc3 + ", rf31=" + rf31 + ", rf32=" + rf32 + ", rf33=" + rf33 + '}';
+     return String.format( "%-20s",q1)
+                + String.format( "%-20s",rc1)
+                + String.format( "%-20s",rf11)
+                + String.format( "%-20s",rf12)
+                + String.format( "%-20s",rf13)
+                + String.format( "%-20s",q2) 
+             + String.format( "%-20s",rc2)
+                + String.format( "%-20s",rf21)
+                + String.format( "%-20s",rf22)
+                + String.format( "%-20s",rf23)
+                + String.format( "%-20s",q3) 
+              + String.format( "%-20s",rc3)
+                + String.format( "%-20s",rf31)
+                + String.format( "%-20s",rf32)
+                + String.format( "%-20s",rf33);
+    }
     
     
 }

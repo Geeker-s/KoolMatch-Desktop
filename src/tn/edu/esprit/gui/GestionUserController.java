@@ -40,7 +40,7 @@ import tn.edu.esprit.services.ServiceUser;
  * @author MED ZOUARI
  */
 public class GestionUserController implements Initializable {
-
+    
     @FXML
     private TextField nomGerant;
     @FXML
@@ -93,9 +93,9 @@ public class GestionUserController implements Initializable {
         afficherG();
         ServiceUser us = new ServiceUser();
         afficherU();
-
+        
     }
-
+    
     @FXML
     private void addGerant(MouseEvent event) {
         if (this.isValidated()) {
@@ -114,8 +114,13 @@ public class GestionUserController implements Initializable {
         LocalDate FFDate = ddf.getValue();
         String SSdate = String.valueOf(FFDate);
         gr.setDf_abonnement(Date.valueOf(SSdate));
-
+        
         g.ajouter(gr);
+        
+        gerant.getChildren().clear();
+        afficherG();
+        
+        
         nomGerant.setText("");
         prenomGerant.setText("");
         mdpGerant.setText("");
@@ -123,19 +128,18 @@ public class GestionUserController implements Initializable {
         emailGerant.setText("");
         dda.getEditor().clear();
         ddf.getEditor().clear();
-        listGerant.getItems().clear();
-        listGerant.getItems().addAll(g.afficher());
+//        listGerant.getItems().clear();
+//        listGerant.getItems().addAll(g.afficher());
         ddaGcontrol.setText(null);
         ddaGcontrol.setText(null);
-
+        
     }
-
-    @FXML
+    
     private void updateGerant(MouseEvent event) {
         ServiceGerant g = new ServiceGerant();
         Gerant gerant = listGerant.getSelectionModel().getSelectedItem();
         Gerant n = new Gerant();
-
+        
         n.setId_gerant(gerant.getId_gerant());
         n.setArchive(gerant.getArchive());
         LocalDate FDate = dda.getValue();
@@ -149,7 +153,7 @@ public class GestionUserController implements Initializable {
         n.setPassword_gerant(mdpGerant.getText());
         n.setPrenom_gerant(prenomGerant.getText());
         n.setTelephone_gerant(Integer.parseInt(telGerant.getText()));
-
+        
         g.modifer(n);
         nomGerant.setText("");
         prenomGerant.setText("");
@@ -160,12 +164,12 @@ public class GestionUserController implements Initializable {
         ddf.setValue(null);
         listGerant.getItems().clear();
         listGerant.getItems().addAll(g.afficher());
-
+        
     }
-
+    
     private void index(MouseEvent event) {
         Gerant g = listGerant.getSelectionModel().getSelectedItem();
-
+        
         nomGerant.setText(g.getNom_gerant());
         prenomGerant.setText(g.getPrenom_gerant());
         mdpGerant.setText(g.getPassword_gerant());
@@ -173,24 +177,18 @@ public class GestionUserController implements Initializable {
         emailGerant.setText(g.getEmail_gerant());
         dda.setValue(g.getDd_abonnement().toLocalDate());
         ddf.setValue(g.getDf_abonnement().toLocalDate());
-
+        
     }
-
+    
     private void deleteUser(ActionEvent event) {
         ServiceUser u = new ServiceUser();
         User user = listuser.getSelectionModel().getSelectedItem();
         u.supprimer(user);
         listuser.getItems().remove(user);
     }
+    
 
-    @FXML
-    private void deleteGerant(ActionEvent event) {
-        ServiceGerant g = new ServiceGerant();
-        Gerant gerant = listGerant.getSelectionModel().getSelectedItem();
-        g.supprimer(gerant);
-        listGerant.getItems().remove(gerant);
-    }
-
+    
     @FXML
     private void nomGerantControl(KeyEvent event) {
         String PATTERN = "^[a-z A-Z]{3,20}$";
@@ -202,7 +200,7 @@ public class GestionUserController implements Initializable {
             nomGcontrol.setText(null);
         }
     }
-
+    
     @FXML
     private void prenomGerantControl(KeyEvent event) {
         String PATTERN = "^[a-z A-Z]{3,20}$";
@@ -214,7 +212,7 @@ public class GestionUserController implements Initializable {
             prenomGcontrol.setText(null);
         }
     }
-
+    
     @FXML
     private void mdpGerantControl(KeyEvent event) {
         String PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*/])(?=\\S+$).{8,15}$";
@@ -226,7 +224,7 @@ public class GestionUserController implements Initializable {
             mdpGcontrol.setText(null);
         }
     }
-
+    
     @FXML
     private void emailGerantControl(KeyEvent event) {
         String PATTERN = "^[a-zA-Z0-9]{0,30}[@][a-zA-Z0-9]{0,10}[.][a-zA-Z]{0,5}$";
@@ -238,7 +236,7 @@ public class GestionUserController implements Initializable {
             emailGcontrol.setText(null);
         }
     }
-
+    
     @FXML
     private void telGerantControl(KeyEvent event) {
         String PATTERN = "^(90|92|93|94|95|96|97|98|99|20|21|22|23|24|25|26|27|28|29|50|51|52|53|54|55|40|41|42|43)[0-9]{6}";
@@ -250,21 +248,21 @@ public class GestionUserController implements Initializable {
             telGcontrol.setText(null);
         }
     }
-
+    
     @FXML
     private void ddaGerantControl(KeyEvent event) {
-
+        
         ddaGcontrol.setText(null);
-
+        
     }
-
+    
     @FXML
     private void ddfGerantControl(KeyEvent event) {
         ddaGcontrol.setText(null);
     }
-
+    
     private boolean isValidated() {
-
+        
         if (nomGerant.getText().equals("")) {
             nomGcontrol.setText("Ajouter le nom du gérant");
         } else if (prenomGerant.getText().equals("")) {
@@ -284,56 +282,56 @@ public class GestionUserController implements Initializable {
         }
         return false;
     }
-
+    
     public void afficherU() {
-
+        
         int colum = 0;
         int row = 0;
         ServiceUser us = new ServiceUser();
         users = us.afficher();
         try {
             for (int i = 0; i < users.size(); i++) {
-
+                
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("CardviewUser.fxml"));
                 AnchorPane anchorPane = loader.load();
                 CardviewUserController controller = loader.getController();
                 controller.setAffichage(users.get(i));
-
+                controller.setU(users.get(i));
                 ++colum;
-
+                
                 user.add(anchorPane, colum++, row);
                 GridPane.setMargin(anchorPane, new Insets(25, 15, 0, 0));
-
+                
             }
         } catch (IOException e) {
             e.getMessage();
         }
-
+        
     }
-
+    
     public void afficherG() {
-
+        
         int colum = 0;
         int row = 0;
         ServiceGerant g = new ServiceGerant();
         gerants = g.afficher();
         try {
             for (int i = 0; i < gerants.size(); i++) {
-
+                
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("CardviewGerant.fxml"));
                 AnchorPane anchorPane = loader.load();
                 CardviewGerantController cont = loader.getController();
                 cont.setAffichage(gerants.get(i));
-
+                cont.setG(gerants.get(i));
                 ++colum;
-
+                
                 gerant.add(anchorPane, colum++, row);
                 GridPane.setMargin(anchorPane, new Insets(25, 15, 0, 0));
-
+                
             }
         } catch (IOException e) {
             e.getMessage();
         }
-
+        
     }
 }

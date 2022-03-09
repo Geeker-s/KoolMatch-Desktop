@@ -15,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import tn.edu.esprit.model.User;
+import tn.edu.esprit.services.ServiceInteraction;
 import tn.edu.esprit.services.ServiceMatching;
 import tn.edu.esprit.services.ServiceUser;
 
@@ -25,20 +26,20 @@ import tn.edu.esprit.services.ServiceUser;
  */
 public class CardController implements Initializable {
 
+    @FXML
+    private Rectangle rectangle;
+    @FXML
     private ImageView photo;
     @FXML
     private Label nom;
+    @FXML
     private Label age;
+    @FXML
     private Label adresse;
+    @FXML
     private Label description;
 
     FrontController mainControll;
-    @FXML
-    private Label tel;
-    @FXML
-    private Label dda;
-    @FXML
-    private Label ddf;
 
     
     /**

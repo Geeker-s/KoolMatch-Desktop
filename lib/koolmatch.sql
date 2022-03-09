@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost:8889
--- Généré le : lun. 07 mars 2022 à 23:52
--- Version du serveur : 5.7.34
--- Version de PHP : 7.4.21
+-- Hôte : 127.0.0.1
+-- Généré le : mar. 08 mars 2022 à 21:08
+-- Version du serveur : 10.4.20-MariaDB
+-- Version de PHP : 7.3.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,7 +31,7 @@ CREATE TABLE `admin` (
   `id_admin` int(50) NOT NULL,
   `login_admin` varchar(20) NOT NULL,
   `password_admin` varchar(20) NOT NULL,
-  `archive` int(8) NOT NULL DEFAULT '0'
+  `archive` int(8) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -52,7 +52,7 @@ CREATE TABLE `conversation` (
   `titre_conversation` varchar(20) NOT NULL,
   `id_user1` int(20) NOT NULL,
   `id_user2` int(20) NOT NULL,
-  `archive` int(11) NOT NULL DEFAULT '0'
+  `archive` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -60,10 +60,7 @@ CREATE TABLE `conversation` (
 --
 
 INSERT INTO `conversation` (`id_conversation`, `titre_conversation`, `id_user1`, `id_user2`, `archive`) VALUES
-(1, 'aa', 2, 3, 0),
-(3, 'test', 2, 3, 0),
-(4, 'test', 2, 3, 0),
-(5, 'test', 2, 3, 0);
+(1, 'Eya', 2, 3, 0);
 
 -- --------------------------------------------------------
 
@@ -79,7 +76,7 @@ CREATE TABLE `evenement` (
   `theme_event` varchar(50) NOT NULL,
   `adresse_event` varchar(20) NOT NULL,
   `telephone` int(20) NOT NULL,
-  `archive` int(1) NOT NULL DEFAULT '0'
+  `archive` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -88,7 +85,8 @@ CREATE TABLE `evenement` (
 
 INSERT INTO `evenement` (`id_event`, `nom_event`, `dd_event`, `df_event`, `theme_event`, `adresse_event`, `telephone`, `archive`) VALUES
 (1, 'sd', '2022-10-31', '2022-10-31', ' halloween', 'esprit', 99485632, 0),
-(2, 'aea', '2022-03-16', '2022-03-09', 'aeaze', 'qsqsf', 1233, 1);
+(2, 'aea', '2022-03-16', '2022-03-09', 'aeaze', 'qsqsf', 1233, 1),
+(3, 'Hallowin', '2022-03-16', '2022-03-17', 'zef', 'sffgsd', 95585222, 0);
 
 -- --------------------------------------------------------
 
@@ -105,7 +103,7 @@ CREATE TABLE `gerant` (
   `telephone_gerant` int(20) NOT NULL,
   `dd_abonnement` date NOT NULL,
   `df_abonnement` date NOT NULL,
-  `archive` int(1) NOT NULL DEFAULT '0'
+  `archive` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -127,7 +125,7 @@ CREATE TABLE `interaction` (
   `date_interaction` date NOT NULL,
   `id_user1` int(11) NOT NULL,
   `id_user2` int(11) NOT NULL,
-  `archive` int(1) NOT NULL DEFAULT '0'
+  `archive` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -146,10 +144,18 @@ INSERT INTO `interaction` (`id_interaction`, `type_interaction`, `date_interacti
 
 CREATE TABLE `invitation` (
   `id_invitation` int(20) NOT NULL,
-  `id_event` int(20) NOT NULL,
+  `nom_event` varchar(255) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `archive` int(1) NOT NULL DEFAULT '0'
+  `archive` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `invitation`
+--
+
+INSERT INTO `invitation` (`id_invitation`, `nom_event`, `id_user`, `archive`) VALUES
+(1, 'sd', 1, 1),
+(2, 'sd', 2, 0);
 
 -- --------------------------------------------------------
 
@@ -162,7 +168,7 @@ CREATE TABLE `jeu` (
   `score_jeu` int(20) NOT NULL,
   `id_quiz` int(20) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `archive` int(1) NOT NULL DEFAULT '0'
+  `archive` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -184,7 +190,7 @@ CREATE TABLE `matching` (
   `id_user1` int(20) NOT NULL,
   `id_user2` int(20) NOT NULL,
   `date_matching` date NOT NULL,
-  `archive` int(1) NOT NULL DEFAULT '0'
+  `archive` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -198,7 +204,7 @@ CREATE TABLE `message` (
   `msg_message` varchar(100) NOT NULL,
   `date_message` date NOT NULL,
   `id_conversation` int(20) NOT NULL,
-  `archive` int(1) NOT NULL DEFAULT '0'
+  `archive` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -225,7 +231,7 @@ CREATE TABLE `quiz` (
   `rf31` text NOT NULL,
   `rf32` text NOT NULL,
   `rf33` text NOT NULL,
-  `archive` int(1) DEFAULT '0'
+  `archive` int(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -248,7 +254,7 @@ CREATE TABLE `recette` (
   `description_recette` varchar(50) NOT NULL,
   `categorie_recette` varchar(20) NOT NULL,
   `duree_recette` int(20) NOT NULL,
-  `archive` int(1) NOT NULL DEFAULT '0'
+  `archive` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -257,7 +263,8 @@ CREATE TABLE `recette` (
 
 INSERT INTO `recette` (`id_recette`, `nom_recette`, `photo_recette`, `description_recette`, `categorie_recette`, `duree_recette`, `archive`) VALUES
 (1, 'omlette', 'photo.jpg', 'bnina', 'Petit dej', 0, 0),
-(2, 'aa', 'bz', 'description_recette', 'categorie_recette', 0, 0);
+(2, 'aa', 'bz', 'description_recette', 'categorie_recette', 0, 0),
+(3, 'Kosksi', 'src/tn/edu/esprit/images/d.jpg', 'efgzeg', 'Petit dej', 20, 0);
 
 -- --------------------------------------------------------
 
@@ -271,8 +278,18 @@ CREATE TABLE `reservation` (
   `nbPlace_reservation` int(20) NOT NULL,
   `id_restaurant` int(20) NOT NULL,
   `id_user` int(20) NOT NULL,
-  `archive` int(1) NOT NULL DEFAULT '0'
+  `archive` int(1) NOT NULL DEFAULT 0,
+  `nom_resto` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `adresse` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `reservation`
+--
+
+INSERT INTO `reservation` (`id_reservation`, `date_reservation`, `nbPlace_reservation`, `id_restaurant`, `id_user`, `archive`, `nom_resto`, `image`, `adresse`) VALUES
+(1, '2022-03-09', 5, 8, 1, 0, 'Baguette', 'src/tn/edu/esprit/images/logo.png', 'Tunisia');
 
 -- --------------------------------------------------------
 
@@ -289,7 +306,7 @@ CREATE TABLE `restaurant` (
   `specialite_restaurant` varchar(20) NOT NULL,
   `id_gerant` int(20) NOT NULL,
   `image` varchar(50) NOT NULL,
-  `archive` int(1) NOT NULL DEFAULT '0',
+  `archive` int(1) DEFAULT NULL,
   `nb_placeResto` int(11) NOT NULL,
   `image_structure_resturant` varchar(255) NOT NULL,
   `description` varchar(100) NOT NULL,
@@ -301,14 +318,15 @@ CREATE TABLE `restaurant` (
 --
 
 INSERT INTO `restaurant` (`id_restaurant`, `nom_restaurant`, `adresse_restaurant`, `telephone_restaurant`, `siteweb_restaurant`, `specialite_restaurant`, `id_gerant`, `image`, `archive`, `nb_placeResto`, `image_structure_resturant`, `description`, `lien`) VALUES
-(8, 'Baguette', 'Tunisia', 2202255, 'www.kfc.com', 'FastfOOD', 5, 'src/tn/edu/esprit/images/logo.png', 0, 10, 'aaaa', 'uiuh', 'ggg'),
 (9, 'Kitchen', 'klibya', 2202255, 'www.kfc.com', 'FastfOOD', 5, 'src/tn/edu/esprit/images/logo.png', 0, 10, 'aaaa', 'uiuh', 'ggg'),
 (10, 'Kitchen', 'klibya', 2202255, 'www.kfc.com', 'FastfOOD', 5, 'src/tn/edu/esprit/images/logo.png', 0, 10, 'aaaa', 'uiuh', 'ggg'),
 (11, 'sdfsf', 'sdfsdfsf', 872782, 'fghfgh', 'fdghd', 5, 'src/tn/edu/esprit/images/logo.png', 1, 10, 'src/tn/edu/esprit/images/Screen Shot 2021-11-27 at 11.07.19 AM.png', 'dgdfgd', 'null'),
 (12, 'TaxiPizza', 'Marsa', 26847953, 'www.kfc.com', 'Lablebi', 5, 'src/tn/edu/esprit/images/femme2.jpeg', 0, 5, 'src/tn/edu/esprit/images/femme1.jpeg', 'ddeeded', 'null'),
 (13, 'aloalo', 'aloalo', 20, 'aloalo', 'makarouna', 20, 'src/tn/edu/esprit/images/s.jpg', 0, 20, 'src/tn/edu/esprit/images/d.jpg', 'aloalo', 'null'),
 (14, 'cdcd', 'sd', 52, 'sdg', 'qsdgvsd', 20, 'src/tn/edu/esprit/images/d.jpg', 0, 2, 'src/tn/edu/esprit/images/s.jpg', 'sdf', 'null'),
-(15, 'azee', 'zegze', 20, 'zeg', 'zeg', 20, 'src/tn/edu/esprit/images/d.jpg', 0, 2, 'src/tn/edu/esprit/images/s.jpg', 'qsdf', 'null');
+(15, 'azee', 'zegze', 20, 'zeg', 'zeg', 20, 'src/tn/edu/esprit/images/d.jpg', 0, 2, 'src/tn/edu/esprit/images/s.jpg', 'qsdf', 'null'),
+(16, 'azfazf', 'hello', 6151, 'site.com', 'zeg', 0, 'src/tn/edu/esprit/images/d.jpg', 0, 20, 'src/tn/edu/esprit/images/admin.jpg', 'zergzg', 'null'),
+(17, 'azefe', 'efzeg', 5, 'site', 'ege', 20, 'src/tn/edu/esprit/images/femme1.jpeg', 0, 10, 'src/tn/edu/esprit/images/d.jpg', 'fzeifuh', 'null');
 
 -- --------------------------------------------------------
 
@@ -334,7 +352,7 @@ CREATE TABLE `user` (
   `latitude` double NOT NULL,
   `longitude` double NOT NULL,
   `Interet_user` int(20) NOT NULL,
-  `archive` int(1) NOT NULL DEFAULT '0'
+  `archive` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -344,7 +362,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id_user`, `email_user`, `password_user`, `nom_user`, `prenom_user`, `dateNaissance_user`, `sexe_user`, `telephone_user`, `photo_user`, `description_user`, `maxDistance_user`, `preferredMinAge_user`, `preferredMaxAge_user`, `adresse_user`, `latitude`, `longitude`, `Interet_user`, `archive`) VALUES
 (1, 'yakoubi.marwen@esprit.tn', '1234', 'Marwen', 'Yakoubi', '1998-05-14', 'homme', 29163283, 'marwen.jpg', 'I love lablebi', 50, 20, 25, 'Ariana Essoughra', 36.90138, 10.19012, 21412, 0),
 (2, 'wassim.benromdhane.1@esprit.tn', '1234', 'Eya', 'Benromdhane', '1998-05-14', 'femme', 94366666, 'femme1.jpeg', 'I love sushi', 20, 20, 28, 'Soukra', 36.87427, 10.27263, 22211, 0),
-(3, 'wassimbenr@gmail.com', '1234', 'Sondes', 'kharroubi', '1998-05-14', 'femme', 29163283, 'femme3.jpg', 'I love hargma', 10, 20, 28, 'Ariana', 36.85858, 10.18436, 21422, 0);
+(3, 'wassimbenr@gmail.com', '1234', 'Sondes', 'kharroubi', '1998-05-14', 'femme', 29163283, 'femme3.jpg', 'I love hargma', 10, 20, 28, 'Ariana', 36.85858, 10.18436, 21422, 0),
+(19, 'z@gmail.com', '1234', 'hello', 'he', '2022-03-02', 'Homme', 1234, 'marwen.jpg', 'qsfqsdf', 0, 0, 0, 'aazdaz', 0, 0, 22222, 0);
 
 --
 -- Index pour les tables déchargées
@@ -454,7 +473,7 @@ ALTER TABLE `conversation`
 -- AUTO_INCREMENT pour la table `evenement`
 --
 ALTER TABLE `evenement`
-  MODIFY `id_event` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_event` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `gerant`
@@ -472,7 +491,7 @@ ALTER TABLE `interaction`
 -- AUTO_INCREMENT pour la table `invitation`
 --
 ALTER TABLE `invitation`
-  MODIFY `id_invitation` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_invitation` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `jeu`
@@ -502,25 +521,25 @@ ALTER TABLE `quiz`
 -- AUTO_INCREMENT pour la table `recette`
 --
 ALTER TABLE `recette`
-  MODIFY `id_recette` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_recette` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id_reservation` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_reservation` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `restaurant`
 --
 ALTER TABLE `restaurant`
-  MODIFY `id_restaurant` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_restaurant` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_user` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

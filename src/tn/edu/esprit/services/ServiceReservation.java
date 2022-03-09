@@ -19,9 +19,15 @@ import tn.edu.esprit.utils.MyDB;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
+import java.util.Collection;
 import tn.edu.esprit.model.User;
 import java.util.Comparator;
+import java.util.Iterator;
+import java.util.ListIterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import static tn.edu.esprit.gui.LoginController.CurrentUser;
 
 /**
  *
@@ -40,7 +46,7 @@ public class ServiceReservation implements IService<Reservation> {
     @Override
     public void ajouter(Reservation p1) {
         try {
-            String querry = "INSERT INTO `reservation` (`id_reservation`,`date_reservation`,`nbPlace_reservation`,`id_restaurant`,`id_user`,`archive`) VALUES('" + p1.getId_reservation() + "','" + p1.getDate_reservation() + "','" + p1.getNbPlace_reservation() + "','" + p1.getId_restaurant() + "','" + p1.getId_user() + "','" + p1.getArchive() + "')";
+            String querry = "INSERT INTO `reservation` (`id_reservation`,`date_reservation`,`nbPlace_reservation`,`id_restaurant`,`id_user`,`archive`,`nom_resto`,`image`,`adresse`) VALUES('" + p1.getId_reservation() + "','" + p1.getDate_reservation() + "','" + p1.getNbPlace_reservation() + "','" + p1.getId_restaurant() + "','" + p1.getId_user() + "','" + p1.getArchive() + "','" + p1.getNom_resto() + "','" + p1.getImage() + "','" + p1.getAdresse()+ "')";
             Statement stm = cnx.createStatement();
             stm.executeUpdate(querry);
         } catch (SQLException ex) {
@@ -59,15 +65,21 @@ public class ServiceReservation implements IService<Reservation> {
         }
     
     }*/
-    public void join() {
+    public List<String> join() {
+        List<String> Reservation = new ArrayList<>();
         try {
-            String querry = "SELECT `non_user`,`prenom_user` from `user` U inner join `reseration` R ON U.id_user = R.id_user";
+            String querry = "SELECT nom_restaurant , image ,date_reservation  from `restaurant` U inner join `reservation` R ON U.id_restaurant = R.id_restaurant";
             Statement stm = cnx.createStatement();
             stm.executeQuery(querry);
+            ResultSet rs = stm.executeQuery(querry);
+            while (rs.next()) {
+                Reservation.add(rs.getString(1));
+                Reservation.add(rs.getString(2));
+            }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-
+        return Reservation;
     }
 
     @Override
@@ -78,7 +90,7 @@ public class ServiceReservation implements IService<Reservation> {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
-                Reservation.add(new Reservation(rs.getInt(1), rs.getDate(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6)));
+                Reservation.add(new Reservation(rs.getInt(1), rs.getDate(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6),rs.getString(7),rs.getString(8),rs.getString(9)));
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -115,9 +127,9 @@ public class ServiceReservation implements IService<Reservation> {
     }
 
     @Override
-    public boolean supprimer(Reservation p1) {
-        /*   try {
-            String querry = "DELETE FROM `restaurant` WHERE `id_restaurant` = '" + p.getId_restaurant()+ "'";
+    public boolean supprimer(Reservation p3) {
+         try {
+            String querry = "DELETE FROM `restaurant` WHERE `id_restaurant` = '" + p3.getId_restaurant()+ "'";
             Statement stm = cnx.createStatement();
             stm.executeUpdate(querry);
         } catch (SQLException ex) {
@@ -125,8 +137,8 @@ public class ServiceReservation implements IService<Reservation> {
             return false;
         }
         return true;
-        }*/
-        try {
+        }
+       /* try {
             String req = " UPDATE `reservation` SET `archive` = 1  WHERE `id_reservation` = '" + p1.getId_reservation() + "'";
             Statement stm = cnx.createStatement();
             stm.executeUpdate(req);
@@ -136,7 +148,7 @@ public class ServiceReservation implements IService<Reservation> {
         }
         return true;
     }
-
+*/
     public void search(Reservation p) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -160,5 +172,106 @@ public class ServiceReservation implements IService<Reservation> {
     public List<Reservation> rechercher(Reservation p) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public List<Reservation> MesReservations() {
+        List<Reservation> Reservation = new ArrayList<>();
+        try {
+            String req = "SELECT * FROM reservation WHERE `archive` = 0 AND id_user=" + CurrentUser.getId_user();
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+                Reservation.add(new Reservation(rs.getInt(1), rs.getDate(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6),rs.getString(7),rs.getString(8),rs.getString(9)));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return Reservation;
+    }
+
+    public Iterable<Reservation> RechercheReservationsParNom(String recherche) {
+        List ALLproducts = new ArrayList();
+        try {
+            String query = "select * from reservation WHERE  archive =0 and  nom_restaurant LIKE '%" + recherche + "%';";
+            Statement st = MyDB.getInstance().getCnx().createStatement();
+            ResultSet rest = st.executeQuery(query);
+            while (rest.next()) {
+                Reservation pr = new Reservation();
+              
+
+                pr.setId_reservation(rest.getInt("id_reservation"));
+                pr.setDate_reservation(rest.getDate("date_reservation"));
+                pr.setNbPlace_reservation(rest.getInt("NbPlace_reservation"));
+                pr.setId_restaurant(rest.getInt("id_restaurant"));
+                pr.setId_user(rest.getInt("id_user"));
+                pr.setNom_resto(rest.getString("nom_resto"));  
+                pr.setImage(rest.getString("image"));  
+                pr.setAdresse(rest.getString("adresse"));  
+
+                ALLproducts.add(pr);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceRestaurant.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return ALLproducts;
+
+    }
+    
+    
+    public boolean place_disponible(Restaurant r, int nbr, java.util.Date datereservation) throws SQLException {
+
+        //SELECT sum(nbPlace_reservation) FROM `reservation` where cast(date_reservation as date) = '2022-03-16' 
+        int reserve = 0;
+        String query = "SELECT sum(nbPlace_reservation) as reserve FROM `reservation` where cast(date_reservation as date) = '" + datereservation + "' and id_restaurant ="+r.getId_restaurant()+" ";
+        Statement st = MyDB.getInstance().getCnx().createStatement();
+        ResultSet rs = st.executeQuery(query);
+        while (rs.next()) {
+            //  System.out.println(rest.first());
+            // test.add(rest.first());
+            reserve = rs.getInt("reserve");
+        }
+        System.out.println("nombre des pkaces restosss "+r.getNb_placeResto());
+        
+        if (reserve + nbr > r.getNb_placeResto()) {
+            System.out.println("pas des plcs");
+            System.out.println("reserve"+reserve);
+            return false;
+        } else {
+            System.out.println("il ya des place dispo");
+            System.out.println("reserve"+reserve);
+            return true;
+            
+        }
+    }
+
+    public boolean Already_reserved(int id_user, java.util.Date datereservation) throws SQLException{
+        List<Reservation> test = new ArrayList();
+       // WHERE date_reservation = "+datereservation+" and
+       //SELECT * FROM `reservation` WHERE cast(date_reservation as date) = "2022-03-16" 
+       
+          String query = "select * from reservation  WHERE cast(date_reservation as date)= '"+datereservation+"' and archive =0 and  id_user = " + id_user + ";";
+            Statement st = MyDB.getInstance().getCnx().createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while  (rs.next()) {
+              //  System.out.println(rest.first());
+           // test.add(rest.first());
+                   test.add(new Reservation(rs.getInt(1), rs.getDate(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6)));
+            }
+        if (test.isEmpty())
+        {
+            System.out.println(datereservation);
+            System.out.println("aaaaaaaa"+test.size());
+            System.out.println("pas d reservation");
+            return false;}
+        else 
+            
+        {  System.out.println("y a des reservation");
+            return true;}
+
+    }
+
+   
 
 }
