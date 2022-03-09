@@ -59,7 +59,7 @@ public class ServiceJeu implements IService<Jeu> {
     @Override
     public boolean modifer(Jeu p) {
         try {
-            String req = " UPDATE jeu SET id_quiz = '" + p.getId_quiz() + "' WHERE id_jeu = '" + p.getId_jeu()+ "'";
+            String req = " UPDATE jeu SET id_quiz = '" + p.getId_quiz() + "' WHERE id_jeu = '" + p.getId_jeu() + "'";
             Statement stm = cnx.createStatement();
             stm.executeUpdate(req);
         } catch (SQLException ex) {
@@ -71,7 +71,7 @@ public class ServiceJeu implements IService<Jeu> {
 
     public boolean supprimerc() {
         try {
-            String querry = "DELETE FROM jeu WHERE archive =1'" ;
+            String querry = "DELETE FROM jeu WHERE archive =1'";
             Statement stm = cnx.createStatement();
             stm.executeUpdate(querry);
         } catch (SQLException ex) {
@@ -106,7 +106,7 @@ FROM <nom_table> ; */
             ResultSet rs = st.executeQuery(req);
 
             while (rs.next()) {
-                jeux.add(new Jeu(rs.getInt(1),rs.getInt(2)));
+                jeux.add(new Jeu(rs.getInt(1), rs.getInt(2)));
             }
 
         } catch (SQLException ex) {
@@ -126,34 +126,40 @@ FROM <nom_table> ; */
         List<Jeu> jeu = afficher();
         return jeu.stream().sorted(comparator).collect(Collectors.toList());
     }
-     public long calculz1() {
-        
-          List<Jeu> jeu = afficher();
-        return jeu.stream().filter(b -> b.getScore_jeu()< 20).count();
+
+    public long calculz1() {
+
+        List<Jeu> jeu = afficher();
+        return jeu.stream().filter(b -> b.getScore_jeu() < 20).count();
     }
-       public long calculz2() {
-        
-          List<Jeu> jeu = afficher();
-        return jeu.stream().filter(b -> b.getScore_jeu() > 20).filter(b -> b.getScore_jeu() < 50 ).count();
+
+    public long calculz2() {
+
+        List<Jeu> jeu = afficher();
+        return jeu.stream().filter(b -> b.getScore_jeu() > 20).filter(b -> b.getScore_jeu() < 50).count();
     }
-            public long calculz3() {
-        
-          List<Jeu> jeu = afficher();
-        return jeu.stream().filter(b -> b.getScore_jeu() > 50).filter(b -> b.getScore_jeu() > 90 ).count();
+
+    public long calculz3() {
+
+        List<Jeu> jeu = afficher();
+        return jeu.stream().filter(b -> b.getScore_jeu() > 50).filter(b -> b.getScore_jeu() > 90).count();
     }
-                 public long calculz4() {
-        
-          List<Jeu> jeu = afficher();
-        return jeu.stream().filter(b -> b.getScore_jeu() > 90).filter(b -> b.getScore_jeu() > 120 ).count();
+
+    public long calculz4() {
+
+        List<Jeu> jeu = afficher();
+        return jeu.stream().filter(b -> b.getScore_jeu() > 90).filter(b -> b.getScore_jeu() > 120).count();
     }
-           public long calculz5() {
-        
-          List<Jeu> jeu = afficher();
-        return jeu.stream().filter(b -> b.getScore_jeu() > 120).filter(b -> b.getScore_jeu() > 150 ).count();
-    }   
-                public long calculz6() {
-        
-          List<Jeu> jeu = afficher();
+
+    public long calculz5() {
+
+        List<Jeu> jeu = afficher();
+        return jeu.stream().filter(b -> b.getScore_jeu() > 120).filter(b -> b.getScore_jeu() > 150).count();
+    }
+
+    public long calculz6() {
+
+        List<Jeu> jeu = afficher();
         return jeu.stream().filter(b -> b.getScore_jeu() > 150).count();
     }
 }
