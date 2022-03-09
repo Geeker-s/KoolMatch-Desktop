@@ -107,6 +107,9 @@ public class FrontController implements Initializable {
     private Label nom_user;
     @FXML
     private Circle photo_user;
+//    private Button filtre;
+    @FXML
+    private Button ff;
 
     public void setI(int i) {
         this.i = i;
@@ -125,12 +128,22 @@ public class FrontController implements Initializable {
         this.matches = match.algorithme(u);
     }
 
+    public void setMatches(List<User> matches) {
+        this.matches = matches;
+    }
+
+    
+    
     public void setC(CardController c) {
         this.c = c;
     }
 
     public void setF(FilterController f) {
         this.f = f;
+    }
+
+    public FilterController getF() {
+        return f;
     }
 
     public Pane getCard() {
@@ -143,6 +156,15 @@ public class FrontController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        ServiceUser us = new ServiceUser();
+        
+        CurrentUser = us.afficher()
+                .stream()
+                .filter(e->e.getId_user()==CurrentUser.getId_user())
+                .findAny()
+                .orElse(null);
+        
+        
         File file = new File("src/tn/edu/esprit/images/" + CurrentUser.getPhoto_user());
         Image image = new Image(file.toURI().toString());
         photo_user.setFill(new ImagePattern(image));
@@ -173,14 +195,22 @@ public class FrontController implements Initializable {
         } catch (IOException ex) {
             ex.getMessage();
         }
-        FXMLLoader loadmsg = new FXMLLoader(getClass().getResource("Room.fxml"));
-        Pane paneMsg;
-        try {
-            paneMsg = loadmsg.load();
-            pnlConversation.getChildren().add(paneMsg);
-        } catch (IOException ex) {
-            ex.getMessage();
-        }
+        FilterController controllerFiltre = (FilterController) loadFilter.getController();
+//        //setters
+        setF(controllerFiltre);
+//        System.out.println(getF().getList()); 
+//        setMatches(CurrentUser, matches);
+//        setI(0);
+//        c.setAffichage(matches.get(getI()));
+
+//        FXMLLoader loadmsg = new FXMLLoader(getClass().getResource("Room.fxml"));
+//        Pane paneMsg;
+//        try {
+//            paneMsg = loadmsg.load();
+//            pnlConversation.getChildren().add(paneMsg);
+//        } catch (IOException ex) {
+//            ex.getMessage();
+//        }
         FXMLLoader loaderRestaurant = new FXMLLoader(getClass().getResource("Front_reservation.fxml"));
         Pane newLoadedR;
         try {
@@ -217,12 +247,9 @@ public class FrontController implements Initializable {
         //setters
         controllerP.load(CurrentUser);
 
-        
-        
 //        FilterController fcontroller = (FilterController) loader.getController();
 //        setters
 //        setF(fcontroller);
-
     }
 
     @FXML
@@ -301,5 +328,21 @@ public class FrontController implements Initializable {
                 c.setAffichage(y);
             }
         }
+
+    }
+
+    @FXML
+    private void ffff(ActionEvent event) {
+        FXMLLoader loadFilter = new FXMLLoader(getClass().getResource("filter.fxml"));
+        FilterController controllerFiltre = (FilterController) loadFilter.getController();
+//        //setters//
+        setMatches(getF().getList());
+        
+        System.out.println(matches);
+//        setI(0);
+//
+//        User y = matches.get(getI());
+//        c.setAffichage(y);
+
     }
 }

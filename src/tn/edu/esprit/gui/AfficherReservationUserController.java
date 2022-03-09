@@ -153,7 +153,7 @@ public class AfficherReservationUserController implements Initializable {
 //                t1.setCursor(Cursor.HAND);
 //
 //                /**
-//                 * ************* participate *******************
+//                 * *********** participate *****************
 //                 */
 //                t1.setOnMouseClicked((MouseEvent event) -> {
 //
@@ -168,7 +168,7 @@ public class AfficherReservationUserController implements Initializable {
 //
 //                });
                 /**
-                 * ********** quick view**********
+                 * ******** quick view**********
                  */
                 FontAwesomeIconView tq = new FontAwesomeIconView(FontAwesomeIcon.EXPAND);
                 tq.setFill(Color.BLACK);
@@ -177,7 +177,7 @@ public class AfficherReservationUserController implements Initializable {
                 tq.setCursor(Cursor.HAND);
 
                 /**
-                 * ********** Formulaire view**********
+                 * ******** Formulaire view**********
                  */
                 FontAwesomeIconView btn = new FontAwesomeIconView(FontAwesomeIcon.REMOVE);
                 btn.setFill(Color.BLACK);
@@ -211,7 +211,7 @@ public class AfficherReservationUserController implements Initializable {
                 });
 
                 /**
-                 * ******************************
+                 * ****************************
                  */
                 HBox hb = new HBox(tq);
                 HBox hb2 = new HBox(btn);
@@ -257,14 +257,14 @@ public class AfficherReservationUserController implements Initializable {
                 prenom.setStyle("-fx-font-weight: bold;-fx-fill : #ce3b67");
 
                 /**
-                 * ************* web view ***************
+                 * *********** web view *************
                  *
                  *
                  * /**
-                 * **********************************************
+                 * ********************************************
                  */
                 /**
-                 * **********************partage facebook********************
+                 * *********************partage facebook*******************
                  */
                 pane.getChildren().addAll(pane2, nomt, prixt, nom, btn, prenom, num);
 //                             
@@ -281,10 +281,10 @@ public class AfficherReservationUserController implements Initializable {
                 pane2.setStyle(" -fx-border-radius: 10 10 0 0;-fx-border-color: #383d3b ;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 8, 0, 0, 0); ");
 
                 /**
-                 * ********** quick view**********
+                 * ******** quick view**********
                  */
                 /**
-                 * ********************************************
+                 * ******************************************
                  */
                 FontAwesomeIconView tq = new FontAwesomeIconView(FontAwesomeIcon.EXPAND);
                 tq.setFill(Color.BLACK);
@@ -292,7 +292,7 @@ public class AfficherReservationUserController implements Initializable {
 
                 tq.setCursor(Cursor.HAND);
                 /**
-                 * ********** quick view**********
+                 * ******** quick view**********
                  */
 
                 FontAwesomeIconView btn = new FontAwesomeIconView(FontAwesomeIcon.REMOVE);
@@ -374,9 +374,9 @@ public class AfficherReservationUserController implements Initializable {
                 prenom.setStyle("-fx-font-weight: bold;-fx-fill : #ce3b67");
 
                 /**
-                 * **********************************************
+                 * ********************************************
                  *
-                 **********************partage facebook********************
+                 *********************partage facebook*******************
                  */
                 pane.getChildren().addAll(pane2, nomt, prixt, nom, btn, prenom, num);
             }
@@ -474,14 +474,14 @@ public class AfficherReservationUserController implements Initializable {
                 prenom.setStyle("-fx-font-weight: bold;-fx-fill : #ce3b67");
 
                 /**
-                 * ************* web view ***************
+                 * *********** web view *************
                  *
                  *
                  * /**
-                 * **********************************************
+                 * ********************************************
                  */
                 /**
-                 * **********************partage facebook********************
+                 * *********************partage facebook*******************
                  */
                 pane.getChildren().addAll(pane2, nomt, prixt, nom, btn, prenom, num);
 

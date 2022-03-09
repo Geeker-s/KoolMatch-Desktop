@@ -59,5 +59,6 @@
          </padding>
       </Label>
       <Button fx:id="sup" layoutX="74.0" layoutY="150.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: #ffa59e; -fx-background-radius: 90;" text="Supprimer" textFill="WHITE" />
+      <Button fx:id="details" layoutX="78.0" layoutY="150.0" mnemonicParsing="false" onAction="#detail" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: #ffa59e; -fx-background-radius: 90;" text="Details" textFill="WHITE" visible="false" />
    </children>
 </AnchorPane>

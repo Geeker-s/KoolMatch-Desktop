@@ -47,15 +47,16 @@ import tn.edu.esprit.services.ServiceRecette;
  * @author khaled
  */
 public class RecetteController implements Initializable {
-     ServiceRecette r =new ServiceRecette();
-        ObservableList<Recette> list=FXCollections.observableList(r.afficher());
-       ObservableList<Recette> listtnp=FXCollections.observableList(r.trinp());
-       ObservableList<Recette> listtd=FXCollections.observableList(r.tridur());
-       ObservableList<Recette> listtc=FXCollections.observableList(r.tricatg());
-       
-        ObservableList Listt = FXCollections.observableArrayList ( 
-"nom_plat", "durré", "categorie");
-   // ObservableList<Recette> listtr=FXCollections.observableList(r.rechercherr(r));
+
+    ServiceRecette r = new ServiceRecette();
+    ObservableList<Recette> list = FXCollections.observableList(r.afficher());
+    ObservableList<Recette> listtnp = FXCollections.observableList(r.trinp());
+    ObservableList<Recette> listtd = FXCollections.observableList(r.tridur());
+    ObservableList<Recette> listtc = FXCollections.observableList(r.tricatg());
+
+    ObservableList Listt = FXCollections.observableArrayList(
+            "nom_plat", "durré", "categorie");
+    // ObservableList<Recette> listtr=FXCollections.observableList(r.rechercherr(r));
     @FXML
     private Button AjouterR;
     @FXML
@@ -81,11 +82,10 @@ public class RecetteController implements Initializable {
     @FXML
     private ImageView photo;
     private File Current_file;
- 
+
     private String file_image;
     @FXML
     private Button jeu;
-   
 
     /**
      * Initializes the controller class.
@@ -93,91 +93,93 @@ public class RecetteController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         file_image = "src/tn/edu/esprit/images/" + file_image;
-        
-       afficher();
 
-    
-     tri.setItems(Listt);
-     changemessage();
-    }    
-   private void afficher() {
-       ObservableList<String> listc=FXCollections.observableList(r.affichercat());
-       ObservableList<Recette> list=FXCollections.observableList(r.afficher());
-         listv.setItems(list);
-         catg.setItems(listc);
+        afficher();
+
+        tri.setItems(Listt);
+        changemessage();
     }
-  
+
+    private void afficher() {
+        ObservableList<String> listc = FXCollections.observableList(r.affichercat());
+        ObservableList<Recette> list = FXCollections.observableList(r.afficher());
+        listv.setItems(list);
+        catg.setItems(listc);
+    }
 
     @FXML
     private void bAjouer(ActionEvent event) {
         file_image = "src/tn/edu/esprit/images/" + file_image;
-        
+
         ServiceRecette Recette = new ServiceRecette();
-      if ( nplat.getText().isEmpty() || nplat.getText().matches("[0-9]") ||catg.getValue().equals("choisir categorie")  ||desc.getText().isEmpty() || desc.getText().matches("[0-9]") || Integer.parseInt(duree.getText())<0 ) { Notifications notificationBuilder=Notifications.create()
-              .title("Erreur").text("Veuillez verifier vos champs").graphic(null).hideAfter(javafx.util.Duration.seconds(5))
-              .position(Pos.CENTER_LEFT)
-              .onAction(new EventHandler<ActionEvent>(){
-                  public void handle(ActionEvent event)
-                      {
-                          System.out.println("clicked ON");
-                      }
-              });
-      notificationBuilder.darkStyle();
-      notificationBuilder.show();}
-      else {
-           Recette r1 = new Recette(nplat.getText(),file_image, desc.getText(), catg.getValue(),Integer.parseInt(duree.getText())) ;
-               Recette.ajouter(r1);
-    }}
+        if (nplat.getText().isEmpty() || nplat.getText().matches("[0-9]") || catg.getValue().equals("choisir categorie") || desc.getText().isEmpty() || desc.getText().matches("[0-9]") || Integer.parseInt(duree.getText()) < 0) {
+            Notifications notificationBuilder = Notifications.create()
+                    .title("Erreur").text("Veuillez verifier vos champs").graphic(null).hideAfter(javafx.util.Duration.seconds(5))
+                    .position(Pos.CENTER_LEFT)
+                    .onAction(new EventHandler<ActionEvent>() {
+                        public void handle(ActionEvent event) {
+                            System.out.println("clicked ON");
+                        }
+                    });
+            notificationBuilder.darkStyle();
+            notificationBuilder.show();
+        } else {
+            Recette r1 = new Recette(nplat.getText(), file_image, desc.getText(), catg.getValue(), Integer.parseInt(duree.getText()));
+            Recette.ajouter(r1);
+        }
+    }
 
     @FXML
     private void Bmodifier(ActionEvent event) {
-         file_image = "src/tn/edu/esprit/images/" + file_image;
-Recette c = new Recette();
-         ServiceRecette sr = new ServiceRecette();
+        file_image = "src/tn/edu/esprit/images/" + file_image;
+        Recette c = new Recette();
+        ServiceRecette sr = new ServiceRecette();
         c.setNom_recette(nplat.getText());
-                c.setDescription_recette(desc.getText());
-                c.setDuree_recette(Integer.parseInt(duree.getText()));
-                c.setCategorie_recette(catg.getValue());
-                 c.setPhoto_recette(file_image);
-              c.setId_recette(listv.getSelectionModel().getSelectedItem().getId_recette());
-                sr.modifer(c);
-                
-                afficher();    }
+        c.setDescription_recette(desc.getText());
+        c.setDuree_recette(Integer.parseInt(duree.getText()));
+        c.setCategorie_recette(catg.getValue());
+        c.setPhoto_recette(file_image);
+        c.setId_recette(listv.getSelectionModel().getSelectedItem().getId_recette());
+        sr.modifer(c);
+
+        afficher();
+    }
 
     @FXML
     private void Bsupprimer(ActionEvent event) {
-         ServiceRecette Recette = new ServiceRecette();
-            Recette r1 = new Recette(a,"b","b", "a", "c",0) ;
-               Recette.supprimer(r1);
-               System.out.println(a);
+        ServiceRecette Recette = new ServiceRecette();
+        Recette r1 = new Recette(listv.getSelectionModel().getSelectedItem().getId_recette(), "b", "b", "a", "c", 0);
+        Recette.supprimer(r1);
+        System.out.println(a);
     }
 
-  
-
     private void Laffichage(MouseEvent event) {
-        ObservableList<Recette> list=FXCollections.observableList(r.afficher());
+        ObservableList<Recette> list = FXCollections.observableList(r.afficher());
         listv.setItems(list);
     }
 
     @FXML
     private void trier(ActionEvent event) {
-         ServiceRecette sr =new ServiceRecette();
-        if ( tri.getValue().equals("nom_plat") )
-        { listv.setItems(listtnp);}
-        if ( tri.getValue().equals("durré") )
-        { listv.setItems(listtnp);}
-        if ( tri.getValue().equals("categorie") )
-        { listv.setItems(listtnp);}
-         
+        ServiceRecette sr = new ServiceRecette();
+        if (tri.getValue().equals("nom_plat")) {
+            listv.setItems(listtnp);
+        }
+        if (tri.getValue().equals("durré")) {
+            listv.setItems(listtnp);
+        }
+        if (tri.getValue().equals("categorie")) {
+            listv.setItems(listtnp);
+        }
+
     }
 
     @FXML
     private void cache(ActionEvent event) {
         ServiceRecette Recette = new ServiceRecette();
-               Recette.supprimerc();
+        Recette.supprimerc();
     }
 
- private void changemessage() {
+    private void changemessage() {
         listv.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent arg0) {
@@ -198,12 +200,12 @@ Recette c = new Recette();
         catg.setValue(c.getCategorie_recette());
         prec.setText(c.getPhoto_recette());
         duree.setText(String.valueOf(c.getDuree_recette()));
-        
+
     }
 
     @FXML
     private void Drag(DragEvent event) {
-           Dragboard board = event.getDragboard();
+        Dragboard board = event.getDragboard();
         if (board.hasFiles()) {
             event.acceptTransferModes(TransferMode.ANY);
         }
@@ -211,7 +213,7 @@ Recette c = new Recette();
 
     @FXML
     private void Drop(DragEvent event) throws FileNotFoundException {
-          Dragboard board = event.getDragboard();
+        Dragboard board = event.getDragboard();
         List<File> phil = board.getFiles();
         FileInputStream fis;
         fis = new FileInputStream(phil.get(0));
@@ -232,16 +234,16 @@ Recette c = new Recette();
 
     @FXML
     private void rechercher(MouseEvent event) {
-        ServiceRecette sr =new ServiceRecette();
-       // Recette recette = sr.recherchern(new Recette(rech.getText())).get(0) ;
-       Recette rec = new Recette(rech.getText());
-       ObservableList<Recette> listr=FXCollections.observableList(sr.rechercher(rec));
+        ServiceRecette sr = new ServiceRecette();
+        // Recette recette = sr.recherchern(new Recette(rech.getText())).get(0) ;
+        Recette rec = new Recette(rech.getText());
+        ObservableList<Recette> listr = FXCollections.observableList(sr.rechercher(rec));
         listv.setItems((listr));
     }
 
     @FXML
     private void ref(MouseEvent event) {
-         ObservableList<Recette> listref=FXCollections.observableList(r.afficher());
+        ObservableList<Recette> listref = FXCollections.observableList(r.afficher());
         listv.setItems(listref);
     }
 
@@ -253,10 +255,10 @@ Recette c = new Recette();
         Stage stage = new Stage();
 //                  stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(new Scene(root1));
-        stage.initStyle(StageStyle.UNDECORATED);
+//        stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
         Stage CurrentStage = (Stage) jeu.getScene().getWindow();
 //                    CurrentStage.close();
     }
-    
+
 }

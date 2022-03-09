@@ -19,6 +19,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import tn.edu.esprit.model.Conversations;
 import tn.edu.esprit.model.Interaction;
 import tn.edu.esprit.model.Matching;
@@ -44,10 +45,7 @@ public class MatchingController implements Initializable {
 
     List<User> u;
     User x = new User();
-    @FXML
-    private GridPane grid;
-    @FXML
-    private ListView<User> list;
+    private HBox hbox;
 
     /**
      * Initializes the controller class.
@@ -63,37 +61,42 @@ public class MatchingController implements Initializable {
 
 //    void afficher() {
 //
-//        int colum = 0;
-//        int row = 0;
 //        ServiceUser us = new ServiceUser();
 //        u = us.afficher();
 //        try {
 //            for (int i = 0; i < u.size(); i++) {
 //
-//                FXMLLoader loader = new FXMLLoader(getClass().getResource("card.fxml"));
+//                FXMLLoader loader = new FXMLLoader(getClass().getResource("CardviewUser.fxml"));
 //                AnchorPane anchorPane = loader.load();
-//                anchorPane.setScaleShape(true);
-//                anchorPane.setPrefSize(183, 243);
-//                anchorPane.setMaxWidth(183);
-//                anchorPane.setMaxHeight(243);
-//                anchorPane.setLayoutX(25);
-//                anchorPane.setLayoutY(10);
-//                anchorPane.se tPrefWidth(row, i);
-//                CardController controller = loader.getController();
+//                CardviewUserController controller = loader.getController();
 //                controller.setAffichage(u.get(i));
-//                ++colum;
-//                
-//                grid.add(anchorPane, colum++, row);
-//                GridPane.setMargin(anchorPane, new Insets(5, 20, 10, 10));
+//                controller.setU(u.get(i));
+//                controller.load();
 //
+//                hbox.getChildren().add(anchorPane);
+//                hbox.setMargin(anchorPane, new Insets(25, 15, 0, 0));
+//                hbox.setSpacing(10);
+//
+////                grid.add(anchorPane, colum++, row);
+////                GridPane.setMargin(anchorPane, new Insets(5, 20, 10, 10));
 //            }
 //        } catch (IOException e) {
 //            e.getMessage();
 //        }
 //    }
 
+    public void i(User x) {
+        matches.getItems().clear();
+        reactions.getItems().clear();
+        ServiceMatching match = new ServiceMatching();
+        ServiceInteraction react = new ServiceInteraction();
+        matches.getItems().addAll(match.afficher().stream().filter(e -> e.getId_user1() == x.getId_user() || e.getId_user2() == x.getId_user()).collect(Collectors.toList()));
+        reactions.getItems().addAll(react.afficher().stream().filter(e -> e.getId_user1() == x.getId_user()).collect(Collectors.toList()));
+    }
+
     @FXML
-    private void index(MouseEvent event) {
+    private void index(MouseEvent event
+    ) {
         matches.getItems().clear();
         reactions.getItems().clear();
         x = users.getSelectionModel().getSelectedItem();
@@ -104,7 +107,8 @@ public class MatchingController implements Initializable {
     }
 
     @FXML
-    private void supprimerMatch(ActionEvent event) {
+    private void supprimerMatch(ActionEvent event
+    ) {
         ServiceMatching match = new ServiceMatching();
         match.supprimer(matches.getSelectionModel().getSelectedItem());
         int selecteditem = matches.getSelectionModel().getSelectedIndex();
@@ -112,13 +116,14 @@ public class MatchingController implements Initializable {
     }
 
     @FXML
-    private void autoMatch(ActionEvent event) {
+    private void autoMatch(ActionEvent event
+    ) {
         ServiceInteraction react = new ServiceInteraction();
         Interaction n = reactions.getSelectionModel().getSelectedItem();
         react.userLIKE(n);
         ServiceConversation c = new ServiceConversation();
         ServiceUser u = new ServiceUser();
-        String nom = u.afficher().stream().filter(e->e.getId_user()==n.getId_user2()).findAny().orElse(null).getNom_user();
+        String nom = u.afficher().stream().filter(e -> e.getId_user() == n.getId_user2()).findAny().orElse(null).getNom_user();
         c.ajouter(new Conversations(nom, n.getId_user1(), n.getId_user2()));
     }
 }

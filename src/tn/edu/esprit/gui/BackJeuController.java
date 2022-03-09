@@ -96,7 +96,7 @@ public class BackJeuController implements Initializable {
     private void ModifierQ(ActionEvent event) {
         ServiceQuiz q = new ServiceQuiz();
         if (CurrentQuiz.getId_quiz() > -1) {
-            Quiz quiz = new Quiz(CurrentQuiz.getId_quiz(), 1);
+            Quiz quiz = new Quiz(CurrentQuiz.getId_quiz(), 0, inQ1.getText(), inrc.getText(), inrf11.getText(), inrf12.getText(), inrf13.getText(), inQ2.getText(), inrc2.getText(), inrf21.getText(), inrf22.getText(), inrf23.getText(), inQ3.getText(), inrc3.getText(), inrf31.getText(), inrf32.getText(), inrf33.getText());
             q.modifer(quiz);
             CurrentQuiz.setId_quiz(-1);
         } else {

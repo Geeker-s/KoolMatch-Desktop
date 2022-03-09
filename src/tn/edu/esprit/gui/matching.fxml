@@ -7,7 +7,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="576.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.edu.esprit.gui.MatchingController">
    <children>
-      <ListView fx:id="users" blendMode="MULTIPLY" layoutX="9.0" layoutY="11.0" onMousePressed="#index" orientation="HORIZONTAL" prefHeight="265.0" prefWidth="778.0" style="-fx-background-radius: 20;" />
+      <ListView fx:id="users" blendMode="MULTIPLY" layoutX="9.0" layoutY="11.0" onMousePressed="#index" orientation="HORIZONTAL" prefHeight="265.0" prefWidth="780.0" style="-fx-background-radius: 20;" />
       <ListView fx:id="matches" blendMode="MULTIPLY" layoutX="9.0" layoutY="297.0" prefHeight="265.0" prefWidth="220.0" style="-fx-background-radius: 20;">
          <opaqueInsets>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

@@ -86,7 +86,6 @@ public class RecetteFrontController implements Initializable {
         Stage stage = new Stage();
 //                  stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(new Scene(root1));
-        stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
         Stage CurrentStage = (Stage) play.getScene().getWindow();
 //                    CurrentStage.close();

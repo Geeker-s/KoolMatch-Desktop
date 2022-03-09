@@ -10,13 +10,16 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import static tn.edu.esprit.gui.LoginController.CurrentUser;
 import tn.edu.esprit.model.User;
 import tn.edu.esprit.services.ServiceMatching;
+import tn.edu.esprit.services.ServiceUser;
 
 /**
  * FXML Controller class
@@ -43,6 +46,7 @@ public class FilterController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         sliderage_min.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, //
@@ -69,14 +73,18 @@ public class FilterController implements Initializable {
             }
         });
 
+            System.out.println(getList());
+        
+        
     }
 
-    private List<User> getList() {
+    public List<User> getList() {
 
         ServiceMatching m = new ServiceMatching();
 
-        return m.filter(CurrentUser, Integer.parseInt(age_min.getText()), Integer.parseInt(age_max.getText()), Integer.parseInt(distance.getText()));
+        return m.filter(CurrentUser, Integer.parseInt(age_min.getText()), Integer.parseInt(age_max.getText()), Double.parseDouble(distance.getText()));
 
     }
+
 
 }

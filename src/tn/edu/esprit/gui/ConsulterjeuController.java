@@ -71,6 +71,7 @@ public class ConsulterjeuController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         listj.setItems(list);
+        System.out.println(list);
         listq.setItems(listt);
         chart.setTitle("Niveau joueurs");
         chart.getData().setAll(new PieChart.Data("Tres faible", j.calculz1()), new PieChart.Data("faible", j.calculz2()),
@@ -88,7 +89,7 @@ public class ConsulterjeuController implements Initializable {
         Stage stage = new Stage();
 //                  stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(new Scene(root1));
-        stage.initStyle(StageStyle.UNDECORATED);
+//        stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
         Stage CurrentStage = (Stage) quiz.getScene().getWindow();
 //        CurrentStage.close();
@@ -136,7 +137,7 @@ public class ConsulterjeuController implements Initializable {
 
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Success");
-            alert.setContentText("Person is added successfully!");
+            alert.setContentText("Game is added successfully!");
             alert.show();
 
         });

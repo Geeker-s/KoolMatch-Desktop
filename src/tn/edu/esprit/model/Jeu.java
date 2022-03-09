@@ -10,11 +10,12 @@ package tn.edu.esprit.model;
  * @author khaled
  */
 public class Jeu {
-     int id_jeu;
+
+    int id_jeu;
     int score_jeu;
     int id_quiz;
     int id_user;
-    int archive ;
+    int archive;
 
     public Jeu() {
     }
@@ -24,7 +25,7 @@ public class Jeu {
         this.score_jeu = score_jeu;
         this.id_quiz = id_recette;
         this.id_user = id_user;
-        this.archive =1;
+        this.archive = 1;
     }
 
     public Jeu(int id_jeu) {
@@ -39,11 +40,11 @@ public class Jeu {
         this.archive = archive;
     }
 
-    public Jeu(int score_jeu, int id_recette, int id_user) {
+    public Jeu(int score_jeu, int id_quiz, int id_user) {
         this.score_jeu = score_jeu;
-        this.id_quiz = id_recette;
+        this.id_quiz = id_quiz;
         this.id_user = id_user;
-         this.archive =0;
+        this.archive = 0;
     }
 
     public void setEtat(int archive) {
@@ -120,11 +121,9 @@ public class Jeu {
 
     @Override
     public String toString() {
-       // return "Jeu" + "score_jeu=" + score_jeu + ", rank=" + id_quiz + "";
-       return String.format( "%-20s",score_jeu)
-                + String.format( "%-20s ",id_quiz)
-                
-                 ;
+        // return "Jeu" + "score_jeu=" + score_jeu + ", rank=" + id_quiz + "";
+        return String.format("%-20s", score_jeu)
+                + String.format("%-20s ", id_quiz);
     }
-  
+
 }

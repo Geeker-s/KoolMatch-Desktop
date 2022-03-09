@@ -49,6 +49,18 @@ public class CardviewUserController implements Initializable {
     User u;
     @FXML
     private Rectangle rec;
+    @FXML
+    private Button details;
+
+    MatchingController m;
+
+    public MatchingController getM() {
+        return m;
+    }
+
+    public void setM(MatchingController m) {
+        this.m = m;
+    }
 
     public User getU() {
         return u;
@@ -63,7 +75,7 @@ public class CardviewUserController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
         // TODO
     }
 
@@ -84,4 +96,17 @@ public class CardviewUserController implements Initializable {
         us.supprimer(getU());
         rec.setFill(Color.BLACK);
     }
+
+    public void load() {
+        sup.setVisible(false);
+        details.setVisible(true);
+
+    }
+
+    @FXML
+    private void detail(ActionEvent event) {
+
+        getM().i(getU());
+    }
+
 }
