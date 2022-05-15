@@ -229,7 +229,7 @@ public class FormulaireReservationController implements Initializable {
        p.setImage(p1.getImage());
        p.setAdresse(p1.getAdresse_restaurant());
        sp.ajouter(p);
-       tn.edu.esprit.api.sendSMS.sendSMS(CurrentUser);
+      // tn.edu.esprit.api.sendSMS.sendSMS(CurrentUser);
       
    
   
@@ -290,4 +290,3 @@ if (disponibilite.equals("")) {
      
        */   
 }
-

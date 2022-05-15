@@ -39,6 +39,7 @@ import javafx.scene.input.TransferMode;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.controlsfx.control.Notifications;
+import static tn.edu.esprit.GUI.BackJeuController.CurrentRecette;
 import tn.edu.esprit.services.ServiceRecette;
 
 /**
@@ -250,6 +251,7 @@ public class RecetteController implements Initializable {
     @FXML
     private void Ejeu(ActionEvent event) throws IOException {
         Stage primaryStage;
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Consulterjeu.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();

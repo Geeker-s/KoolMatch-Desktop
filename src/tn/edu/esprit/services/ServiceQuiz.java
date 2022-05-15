@@ -31,7 +31,7 @@ public class ServiceQuiz implements IService<Quiz> {
     @Override
     public void ajouter(Quiz p) {
         try {
-            String querry = "INSERT INTO `quiz`(`id_jeu`, `Q1`,`rc1`,`rf11`,`rf12`,`rf13`,`Q2`,`rc2`,`rf21`,`rf22`,`rf23`,`Q3`,`rc3`,`rf31`,`rf32`,`rf33`) VALUES ('" + p.getId_jeu() + "','" + p.getQ1() + "','" + p.getRc1() + "','" + p.getRf11() + "','" + p.getRf12() + "','" + p.getRf13() + "','" + p.getQ2() + "','" + p.getRc2() + "','" + p.getRf21() + "','" + p.getRf22() + "','" + p.getRf23() + "','" + p.getQ3() + "','" + p.getRc3() + "','" + p.getRf31() + "','" + p.getRf32() + "','" + p.getRf33() + "')";
+            String querry = "INSERT INTO `quiz`(`id_recette`, `Q1`,`rc1`,`rf11`,`rf12`,`rf13`,`Q2`,`rc2`,`rf21`,`rf22`,`rf23`,`Q3`,`rc3`,`rf31`,`rf32`,`rf33`) VALUES ('" + p.getId_jeu() + "','" + p.getQ1() + "','" + p.getRc1() + "','" + p.getRf11() + "','" + p.getRf12() + "','" + p.getRf13() + "','" + p.getQ2() + "','" + p.getRc2() + "','" + p.getRf21() + "','" + p.getRf22() + "','" + p.getRf23() + "','" + p.getQ3() + "','" + p.getRc3() + "','" + p.getRf31() + "','" + p.getRf32() + "','" + p.getRf33() + "')";
             Statement stm = cnx.createStatement();
             stm.executeUpdate(querry);
 

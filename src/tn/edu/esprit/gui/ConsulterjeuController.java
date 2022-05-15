@@ -35,6 +35,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import static tn.edu.esprit.GUI.BackJeuController.CurrentQuiz;
+import static tn.edu.esprit.GUI.BackJeuController.CurrentRecette;
 import tn.edu.esprit.model.Jeu;
 import tn.edu.esprit.model.Quiz;
 import tn.edu.esprit.services.ServiceJeu;
@@ -147,7 +148,6 @@ public class ConsulterjeuController implements Initializable {
     @FXML
     private void gerer(ActionEvent event) throws IOException {
         CurrentQuiz.setId_quiz(listq.getSelectionModel().getSelectedItem().getId_quiz());
-
         Stage primaryStage;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("BackJeu.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();

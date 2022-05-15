@@ -23,8 +23,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -86,8 +84,6 @@ public class FormulaireRestaurantController implements Initializable {
     private Path pathfrom1;
     private Path pathto1;
     private File Current_file1;
-    @FXML
-    private TextField Fien;
 
     private boolean testTextInput(String a) {
 
@@ -120,6 +116,7 @@ public class FormulaireRestaurantController implements Initializable {
         }
 
     }
+    @FXML
     private ImageView imageView_structure;
 
     /**
@@ -135,15 +132,11 @@ public class FormulaireRestaurantController implements Initializable {
 
         ServiceRestaurant sp = new ServiceRestaurant();
         Restaurant p = new Restaurant();
+
         if (Fnom.getText().length() == 0) {
             Alert a = new Alert(null, " veuillez saisir votre nom", ButtonType.CLOSE);
             a.showAndWait();
             System.out.println(" not correct");
-        } else if (Ftelephone.getText().length() == 9 || Ftelephone.getText().length() == 0) {
-            Alert a = new Alert(null, " Veuillez entrer un numéro contenant 8 chiffres.", ButtonType.CLOSE);
-            a.showAndWait();
-            System.out.println(" not correct");
-
         } else if (!checkText(Fdescription.getText())) {
 
             Fdescription.setStyle("-fx-text-inner-color: red");
@@ -152,10 +145,10 @@ public class FormulaireRestaurantController implements Initializable {
 
             Alert alert = new Alert(Alert.AlertType.WARNING);
             Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-            stage.initStyle(StageStyle.DECORATED);
+            stage.initStyle(StageStyle.TRANSPARENT);
 
             alert.setTitle("Attention");
-            alert.setContentText("Veuillez entrer une description du restaurant .");
+            alert.setContentText("Veuillez entrer une description du restaurant!");
 
             alert.showAndWait();
             Fdescription.setCursor(Cursor.WAIT);
@@ -164,19 +157,14 @@ public class FormulaireRestaurantController implements Initializable {
 
             System.out.println(" not correct");
 
-        } else if (Fnombre.getText().length() == 0) {
-            Alert a = new Alert(null, "Veuillez entrer le nombre de places disponibles pour le restaurant .", ButtonType.CLOSE);
-            a.showAndWait();
-        } else if (Fspecialite.getText().length() == 0) {
-            Alert a = new Alert(null, " Veuillez entrer le spécialité.", ButtonType.CLOSE);
-            a.showAndWait();
-            System.out.println(" not correct");
-            System.out.println(" not correct");
         } else if (!checkText(Fsite.getText())) {
             Alert a = new Alert(null, "verifier votre site", ButtonType.CLOSE);
             a.showAndWait();
             System.out.println(" not correct");
-
+        } else if (Fnombre.getText().length() == 9) {
+            Alert a = new Alert(null, " veuillez saisir votre Telephone.", ButtonType.CLOSE);
+            a.showAndWait();
+            System.out.println(" not correct");
         } else if (!checkText(Fadresse.getText())) {
 
             Fadresse.setStyle("-fx-text-inner-color: red");
@@ -185,7 +173,7 @@ public class FormulaireRestaurantController implements Initializable {
 
             Alert alert = new Alert(Alert.AlertType.WARNING);
             Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-            stage.initStyle(StageStyle.DECORATED);
+            stage.initStyle(StageStyle.TRANSPARENT);
 
             alert.setTitle("Attention");
             alert.setContentText("Veuillez entrer l'adresse du restaurant!");
@@ -193,10 +181,6 @@ public class FormulaireRestaurantController implements Initializable {
             Fadresse.setCursor(Cursor.WAIT);
             Fadresse.setStyle("-fx-text-inner-color:  #663399");
             Fadresse.setStyle("-fx-prompt-text-fill:  #663399");
-        } else if (!checkText(Fien.getText())) {
-            Alert a = new Alert(null, "verifier votre lien", ButtonType.CLOSE);
-            a.showAndWait();
-            System.out.println(" not correct");
 
         } else {
             // p.setId_restaurant(Integer.parseInt(Fid.getText()));
@@ -229,20 +213,20 @@ public class FormulaireRestaurantController implements Initializable {
             Path targetDir1 = FileSystems.getDefault().getPath("src/tn/edu/esprit/images/");
             System.out.println(targetDir1);
             Files.copy(pathfrom, pathto, StandardCopyOption.REPLACE_EXISTING);
-            p.setLien(Fien.getText());
+
             sp.ajouter(p);
+
             Notifications notificationBuilder = Notifications.create()
                     .title("Alert").text("Restaurant ajouté avec succé").graphic(null).hideAfter(Duration.seconds(3))
                     .position(Pos.BOTTOM_RIGHT);
             notificationBuilder.darkStyle();
             notificationBuilder.show();
 
-            Parent root = FXMLLoader.load(getClass().getResource("AfficherRestaurant.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
+            Scene scene = new Scene(FXMLLoader.load(getClass().getResource("AfficherRestaurant.fxml")));
+
+            Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
-
         }
     }
 
@@ -276,6 +260,7 @@ public class FormulaireRestaurantController implements Initializable {
         }
     }
 
+    @FXML
     private void image1DragOver(DragEvent event) {
         Dragboard board = event.getDragboard();
         if (board.hasFiles()) {
@@ -283,6 +268,7 @@ public class FormulaireRestaurantController implements Initializable {
         }
     }
 
+    @FXML
     private void image1Dropped(DragEvent event) throws FileNotFoundException {
 
         Dragboard board = event.getDragboard();

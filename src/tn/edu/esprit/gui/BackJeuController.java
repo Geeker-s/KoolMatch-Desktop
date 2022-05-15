@@ -18,6 +18,7 @@ import tn.edu.esprit.services.ServiceJeu;
 import tn.edu.esprit.services.ServiceQuiz;
 import tn.edu.esprit.model.Quiz;
 import tn.edu.esprit.model.Jeu;
+import tn.edu.esprit.model.Recette;
 
 /**
  * FXML Controller class
@@ -56,7 +57,9 @@ public class BackJeuController implements Initializable {
     private TextField inrf33;
     @FXML
     private TextField inrc3;
+    
     static public Quiz CurrentQuiz = new Quiz();
+    static public Recette CurrentRecette = new Recette();
 
     /**
      * Initializes the controller class.
@@ -88,6 +91,7 @@ public class BackJeuController implements Initializable {
     @FXML
     private void AjouterQ(ActionEvent event) {
         ServiceQuiz q = new ServiceQuiz();
+        
         Quiz quiz = new Quiz(0, inQ1.getText(), inrc.getText(), inrf11.getText(), inrf12.getText(), inrf13.getText(), inQ2.getText(), inrc2.getText(), inrf21.getText(), inrf22.getText(), inrf23.getText(), inQ3.getText(), inrc3.getText(), inrf31.getText(), inrf32.getText(), inrf33.getText());
         q.ajouter(quiz);
     }
