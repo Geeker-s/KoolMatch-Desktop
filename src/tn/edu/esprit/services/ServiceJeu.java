@@ -59,7 +59,7 @@ public class ServiceJeu implements IService<Jeu> {
     @Override
     public boolean modifer(Jeu p) {
         try {
-            String req = " UPDATE jeu SET id_quiz = '" + p.getId_quiz() + "' WHERE id_jeu = '" + p.getId_jeu() + "'";
+            String req = " UPDATE jeu SET score_jeu = '" + p.getScore_jeu() + "' WHERE id_jeu = '" + p.getId_jeu() + "'";
             Statement stm = cnx.createStatement();
             stm.executeUpdate(req);
         } catch (SQLException ex) {
@@ -162,4 +162,12 @@ FROM <nom_table> ; */
         List<Jeu> jeu = afficher();
         return jeu.stream().filter(b -> b.getScore_jeu() > 150).count();
     }
+        public long rechercheru(int id) {
+        List<Jeu> quiz = afficher();
+        return quiz.stream().filter(b -> b.getId_user()== id).count();
+}
+    public List<Jeu> rechercherus(int id) {
+        List<Jeu> quiz = afficher();
+        return quiz.stream().filter(b -> b.getId_user()== id).collect(Collectors.toList());
+}
 }

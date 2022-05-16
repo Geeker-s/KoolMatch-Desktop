@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -29,5 +32,11 @@
       <Button layoutX="627.0" layoutY="497.0" mnemonicParsing="false" onAction="#AjouterQ" prefHeight="26.0" prefWidth="113.0" text="Ajouter un Quiz" />
       <Button layoutX="24.0" layoutY="497.0" mnemonicParsing="false" onAction="#ModifierQ" prefHeight="26.0" prefWidth="130.0" text="Modifier in Quiz" />
       <Button layoutX="163.0" layoutY="497.0" mnemonicParsing="false" onAction="#SuppQ" prefHeight="26.0" prefWidth="130.0" text="Supprimer un Quiz" />
+      <ComboBox fx:id="listr" layoutX="39.0" layoutY="15.0" onAction="#selected" prefWidth="150.0" promptText="Recette" />
+      <ImageView fitHeight="54.0" fitWidth="50.0" layoutX="760.0" layoutY="3.0" onMouseClicked="#retour" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/61167.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

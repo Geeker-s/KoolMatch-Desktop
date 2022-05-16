@@ -102,7 +102,18 @@ public class JeuController implements Initializable {
             sc = sc + 10;
         }
         Jeu j = new Jeu(sc, q.getId_quiz(), CurrentUser.getId_user()/*this user*/);
-        jeu.ajouter(j);
+        if (jeu.rechercheru( CurrentUser.getId_user())==0)
+        { 
+        jeu.ajouter(j);}
+        else { System.out.println("mod");
+            Jeu jm = jeu.rechercherus( CurrentUser.getId_user()).get(0);
+            System.out.println(jm.getScore_jeu());
+        int x= jm.getScore_jeu()+sc;
+        System.out.println(x);
+        jm.setScore_jeu(x);
+            System.out.println(jm);
+            jeu.modifer(jm); }
+       
 
     }
 

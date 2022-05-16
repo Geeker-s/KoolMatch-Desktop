@@ -32,7 +32,7 @@ public class ServiceConversation implements IService<Conversations> {
     public void ajouter(Conversations p) {
         try {
             Statement stm = cnx.createStatement();
-            String querry = "INSERT INTO `conversation`( `titre_conversation`, `id_user1`, `id_user2`) VALUES ('" + p.getTitre_conversation() + "' ,'" + p.getId_user1() + "','" + p.getId_user2() + "')";
+            String querry = "INSERT INTO `conversation`( `titre_conversation`, `id_user1`, `id_user2`, `archive`) VALUES ('" + p.getTitre_conversation() + "' ,'" + p.getId_user1() + "','" + p.getId_user2() +"','" + 0 + "')";
             stm.executeUpdate(querry);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

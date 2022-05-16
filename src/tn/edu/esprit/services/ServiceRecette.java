@@ -211,6 +211,10 @@ public class ServiceRecette implements IService<Recette> {
         List<Recette> quiz = afficher();
         return quiz.stream().filter(b -> b.getNom_recette().equals(r)).collect(Collectors.toList());
 }
+    public List<Recette> rechercher(int id) {
+        List<Recette> quiz = afficher();
+        return quiz.stream().filter(b -> b.getId_recette()== id).collect(Collectors.toList());
+    }
   /* public List<Recette> rechercherrr(String r) {
         List<Recette> recette = afficher();
         return recette.stream().filter(b -> r.equals(b.getCategorie_recette()) || r.equals(b.getDescription_recette()) || r.equals(Integer.toString(b.getDuree_recette()))).collect(Collectors.toList());

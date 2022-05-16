@@ -221,7 +221,7 @@ public class AfficherRestaurantController implements Initializable {
                 pane2.getChildren().addAll(hb, hb2);
 
                 String A = p3.getImage();
-//                A = "src/tn/edu/esprit/images/" + A;
+                A = "src/tn/edu/esprit/images/" + A;
                 File F1 = new File(A);
                 Image image2 = new Image(F1.toURI().toString());
 
@@ -500,7 +500,7 @@ public class AfficherRestaurantController implements Initializable {
                 pane2.getChildren().addAll(hb, hb2);
 
                 String A = p3.getImage();
-//                A = "src/tn/edu/esprit/images/" + A;
+                A = "src/tn/edu/esprit/images/" + A;
                 File F1 = new File(A);
                 Image image2 = new Image(F1.toURI().toString());
 
@@ -763,7 +763,7 @@ public class AfficherRestaurantController implements Initializable {
                 pane2.getChildren().addAll(hb, hb2);
 
                 String A = p3.getImage();
-//                A = "src/tn/edu/esprit/images/" + A;
+                A = "src/tn/edu/esprit/images/" + A;
                 System.out.println(A);
                 File F1 = new File(A);
                 Image image2 = new Image(F1.toURI().toString());

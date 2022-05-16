@@ -112,7 +112,7 @@ public class RecetteController implements Initializable {
     private void bAjouer(ActionEvent event) {
         file_image = "src/tn/edu/esprit/images/" + file_image;
 
-        ServiceRecette Recette = new ServiceRecette();
+        ServiceRecette Recettee = new ServiceRecette();
         if (nplat.getText().isEmpty() || nplat.getText().matches("[0-9]") || catg.getValue().equals("choisir categorie") || desc.getText().isEmpty() || desc.getText().matches("[0-9]") || Integer.parseInt(duree.getText()) < 0) {
             Notifications notificationBuilder = Notifications.create()
                     .title("Erreur").text("Veuillez verifier vos champs").graphic(null).hideAfter(javafx.util.Duration.seconds(5))
@@ -126,7 +126,7 @@ public class RecetteController implements Initializable {
             notificationBuilder.show();
         } else {
             Recette r1 = new Recette(nplat.getText(), file_image, desc.getText(), catg.getValue(), Integer.parseInt(duree.getText()));
-            Recette.ajouter(r1);
+            Recettee.ajouter(r1);
         }
     }
 
@@ -199,9 +199,10 @@ public class RecetteController implements Initializable {
         nplat.setText(c.getNom_recette());
         desc.setText(c.getDescription_recette());
         catg.setValue(c.getCategorie_recette());
-        prec.setText(c.getPhoto_recette());
         duree.setText(String.valueOf(c.getDuree_recette()));
-
+        File file = new File("src/tn/edu/esprit/images/"+c.getPhoto_recette());
+        Image image = new Image(file.toURI().toString());
+        photo.setImage(image);
     }
 
     @FXML

@@ -234,7 +234,7 @@ public class EventBackController implements Initializable {
 
         try {
 
-            PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\dedpy\\Desktop\\Evenements.pdf"));
+            PdfWriter.getInstance(doc, new FileOutputStream("Evenements.pdf"));
             doc.open();
             Font f = new Font(Font.FontFamily.HELVETICA, 50.0f, Font.UNDERLINE, BaseColor.PINK);
             doc.add(new Paragraph("Evenements : ", f));
@@ -316,7 +316,7 @@ public class EventBackController implements Initializable {
             doc.add(table);
 
             doc.close();
-            Desktop.getDesktop().open(new File("C:\\Users\\dedpy\\Desktop\\Evenements.pdf"));
+            Desktop.getDesktop().open(new File("Evenements.pdf"));
 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(ServiceInvitation.class.getName()).log(Level.SEVERE, null, ex);

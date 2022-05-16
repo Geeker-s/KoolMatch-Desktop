@@ -195,7 +195,6 @@ public class FormulaireRestaurantController implements Initializable {
             // p.setImage_structure_resturant(Fstructure.getText());
             p.setDescription(Fdescription.getText());
 
-            file_image = "src/tn/edu/esprit/images/" + file_image;
 
             p.setImage(file_image);
 
@@ -205,12 +204,11 @@ public class FormulaireRestaurantController implements Initializable {
             System.out.println(targetDir);
             Files.copy(pathfrom, pathto, StandardCopyOption.REPLACE_EXISTING);
 
-            file_image1 = "src/tn/edu/esprit/images/" + file_image1;
             p.setImage_structure_resturant(file_image1);
 
             pathfrom = FileSystems.getDefault().getPath(Current_file.getPath());
             pathto = FileSystems.getDefault().getPath("src/tn/edu/esprit/images/" + Current_file.getName());
-            Path targetDir1 = FileSystems.getDefault().getPath("src/tn/edu/esprit/images/");
+            Path targetDir1 = FileSystems.getDefault().getPath("src/tn/e    du/esprit/images/");
             System.out.println(targetDir1);
             Files.copy(pathfrom, pathto, StandardCopyOption.REPLACE_EXISTING);
 

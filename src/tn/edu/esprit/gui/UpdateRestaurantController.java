@@ -71,7 +71,7 @@ public class UpdateRestaurantController implements Initializable {
         id_nomb.setText(Integer.toString(p1.getNb_placeResto()));
         id_tel.setText(Integer.toString(p1.getTelephone_restaurant()));
         String a = p1.getImage();
-        File file = new File(a);
+        File file = new File("src/tn/edu/esprit/images/"+a);
         Image image1 = new Image(file.toURI().toString());
         id_imag.setImage(image1);
 

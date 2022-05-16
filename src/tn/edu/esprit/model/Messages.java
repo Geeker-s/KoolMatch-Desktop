@@ -19,7 +19,7 @@ public class Messages {
     private String date_msg;
     private java.util.Date date_message = new java.util.Date(System.currentTimeMillis());
 
-    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
     public Messages() {
     }

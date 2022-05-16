@@ -72,7 +72,7 @@ public class RecetteFrontController implements Initializable {
         desc.setText(rec.getDescription_recette());
         catg.setText(rec.getCategorie_recette());
         duree.setText(Integer.toString(rec.getDuree_recette()));
-        File file = new File(rec.getPhoto_recette());
+        File file = new File("src/tn/edu/esprit/images/"+rec.getPhoto_recette());
         Image image = new Image(file.toURI().toString());
         img.setImage(image);
 

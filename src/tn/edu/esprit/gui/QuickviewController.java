@@ -69,7 +69,7 @@ public class QuickviewController implements Initializable {
 
         String a = p1.getImage();
         System.out.println(p1.getImage());
-        File file = new File(a);
+        File file = new File("src/tn/edu/esprit/images/"+a);
         Image image1 = new Image(file.toURI().toString());
 
         idimage_view.setImage(image1);
@@ -82,8 +82,8 @@ public class QuickviewController implements Initializable {
        
         String a1 = p1.getImage_structure_resturant();
         System.out.println(p1.getImage_structure_resturant());
-        File file1 = new File(a1);
-        Image image = new Image(file.toURI().toString());
+        File file1 = new File("src/tn/edu/esprit/images/"+a1);
+        Image image = new Image(file1.toURI().toString());
 
     }
 

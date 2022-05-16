@@ -203,14 +203,14 @@ public class FrontController implements Initializable {
 //        setI(0);
 //        c.setAffichage(matches.get(getI()));
 
-//        FXMLLoader loadmsg = new FXMLLoader(getClass().getResource("Room.fxml"));
-//        Pane paneMsg;
-//        try {
-//            paneMsg = loadmsg.load();
-//            pnlConversation.getChildren().add(paneMsg);
-//        } catch (IOException ex) {
-//            ex.getMessage();
-//        }
+        FXMLLoader loadmsg = new FXMLLoader(getClass().getResource("Room.fxml"));
+        Pane paneMsg;
+        try {
+            paneMsg = loadmsg.load();
+            pnlConversation.getChildren().add(paneMsg);
+        } catch (IOException ex) {
+            ex.getMessage();
+        }
         FXMLLoader loaderRestaurant = new FXMLLoader(getClass().getResource("Front_reservation.fxml"));
         Pane newLoadedR;
         try {

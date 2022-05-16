@@ -33,7 +33,7 @@ public class ServiceMessage implements IService<Messages>{
     public void ajouter(Messages p, int id_con) {
         
         try {
-  String querry = "INSERT INTO `message`( `msg_message`, `date_message`, `id_conversation`) VALUES ('" + p.getMsg_message() + "' ,'" + p.getDate_message() + "','" + id_con + "')";
+  String querry = "INSERT INTO `message`( `msg_message`, `date_message`, `id_conversation`, `archive`) VALUES ('" + p.getMsg_message() + "' ,'" + p.getDate_message() + "','" + id_con + "','" + 0 + "')";
 //    String querry="UPDATE `message` SET `msg_message`='"+p.getMsg_message()+"',`date_message`='"+p.getDate_message()+"' WHERE `id_message`='"+p.getId_message()+"'";
             Statement stm =cnx.createStatement();
         
