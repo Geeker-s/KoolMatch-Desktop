@@ -337,7 +337,9 @@ public class FrontController implements Initializable {
         FilterController controllerFiltre = (FilterController) loadFilter.getController();
 //        //setters//
         setMatches(getF().getList());
-        
+        setI(0);
+        c.setAffichage(matches.get(getI()));
+
         System.out.println(matches);
 //        setI(0);
 //

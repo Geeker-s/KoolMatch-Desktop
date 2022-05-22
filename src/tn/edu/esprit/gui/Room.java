@@ -77,7 +77,7 @@ public class Room implements Initializable {
         showProPic.setStroke(Color.valueOf("#90a4ae"));
 
         ServiceConversation ev = new ServiceConversation();
-        listview.getItems().addAll(ev.afficher().stream().filter(e->e.getId_user1()==CurrentUser.getId_user()).findAny().orElse(null));
+        listview.getItems().addAll(ev.afficher().stream().filter(e->e.getId_user1()==CurrentUser.getId_user()||e.getId_user2()==CurrentUser.getId_user()).findAny().orElse(null));
 
         Emojis emoji = new Emojis();
         listemojis.getItems().addAll(emoji.EMOJIS());
@@ -162,11 +162,10 @@ public class Room implements Initializable {
 
         ServiceUser u = new ServiceUser();
 
-        File file = new File("src/tn/edu/esprit/images/" + u.afficher().stream().filter(e -> e.getId_user() == g.getId_user2()).findAny().orElse(null).getPhoto_user());
+        File file = new File("src/tn/edu/esprit/images/" + u.afficher().stream().filter(e -> e.getId_user() == g.getId_user1()).findAny().orElse(null).getPhoto_user());
         Image image = new Image(file.toURI().toString());
         showProPic.setFill(new ImagePattern(image));
 
-        clientName.setText(CurrentUser.getNom_user());
         msgRoom.setText(String.valueOf(ms.afficher(new Conversations(g.getId_conversation()))));
     }
 
